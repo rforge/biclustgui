@@ -39,7 +39,7 @@ while (!feof($handle)) {
 	$contents .= fread($handle, 8192);
 }
 fclose($handle);
-echo $contents; } ?>
+echo $contents; } ?> 
 
 <!-- end of project description -->
 
