@@ -1,10 +1,11 @@
 Package: BiclustGUI
 Type: Package
-Title: What the package does (short line)
-Version: 1.0
+Title: R commander PlugIn for bicluster analysis
+Version: 0.1
 Date: 2010-11-28
-Author: Who wrote it
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Author: Setia Rramana, Sebastian Kaiser
+Maintainer: Setia Pramana <setia.pramana@uhasselt.be>
+Description: The package allows the user to use the biclust package and other bicluster packages inside the R commander. All algorithms plots and calculations of the bicluster algorithms can be used. 
+Depends: biclust, Rcmdr
+License: GPL 2
 LazyLoad: yes
