@@ -109,20 +109,20 @@ function (bicObj,method) {
 
 
    cllabelFrame <- tkframe(memberMapFrame )
-   cllabelVal <- tclVar("1")
-   cllabelField <- ttkentry(cllabelFrame , width = "2",textvariable = cllabelVal )
+   cllabelVal <- tclVar(" ")
+   cllabelField <- ttkentry(cllabelFrame , width = "8",textvariable = cllabelVal )
 
    ## Draw Member Map ##
    onDRAW3 <- function() {
      .activeDataSet <- ActiveDataSet()
-     local <- if (tclvalue(localVariable) == "1") ", mid=TRUE"
+     mid <- if (tclvalue(midVariable) == "1") ", mid=TRUE"
             else ", mid=FALSE"
 
      cluster2Val <- if (tclvalue(cllabelVal ) == "") ""
             else paste(",cl_label=", tclvalue(cllabelVal), sep="" )
 
      doItAndPrint(paste("biclustmember(bicResult=",bicObj, ",as.matrix(",.activeDataSet,")", cluster2Val ,
-            local , " )" , sep="") )
+            mid , " )" , sep="") )
 
      }
 
