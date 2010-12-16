@@ -1,12 +1,12 @@
 # Some Rcmdr menus for the BiclustGUI package
 # When the plug-in is loaded, these menus are merged with the standard Rcmdr menus
 
-#   type    menu/item      operation/parent  label                              command/menu                activation    install?
+#   type    menu/item      operation/parent  label                              command/menu    activation    	install?
 
-menu    biclustMenu       topMenu         ""                                      ""                          ""                      "" 
-item    biclustMenu       command         "Biclustering Plaid "                PlaidWin         ""                      "packageAvailable('BiclustGUI')"
-item    biclustMenu       command         "Biclustering Bimax "              BimaxWin       ""                      "packageAvailable('BiclustGUI')"
-item    biclustMenu       command         "Biclustering CC "                    BCCWin          ""                      "packageAvailable('BiclustGUI')"
-item    biclustMenu       command         "Biclustering Xmotif "             XmotifsWin    ""                      "packageAvailable('BiclustGUI')"
-item    biclustMenu       command         "Biclustering Spectral "             SpectralWin  ""                       "packageAvailable('BiclustGUI')"
-item    topMenu         cascade         "Biclustering"                               biclustMenu                     ""    "packageAvailable('BiclustGUI')"
+menu    biclustMenu       topMenu         ""                                    ""              ""            	"" 
+item    biclustMenu       command         "Biclustering Plaid "         	PlaidWin        ""             	"packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering Bimax "              	BimaxWin       	""              "packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering CC "                    BCCWin          ""              "packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering Xmotif "             	XmotifsWin    	""              "packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering Spectral "             	SpectralWin  	""              "packageAvailable('BiclustGUI')"
+item    topMenu        	  cascade         "Biclustering"                        biclustMenu     ""    		"packageAvailable('BiclustGUI')"

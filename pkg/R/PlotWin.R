@@ -1,8 +1,8 @@
 PlotWin <-
 function (bicObj,method) {
-   ############################### 
+   ###############################
    ##### Parallel plots Frame ####
-   ############################### 
+   ###############################
   initializeDialog(title = gettextRcmdr(paste("Plots", method, sep=" - ") ))
 
    plotsFrame <- tkframe(top,relief="groove", borderwidth=2)
@@ -13,10 +13,10 @@ function (bicObj,method) {
    numClustFrame <- tkframe(plotsFrame )
    numClustVal <- tclVar("1")
    numClustField <- ttkentry(numClustFrame , width = "2",textvariable = numClustVal )
-   
-   ###################### 
+
+   ######################
    ## Draw paralel plot##
-   ###################### 
+   ######################
    onDRAW <- function() {
      .activeDataSet <- ActiveDataSet()
      plotcol <- if (tclvalue(plotColoumnVariable) == "1") ", plotcol=TRUE"
@@ -32,9 +32,9 @@ function (bicObj,method) {
             else paste(",number=", tclvalue(numClustVal ), sep="" )
 
 
-    if (tclvalue(type2Variable) == "1")         
+    if (tclvalue(type2Variable) == "1")
               doItAndPrint(paste("parallelCoordinates2(as.matrix(",.activeDataSet, "),bicResult=",bicObj, clusterVal,",info=TRUE)" , sep="") )
-             
+
      else {
             doItAndPrint(paste("parallelCoordinates(as.matrix(",.activeDataSet, "),bicResult=",bicObj, clusterVal ,
                 plotBoth , compare,",info=TRUE)" , sep="") )
@@ -43,19 +43,19 @@ function (bicObj,method) {
     }
 
    buttonsPlotFrame <- tkframe(plotsFrame , borderwidth = 5)
-   
-   Drawbutton <- buttonRcmdr(buttonsPlotFrame , text = gettextRcmdr("Draw Plot"), 
-        foreground = "darkgreen", width = "12", command = onDRAW , 
+
+   Drawbutton <- buttonRcmdr(buttonsPlotFrame , text = gettextRcmdr("Draw Plot"),
+        foreground = "darkgreen", width = "12", command = onDRAW ,
         default = "active", borderwidth = 3)
 
 
    tkgrid(labelRcmdr(plotsFrame , text=gettextRcmdr("Parallel Coordinate Plot:")),  sticky="w")
 
    tkgrid(labelRcmdr(numClustFrame , text=gettextRcmdr("Cluster Number :")), numClustField , sticky="w")
-  
+
    tkgrid(Drawbutton ,  sticky = "w")
 
-   tkgrid(paralelPlotFrame, numClustFrame ,buttonsPlotFrame ,sticky="w")  
+   tkgrid(paralelPlotFrame, numClustFrame ,buttonsPlotFrame ,sticky="w")
 
    tkgrid(plotsFrame , sticky = "w")
 
@@ -73,7 +73,7 @@ function (bicObj,method) {
    numClust2Field <- ttkentry(numClust2Frame , width = "2",textvariable = numClust2Val )
 
    ## Draw Heat Map ##
-   onDRAW2 <- function() {
+    onDRAW2 <- function() {
      .activeDataSet <- ActiveDataSet()
      local <- if (tclvalue(localVariable) == "1") ", local=TRUE"
             else ", local=FALSE"
@@ -83,21 +83,62 @@ function (bicObj,method) {
 
      doItAndPrint(paste("drawHeatmap(as.matrix(",.activeDataSet, "),bicResult=",bicObj, cluster2Val ,
             local , " )" , sep="") )
-      
+
      }
 
    buttonsHeatFrame <- tkframe(heatMapFrame , borderwidth = 5)
-   
-   DrawbuttonHeat <- buttonRcmdr(buttonsHeatFrame , text = gettextRcmdr("Draw Plot"), 
-        foreground = "darkgreen", width = "12", command = onDRAW2 , 
+
+   DrawbuttonHeat <- buttonRcmdr(buttonsHeatFrame , text = gettextRcmdr("Draw Plot"),
+        foreground = "darkgreen", width = "12", command = onDRAW2 ,
         default = "active", borderwidth = 3)
 
    tkgrid(labelRcmdr(heatMapFrame, text=gettextRcmdr("Heatmap Plot:")),  sticky="w")
    tkgrid(labelRcmdr(numClust2Frame , text=gettextRcmdr("Cluster Number :")), numClust2Field , sticky="w")
    tkgrid(DrawbuttonHeat , sticky = "w")
-   tkgrid(HeatPlotFrame, numClust2Frame ,buttonsHeatFrame, sticky="w")  
+   tkgrid(HeatPlotFrame, numClust2Frame ,buttonsHeatFrame, sticky="w")
 
    tkgrid(heatMapFrame, sticky = "w")
+
+  ########################
+   #### Clustmember Map Frame ####
+   ########################
+   memberMapFrame <- tkframe(top,relief="groove", borderwidth=2)
+
+   checkBoxes(memberMapFrame ,frame="MemberPlotFrame", boxes=c("mid"),
+         initialValues=1, labels=gettextRcmdr(c("mid")) )
+
+
+   cllabelFrame <- tkframe(memberMapFrame )
+   cllabelVal <- tclVar("1")
+   cllabelField <- ttkentry(cllabelFrame , width = "2",textvariable = cllabelVal )
+
+   ## Draw Member Map ##
+   onDRAW3 <- function() {
+     .activeDataSet <- ActiveDataSet()
+     local <- if (tclvalue(localVariable) == "1") ", mid=TRUE"
+            else ", mid=FALSE"
+
+     cluster2Val <- if (tclvalue(cllabelVal ) == "") ""
+            else paste(",cl_label=", tclvalue(cllabelVal), sep="" )
+
+     doItAndPrint(paste("biclustmember(bicResult=",bicObj, ",as.matrix(",.activeDataSet,")", cluster2Val ,
+            local , " )" , sep="") )
+
+     }
+
+   buttonsMemberFrame <- tkframe(memberMapFrame , borderwidth = 5)
+
+   DrawbuttonMember <- buttonRcmdr(buttonsMemberFrame , text = gettextRcmdr("Draw Plot"),
+        foreground = "darkgreen", width = "12", command = onDRAW3 ,
+        default = "active", borderwidth = 3)
+
+   tkgrid(labelRcmdr(memberMapFrame, text=gettextRcmdr("Biclustmember Plot:")),  sticky="w")
+   tkgrid(labelRcmdr(cllabelFrame , text=gettextRcmdr("Cluster Label :")), cllabelField , sticky="w")
+   tkgrid(DrawbuttonMember , sticky = "w")
+   tkgrid(MemberPlotFrame, cllabelFrame ,buttonsMemberFrame, sticky="w")
+
+   tkgrid(memberMapFrame, sticky = "w")
+
 
 
 ## Exit button frame ##
@@ -105,19 +146,19 @@ function (bicObj,method) {
    ExitFrame <- tkframe(top , borderwidth = 5)
 
     onCancel <- function() {
-            if (GrabFocus()) 
+            if (GrabFocus())
             tkgrab.release(top)
         tkdestroy(top)
         tkfocus(CommanderWindow())
     }
 
-   exitButton <- buttonRcmdr(ExitFrame , text = gettextRcmdr("Exit"), 
+   exitButton <- buttonRcmdr(ExitFrame , text = gettextRcmdr("Exit"),
         foreground = "red", width = "12", command = onCancel, borderwidth = 3)
 
    tkgrid(exitButton , sticky = "w")
    tkgrid(ExitFrame , sticky = "w")
    onOK <- function () {}
- 
+
    dialogSuffix(rows = 1, columns = 1)
 }
 
