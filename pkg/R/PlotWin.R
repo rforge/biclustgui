@@ -119,7 +119,7 @@ function (bicObj,method) {
             else ", mid=FALSE"
 
      cluster2Val <- if (tclvalue(cllabelVal ) == "") ""
-            else paste(",cl_label=", tclvalue(cllabelVal), sep="" )
+            else paste(",cl_label=\"", tclvalue(cllabelVal),"\"", sep="" )
 
      doItAndPrint(paste("biclustmember(bicResult=",bicObj, ",as.matrix(",.activeDataSet,")", cluster2Val ,
             mid , " )" , sep="") )
