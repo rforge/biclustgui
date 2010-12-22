@@ -9,4 +9,5 @@ item    biclustMenu       command         "Biclustering Bimax "              	Bi
 item    biclustMenu       command         "Biclustering CC "                    BCCWin          ""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Xmotif "             	XmotifsWin    	""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Spectral "             	SpectralWin  	""              "packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering Quest "             	QuestWin  	""              "packageAvailable('BiclustGUI')"
 item    topMenu        	  cascade         "Biclustering"                        biclustMenu     ""    		"packageAvailable('BiclustGUI')"

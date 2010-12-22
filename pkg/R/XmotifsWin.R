@@ -11,23 +11,27 @@ function () {
 
   nsFrame <- tkframe(specFrame )
   nsVal <- tclVar("10")
-  nsField <- ttkentry(nsFrame , width = "2",textvariable = nsVal )
+  nsField <- ttkentry(nsFrame , width = "5",textvariable = nsVal )
 
   ndFrame <- tkframe(specFrame )
   ndVal <- tclVar("10")
-  ndField <- ttkentry(ndFrame , width = "2",textvariable = ndVal )
+  ndField <- ttkentry(ndFrame , width = "5",textvariable = ndVal )
 
   sdFrame <- tkframe(specFrame )
   sdVal <- tclVar("5")
-  sdField <- ttkentry(sdFrame , width = "2",textvariable = sdVal )
+  sdField <- ttkentry(sdFrame , width = "5",textvariable = sdVal )
 
   alphaFrame <- tkframe(specFrame )
   alphaVal <- tclVar("0.05")
-  alphaField <- ttkentry(alphaFrame , width = "2",textvariable = alphaVal )
+  alphaField <- ttkentry(alphaFrame , width = "5",textvariable = alphaVal )
+
+  discFrame <- tkframe(specFrame )
+  discVal <- tclVar("FALSE")
+  discField <- ttkentry(discFrame, width = "5",textvariable = discVal)
 
   numberFrame <- tkframe(specFrame )
   numberVal <- tclVar("10")
-  numberField <- ttkentry(numberFrame, width = "3",textvariable = numberVal)
+  numberField <- ttkentry(numberFrame, width = "5",textvariable = numberVal)
 
   onOK <- function() {
 
@@ -38,14 +42,25 @@ function () {
     sd <-  paste(tclvalue(sdVal ))
     alpha <-  paste(tclvalue(alphaVal ))
     number <- paste(tclvalue(numberVal))
+    disc <- if(tclvalue(discVal)=="FALSE") FALSE
+    else TRUE
 
-     doItAndPrint("## Discretizing the data matrix ##")
-     doItAndPrint(paste("x <- discretize(as.matrix(",.activeDataSet, "))",sep="" ))
-     doItAndPrint("## The Xmotif biclustering: ##")
-     doItAndPrint(paste("Xmotifsbics <- biclust(x,method=BCXmotifs(), ns=",  ns , ",nd=",nd, ",sd=", sd,  ", alpha= ", alpha, 
-      ", number= ",number ,")" , sep="") )
-    
-    doItAndPrint("Xmotifsbics ") 
+    if(!disc)
+    {
+        doItAndPrint("## Discretizing the data matrix ##")
+        doItAndPrint(paste("x <- discretize(as.matrix(",.activeDataSet, "))",sep="" ))
+
+        doItAndPrint("## The Xmotif biclustering: ##")
+        doItAndPrint(paste("Xmotifsbics <- biclust(x,method=BCXmotifs(), ns=",  ns , ",nd=",nd, ",sd=", sd,  ", alpha= ", alpha, ", number= ",number ,")" , sep="") )
+
+    }
+    else
+    {
+        doItAndPrint("## The Xmotif biclustering: ##")
+        doItAndPrint(paste("Xmotifsbics <- biclust(as.matrix(",.activeDataSet, "), method=BCXmotifs(), ns=",  ns , ",nd=",nd, ",sd=", sd,  ", alpha= ", alpha, ", number= ",number ,")" , sep=""))
+    }
+
+    doItAndPrint("Xmotifsbics ")
 
 
     tkfocus(CommanderWindow())
@@ -59,23 +74,25 @@ function () {
    tkgrid(labelRcmdr(nsFrame , text=gettextRcmdr("Number of rows choosen:")), nsField , sticky="w")
    tkgrid(labelRcmdr(ndFrame, text=gettextRcmdr("Number of repetitions:")), ndField , sticky="w")
    tkgrid(labelRcmdr(sdFrame , text=gettextRcmdr("Sample size in repetitions:")), sdField , sticky="w")
-   tkgrid(labelRcmdr(alphaFrame, text=gettextRcmdr("Scaling factor:")), alphaField , sticky="w")
+   tkgrid(labelRcmdr(alphaFrame, text=gettextRcmdr("Scaling factor:          ")), alphaField , sticky="w")
 
    tkgrid(nsFrame , ndFrame,sticky="w")
 
-   tkgrid(sdFrame , sdFrame ,sticky="w")
+   tkgrid(sdFrame , alphaFrame ,sticky="w")
 
-   tkgrid(labelRcmdr(numberFrame, text=gettextRcmdr("Number of biclusters:  ")), numberField, sticky="w")
-   tkgrid(numberFrame,sticky="w")
+   tkgrid(labelRcmdr(numberFrame, text=gettextRcmdr("Number of biclusters:       ")), numberField, sticky="w")
+   tkgrid(labelRcmdr(discFrame, text=gettextRcmdr("Data already discrete: ")), discField, sticky="w")
+
+   tkgrid(numberFrame, discFrame, sticky="w")
    tkgrid(specFrame, sticky = "w")
 
 
 ## Button Frame ###
 
    buttonsFrame <- tkframe(top , borderwidth = 5)
-    
-   OKbutton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Show Result"), 
-        foreground = "darkgreen", width = "12", command = onOK, 
+
+   OKbutton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Show Result"),
+        foreground = "darkgreen", width = "12", command = onOK,
         default = "active", borderwidth = 3)
 
 
@@ -84,18 +101,18 @@ function () {
     }
 
 
-   Plotbutton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Plots"), 
-        foreground = "darkgreen", width = "12", command = onPlot, 
+   Plotbutton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Plots"),
+        foreground = "darkgreen", width = "12", command = onPlot,
         default = "active", borderwidth = 3)
 
     onCancel <- function() {
-            if (GrabFocus()) 
+            if (GrabFocus())
             tkgrab.release(top)
         tkdestroy(top)
         tkfocus(CommanderWindow())
     }
 
-   exitButton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Exit"), 
+   exitButton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Exit"),
         foreground = "red", width = "12", command = onCancel, borderwidth = 3)
 
    tkgrid(OKbutton,Plotbutton ,exitButton , sticky = "w")
