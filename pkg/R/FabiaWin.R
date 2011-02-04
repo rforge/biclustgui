@@ -8,10 +8,10 @@ FabiaWin <- function () {
   ########################## 
 
   specFrame <- tkframe(top, borderwidth=5)
-  radioButtons(specFrame , name = "center", buttons = c("c1", "c2", "c3", "c4"), values = c("1", "2", "3", "4"), 
+  radioButtons(specFrame , name = "center", buttons = c("c1", "c2", "c3", "c4"), values = c("1", "2", "3", "4"), initialValue=2,
         labels = gettextRcmdr(c("none", "Mean", "Median", "Mode")), title = gettextRcmdr("Data  Centering:"))
 
-  radioButtons(specFrame , name = "norm", buttons = c("n", "q", "v"), values = c("0", "1", "2"), 
+  radioButtons(specFrame , name = "norm", buttons = c("n", "q", "v"), values = c("0", "1", "2"), initialValue=2, 
         labels = gettextRcmdr(c("none", "0.75-0.25 quantiles", "Var=1")), title = gettextRcmdr("Data  Normalization:"))
 
   pFrame <- tkframe(specFrame )
@@ -136,5 +136,3 @@ function() {
 }
 
 
-
-#FabiaWin ()

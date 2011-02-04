@@ -9,7 +9,7 @@ function () {
 
   specFrame <- tkframe(top, borderwidth=5)
   radioButtons(specFrame , name = "tocluster", buttons = c("r", "c", "b"), values = c("r", "c", "b"), 
-        labels = gettextRcmdr(c("row", "coloumns", "both")), title = gettextRcmdr("To Cluster:"))
+        labels = gettextRcmdr(c("row", "coloumns", "both")), initialValue="b", title = gettextRcmdr("To Cluster:"))
 
   radioButtons(specFrame , name = "model", buttons = c("Linear", "Other"), values = c("Linear", "Other"), 
        labels = gettextRcmdr(c("Linear", "Other")), title = gettextRcmdr("Model:"))
@@ -62,6 +62,7 @@ function () {
 
     doItAndPrint(paste("Plaidbics <- biclust(as.matrix(",.activeDataSet, "),method=BCPlaid(),cluster='",tocluster , "'",background,
            shuffle, iterStartup,iter.layer,maxlayers  ,backfit   ,")" , sep="") )
+    doItAndPrint("Plaidbics") 
 
     tkfocus(CommanderWindow())
 

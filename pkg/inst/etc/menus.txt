@@ -11,4 +11,5 @@ item    biclustMenu       command         "Biclustering Xmotif "             	Xm
 item    biclustMenu       command         "Biclustering Spectral "             	SpectralWin  	""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Quest "             	QuestWin ""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Fabia"             	FabiaWin  	""              "packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering ISA"             	IsaWin  	""              "packageAvailable('BiclustGUI')"
 item    topMenu        	  cascade         "Biclustering"                        biclustMenu     ""    		"packageAvailable('BiclustGUI')"

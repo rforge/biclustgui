@@ -6,6 +6,6 @@ Date: 2010-11-28
 Author: Setia Pramana, Sebastian Kaiser
 Maintainer: Setia Pramana <setia.pramana@uhasselt.be>
 Description: The package allows the user to use the biclust package and other bicluster packages inside the R commander. All algorithms plots and calculations of the bicluster algorithms can be used. 
-Depends: biclust, Rcmdr, fabia
+Depends: biclust, Rcmdr, fabia, isa2
 License: GPL 2
 LazyLoad: yes

@@ -11,15 +11,58 @@ PlotFabWin <- function (bicObj,method) {
    Part0Frame <- tkframe(top,relief="groove", borderwidth=2)
    Part1Frame <- tkframe(top,relief="groove", borderwidth=2)
    Part2Frame <- tkframe(top,relief="groove", borderwidth=2)
+   Part3Frame <- tkframe(top,relief="groove", borderwidth=2)
 
+
+   ##############
+   ### BiPlot ###
+   ##############
+   biplotFrame <- tkframe(Part0Frame )
+   biplotFrame2 <- tkframe(Part0Frame )
+   biplotFrame3 <- tkframe(Part0Frame )
+
+   #################### 
+   ## Draw Biplot ##
+   #################### 
+  radioButtons(biplotFrame , name = "BiplotDim1", buttons = c("c1","c2", "c3"),
+     values = c("1", "2", "3"), 
+        labels = gettextRcmdr(c("1", "2", "3" )), title = gettextRcmdr("First:"))
+
+  radioButtons(biplotFrame , name = "BiplotDim2", buttons = c("c1","c2", "c3"),
+     values = c("1", "2", "3"), initialValue=2,
+        labels = gettextRcmdr(c("1", "2", "3" )), title = gettextRcmdr("Second:"))
+
+   onDRAWBiplot <- function() {
+     .activeDataSet <- ActiveDataSet()
+     Dim1 <- tclvalue(BiplotDim1Variable)
+     Dim2 <- tclvalue(BiplotDim2Variable)
+
+     doItAndPrint(paste("plot(",bicObj, ",dim=c(", Dim1 , ",", Dim2, ") )" , sep="") )
+   }
+
+   buttonsPlotFrame0 <- tkframe(biplotFrame2 , borderwidth = 5)
+   
+   Drawbuttonbiplt <- buttonRcmdr(buttonsPlotFrame0 , text = gettextRcmdr("Draw Plot"), 
+        foreground = "darkgreen", width = "12", command = onDRAWBiplot , 
+        default = "active", borderwidth = 3)
+
+   tkgrid(labelRcmdr(biplotFrame , text=gettextRcmdr("BiPlot:")),  sticky="w")
+   tkgrid(labelRcmdr(biplotFrame , text=gettextRcmdr("principal factors:")))
+   tkgrid(BiplotDim1Frame, labelRcmdr(biplotFrame , text=gettextRcmdr("  ")),BiplotDim2Frame, sticky = "w")
+
+   tkgrid(Drawbuttonbiplt , sticky = "w")
+   tkgrid(buttonsPlotFrame0 , sticky = "w")
+   tkgrid(labelRcmdr(biplotFrame3 , text=gettextRcmdr("                      ")),  sticky="w")
+
+   tkgrid(biplotFrame , biplotFrame2 ,biplotFrame3 ,  sticky = "w")
 
 
    ########################### 
    ##### Show  Plot Frame ####
    ###########################
-   showplotFrame <- tkframe(Part0Frame )
-   showplotFrame2 <- tkframe(Part0Frame )
-   showplotFrame3 <- tkframe(Part0Frame )
+   showplotFrame <- tkframe(Part1Frame )
+   showplotFrame2 <- tkframe(Part1Frame )
+   showplotFrame3 <- tkframe(Part1Frame )
 
    radioButtons(showplotFrame , name = "show", buttons = c("c1","c2", "c3", "c4"),
      values = c("1", "2", "3", "4"), 
@@ -37,16 +80,16 @@ PlotFabWin <- function (bicObj,method) {
      doItAndPrint(paste("showSelected(",bicObj, ",which=", show ,")" , sep="") )
    }
 
-   buttonsPlotFrame0 <- tkframe(showplotFrame2 , borderwidth = 5)
+   buttonsPlotFrame1 <- tkframe(showplotFrame2 , borderwidth = 5)
    
-   Drawbutton <- buttonRcmdr(buttonsPlotFrame0 , text = gettextRcmdr("Draw Plot"), 
+   Drawbutton <- buttonRcmdr(buttonsPlotFrame1 , text = gettextRcmdr("Draw Plot"), 
         foreground = "darkgreen", width = "12", command = onDRAW0 , 
         default = "active", borderwidth = 3)
 
    tkgrid(showFrame , sticky = "w")
 
    tkgrid(Drawbutton , sticky = "w")
-   tkgrid(buttonsPlotFrame0 , sticky = "w")
+   tkgrid(buttonsPlotFrame1 , sticky = "w")
    tkgrid(labelRcmdr(showplotFrame3, text=gettextRcmdr("                      ")),  sticky="w")
 
    tkgrid(showplotFrame , showplotFrame2 ,showplotFrame3,  sticky = "w")
@@ -57,8 +100,8 @@ PlotFabWin <- function (bicObj,method) {
    ##### Extract Plot  Frame ####
    ############################### 
 
-   ExtractplotFrame <- tkframe(Part1Frame )
-   ExtractplotFrame2 <- tkframe(Part1Frame)
+   ExtractplotFrame <- tkframe(Part2Frame )
+   ExtractplotFrame2 <- tkframe(Part2Frame)
 
    radioButtons(ExtractplotFrame , name = "extract", buttons = c("c0", "c1","c2", "c3", "c4","c5", "c6", "c7", "c8"),
      values = c("0","1", "2", "3", "4", "5", "6", "7", "8"), 
@@ -140,9 +183,9 @@ PlotFabWin <- function (bicObj,method) {
    ##### Bicluster Plot  Frame ####
    ############################### 
 
-   plotBicFrame <- tkframe(Part2Frame ,relief="groove")
-   plotBicFrame2 <- tkframe(Part2Frame ,relief="groove")
-   plotBicFrame3 <- tkframe(Part2Frame ,relief="groove")
+   plotBicFrame <- tkframe(Part3Frame ,relief="groove")
+   plotBicFrame2 <- tkframe(Part3Frame ,relief="groove")
+   plotBicFrame3 <- tkframe(Part3Frame ,relief="groove")
 
    numClustFrame <- tkframe(plotBicFrame )
    numClustVal <- tclVar("1")
@@ -232,6 +275,7 @@ PlotFabWin <- function (bicObj,method) {
    tkgrid(Part0Frame ,sticky="w")  
    tkgrid(Part1Frame ,sticky="w")  
    tkgrid(Part2Frame ,sticky="w")  
+   tkgrid(Part3Frame ,sticky="w")  
 
 
 #######################
@@ -256,7 +300,6 @@ PlotFabWin <- function (bicObj,method) {
    onOK <- function () {}
  
    dialogSuffix(rows = 1, columns = 1)
-}
 
-#PlotFabWin (bicObj="Bicfabia",method="Fabia")
+}
 
