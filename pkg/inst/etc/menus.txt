@@ -3,13 +3,14 @@
 
 #   type    menu/item      operation/parent  label                              command/menu    activation    	install?
 
-menu    biclustMenu       topMenu         ""                                    ""              ""            	"" 
+menu    biclustMenu       topMenu         ""                                    ""              ""            	""
 item    biclustMenu       command         "Biclustering Plaid "         	PlaidWin        ""             	"packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Bimax "              	BimaxWin       	""              "packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering maxBimax "             	BimaxWin2      	""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering CC "                    BCCWin          ""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Xmotif "             	XmotifsWin    	""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Spectral "             	SpectralWin  	""              "packageAvailable('BiclustGUI')"
-item    biclustMenu       command         "Biclustering Quest "             	QuestWin ""              "packageAvailable('BiclustGUI')"
+item    biclustMenu       command         "Biclustering Quest "             	QuestWin 	""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering Fabia"             	FabiaWin  	""              "packageAvailable('BiclustGUI')"
 item    biclustMenu       command         "Biclustering ISA"             	IsaWin  	""              "packageAvailable('BiclustGUI')"
 item    topMenu        	  cascade         "Biclustering"                        biclustMenu     ""    		"packageAvailable('BiclustGUI')"
