@@ -128,8 +128,19 @@ function () {
    exitButton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Exit"),
         foreground = "red", width = "12", command = onCancel, borderwidth = 3)
 
-   tkgrid(OKbutton,Plotbutton ,exitButton , sticky = "w")
+  onHelpBimax <- function() {
+                tkgrab.release(window)
+                 print(help("BCBimax"))
+                }
+
+   helpButton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Help"), 
+        foreground = "red", width = "12", command = onHelpBimax , borderwidth = 3)
+
+
+
+   tkgrid(OKbutton,Plotbutton ,exitButton ,helpButton , sticky = "w")
    tkgrid(buttonsFrame, sticky = "w")
    dialogSuffix(rows = 2, columns = 2)
 }
 
+###BimaxWin2 ()

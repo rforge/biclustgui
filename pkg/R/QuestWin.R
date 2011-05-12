@@ -140,8 +140,19 @@ function () {
    exitButton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Exit"),
         foreground = "red", width = "12", command = onCancel, borderwidth = 3)
 
-   tkgrid(OKbutton,Plotbutton ,exitButton , sticky = "w")
+  onHelpQuest <- function() {
+                tkgrab.release(window)
+                 print(help("BCQuest"))
+                }
+
+
+   helpButton <- buttonRcmdr(buttonsFrame, text = gettextRcmdr("Help"), 
+        foreground = "red", width = "12", command = onHelpQuest , borderwidth = 3)
+
+
+   tkgrid(OKbutton,Plotbutton ,exitButton , helpButton , sticky = "w")
    tkgrid(buttonsFrame, sticky = "w")
    dialogSuffix(rows = 2, columns = 2)
 }
 
+##QuestWin ()
