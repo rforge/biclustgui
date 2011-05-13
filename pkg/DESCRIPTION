@@ -1,12 +1,14 @@
 Package: BiclustGUI
 Type: Package
-Title: R commander Plug In for bicluster analysis
-Version: 1.0.1
-Date: 2010-11-28
+Title: R Commander Plug-in for biclustering analysis
+Version: 1.1.1
+Date: 2010-05-26
 Author: Setia Pramana, Sebastian Kaiser
 Maintainer: Setia Pramana <setia.pramana@uhasselt.be>
-Description: The package allows the user to use the biclust package and other bicluster packages inside the R commander. All algorithms plots and calculations of the bicluster algorithms can be used. 
-Depends: biclust, Rcmdr, isa2
-Suggests: fabia
+Description: The R commander plug-in for biclustering analysis. The Graphical User Interface for  the biclust, fabia, isa2 packages
+Depends: biclust, Rcmdr, isa2, fabia
 License: GPL 2
 LazyLoad: yes
+Collate: BCCWin.R  BimaxWin2.R  FabiaWin.R  IsaWin.R  parallelCoordinates2.R  PlaidWin.R  BiclustGUIHelp.R
+      PlotFabWin.R  PlotWin.R  QuestWin.R  SpectralWin.R  XmotifsWin.R BiclustGUI-internal.R
+URL: http://www.ibiostat.be/software/BiclustGUI/index.html
