@@ -1,8 +1,8 @@
-Package: BiclustGUI
+Package: RcmdrPlugin.BiclustGUI
 Type: Package
 Title: R Commander Plug-in for biclustering analysis
 Version: 1.1.1
-Date: 2010-05-26
+Date: 2011-05-23
 Author: Setia Pramana, Sebastian Kaiser
 Maintainer: Setia Pramana <setia.pramana@uhasselt.be>
 Description: The R commander plug-in for biclustering analysis. The Graphical User Interface for  the biclust, fabia, isa2 packages
