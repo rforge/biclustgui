@@ -7,8 +7,8 @@ function (bicObj,method) {
 
    plotsFrame <- tkframe(top,relief="groove", borderwidth=2)
 
-   checkBoxes(plotsFrame ,frame="paralelPlotFrame", boxes=c("plotColoumn", "plotBoth", "Compare","type2"),
-         initialValues=c(rep(1, 3),0), labels=gettextRcmdr(c("Plot Coloumn", "Plot Both", "Compare", "Type 2")) )
+   checkBoxes(plotsFrame ,frame="paralelPlotFrame", boxes=c("plotColoumn", "plotRows", "Compare","type2"),
+         initialValues=c(rep(1, 3),0), labels=gettextRcmdr(c("Plot Column", "Plot Rows", "Compare", "Type 2")) )
 
    numClustFrame <- tkframe(plotsFrame )
    numClustVal <- tclVar("1")
@@ -19,13 +19,15 @@ function (bicObj,method) {
    ######################
    onDRAW <- function() {
      .activeDataSet <- ActiveDataSet()
-     plotcol <- if (tclvalue(plotColoumnVariable) == "1") ", plotcol=TRUE"
-            else ", plotcol=FALSE"
+     
+     plotBoth <- if (tclvalue(plotRowsVariable) == "1" & tclvalue(plotColoumnVariable) == "1") ", plotBoth=TRUE"
+      else {
+          plotBoth <- ", plotBoth=FALSE"
+          plotcol <- if (tclvalue(plotColoumnVariable) == "1") ", plotcol=TRUE"
+          plotcol <- if (tclvalue(plotRowsVariable) == "1") ", plotcol=FALSE"
+        }
 
-     plotBoth <- if (tclvalue(plotBothVariable) == "1") ", plotBoth=TRUE"
-            else ", plotBoth=FALSE"
-
-     compare<- if (tclvalue(plotBothVariable) == "1") ", compare=TRUE"
+     compare <- if (tclvalue(CompareVariable) == "1") ", compare=TRUE"
             else ", compare=FALSE"
 
      clusterVal <- if (tclvalue(numClustVal) == "") ""
