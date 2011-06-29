@@ -41,8 +41,8 @@ IsaWin <- function () {
      idctr1 <- 1+(as.numeric(tclvalue(uprowVariable))+  2*as.numeric(tclvalue(downrowVariable)))
      idctr2 <- 1+(as.numeric(tclvalue(upcolVariable))+  2*as.numeric(tclvalue(downcolVariable)))
 
-    switch(idctr1 , "0"= {dirRow="updown"},"1"={dirRow="up"} , "2"={dirRow="down"}, "3"={dirRow="updown"}           )
-    switch(idctr2 , "0"= {dirCol="updown"},"1"={dirCol="up"} , "2"={dirCol="down"}, "3"={dirCol="updown"}           )
+    switch(idctr1 , "1"= {dirRow="updown"},"2"={dirRow="up"} , "3"={dirRow="down"}, "4"={dirRow="updown"}           )
+    switch(idctr2 , "1"= {dirCol="updown"},"2"={dirCol="up"} , "3"={dirCol="down"}, "4"={dirCol="updown"}           )
 
 
      no.seeds<- paste("no.seeds=", tclvalue(seedVal ), sep="" )
