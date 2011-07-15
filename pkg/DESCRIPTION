@@ -6,7 +6,8 @@ Date: 2011-05-23
 Author: Setia Pramana, Sebastian Kaiser
 Maintainer: Setia Pramana <setia.pramana@uhasselt.be>
 Description: The R commander plug-in for biclustering analysis. The Graphical User Interface for  the biclust, fabia, isa2 packages
-Depends: biclust, Rcmdr, isa2, fabia
+Depends: Rcmdr, tcltk
+Imports: biclust, Rcmdr, isa2, fabia
 License: GPL 2
 LazyLoad: yes
 Collate: BCCWin.R  BimaxWin2.R  FabiaWin.R  IsaWin.R  parallelCoordinates2.R  PlaidWin.R  BiclustGUIHelp.R
