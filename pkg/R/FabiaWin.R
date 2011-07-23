@@ -1,6 +1,6 @@
 
 FabiaWin <- function () {
-  require(fabia)
+  #require(fabia)
   initializeDialog(title = gettextRcmdr("Biclustering-Fabia Laplace Prior"))
   
   ########################## 
