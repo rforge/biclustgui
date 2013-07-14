@@ -62,6 +62,7 @@ function () {
 
     doItAndPrint("Xmotifsbics ")
 
+    assign("Xmotifsbics", Xmotifsbics, envir=.GlobalEnv)
 
     tkfocus(CommanderWindow())
 

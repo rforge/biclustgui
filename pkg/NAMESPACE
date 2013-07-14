@@ -1,6 +1,7 @@
 
 import(stats, Rcmdr)
-
 importFrom(tcltk, ttkprogressbar, tkwidget, setTkProgressBar)
+exportPattern("^[^\\.]")
+
 
 

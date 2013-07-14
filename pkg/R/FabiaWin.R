@@ -83,7 +83,7 @@ FabiaWin <- function () {
 
     doItAndPrint(paste("Bicfabia  <- fabia(as.matrix(",.activeDataSet,"), p=",p, ",alpha=", alpha, ",cyc=",cyc, ",spl=", spl,
     ",spz=", spz, ",random=",random, ",scale=", scale, ",lap=", lap, ",center=",center, ",norm=", norm  ,")", sep="") )
-
+    assign("Bicfabia", Bicfabia, envir=.GlobalEnv)
     doItAndPrint("summary(Bicfabia)") 
     tkgrab.release(top)
     tkfocus(CommanderWindow())

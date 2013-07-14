@@ -69,6 +69,8 @@ function () {
         doItAndPrint(paste("Bimaxbics <- biclust(x,method=BCBimax(), minr=", MinR, ", minc= ", MinC, ", number= ",number ,")" , sep="") )
     }
 
+    assign("Bimaxbics", Bimaxbics , envir=.GlobalEnv)
+
     doItAndPrint("Bimaxbics")
     tkfocus(CommanderWindow())
 }

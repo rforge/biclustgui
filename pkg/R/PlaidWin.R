@@ -62,6 +62,9 @@ function () {
 
     doItAndPrint(paste("Plaidbics <- biclust(as.matrix(",.activeDataSet, "),method=BCPlaid(),cluster='",tocluster , "'",background,
            shuffle, iterStartup,iter.layer,maxlayers  ,backfit   ,")" , sep="") )
+   
+    assign("Plaidbics", Plaidbics, envir=.GlobalEnv)
+
     doItAndPrint("Plaidbics") 
 
     tkfocus(CommanderWindow())

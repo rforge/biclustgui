@@ -29,13 +29,12 @@ function () {
 
     number <- if (tclvalue( numberVal) == "") "100"
             else paste(tclvalue(numberVal))
+    command <- paste("CCbics <- biclust(as.matrix(",.activeDataSet, "),method=BCCC(), delta=", delta, ", alpha= ", alpha, 
+      ", number= ",number ,")" , sep="")
 
-
-    doItAndPrint(paste("CCbics <- biclust(as.matrix(",.activeDataSet, "),method=BCCC(), delta=", delta, ", alpha= ", alpha, 
-      ", number= ",number ,")" , sep="") )
-    
+    doItAndPrint(command )
+    assign("CCbics", CCbics, envir=.GlobalEnv)
     doItAndPrint("CCbics ") 
-    
     tkfocus(CommanderWindow())
 
     }

@@ -55,6 +55,8 @@ IsaWin <- function () {
     throw, ",", thcol , ")" , sep="") )
 
     doItAndPrint(paste("ISAbics <- isa.biclust(isa.result)"))
+    assign("ISAbics", ISAbics, envir=.GlobalEnv)
+  
     doItAndPrint(paste("ISAbics "))
     tkfocus(CommanderWindow())
 

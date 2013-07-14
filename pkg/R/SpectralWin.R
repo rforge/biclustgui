@@ -40,6 +40,8 @@ function () {
 
     doItAndPrint(paste("Spectralbics <- biclust(as.matrix(",.activeDataSet, "),method=BCSpectral(),normalization='",normalize , "'",
            minr , minc ,withinVar ,")" , sep="") )
+    assign("Spectralbics", Spectralbics, envir=.GlobalEnv)
+
     doItAndPrint(paste("Spectralbics"))
     tkfocus(CommanderWindow())
 

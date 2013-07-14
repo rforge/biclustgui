@@ -79,6 +79,7 @@ function () {
     }
 
 
+    assign("Questbics", Questbics, envir=.GlobalEnv)
 
     tkfocus(CommanderWindow())
 
