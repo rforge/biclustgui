@@ -11,5 +11,5 @@ Imports: biclust, Rcmdr, isa2, fabia
 License: GPL (>= 2)
 LazyLoad: yes
 Collate: BCCWin.R  BimaxWin2.R  FabiaWin.R  IsaWin.R  parallelCoordinates2.R  PlaidWin.R  BiclustGUIHelp.R
-      PlotFabWin.R  PlotWin.R  QuestWin.R  SpectralWin.R  XmotifsWin.R BiclustGUI-internal.R globals.R
+      PlotFabWin.R  PlotWin.R  QuestWin.R  SpectralWin.R  XmotifsWin.R globals.R
 URL: http://www.ibiostat.be/software/BiclustGUI/index.html
