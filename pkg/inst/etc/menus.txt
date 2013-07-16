@@ -5,7 +5,7 @@
 
 menu    biclustMenu       topMenu         ""                                    ""              ""            	""
 item    biclustMenu       command         "Biclustering Plaid "         	PlaidWin        ""             	"packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering maxBimax "             	BimaxWin2      	""              "packageAvailable('RcmdrPlugin.BiclustGUI)"
+item    biclustMenu       command         "Biclustering maxBimax "             	BimaxWin2      	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
 item    biclustMenu       command         "Biclustering CC "                    BCCWin          ""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
 item    biclustMenu       command         "Biclustering Xmotif "             	XmotifsWin    	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
 item    biclustMenu       command         "Biclustering Spectral "             	SpectralWin  	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
