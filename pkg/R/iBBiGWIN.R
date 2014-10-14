@@ -10,7 +10,7 @@
 ###############################################################################
 
 
-biclustspectral_WIN <- function(){     # Change newmethod to your own method name
+iBBiG_WIN <- function(){     # Change newmethod to your own method name
 	
 	new.frames <- .initialize.new.frames()
 	grid.config <- .initialize.grid.config()
@@ -20,7 +20,8 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	# Possible improvement: Instead of overwriting new.frames each time. 
 	#      Maybe save the variable to something global or in a separate environment.
 	
-	
+	# Quick binary matrix check !
+	.binary.activematrix.check()
 	
 	###############################################################################################################################################################################
 	## GENERAL INFORMATION ABOUT THE NEW METHOD/WINDOW ##
@@ -35,25 +36,27 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	
 	# Define the name of the method as it will appear in the top of the window:
-	methodname <- "Spectral"
+	methodname <- "IBBIG"
 	
 	# Define the function (as it is named in your package)
 	# Note: If you have got a support function which is used for iterations, use it in this 'mainfunction'
-	methodfunction <- "biclust"
+	methodfunction <- "iBBiG"
 	
 	
 	# Define the name of the data argument for your function
-	data.arg <- "x"
+	data.arg <- "binaryMatrix"
 	
 	# Data will be loaded in as a dataframe, should it be transformed to a matrix for your function?
 	data.matrix <- TRUE
 	
+	methodshow <- TRUE
+	
 	# Define any other arguments in the function, which should not be changed by the user.
 	# These arguments may also include a certain method for your function, since it is the idea to give each method a separate window.
-	other.arg <- ",method=BCSpectral()"  # Comma in the beginning but not at the end ! 
+	other.arg <- ""  # Comma in the beginning but not at the end ! 
 	
 	# Help Object
-	methodhelp <- "BCSpectral"
+	methodhelp <- "iBBiG"
 	
 	# Possibility to give a seed ?
 	methodseed <- TRUE
@@ -62,7 +65,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	data.discr <- FALSE
 	
 	# Add a binarize box?
-	data.bin <- FALSE
+	data.bin <- TRUE
 	
 	## COMPATIBILITY? ##
 	
@@ -90,38 +93,56 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	input <- "clusterTab"
 	
-	####		RADIO BUTTONS FRAME - EXAMPLE 				####
-	#                               						   #
-	
-	type <- "radiobuttons"
-	
-	# Change variables accordingly:
-	frame.name <- "spectralnormframe"
-	argument.names <- c("Logarithmic Normalization","Independent Rescaling of Rows & Columns","Bistochastization")  
-	arguments <- c("normalization")		
-	argument.values <- c("log","irrc","bistochastization") 
-	argument.types <- "char"
-	initial.values <- "log" 
-	title <- "Normalization:"
-	border <- FALSE
-	
-	# DO NOT CHANGE THIS LINE:
-	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.types=argument.types,argument.names=argument.names,arguments=arguments,argument.values=argument.values,initial.values=initial.values,title=title,border=border,new.frames=new.frames)	
-	
-	######		  ENTRY FIELDS FRAME 				#####
-	#							    		 			#
+	######		  ENTRY FIELDS FRAME			#####
+	#							    		 		#
 	
 	type <- "entryfields"
 	
 	# Change variables accordingly:
-	frame.name <- "spectralentryframe"  
-	argument.names <- c("Number of Eigenvalues","Minimum number of Rows","Minimum number of Columns","Maximum Within Variation") 
-	argument.types <- c("num","num","num","num")
-	arguments <- c("numberOfEigenvalues","minr","minc","withinVar")
-	initial.values <- c(3,2,2,1)
+	frame.name <- "entryframe1"  
+	argument.names <- c("Number of Expected Clusters (will be optimized)","Weighting Factor [0,1] (Suggested: [0.3,0.5])") 
+	argument.types <- c("num","num")
+	arguments <- c("nModules","alpha") 
+	initial.values <- c(10,0.3)
 	title <- ""
 	border <- FALSE
-	entry.width <- c("2","2","2","2")  
+	entry.width <- c("4","4")  
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+	
+	######		  ENTRY FIELDS FRAME			#####
+	#							    		 		#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "entryframe2"  
+	argument.names <- c("Population Size","GA Mutation Rate","Stagnation Stop Criterion") 
+	argument.types <- c("num","num","num")
+	arguments <- c("pop_size","mutation","stagnation") 
+	initial.values <- c(100,0.08,50)
+	title <- ""
+	border <- FALSE
+	entry.width <- c("4","4","4")  
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+	
+	######		  ENTRY FIELDS FRAME			#####
+	#							    		 		#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "entryframe3"  
+	argument.names <- c("Parent Selection Pressure","Max Parent Selection","Succes Ratio") 
+	argument.types <- c("num","num","num")
+	arguments <- c("selection_pressure","max_sp","success_ratio") 
+	initial.values <- c(1.2,15,0.6)
+	title <- ""
+	border <- FALSE
+	entry.width <- c("4","4","4")  
 	
 	# Do not change this line:
 	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
@@ -136,14 +157,15 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	#### THE GRID MATRIX ####
 	#########################
 	
-	grid.config <- .grid.matrix(input=input,c("spectralnormframe","spectralentryframe"),byrow=TRUE,nrow=2,ncol=1,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("entryframe1",NA,"entryframe2","entryframe3"),byrow=TRUE,nrow=2,ncol=2,grid.config=grid.config)
 	
 	
 	####################################
 	#### COMBINING ROWS -CLUSTERTAB ####
 	####################################
 	
-	grid.rows <- .combine.rows(input=input,rows=c(1,2),title="Spectral Specifications",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(1),title="iBBiG Specifications",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(2),title="Extra Parameters (Little Effect on Performance)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
 	
@@ -159,6 +181,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	input <- "plotdiagTab"
 	
+		
 	###							###
 	## Parallel Coordinates Plot ##
 	###							###
@@ -361,29 +384,11 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	
 	###							###
-	## Summary & Diagnostics Box ##
+	##  Diagnostics Box ##
 	###							###
 	
 	
-	####	    	MANUAL BUTTONS FRAME 	  ####
-	#             								 #
-	
-	type <- "buttons"
-	
-	# Change variables accordingly:
-	frame.name <- "summarybuttonframe"  
-	button.name <- "Summary"  
-	button.function <- "summary" 
-	button.data <- "" 
-	button.biclust <-  "object" 
-	arg.frames <- c()
-	save <- FALSE
-	
-	# Do not change this line: (without button.otherarg)
-	new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
-	
-	###############################################################
-	
+
 	
 	####	    	MANUAL BUTTONS FRAME		  ####
 	#                               	 			 #
@@ -494,6 +499,65 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	# Do not change this line: (without button.otherarg)
 	new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames,button.otherarg=button.otherarg)
 	
+	####					####
+	##	iBBiG Summary & Plots ##
+	####					####
+	
+	
+	####	    	MANUAL BUTTONS FRAME		  ####
+	#                               				 #
+	
+	type <- "buttons"
+	
+	# Change variables accordingly:
+	frame.name <- "ibbigsummary"  
+	button.name <- "Summary"  
+	button.function <- "summary" 
+	button.data <- "" 
+	button.biclust <-  "object" 
+	button.otherarg <- ""
+	save <- FALSE
+	arg.frames <- c() 
+	
+	# Do not change this line: (without button.otherarg)
+	new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames,button.otherarg=button.otherarg)
+	
+	####	    	MANUAL BUTTONS FRAME		  ####
+	#                               				 #
+	
+	type <- "buttons"
+	
+	# Change variables accordingly:
+	frame.name <- "clusterscores"  
+	button.name <- "Cluster Scores"  
+	button.function <- "Clusterscores" 
+	button.data <- "" 
+	button.biclust <-  "object" 
+	button.otherarg <- ""
+	save <- TRUE
+	arg.frames <- c() 
+	
+	# Do not change this line: (without button.otherarg)
+	new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames,button.otherarg=button.otherarg)
+	
+	####	    	MANUAL BUTTONS FRAME		  ####
+	#                               				 #
+	
+	type <- "buttons"
+	
+	# Change variables accordingly:
+	frame.name <- "ibbigplot"  
+	button.name <- "Draw Plot"  
+	button.function <- "plot" 
+	button.data <- "" 
+	button.biclust <-  "x" 
+	button.otherarg <- ""
+	save <- FALSE
+	arg.frames <- c() 
+	
+	# Do not change this line: (without button.otherarg)
+	new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames,button.otherarg=button.otherarg)
+	
 	
 	###############################################################################################################################################################################
 	## CONFIGURATION OF GRID OF FRAMES - PLOTDIAGTAB ##
@@ -505,25 +569,28 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	#########################
 	
 	
-	grid.config <- .grid.matrix(input=input,c("summarybuttonframe","fstatentryframe","fstatbuttonframe","bootstrapentryframe",NA,NA,"bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,"pplottypeframe","pplotentryframe","parallelbuttonframe","pplotcheckframe",NA,NA,"heatplotcheckframe","heatplotentryframe","heatbuttonframe","mplotcheckframe","mplotentryframe","memberbuttonframe"),byrow=TRUE,nrow=7,ncol=3,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("ibbigsummary","clusterscores","ibbigplot",NA,"fstatentryframe","fstatbuttonframe","bootstrapentryframe",NA,NA,"bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,"pplottypeframe","pplotentryframe","parallelbuttonframe","pplotcheckframe",NA,NA,"heatplotcheckframe","heatplotentryframe","heatbuttonframe","mplotcheckframe","mplotentryframe","memberbuttonframe"),byrow=TRUE,nrow=8,ncol=3,grid.config=grid.config)
 	
 	
 	
 	########################
 	#### COMBINING ROWS ####
 	########################
+	grid.rows <- .combine.rows(input=input,rows=c(1),title="iBBiG - Summary & General Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
-	grid.rows <- .combine.rows(input=input,rows=c(1,2,3),title="Summary & Diagnostics",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
-	grid.rows <- .combine.rows(input=input,rows=c(4,5),title="Parallel Coordinate Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
-	grid.rows <- .combine.rows(input=input,rows=c(6),title="Heatmap Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
-	grid.rows <- .combine.rows(input=input,rows=c(7),title="Biclustmember Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(2,3,4),title="Biclust - Diagnostics",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(5,6),title="Biclust - Parallel Coordinate Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(7),title="Biclust - Heatmap Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(8),title="Biclust - Biclustmember Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	
+	
 	
 	
 	#########################################################################
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	
-	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.matrix=data.matrix,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot)
+	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.matrix=data.matrix,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow)
 	
 }
 

@@ -1,15 +1,13 @@
 Package: RcmdrPlugin.BiclustGUI
 Type: Package
-Title: R Commander Plug-in for biclustering analysis
-Version: 1.1.4
-Date: 2013-07-15
-Author: Setia Pramana, Sebastian Kaiser
-Maintainer: Setia Pramana <setia.pramana@ki.se>
-Description: The R commander plug-in for biclustering analysis. The Graphical User Interface for  the biclust, fabia, isa2 packages
-Depends: Rcmdr, tcltk
-Imports: biclust, Rcmdr, isa2, fabia
-License: GPL (>= 2)
+Title: Rcmdr Plugin-in
+Version: 0.4.7
+Date: 2014-04-09
+Author: De Troyer Ewoud
+Maintainer: De Troyer Ewoud <ewoud.detroyer@student.uhasselt.be>
+Description: Rcmdr Plug-in for biclustering
+License: CC BY-NC-SA 3.0
+Depends: biclust,fabia,isa2,iBBiG,superbiclust,BcDiag (>= 1.0.4)
+Imports: Rcmdr, tcltk
 LazyLoad: yes
-Collate: BCCWin.R  BimaxWin2.R  FabiaWin.R  IsaWin.R  parallelCoordinates2.R  PlaidWin.R  BiclustGUIHelp.R
-      PlotFabWin.R  PlotWin.R  QuestWin.R  SpectralWin.R  XmotifsWin.R BiclustGUI-internal.R globals.R
-URL: http://www.ibiostat.be/software/BiclustGUI/index.html
+Packaged: 2014-10-02 13:24:23 UTC; Ewoud

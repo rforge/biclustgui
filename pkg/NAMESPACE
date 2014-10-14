@@ -1,7 +1,10 @@
 
 import(stats, Rcmdr)
-importFrom(tcltk, ttkprogressbar, tkwidget, setTkProgressBar)
+import(biclust,fabia,isa2,iBBiG,superbiclust,BcDiag)
+importFrom(tcltk,ttknotebook,tkwidget,.Tk.subwin,.Tk.newwin,tkbutton,ttklabel,tkadd)
+
 exportPattern("^[^\\.]")
+export(.add.frame,.order.button.frames,.find.frame,.eval.command,.combine.rows,.make.correct.frame,.update.biclustering.object,.initialize.new.frames,.initialize.grid.config,.initialize.grid.rows,.grid.matrix,.build.command.argument,.transform.vector2text,.build.button.function,.give.doublequote,.output.sparse.txt)
 
 
 

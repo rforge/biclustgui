@@ -10,7 +10,7 @@
 ###############################################################################
 
 
-biclustspectral_WIN <- function(){     # Change newmethod to your own method name
+biclustCC_WIN <- function(){     # Change newmethod to your own method name
 	
 	new.frames <- .initialize.new.frames()
 	grid.config <- .initialize.grid.config()
@@ -35,7 +35,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	
 	# Define the name of the method as it will appear in the top of the window:
-	methodname <- "Spectral"
+	methodname <- "CC"
 	
 	# Define the function (as it is named in your package)
 	# Note: If you have got a support function which is used for iterations, use it in this 'mainfunction'
@@ -50,13 +50,13 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	# Define any other arguments in the function, which should not be changed by the user.
 	# These arguments may also include a certain method for your function, since it is the idea to give each method a separate window.
-	other.arg <- ",method=BCSpectral()"  # Comma in the beginning but not at the end ! 
+	other.arg <- ",method=BCCC()"  # Comma in the beginning but not at the end ! 
 	
 	# Help Object
-	methodhelp <- "BCSpectral"
+	methodhelp <- "BCCC"
 	
 	# Possibility to give a seed ?
-	methodseed <- TRUE
+	methodseed <- FALSE
 	
 	# Add a discretize box?
 	data.discr <- FALSE
@@ -72,7 +72,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	# SuperBiclust
 	superbiclust.comp <- TRUE
 	
-	# Biclust only
+	# Biclust Only
 	extrabiclustplot <- TRUE
 	
 	###############################################################################################################################################################################
@@ -90,42 +90,23 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	input <- "clusterTab"
 	
-	####		RADIO BUTTONS FRAME - EXAMPLE 				####
-	#                               						   #
-	
-	type <- "radiobuttons"
-	
-	# Change variables accordingly:
-	frame.name <- "spectralnormframe"
-	argument.names <- c("Logarithmic Normalization","Independent Rescaling of Rows & Columns","Bistochastization")  
-	arguments <- c("normalization")		
-	argument.values <- c("log","irrc","bistochastization") 
-	argument.types <- "char"
-	initial.values <- "log" 
-	title <- "Normalization:"
-	border <- FALSE
-	
-	# DO NOT CHANGE THIS LINE:
-	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.types=argument.types,argument.names=argument.names,arguments=arguments,argument.values=argument.values,initial.values=initial.values,title=title,border=border,new.frames=new.frames)	
-	
 	######		  ENTRY FIELDS FRAME 				#####
 	#							    		 			#
 	
 	type <- "entryfields"
 	
 	# Change variables accordingly:
-	frame.name <- "spectralentryframe"  
-	argument.names <- c("Number of Eigenvalues","Minimum number of Rows","Minimum number of Columns","Maximum Within Variation") 
-	argument.types <- c("num","num","num","num")
-	arguments <- c("numberOfEigenvalues","minr","minc","withinVar")
-	initial.values <- c(3,2,2,1)
-	title <- ""
-	border <- FALSE
-	entry.width <- c("2","2","2","2")  
+	frame.name <- "pmframe"  
+	argument.names <- c("Delta","Alpha","Maximal Numbers") 
+	argument.types <- c("num","num","num")
+	arguments <- c("delta","alpha","number")
+	initial.values <- c(1,1.5,100)
+	title <- "CC Specification"
+	border <- TRUE
+	entry.width <- c("4","4","4")  
 	
 	# Do not change this line:
 	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
-	
 	
 	
 	###############################################################################################################################################################################
@@ -136,14 +117,12 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	#### THE GRID MATRIX ####
 	#########################
 	
-	grid.config <- .grid.matrix(input=input,c("spectralnormframe","spectralentryframe"),byrow=TRUE,nrow=2,ncol=1,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("pmframe"),byrow=TRUE,nrow=1,ncol=1,grid.config=grid.config)
 	
 	
 	####################################
 	#### COMBINING ROWS -CLUSTERTAB ####
 	####################################
-	
-	grid.rows <- .combine.rows(input=input,rows=c(1,2),title="Spectral Specifications",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
 	

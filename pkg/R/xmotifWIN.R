@@ -10,7 +10,7 @@
 ###############################################################################
 
 
-biclustspectral_WIN <- function(){     # Change newmethod to your own method name
+biclustXMotif_WIN <- function(){     # Change newmethod to your own method name
 	
 	new.frames <- .initialize.new.frames()
 	grid.config <- .initialize.grid.config()
@@ -35,7 +35,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	
 	# Define the name of the method as it will appear in the top of the window:
-	methodname <- "Spectral"
+	methodname <- "XMotifs"
 	
 	# Define the function (as it is named in your package)
 	# Note: If you have got a support function which is used for iterations, use it in this 'mainfunction'
@@ -50,18 +50,16 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	# Define any other arguments in the function, which should not be changed by the user.
 	# These arguments may also include a certain method for your function, since it is the idea to give each method a separate window.
-	other.arg <- ",method=BCSpectral()"  # Comma in the beginning but not at the end ! 
+	other.arg <- ",method=BCXmotifs()"  # Comma in the beginning but not at the end ! 
 	
 	# Help Object
-	methodhelp <- "BCSpectral"
+	methodhelp <- "BCXmotifs"
 	
 	# Possibility to give a seed ?
 	methodseed <- TRUE
 	
-	# Add a discretize box?
-	data.discr <- FALSE
-	
-	# Add a binarize box?
+	# Discretize and/or binarize box?
+	data.discr <- TRUE
 	data.bin <- FALSE
 	
 	## COMPATIBILITY? ##
@@ -72,7 +70,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	# SuperBiclust
 	superbiclust.comp <- TRUE
 	
-	# Biclust only
+	# Biclust Only
 	extrabiclustplot <- TRUE
 	
 	###############################################################################################################################################################################
@@ -90,23 +88,6 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	input <- "clusterTab"
 	
-	####		RADIO BUTTONS FRAME - EXAMPLE 				####
-	#                               						   #
-	
-	type <- "radiobuttons"
-	
-	# Change variables accordingly:
-	frame.name <- "spectralnormframe"
-	argument.names <- c("Logarithmic Normalization","Independent Rescaling of Rows & Columns","Bistochastization")  
-	arguments <- c("normalization")		
-	argument.values <- c("log","irrc","bistochastization") 
-	argument.types <- "char"
-	initial.values <- "log" 
-	title <- "Normalization:"
-	border <- FALSE
-	
-	# DO NOT CHANGE THIS LINE:
-	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.types=argument.types,argument.names=argument.names,arguments=arguments,argument.values=argument.values,initial.values=initial.values,title=title,border=border,new.frames=new.frames)	
 	
 	######		  ENTRY FIELDS FRAME 				#####
 	#							    		 			#
@@ -114,14 +95,33 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	type <- "entryfields"
 	
 	# Change variables accordingly:
-	frame.name <- "spectralentryframe"  
-	argument.names <- c("Number of Eigenvalues","Minimum number of Rows","Minimum number of Columns","Maximum Within Variation") 
-	argument.types <- c("num","num","num","num")
-	arguments <- c("numberOfEigenvalues","minr","minc","withinVar")
-	initial.values <- c(3,2,2,1)
+	frame.name <- "pmframe1"  
+	argument.names <- c("Number of samples chosen","Number of repetitions","Sample Size in repetitions") 
+	argument.types <- c("num","num","num")
+	arguments <- c("ns","nd","sd")
+	initial.values <- c("10","10","5")
 	title <- ""
 	border <- FALSE
-	entry.width <- c("2","2","2","2")  
+	entry.width <- c("4","4","4")  
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+	
+	
+	######		  ENTRY FIELDS FRAME 				#####
+	#							    		 			#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "pmframe2"  
+	argument.names <- c("Scaling Factor (column result)","Number of bicluster") 
+	argument.types <- c("num","num")
+	arguments <- c("alpha","number")
+	initial.values <- c("0.05","100")
+	title <- ""
+	border <- FALSE
+	entry.width <- c("4","4")  
 	
 	# Do not change this line:
 	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
@@ -136,15 +136,14 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	#### THE GRID MATRIX ####
 	#########################
 	
-	grid.config <- .grid.matrix(input=input,c("spectralnormframe","spectralentryframe"),byrow=TRUE,nrow=2,ncol=1,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("pmframe1","pmframe2"),byrow=TRUE,nrow=1,ncol=2,grid.config=grid.config)
 	
 	
 	####################################
 	#### COMBINING ROWS -CLUSTERTAB ####
 	####################################
 	
-	grid.rows <- .combine.rows(input=input,rows=c(1,2),title="Spectral Specifications",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
-	
+	grid.rows <- .combine.rows(input=input,rows=c(1),title="Xmotifs Specification",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
 	###############################################################################################################################################################################
@@ -518,8 +517,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	grid.rows <- .combine.rows(input=input,rows=c(6),title="Heatmap Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	grid.rows <- .combine.rows(input=input,rows=c(7),title="Biclustmember Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
-	
-	#########################################################################
+	########################################################################
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	

@@ -10,7 +10,7 @@
 ###############################################################################
 
 
-biclustspectral_WIN <- function(){     # Change newmethod to your own method name
+biclustbimax_WIN <- function(){     # Change newmethod to your own method name
 	
 	new.frames <- .initialize.new.frames()
 	grid.config <- .initialize.grid.config()
@@ -20,7 +20,8 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	# Possible improvement: Instead of overwriting new.frames each time. 
 	#      Maybe save the variable to something global or in a separate environment.
 	
-	
+	# Quick binary matrix check !
+	.binary.activematrix.check()
 	
 	###############################################################################################################################################################################
 	## GENERAL INFORMATION ABOUT THE NEW METHOD/WINDOW ##
@@ -35,11 +36,11 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	
 	# Define the name of the method as it will appear in the top of the window:
-	methodname <- "Spectral"
+	methodname <- "Bimax"
 	
 	# Define the function (as it is named in your package)
 	# Note: If you have got a support function which is used for iterations, use it in this 'mainfunction'
-	methodfunction <- "biclust"
+	methodfunction <- "biclust.bimax"
 	
 	
 	# Define the name of the data argument for your function
@@ -50,19 +51,19 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	# Define any other arguments in the function, which should not be changed by the user.
 	# These arguments may also include a certain method for your function, since it is the idea to give each method a separate window.
-	other.arg <- ",method=BCSpectral()"  # Comma in the beginning but not at the end ! 
+	other.arg <- ",method=BCBimax()"  # Comma in the beginning but not at the end ! 
 	
 	# Help Object
-	methodhelp <- "BCSpectral"
+	methodhelp <- "BCBimax"
 	
 	# Possibility to give a seed ?
-	methodseed <- TRUE
+	methodseed <- FALSE
 	
 	# Add a discretize box?
 	data.discr <- FALSE
 	
 	# Add a binarize box?
-	data.bin <- FALSE
+	data.bin <- TRUE
 	
 	## COMPATIBILITY? ##
 	
@@ -72,7 +73,7 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	# SuperBiclust
 	superbiclust.comp <- TRUE
 	
-	# Biclust only
+	# Biclust Only
 	extrabiclustplot <- TRUE
 	
 	###############################################################################################################################################################################
@@ -90,23 +91,24 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	
 	input <- "clusterTab"
 	
-	####		RADIO BUTTONS FRAME - EXAMPLE 				####
-	#                               						   #
+	######		  ENTRY FIELDS FRAME 				#####
+	#							    		 			#
 	
-	type <- "radiobuttons"
+	type <- "entryfields"
 	
 	# Change variables accordingly:
-	frame.name <- "spectralnormframe"
-	argument.names <- c("Logarithmic Normalization","Independent Rescaling of Rows & Columns","Bistochastization")  
-	arguments <- c("normalization")		
-	argument.values <- c("log","irrc","bistochastization") 
-	argument.types <- "char"
-	initial.values <- "log" 
-	title <- "Normalization:"
+	frame.name <- "entryframe1"  
+	argument.names <- c("Minimum Row Size","Minimum Column Size") 
+	argument.types <- c("num","num")
+	arguments <- c("minr","minc")
+	initial.values <- c(2,2)
+	title <- ""
 	border <- FALSE
+	entry.width <- c("2","2")  
 	
-	# DO NOT CHANGE THIS LINE:
-	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.types=argument.types,argument.names=argument.names,arguments=arguments,argument.values=argument.values,initial.values=initial.values,title=title,border=border,new.frames=new.frames)	
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
 	
 	######		  ENTRY FIELDS FRAME 				#####
 	#							    		 			#
@@ -114,19 +116,80 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	type <- "entryfields"
 	
 	# Change variables accordingly:
-	frame.name <- "spectralentryframe"  
-	argument.names <- c("Number of Eigenvalues","Minimum number of Rows","Minimum number of Columns","Maximum Within Variation") 
-	argument.types <- c("num","num","num","num")
-	arguments <- c("numberOfEigenvalues","minr","minc","withinVar")
-	initial.values <- c(3,2,2,1)
+	frame.name <- "entryframe2"  
+	argument.names <- c("Number of biclusters") 
+	argument.types <- c("num")
+	arguments <- c("number")
+	initial.values <- c(100)
 	title <- ""
 	border <- FALSE
-	entry.width <- c("2","2","2","2")  
+	entry.width <- c("4")  
+	
 	
 	# Do not change this line:
 	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
 	
 	
+	
+	
+	####		RADIO BUTTONS FRAME  			####
+	#                               			   #
+	
+	type <- "radiobuttons"
+	
+	# Change variables accordingly:
+	frame.name <- "maxrepbimaxcheck"
+	argument.names <- c("Repeated Bimax Algorithm","Use maxBimax? (find maximal size)","None")  
+	arguments <- c("maxbicheck")		
+	argument.values <- c("1","2","3") 
+	argument.types <- "num"
+	initial.values <- "3" 
+	title <- ""
+	border <- FALSE
+	
+	# DO NOT CHANGE THIS LINE:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,argument.values=argument.values,initial.values=initial.values,title=title,border=border,new.frames=new.frames,argument.types=argument.types)	
+	
+	
+
+	
+	######		  ENTRY FIELDS FRAME 				#####
+	#							    		 			#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "maxbimaxentryframe1"  
+	argument.names <- c("Backfit","Repetitions") 
+	argument.types <- c("num","num")
+	arguments <- c("backfit","n2")
+	initial.values <- c(3,30)
+	title <- "maxBimax Specifications"
+	border <- FALSE
+	entry.width <- c("3","3")  
+	
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+	
+	######		  ENTRY FIELDS FRAME 				#####
+	#							    		 			#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "maxbimaxentryframe2"  
+	argument.names <- c("Max column size of bicluster") 
+	argument.types <- c("num")
+	arguments <- c("maxc")
+	initial.values <- c(12)
+	title <- "BCrepBimax Specifications"
+	border <- FALSE
+	entry.width <- c("3")  
+	
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
 	
 	###############################################################################################################################################################################
 	## CONFIGURATION OF GRID OF FRAMES - CLUSTERTAB ##
@@ -136,14 +199,15 @@ biclustspectral_WIN <- function(){     # Change newmethod to your own method nam
 	#### THE GRID MATRIX ####
 	#########################
 	
-	grid.config <- .grid.matrix(input=input,c("spectralnormframe","spectralentryframe"),byrow=TRUE,nrow=2,ncol=1,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("entryframe1","entryframe2","maxrepbimaxcheck",NA,"maxbimaxentryframe1","maxbimaxentryframe2"),byrow=TRUE,nrow=3,ncol=2,grid.config=grid.config)
 	
 	
 	####################################
 	#### COMBINING ROWS -CLUSTERTAB ####
 	####################################
 	
-	grid.rows <- .combine.rows(input=input,rows=c(1,2),title="Spectral Specifications",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(1),title="Bimax Specifications",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(2,3),title="maxBimax/BCrepBimax Specifications",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
 	

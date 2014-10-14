@@ -1,16 +1,49 @@
 # Some Rcmdr menus for the BiclustGUI package
 # When the plug-in is loaded, these menus are merged with the standard Rcmdr menus
 
+
+
 #   type    menu/item      operation/parent  label                              command/menu    activation    	install?
 
-menu    biclustMenu       topMenu         ""                                    ""              ""            	""
-item    biclustMenu       command         "Biclustering Plaid "         	PlaidWin        ""             	"packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering maxBimax "             	BimaxWin2      	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering CC "                    BCCWin          ""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering Xmotif "             	XmotifsWin    	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering Spectral "             	SpectralWin  	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering Quest "             	QuestWin 	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering Fabia"             	FabiaWin  	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "Biclustering ISA"             	IsaWin  	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    biclustMenu       command         "BiclustGUI Help"             	BiclustGUIHelp  	""              "packageAvailable('RcmdrPlugin.BiclustGUI')"
-item    topMenu        	  cascade         "Biclustering"                        biclustMenu     ""    		"packageAvailable('RcmdrPlugin.BiclustGUI')"
+### DEFINE TOP BICLUSTERING MENU			
+menu	BICLUSTERINGmenu       topMenu	  ""					"" 		""		""
+item 	topMenu	          cascade	  "Biclustering"                        BICLUSTERINGmenu      ""               ""
+
+
+### Help Page
+item 	BICLUSTERINGmenu	command		"Helppage BiclustGUI..."	"biclustGUI_help"	""			""
+item 	BICLUSTERINGmenu	separator	""				""			""			""
+
+
+
+### BiClust Package Menu
+menu	biclustmenu	   BICLUSTERINGmenu   ""             			""		""		""
+item	BICLUSTERINGmenu   cascade	   "Biclust"				biclustmenu	""		""
+
+
+item	biclustmenu	   command		"Biclustering - Plaid"		"biclustplaid_WIN"  "activeDataSetP()"		""
+item	biclustmenu	   command		"Biclustering - CC" 		"biclustCC_WIN"     "activeDataSetP()"		""
+item	biclustmenu	   command		"Biclustering - XMotif"		"biclustXMotif_WIN" "activeDataSetP()"		""
+item	biclustmenu	   command		"Biclustering - Spectral"	"biclustspectral_WIN" "activeDataSetP()"	""
+item	biclustmenu	   command		"Biclustering - QuestMotif"	"biclustquest_WIN"	"activeDataSetP()"	""
+item	biclustmenu	   command		"Biclustering - Bimax"		"biclustbimax_WIN"	"activeDataSetP()"	""
+
+
+
+### Fabia Package Menu
+menu	fabiamenu	BICLUSTERINGmenu	""				""		""		""
+item	BICLUSTERINGmenu	cascade		"Fabia"				fabiamenu	""		""
+
+
+item	fabiamenu	command			"Fabia - Laplace Prior"		"fabialaplace_WIN"		"activeDataSetP()"	""
+item	fabiamenu	command			"Fabia - Post-Projection"	"fabiapostprojection_WIN"	"activeDataSetP()"	""
+item	fabiamenu	command			"Fabia - Sparseness Projection"	"fabiasparsenessprojection_WIN"	"activeDataSetP()"	""
+item	fabiamenu	command			"Fabia - SPARSE"		"fabiaSPARSE_WIN"		"activeDataSetP()"	""
+
+
+### ISA Package Menu
+item	BICLUSTERINGmenu	command		"ISA"				"isadefault_WIN"	"activeDataSetP()"	""
+
+### iBBiG Package Menu
+item	BICLUSTERINGmenu	command		"iBBiG"				"iBBiG_WIN"		"activeDataSetP()"	""
+

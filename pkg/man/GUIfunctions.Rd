@@ -1,0 +1,136 @@
+\name{GUI Functions}
+\alias{biclust.bimax}
+\alias{biclustGUI_help}
+\alias{biclust.quest}
+\alias{biclust.robust.fuse}
+\alias{fabia.biplot}
+\alias{isa.extract}
+\alias{isa.GUI}
+\alias{isa.scoreplots}
+\alias{isa.summary}
+\alias{parallelCoordinates2}
+\alias{parallelCoordinates3}
+\alias{plotSuper.GUI}
+\alias{robust.reset}
+\alias{spfabia.GUI}
+\alias{superbiclust.GUI}
+\alias{superbiclust.robust.GUI}
+
+\title{GUI Functions}
+
+\description{List of GUI functions used for certain buttons.}
+\usage{
+biclust.bimax(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck)
+biclustGUI_help()
+biclust.quest(x,method,ns,nd,sd,alpha,number,d,quant,vari)
+biclust.robust.fuse(CutTree,method_result,type="biclust")
+fabia.biplot(x,dim1,dim2)
+isa.extract(modules)
+isa.GUI(data,thr.row.from,thr.row.to,thr.row.by,thr.col.from,thr.col.to,
+    thr.col.by,no.seeds,dir.row,dir.col)
+isa.scoreplots(ISA,type="row",biclust=c(1))
+isa.summary(ISA)
+parallelCoordinates2(x, bicResult, number, info = TRUE)
+parallelCoordinates3(x,bicResult,number,type2="default",plotBoth=FALSE,
+    plotcol=TRUE,compare=TRUE,info=FALSE,bothlab=c("Rows","Columns"),
+    order=FALSE,order2=0,ylab="Value",col=1,...)
+plotSuper.GUI(type,which.robust,CutTree)
+robust.reset(method_result)
+spfabia.GUI(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,norm,
+    scale,lap,nL,lL,bL,samples,initL,iter,quant,lowerB,upperB,
+    dorescale,doini,eps,eps1,datatype,filename)
+superbiclust.GUI(x,index,type,method_result,extra.biclust=NULL,isa2=FALSE)
+superbiclust.robust.GUI(CutTree,show.which=FALSE)
+}
+%\arguments{
+%\item{x}{ }
+%\item{method}{ }
+%\item{minr}{ }
+%\item{minc}{ }
+%\item{number}{ }
+%\item{maxc}{ }
+%\item{backfit}{ }
+%\item{n2}{ }
+%\item{maxbicheck}{ }
+%\item{ns}{ }
+%\item{nd}{ }
+%\item{sd}{ }
+%\item{alpha}{ }
+%\item{d}{ }
+%\item{quant}{ }
+%\item{vari}{ }
+%\item{CutTree}{ }
+%\item{method_result}{ }
+%\item{type}{ }
+%\item{dim1}{ }
+%\item{dim2}{ }
+%\item{modules}{ }
+%\item{data}{ }
+%\item{thr.row.from}{ }
+%\item{thr.row.to}{ }
+%\item{thr.row.by}{ }
+%\item{thr.col.from}{ }
+%\item{thr.col.to}{ }
+%\item{thr.col.by}{ }
+%\item{no.seeds}{ }
+%\item{dir.row}{ }
+%\item{dir.col}{ }
+%\item{ISA}{ }
+%\item{biclust}{ }
+%\item{bicResult}{ }
+%\item{info}{ }
+%\item{type2}{ }
+%\item{plotBoth}{ }
+%\item{plotcol}{ }
+%\item{compare}{ }
+%\item{bothlab}{ }
+%\item{order}{ }
+%\item{order2}{ }
+%\item{ylab}{ }
+%\item{col}{ }
+%\item{...}{ }
+%\item{which.robust}{ }
+%\item{X}{ }
+%\item{p}{ }
+%\item{cyc}{ }
+%\item{spl}{ }
+%\item{spz}{ }
+%\item{non_negative}{ }
+%\item{random}{ }
+%\item{write_file}{ }
+%\item{norm}{ }
+%\item{scale}{ }
+%\item{lap}{ }
+%\item{nL}{ }
+%\item{lL}{ }
+%\item{bL}{ }
+%\item{samples}{ }
+%\item{initL}{ }
+%\item{iter}{ }
+%\item{lowerB}{ }
+%\item{upperB}{ }
+%\item{dorescale}{ }
+%\item{doini}{ }
+%\item{eps}{ }
+%\item{eps1}{ }
+%\item{datatype}{ }
+%\item{filename}{ }
+%\item{index}{ }
+%\item{extra.biclust}{ }
+%\item{isa2}{ }
+%\item{show.which}{ }
+%
+%
+%}
+
+\details{This list of GUI functions is a mix of 2 types of functions. Some of them simply consist out of combining several functions from a package, linking them all to a single button by placing them together in a function.
+The other type are special created functions to extract more bicluster information from certain object or bring more functionality to the GUI. 
+Sometimes this last type is based on example code in package documentation, sometimes it is made from scratch.
+More information of these function can be found throughout the vignette of \code{RcmdrPlugin.BiclustGUI}.
+
+In general these functions are not meant for public use.
+}
+
+
+\author{Ewoud De Troyer \email{ewoud.detroyer@student.uhasselt.be}}
+
