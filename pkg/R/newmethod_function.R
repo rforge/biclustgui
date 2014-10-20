@@ -99,6 +99,7 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 				}
 			}	
 			else{
+				# If sum>2 an error was made, namely 2 times the same frame name. (Normally this is troubleshooted in .grid.rows or .grid.matrix
 				if(Tab==1){
 					window <- "clusterFrame"
 				}

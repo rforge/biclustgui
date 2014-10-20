@@ -6,14 +6,18 @@
 \alias{.find.frame}
 \alias{.give.doublequote}
 \alias{.is.binary.matrix}
+\alias{.isISA}
 \alias{.make.correct.frame}
+\alias{.makeResultList}
+\alias{.makesearchdata}
 \alias{.order.button.frames}
 \alias{.output.sparse.txt}
 \alias{.rcmdr.warning}
 \alias{.transform.vector2text}
 \alias{.update.biclustering.object}
+\alias{robust.fuse.support}
+\alias{SearchMethodData}
 \alias{Setwd}
-
 
 \title{List of Internal Functions}
 
@@ -26,10 +30,15 @@
 .find.frame(x,frame.name)
 .give.doublequote(x)
 .is.binary.matrix(x)
+.isISA(x)
 .make.correct.frame(title,border,window)
+.makeResultList()
+.makesearchdata()
 .order.button.frames(new.frames)
 .output.sparse.txt(X,file)
 .rcmdr.warning(x)
+SearchMethodData(data,type)
+robust.fuse.support(robust.list,RowxNumber,NumberxCol)
 Setwd(x=TRUE)
 .transform.vector2text(x)
 .update.biclustering.object(object,where="all")
@@ -57,5 +66,5 @@ Setwd(x=TRUE)
 \details{Not to be used by the users.}
 
 
-\author{Ewoud De Troyer \email{ewoud.detroyer@student.uhasselt.be}}
+\author{Ewoud De Troyer \email{ewoud.detroyer@uhasselt.be}}
 

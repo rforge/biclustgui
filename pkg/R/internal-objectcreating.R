@@ -459,5 +459,159 @@ Setwd <- function (x=TRUE)
 }
 
 
+robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
+	
+	to.delete <- c()
+	for(i.index in 1:length(robust.list)){
+		robust.info <- robust.list[[i.index]]$robust.inside
+		
+		new.rowxnumber <- RowxNumber[,robust.info[1]] 
+		new.numberxcol <- NumberxCol[robust.info[1],] 
+		
+		for(i.index2 in 2:length(robust.info) ){
+			
+			new.rowxnumber <- new.rowxnumber | RowxNumber[,robust.info[i.index2]]
+			new.numberxcol <- new.numberxcol | NumberxCol[robust.info[i.index2],]
+			
+		}
+		RowxNumber[,robust.info[1]] <- new.rowxnumber 
+		NumberxCol[robust.info[1],] <- new.numberxcol 
+		
+		
+		to.delete <- c(to.delete, robust.info[-1])
+		
+	}
+	
+	RowxNumber <- RowxNumber[,-to.delete]
+	NumberxCol <- NumberxCol[-to.delete,]
+	
+	return(list(RowxNumber=RowxNumber,NumberxCol=NumberxCol))
+}
 
 
+.fabia2biclust <- function(x,thresZ=0.5,thresL=NULL){
+	
+	if(class(x)=="Biclust"){return(x)}
+	else{
+		
+		fabia.extract <- extractBic(x,thresZ,thresL)
+		
+		n.rows <- dim(fabia.extract$X)[1]
+		n.cols <- dim(fabia.extract$X)[2]
+		
+		RowxNumber <- c()
+		NumberxCol <- c()
+		
+		
+		for(i.index in 1:fabia.extract$np){
+			
+			rows.index <- fabia.extract$numn[i.index,]$numng
+			cols.index <- fabia.extract$numn[i.index,]$numnp
+			
+			temp.rows <- rep(0,n.rows)
+			temp.cols <- rep(0,n.cols)
+			
+			temp.rows[rows.index] <- 1
+			temp.cols[cols.index] <- 1
+			
+			RowxNumber <- cbind(RowxNumber,temp.rows)
+			NumberxCol <- rbind(NumberxCol,temp.cols)
+			
+		}
+		
+		RowxNumber <- RowxNumber == 1  # 0/1 matrix needs to be converted to a logical matrix
+		NumberxCol <- NumberxCol == 1
+		
+		return(new("Biclust", Number = dim(RowxNumber)[2], RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=list()))
+		
+	}
+	
+}
+
+
+.makesearchdata <- function(){
+		
+	if(!("biclustGUI_biclusteringsearchdata" %in% ls(envir=.GlobalEnv))){
+		method_data <- data.frame()
+				
+		#Plaid
+		method_data <- rbind(method_data,c("Plaid","Coherent Values","biclustplaid_WIN()"))
+		colnames(method_data) <- c("name","type","window")
+		for(i in 1:3){method_data[,i] <- as.character(method_data[,i])}
+		
+		#CC
+		method_data <- rbind(method_data,c("CC","Coherent Values","biclustCC_WIN()"))
+		
+		#XMotifs
+		method_data <- rbind(method_data,c("XMotifs","Coherent Evolution","biclustXMotif_WIN()"))
+		
+		#Spectral
+		method_data <- rbind(method_data,c("Spectral","Coherent Values","biclustspectral_WIN()"))
+		
+		#QuestMotif
+		method_data <- rbind(method_data,c("QuestMotif","Coherent Evolution","biclustquest_WIN()"))
+		
+		#Bimax
+		method_data <- rbind(method_data,c("Bimax","Constant","biclustbimax_WIN()"))
+		
+		#Laplace Prior
+		method_data <- rbind(method_data,c("Laplace Prior","Coherent Values","fabialaplace_WIN()"))
+		
+		#Post-Projection
+		method_data <- rbind(method_data,c("Post-Projection","Coherent Values","fabiapostprojection_WIN()"))
+		
+		#Sparseness Projection
+		method_data <- rbind(method_data,c("Sparseness Projection","Coherent Values","fabiasparsenessprojection_WIN()"))
+		
+		#SPARSE
+		method_data <- rbind(method_data,c("SPARSE","Coherent Values","fabiaSPARSE_WIN()"))
+		
+		#ISA # PLACEHOLDER
+		method_data <- rbind(method_data,c("ISA","Coherent Evolution","isadefault_WIN()"))
+		
+		#iBBiG # PLACEHOLDER
+		method_data <- rbind(method_data,c("iBBiG","Constant","iBBiG_WIN()"))
+		
+		# Assigning to Global Variable
+		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)
+		
+	}
+	
+}
+
+
+.isISA <- function(x){
+	if(class(x)=="list"){
+		
+		if(length(names(x))==4){
+			if(all(names(x)==c("rows","columns","seeddata","rundata"))){
+				return(TRUE)
+			}
+			else{
+				return(FALSE)
+			}
+		}
+		else{
+			return(FALSE)
+		}
+	}
+	else{
+		return(FALSE)
+	}
+}
+
+
+.makeResultList <- function(){
+	globalVars <- ls(envir=.GlobalEnv)
+	if(length(globalVars)==0){return(globalVars)}
+	
+	select <- sapply(globalVars,FUN=function(x){
+				eval(parse(text=paste("x <- ",x,sep="")))
+				if(class(x)=="iBBiG"){return(TRUE)}
+				if(class(x)=="Biclust"){return(TRUE)}
+				if(class(x)=="Factorization"){return(TRUE)}
+				if(.isISA(x)){return(TRUE)}
+				return(FALSE)
+			})
+	return(globalVars[select])
+}

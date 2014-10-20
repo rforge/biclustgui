@@ -319,33 +319,37 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust"){
 		eval(parse(text=paste("RowxNumber <- ",method_result,"@RowxNumber",sep="")))
 		eval(parse(text=paste("NumberxCol <- ",method_result,"@NumberxCol",sep="")))
 		
-		
-		to.delete <- c()
-		for(i.index in 1:length(robust.list)){
-			robust.info <- robust.list[[i.index]]$robust.inside
+		# Create new RowxNumber and NumberxCol of the Robust Bicluster
+		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
+		RowxNumber <- RowxCol$RowxNumber
+		NumberxCol <- RowxCol$NumberxCol
 			
-			
-			new.rowxnumber <- RowxNumber[,robust.info[1]] 
-			new.numberxcol <- NumberxCol[robust.info[1],] 
-			
-			
-			for(i.index2 in 2:length(robust.info) ){
-				
-				new.rowxnumber <- new.rowxnumber | RowxNumber[,robust.info[i.index2]]
-				new.numberxcol <- new.numberxcol | NumberxCol[robust.info[i.index2],]
-				
-			}
-			RowxNumber[,robust.info[1]] <- new.rowxnumber 
-			NumberxCol[robust.info[1],] <- new.numberxcol 
-			
-			
-			to.delete <- c(to.delete, robust.info[-1])
-			
-			
-		}
-		
-		RowxNumber <- RowxNumber[,-to.delete]
-		NumberxCol <- NumberxCol[-to.delete,]
+#		to.delete <- c()
+#		for(i.index in 1:length(robust.list)){
+#			robust.info <- robust.list[[i.index]]$robust.inside
+#			
+#			
+#			new.rowxnumber <- RowxNumber[,robust.info[1]] 
+#			new.numberxcol <- NumberxCol[robust.info[1],] 
+#			
+#			
+#			for(i.index2 in 2:length(robust.info) ){
+#				
+#				new.rowxnumber <- new.rowxnumber | RowxNumber[,robust.info[i.index2]]
+#				new.numberxcol <- new.numberxcol | NumberxCol[robust.info[i.index2],]
+#				
+#			}
+#			RowxNumber[,robust.info[1]] <- new.rowxnumber 
+#			NumberxCol[robust.info[1],] <- new.numberxcol 
+#			
+#			
+#			to.delete <- c(to.delete, robust.info[-1])
+#			
+#			
+#		}
+#		
+#		RowxNumber <- RowxNumber[,-to.delete]
+#		NumberxCol <- NumberxCol[-to.delete,]
 		
 		
 		eval(parse(text=paste("Parameters <- ",method_result,"@Parameters",sep="")))
@@ -371,34 +375,37 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust"){
 		RowxNumber <- isa.transf@RowxNumber
 		NumberxCol <- isa.transf@NumberxCol
 		
+		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
+		RowxNumber <- RowxCol$RowxNumber
+		NumberxCol <- RowxCol$NumberxCol
 		
 		
-		to.delete <- c()
-		for(i.index in 1:length(robust.list)){
-			robust.info <- robust.list[[i.index]]$robust.inside
-			
-			
-			new.rowxnumber <- RowxNumber[,robust.info[1]] 
-			new.numberxcol <- NumberxCol[robust.info[1],] 
-			
-			
-			for(i.index2 in 2:length(robust.info) ){
-				
-				new.rowxnumber <- new.rowxnumber | RowxNumber[,robust.info[i.index2]]
-				new.numberxcol <- new.numberxcol | NumberxCol[robust.info[i.index2],]
-				
-			}
-			RowxNumber[,robust.info[1]] <- new.rowxnumber 
-			NumberxCol[robust.info[1],] <- new.numberxcol 
-			
-			
-			to.delete <- c(to.delete, robust.info[-1])
-			
-			
-		}
-		
-		RowxNumber <- RowxNumber[,-to.delete]
-		NumberxCol <- NumberxCol[-to.delete,]
+#		to.delete <- c()
+#		for(i.index in 1:length(robust.list)){
+#			robust.info <- robust.list[[i.index]]$robust.inside
+#			
+#			
+#			new.rowxnumber <- RowxNumber[,robust.info[1]] 
+#			new.numberxcol <- NumberxCol[robust.info[1],] 
+#			
+#			
+#			for(i.index2 in 2:length(robust.info) ){
+#				
+#				new.rowxnumber <- new.rowxnumber | RowxNumber[,robust.info[i.index2]]
+#				new.numberxcol <- new.numberxcol | NumberxCol[robust.info[i.index2],]
+#				
+#			}
+#			RowxNumber[,robust.info[1]] <- new.rowxnumber 
+#			NumberxCol[robust.info[1],] <- new.numberxcol 
+#			
+#			
+#			to.delete <- c(to.delete, robust.info[-1])
+#			
+#			
+#		}
+#		
+#		RowxNumber <- RowxNumber[,-to.delete]
+#		NumberxCol <- NumberxCol[-to.delete,]
 		
 		rows = (RowxNumber)+0
 		columns = t(NumberxCol)+0
@@ -421,6 +428,56 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust"){
 		
 	}
 	
+	if(type=="fabia"){
+		eval(parse(text=paste("fabia.extract <- extractBic(",method_result,")",sep="")))
+		
+		n.rows <- dim(fabia.extract$X)[1]
+		n.cols <- dim(fabia.extract$X)[2]
+		
+		RowxNumber <- c()
+		NumberxCol <- c()
+		
+		
+		for(i.index in 1:fabia.extract$np){
+			
+			rows.index <- fabia.extract$numn[i.index,]$numng
+			cols.index <- fabia.extract$numn[i.index,]$numnp
+			
+			temp.rows <- rep(0,n.rows)
+			temp.cols <- rep(0,n.cols)
+			
+			temp.rows[rows.index] <- 1
+			temp.cols[cols.index] <- 1
+			
+			RowxNumber <- cbind(RowxNumber,temp.rows)
+			NumberxCol <- rbind(NumberxCol,temp.cols)
+						
+		}
+		
+		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
+		RowxNumber <- RowxCol$RowxNumber == 1  # 0/1 matrix needs to be converted to a logical matrix
+		NumberxCol <- RowxCol$NumberxCol == 1
+		
+		
+		Parameters <- list()
+		new.biclust <- new("Biclust", Number = dim(RowxNumber)[2], RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=Parameters)
+		assign("new.biclust",new.biclust,envir=.GlobalEnv)		
+		
+		paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
+		cat(paste.cat)
+		paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
+		cat(paste.cat,"\n")
+		
+		
+		doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
+		doItAndPrint(paste(method_result," <- new.biclust",sep=""))
+		
+		
+
+		
+		
+	}
+	
 	
 }
 
@@ -429,4 +486,9 @@ robust.reset <- function(method_result){
 }
 
 
-
+writeBic.GUI <- function(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" "){
+	fileName <- paste(fileName,".txt",sep="")
+	writeBic(dset=dset, fileName=fileName, bicResult=bicResult, bicname=bicname, mname =mname, append = append, delimiter = delimiter)
+	
+	
+}

@@ -596,6 +596,27 @@ fabiaSPARSE_WIN <- function(){     # Change newmethod to your own method name
 	# Do not change this line: ( STILL NEED TO DELETE BUTTON.OTHERARG FROM THIS LINE)
 	new.frames <- .add.frame(input=input,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,button.otherarg=button.otherarg,arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
 	
+	### EXTRA BICLUST PLOTS BUTTON
+	
+	####	    	MANUAL BUTTONS FRAME	  ####
+	#                               			#
+	
+	type <- "buttons"
+	
+	# Change variables accordingly:
+	frame.name <- "exportbiclustbutton"  
+	button.name <- "Biclust Plots"  
+	button.function <- "fabiabiclust_WINDOW"
+	button.data <- ""
+	button.biclust <-  ""
+	arg.frames <- c("extractentry1") 
+	save <- FALSE
+	show <- FALSE
+	button.otherarg <- paste("methodname='",methodname,"'",sep="") 
+	
+	# Do not change this line: ( STILL NEED TO DELETE BUTTON.OTHERARG FROM THIS LINE)
+	new.frames <- .add.frame(input=input,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,button.otherarg=button.otherarg,arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+	
 	
 	
 	###############################################################################################################################################################################
@@ -608,7 +629,7 @@ fabiaSPARSE_WIN <- function(){     # Change newmethod to your own method name
 	#########################
 	
 	
-	grid.config <- .grid.matrix(input=input,c("summaryradio","summarybutton","summaryplotbutton","extractentry1","extractbutton",NA,"extractradio" ,"extractentry2",NA,"extractplotbutton",NA,NA ,"biclusterradio","biclustercheck",NA,"biclusterentry","biclusterplotbutton",NA   ,"biplotentry","biplotbutton",NA),byrow=TRUE,nrow=7,ncol=3,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("summaryradio","summarybutton","summaryplotbutton","extractentry1","extractbutton","exportbiclustbutton","extractradio" ,"extractentry2",NA,"extractplotbutton",NA,NA ,"biclusterradio","biclustercheck",NA,"biclusterentry","biclusterplotbutton",NA   ,"biplotentry","biplotbutton",NA),byrow=TRUE,nrow=7,ncol=3,grid.config=grid.config)
 	
 	
 	

@@ -31,7 +31,7 @@ superbiclust_WINDOW <- function(methodname){
 		extra.arg <- paste(",method_result='",method_result,"'",sep="")
 		#isa2 <- FALSE
 		biclust.combine <- FALSE
-		make.save.button <- FALSE
+		make.save.button <- TRUE
 		save.type <- "fabia"
 	}
 	if(methodname %in% isa.names){
@@ -403,7 +403,7 @@ superbiclust_WINDOW <- function(methodname){
 		grid.rows <- .combine.rows(input=input,rows=c(3,4),title="Dendogram",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		grid.rows <- .combine.rows(input=input,rows=c(5,6),title="Robust Bicluster Gene Profiles",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		if(make.save.button==TRUE){
-				grid.rows <- .combine.rows(input=input,rows=c(7),title="Save the Robust Biclusters (Biclust Only)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+				grid.rows <- .combine.rows(input=input,rows=c(7),title="Save the Robust Biclusters (Biclust & BcDiag Only)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 			}
 		
 	}
@@ -412,7 +412,7 @@ superbiclust_WINDOW <- function(methodname){
 		grid.rows <- .combine.rows(input=input,rows=c(2,3),title="Superbiclust Configuration",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		grid.rows <- .combine.rows(input=input,rows=c(4,5),title="Robust Bicluster Gene Profiles",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		if(make.save.button==TRUE){
-			grid.rows <- .combine.rows(input=input,rows=c(6),title="Save the Robust Biclusters (Biclust Only)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+			grid.rows <- .combine.rows(input=input,rows=c(6),title="Save the Robust Biclusters (Biclust & BcDiag Only)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 			
 		}
 	}

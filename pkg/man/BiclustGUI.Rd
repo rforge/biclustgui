@@ -19,7 +19,7 @@ These scripts do not required any knowledge of \pkg{tcltk} and \pkg{Rcmdr} and e
 \details{
 More detailed information about all the implementations and scripting of \code{RcmdrPlugin.BiclustGUI} can be found in the vignette (\code{doc} subdirectory of package or PUT LINK HERE).
 }
-\author{Ewoud De Troyer \email{ewoud.detroyer@student.uhasselt.be}}
+\author{Ewoud De Troyer \email{ewoud.detroyer@uhasselt.be}}
 \references{
 Madeira, S.C. and Oliveira, A.L. (2004). Biclustering Algorithm for
 Biological Data Analysis: A Survey. IEEE/ACM Transactions, Computational

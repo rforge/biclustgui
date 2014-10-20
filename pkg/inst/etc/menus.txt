@@ -10,8 +10,8 @@ menu	BICLUSTERINGmenu       topMenu	  ""					"" 		""		""
 item 	topMenu	          cascade	  "Biclustering"                        BICLUSTERINGmenu      ""               ""
 
 
-### Help Page
-item 	BICLUSTERINGmenu	command		"Helppage BiclustGUI..."	"biclustGUI_help"	""			""
+### Search 
+item 	BICLUSTERINGmenu	command		"Search Method..."	"search_WINDOW"	""			""
 item 	BICLUSTERINGmenu	separator	""				""			""			""
 
 
@@ -47,3 +47,26 @@ item	BICLUSTERINGmenu	command		"ISA"				"isadefault_WIN"	"activeDataSetP()"	""
 ### iBBiG Package Menu
 item	BICLUSTERINGmenu	command		"iBBiG"				"iBBiG_WIN"		"activeDataSetP()"	""
 
+
+
+
+### DEFINE TOP BICLUSTERING HELP & EXPORT MENU	
+menu	BICLUSTERINGHELPmenu       topMenu	  ""					"" 		""		""
+item 	topMenu	          cascade	  "Biclustering - Help & Export"                       BICLUSTERINGHELPmenu      ""               ""
+
+## Help Menu
+menu	helpmenu	BICLUSTERINGHELPmenu	""				""		""		""
+item	BICLUSTERINGHELPmenu	cascade		"Help Documentation"				helpmenu	""		""
+
+
+item 	helpmenu	command		"Helppage BiclustGUI..."	"biclustGUI_help"	""			""
+item 	helpmenu	command		"Vignette BiclustGUI..."	"openGUIVignette"	""			""
+item 	helpmenu	command		"Template Scripts"	"openGUIScripts"	""			""
+
+## Export Menu
+menu	exportmenu	BICLUSTERINGHELPmenu	""				""		""		""
+item	BICLUSTERINGHELPmenu	cascade		"Export Results ..."				exportmenu	""		""
+
+
+item 	exportmenu	command		"as Text-file"	"exportTXT_WINDOW"	""			""
+item 	exportmenu	command		"for Furby"		"exportFURBY_WINDOW"	""			""

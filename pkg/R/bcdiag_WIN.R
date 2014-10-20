@@ -21,6 +21,15 @@ bcdiag_WINDOW <- function(methodname){
 	}
 	if(methodname %in% fabia.names){
 		extra.arg <- ",mname='fabia'"
+
+		# Exception when superbiclust has been used on fabia:
+		method_result <- gsub(" ","",methodname,fixed=TRUE)
+		method_result <- gsub("-","",method_result,fixed=TRUE)
+		eval(parse(text=paste("method_class <- class(",method_result,")",sep="")))
+		if(method_class=="Biclust"){
+			extra.arg <- ",mname='biclust'"
+		}
+		
 	}
 	if(methodname %in% isa.names){
 		extra.arg <- ",mname='isa2'"

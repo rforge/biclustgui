@@ -8,6 +8,8 @@
 \alias{isa.GUI}
 \alias{isa.scoreplots}
 \alias{isa.summary}
+\alias{openGUIScripts}
+\alias{openGUIVignette}
 \alias{parallelCoordinates2}
 \alias{parallelCoordinates3}
 \alias{plotSuper.GUI}
@@ -15,6 +17,11 @@
 \alias{spfabia.GUI}
 \alias{superbiclust.GUI}
 \alias{superbiclust.robust.GUI}
+\alias{writeBic.GUI}
+\alias{export.Biclust}
+\alias{export.fabia.threshL}
+\alias{export.fabia}
+
 
 \title{GUI Functions}
 
@@ -24,12 +31,17 @@ biclust.bimax(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck)
 biclustGUI_help()
 biclust.quest(x,method,ns,nd,sd,alpha,number,d,quant,vari)
 biclust.robust.fuse(CutTree,method_result,type="biclust")
+export.Biclust(biClust,x,baseName,clusterAssignments=NULL,clusterNames=NULL)
+export.fabia(fabiaRes,baseName,clusterAssignments=NULL,clusterNames=NULL,threshZ=0.5,threshL=NULL)
+export.fabia.threshL(fabiaRes,threshZ=0.5)
 fabia.biplot(x,dim1,dim2)
 isa.extract(modules)
 isa.GUI(data,thr.row.from,thr.row.to,thr.row.by,thr.col.from,thr.col.to,
     thr.col.by,no.seeds,dir.row,dir.col)
 isa.scoreplots(ISA,type="row",biclust=c(1))
 isa.summary(ISA)
+openGUIScripts()
+openGUIVignette()
 parallelCoordinates2(x, bicResult, number, info = TRUE)
 parallelCoordinates3(x,bicResult,number,type2="default",plotBoth=FALSE,
     plotcol=TRUE,compare=TRUE,info=FALSE,bothlab=c("Rows","Columns"),
@@ -41,6 +53,7 @@ spfabia.GUI(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,norm,
     dorescale,doini,eps,eps1,datatype,filename)
 superbiclust.GUI(x,index,type,method_result,extra.biclust=NULL,isa2=FALSE)
 superbiclust.robust.GUI(CutTree,show.which=FALSE)
+writeBic.GUI(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" ")
 }
 %\arguments{
 %\item{x}{ }
@@ -132,5 +145,5 @@ In general these functions are not meant for public use.
 }
 
 
-\author{Ewoud De Troyer \email{ewoud.detroyer@student.uhasselt.be}}
+\author{Ewoud De Troyer \email{ewoud.detroyer@uhasselt.be}}
 

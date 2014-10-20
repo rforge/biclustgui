@@ -58,7 +58,7 @@ bcdiagwrite_WINDOW <- function(methodname){
 	argument.names <- c("Filename","Title","Delimiter (def.=' ')") 
 	argument.types <- c("char","char","char")
 	arguments <- c("fileName","bicname","delimiter")
-	initial.values <- c("output.txt","Output Result"," ")
+	initial.values <- c("output","Output Result"," ")
 	title <- ""
 	border <- FALSE
 	entry.width <- c("15","15","15")  
@@ -110,7 +110,7 @@ bcdiagwrite_WINDOW <- function(methodname){
 	# Change variables accordingly:
 	frame.name <- "button_write"  
 	button.name <- "Write"  
-	button.function <- "writeBic" 
+	button.function <- "writeBic.GUI" 
 	button.data <- "dset" 
 	button.biclust <-  "bicResult" 
 	button.otherarg <- extra.arg

@@ -18,6 +18,9 @@
 \alias{biclustXMotif_WIN}
 \alias{newmethod_WINDOW}
 \alias{newtool_WINDOW}
+\alias{search_WINDOW}
+\alias{exportTXT_WINDOW}
+\alias{exportFURBY_WINDOW}
 
 \title{Window Functions}
 
@@ -25,22 +28,24 @@
 \usage{
 bcdiag_WINDOW(methodname)
 bcdiagwrite_WINDOW(methodname)
-biclustextraplots_WINDOW(methodname)
 biclustbimax_WIN()
 biclustCC_WIN()
+biclustextraplots_WINDOW(methodname)
+biclustplaid_WIN()
+biclustquest_WIN()
+biclustspectral_WIN()
+biclustXMotif_WIN()
+exportFURBY_WINDOW()
+exportTXT_WINDOW()
 fabialaplace_WIN()
 fabiapostprojection_WIN()
 fabiasparsenessprojection_WIN()
 fabiaSPARSE_WIN()
 iBBiG_WIN()
-isaextraplots_WINDOW(methodname)
 isadefault_WIN()
-biclustplaid_WIN()
-biclustquest_WIN()
-biclustspectral_WIN()
+isaextraplots_WINDOW(methodname)
+search_WINDOW()
 superbiclust_WINDOW(methodname)
-biclustXMotif_WIN()
-
 }
 
 \arguments{
@@ -54,5 +59,5 @@ Please note that these template scripts are also located in the \code{doc} subdi
 }
 
 
-\author{Ewoud De Troyer \email{ewoud.detroyer@student.uhasselt.be}}
+\author{Ewoud De Troyer \email{ewoud.detroyer@uhasselt.be}}
 

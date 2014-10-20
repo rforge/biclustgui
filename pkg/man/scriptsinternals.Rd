@@ -85,5 +85,5 @@ newtool_template(toolname="",methodname="",toolhelp="",data.matrix=TRUE,
 \details{More information of the use of these functions can be found in the vignette. (Guide to New Implementations)}
 
 
-\author{Ewoud De Troyer \email{ewoud.detroyer@student.uhasselt.be}}
+\author{Ewoud De Troyer \email{ewoud.detroyer@uhasselt.be}}
 
