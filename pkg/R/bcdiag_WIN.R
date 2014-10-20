@@ -24,12 +24,13 @@ bcdiag_WINDOW <- function(methodname){
 
 		# Exception when superbiclust has been used on fabia:
 		method_result <- gsub(" ","",methodname,fixed=TRUE)
-		method_result <- gsub("-","",method_result,fixed=TRUE)
-		eval(parse(text=paste("method_class <- class(",method_result,")",sep="")))
-		if(method_class=="Biclust"){
-			extra.arg <- ",mname='biclust'"
+		method_result <- gsub("-","",method_result,fixed=TRUE) 
+		if(method_result %in% ls(envir=.GlobalEnv)){
+			eval(parse(text=paste("method_class <- class(",method_result,")",sep="")))
+			if(method_class=="Biclust"){
+				extra.arg <- ",mname='biclust'"
+			}
 		}
-		
 	}
 	if(methodname %in% isa.names){
 		extra.arg <- ",mname='isa2'"
