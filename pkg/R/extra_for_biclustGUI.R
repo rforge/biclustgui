@@ -46,47 +46,47 @@ parallelCoordinates3 <- function(x,bicResult,number,type2="default",plotBoth=FAL
 	
 	if(type2=="default"){
 		info=TRUE
-		print(paste("Original biclust R-code: 'parallelCoordinates(x=...,bicResult=...,number=",number,",plotBoth=",plotBoth,",plotcol=",plotcol,",compare=",compare,")'",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: 'parallelCoordinates(x=...,bicResult=...,number=",number,",plotBoth=",plotBoth,",plotcol=",plotcol,",compare=",compare,")'",sep=""))
 		parallelCoordinates(x,bicResult,number,plotBoth,plotcol,compare,info,bothlab,order,order2,ylab,col,...)
 	}
 	
 }
 
 
-biclust.quest <- function(x,method,ns,nd,sd,alpha,number,d,quant,vari){
+biclust.quest.GUI <- function(x,method,ns,nd,sd,alpha,number,d,quant,vari){
 	
 	if(method=="BCQuest"){
-		print(paste("Original biclust R-code: `biclust(x=...,method=BCQuest(),ns=",ns,",nd=",nd,",sd=",sd,",number=",number,")`",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuest(),ns=",ns,",nd=",nd,",sd=",sd,",number=",number,")`",sep=""))
 		return(biclust(x=x, method=BCQuest(), ns=ns, nd=nd, sd=sd, alpha=alpha, number=number))
 		
 	}
 	
 	if(method=="BCQuestord"){
-		print(paste("Original biclust R-code: `biclust(x=...,method=BCQuestord(),d=",d,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuestord(),d=",d,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
 		
 		return(biclust(x=x, method=BCQuestord(), d=d, ns=ns, nd=nd, sd=sd, alpha=alpha, number=number))
 	}
 	
 	if(method=="BCQuestmet"){
-		print(paste("Original biclust R-code: `biclust(x=...,method=BCQuestmet(),quant=",quant,",vari=",vari,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuestmet(),quant=",quant,",vari=",vari,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
 		
 		return(biclust(x=x, method=BCQuestmet(), quant=quant, vari=vari, ns=ns, nd=nd, sd=sd, alpha=alpha, number=number))
 	}
 	
 }
 
-biclust.bimax <- function(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck){
+biclust.bimax.GUI <- function(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck){
 	if(maxbicheck==2){
-		print(paste("Original biclust R-code: 'biclust:::maxbimaxbiclust(x=...,minr=",minr,",minc=",minc,",backfit=",backfit,",n2=",n2,",number=",number,")'",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: 'biclust:::maxbimaxbiclust(x=...,minr=",minr,",minc=",minc,",backfit=",backfit,",n2=",n2,",number=",number,")'",sep=""))
 		return(biclust:::maxbimaxbiclust(logicalmatrix=x,minr=minr,minc=minc,backfit=backfit,n2=n2,number=number))
 	}
 	
 	if(maxbicheck==3){
-		print(paste("Original biclust R-code: 'biclust(x=...,method=BCBimax(),minr=",minr,",minc=",minc,",number=",number,")'",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: 'biclust(x=...,method=BCBimax(),minr=",minr,",minc=",minc,",number=",number,")'",sep=""))
 		return(biclust(x=x,method=BCBimax(),minr=minr,minc=minc,number=number))
 	}
 	if(maxbicheck==1){
-		print(paste("Original biclust R-code: 'biclust(x=...,method=BCrepBimax(),minr=",minr,",minc=",minc,",number=",number,")'",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: 'biclust(x=...,method=BCrepBimax(),minr=",minr,",minc=",minc,",number=",number,")'",sep=""))
 		return(biclust(x=x,method=BCrepBimax(),minr=minr,minc=minc,number=number,maxc=maxc))
 	}
 	
@@ -95,7 +95,7 @@ biclust.bimax <- function(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck){
 
 fabia.biplot <- function(x,dim1,dim2){
 	plot.command <- paste("plot(x=x,dim=c(",dim1,",",dim2,"))",sep="")
-	print(paste("Original R-code: 'plot(x=...,dim=c(",dim1,",",dim2,"))'",sep=""))
+	doItAndPrint(paste("       # Original R-code: 'plot(x=...,dim=c(",dim1,",",dim2,"))'",sep=""))
 	.eval.command(plot.command)
 }
 
@@ -108,7 +108,7 @@ spfabia.GUI <- function(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,nor
 		
 		Setwd()
 		
-		print(paste("Original R-code: ",command,sep=""))
+		doItAndPrint(paste("       # Original R-code: ",command,sep=""))
 	
 		return(eval(parse(text=command)))
 		#return(spfabia(X=filename,p=p,alpha=alpha,cyc=cyc,spl=spl,spz=spz,non_negative=non_negative,random=random,write_file=write_file,norm=norm,scale=scale,lap=lap,lL=lL,samples=samples,initL=initL,iter=iter,quant=quant,lowerB=lowerB,upperB=upperB,dorescale=dorescale,doini=doini,eps=eps,eps1=eps1))
@@ -124,7 +124,7 @@ spfabia.GUI <- function(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,nor
 		
 		command <- paste("spfabia(X='",filename,"',p=",p,",alpha=",alpha,",cyc=",cyc,",spl=",spl,",spz=",spz,",non_negative=",non_negative,",random=",random,",write_file=",write_file,",norm=",norm,",scale=",scale,",lap=",lap,",lL=",lL,",samples=",samples,",initL=,",initL,",iter=",iter,",quant=",quant,",lowerB=",lowerB,",upperB=",upperB,",dorescale=",dorescale,",doini=",doini,",eps=",eps,",eps1=",eps,")",sep="")
 		
-		print(paste("Original R-code: ",command,sep=""))
+		doItAndPrint(paste("       # Original R-code: ",command,sep=""))
 		
 		return(.eval.command(command))
 		#return(spfabia(X=filename,p=p,alpha=alpha,cyc=cyc,spl=spl,spz=spz,non_negative=non_negative,random=random,write_file=write_file,norm=norm,scale=scale,lap=lap,lL=lL,samples=samples,initL=initL,iter=iter,quant=quant,lowerB=lowerB,upperB=upperB,dorescale=dorescale,doini=doini,eps=eps,eps1=eps1))
@@ -140,7 +140,7 @@ isa.GUI <- function(data,thr.row.from,thr.row.to,thr.row.by,thr.col.from,thr.col
 	thr.col <- seq(thr.col.from,thr.col.to,by=thr.col.by)
 	
 	direction <- c(dir.row,dir.col)
-	print(paste("Original R-Code: isa(data=...,thr.row=seq(",thr.row.from,",",thr.row.to,",by=",thr.row.by,"),thr.col=seq(",thr.col.from,",",thr.col.to,",by=",thr.col.by,"),no.seeds=",no.seeds,",direction=c('",dir.row,"','",dir.col,"'))",sep=""))
+	doItAndPrint(paste("       # Original R-Code: isa(data=...,thr.row=seq(",thr.row.from,",",thr.row.to,",by=",thr.row.by,"),thr.col=seq(",thr.col.from,",",thr.col.to,",by=",thr.col.by,"),no.seeds=",no.seeds,",direction=c('",dir.row,"','",dir.col,"'))",sep=""))
 	return(isa(data=data,thr.row=thr.row,thr.col=thr.col,no.seeds=no.seeds,direction=direction))
 }
 
@@ -211,31 +211,35 @@ isa.scoreplots <- function(ISA,type="row",biclust=c(1)){
 }
 
 
-superbiclust.GUI <- function(x,index,type,method_result,extra.biclust=NULL,isa2=FALSE){
-	if(!is.null(extra.biclust)){
-		
-		doItAndPrint(paste("x <- combine(",method_result,",",extra.biclust[1],")",sep=""))		
-		for(i.extra in 2:length(extra.biclust)){
-			doItAndPrint(paste("x <- combine(x,",extra.biclust[i.extra] ,")",sep=""))
+superbiclust.GUI <- function(x,index,type,method_result,extra.biclust=NULL,type.method="biclust"){
+	if(type.method=="biclust"){
+		if(!is.null(extra.biclust)){
+			
+			doItAndPrint(paste("x <- combine(",method_result,",",extra.biclust[1],")",sep=""))		
+			if(length(extra.biclust)>1){
+				for(i.extra in 2:length(extra.biclust)){
+					doItAndPrint(paste("x <- combine(x,",extra.biclust[i.extra] ,")",sep=""))
+				}
+			}
+			doItAndPrint(paste("superbiclust.result <- BiclustSet(x)"))
 		}
-		doItAndPrint(paste("superbiclust.result <- BiclustSet(x)"))
+		if(is.null(extra.biclust)){
+			doItAndPrint(paste("superbiclust.result <- BiclustSet(x=",method_result,")"))
+		}
 	}
 	
-	if(isa2==TRUE){
+	if(type.method=="isa"){
 		doItAndPrint(paste("superbiclust.result <- BiclustSet(x=isa.biclust(", method_result  ,"))"))
+	}
+	if(type.method=="fabia"){
+		doItAndPrint(paste("superbiclust.result <- BiclustSet(x=",method_result,")"))
 		
 	}
-	
-	if(is.null(extra.biclust) & isa2==FALSE){
-		doItAndPrint(paste("superbiclust.result <- BiclustSet(x=",method_result,")"))
-	}
-	
+		
 	doItAndPrint(paste("superbiclust.sim <- similarity(x=superbiclust.result,index='",index,"',type='",type,"')",sep=""))
 	doItAndPrint(paste("superbiclust.tree <- HCLtree(superbiclust.sim)",sep=""))
 	doItAndPrint("superbiclust.result")
-#	superbiclust.result <- biclustset(x)
-#	superbiclust.sim <- similarity(x=superbiclust.result,index=index,type=type)
-#	superbiclust.tree <- hcltree(superbiclust.sim)
+
 	
 }
 
@@ -297,7 +301,7 @@ plotSuper.GUI <- function(type,which.robust,CutTree){
 
 
 
-biclust.robust.fuse <- function(CutTree,method_result,type="biclust"){
+biclust.robust.fuse <- function(CutTree,method_result,type="biclust",superbiclust.result){
 	
 	robust.list <- list()
 	
@@ -314,42 +318,20 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust"){
 		
 	}
 	
+	# Extract the original or combined biclust result from the superbiclust.result 
+	# Necessary conversions are done in the step of making superbiclust.result !!!
+	RowxNumber <- superbiclust.result@GenesMembership
+	NumberxCol <- superbiclust.result@ColumnMembership
 	
 	if(type=="biclust"){
-		eval(parse(text=paste("RowxNumber <- ",method_result,"@RowxNumber",sep="")))
-		eval(parse(text=paste("NumberxCol <- ",method_result,"@NumberxCol",sep="")))
-		
+
+	
 		# Create new RowxNumber and NumberxCol of the Robust Bicluster
 		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
 		RowxNumber <- RowxCol$RowxNumber
 		NumberxCol <- RowxCol$NumberxCol
 			
-#		to.delete <- c()
-#		for(i.index in 1:length(robust.list)){
-#			robust.info <- robust.list[[i.index]]$robust.inside
-#			
-#			
-#			new.rowxnumber <- RowxNumber[,robust.info[1]] 
-#			new.numberxcol <- NumberxCol[robust.info[1],] 
-#			
-#			
-#			for(i.index2 in 2:length(robust.info) ){
-#				
-#				new.rowxnumber <- new.rowxnumber | RowxNumber[,robust.info[i.index2]]
-#				new.numberxcol <- new.numberxcol | NumberxCol[robust.info[i.index2],]
-#				
-#			}
-#			RowxNumber[,robust.info[1]] <- new.rowxnumber 
-#			NumberxCol[robust.info[1],] <- new.numberxcol 
-#			
-#			
-#			to.delete <- c(to.delete, robust.info[-1])
-#			
-#			
-#		}
-#		
-#		RowxNumber <- RowxNumber[,-to.delete]
-#		NumberxCol <- NumberxCol[-to.delete,]
+
 		
 		
 		eval(parse(text=paste("Parameters <- ",method_result,"@Parameters",sep="")))
@@ -370,42 +352,14 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust"){
 	
 	if(type=="isa"){
 		
-		eval(parse(text=paste("isa.transf <- isa.biclust(",method_result,")",sep="")))
-		
-		RowxNumber <- isa.transf@RowxNumber
-		NumberxCol <- isa.transf@NumberxCol
+
 		
 		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
 		RowxNumber <- RowxCol$RowxNumber
 		NumberxCol <- RowxCol$NumberxCol
 		
 		
-#		to.delete <- c()
-#		for(i.index in 1:length(robust.list)){
-#			robust.info <- robust.list[[i.index]]$robust.inside
-#			
-#			
-#			new.rowxnumber <- RowxNumber[,robust.info[1]] 
-#			new.numberxcol <- NumberxCol[robust.info[1],] 
-#			
-#			
-#			for(i.index2 in 2:length(robust.info) ){
-#				
-#				new.rowxnumber <- new.rowxnumber | RowxNumber[,robust.info[i.index2]]
-#				new.numberxcol <- new.numberxcol | NumberxCol[robust.info[i.index2],]
-#				
-#			}
-#			RowxNumber[,robust.info[1]] <- new.rowxnumber 
-#			NumberxCol[robust.info[1],] <- new.numberxcol 
-#			
-#			
-#			to.delete <- c(to.delete, robust.info[-1])
-#			
-#			
-#		}
-#		
-#		RowxNumber <- RowxNumber[,-to.delete]
-#		NumberxCol <- NumberxCol[-to.delete,]
+
 		
 		rows = (RowxNumber)+0
 		columns = t(NumberxCol)+0
@@ -429,34 +383,11 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust"){
 	}
 	
 	if(type=="fabia"){
-		eval(parse(text=paste("fabia.extract <- extractBic(",method_result,")",sep="")))
-		
-		n.rows <- dim(fabia.extract$X)[1]
-		n.cols <- dim(fabia.extract$X)[2]
-		
-		RowxNumber <- c()
-		NumberxCol <- c()
-		
-		
-		for(i.index in 1:fabia.extract$np){
-			
-			rows.index <- fabia.extract$numn[i.index,]$numng
-			cols.index <- fabia.extract$numn[i.index,]$numnp
-			
-			temp.rows <- rep(0,n.rows)
-			temp.cols <- rep(0,n.cols)
-			
-			temp.rows[rows.index] <- 1
-			temp.cols[cols.index] <- 1
-			
-			RowxNumber <- cbind(RowxNumber,temp.rows)
-			NumberxCol <- rbind(NumberxCol,temp.cols)
-						
-		}
+
 		
 		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
-		RowxNumber <- RowxCol$RowxNumber == 1  # 0/1 matrix needs to be converted to a logical matrix
-		NumberxCol <- RowxCol$NumberxCol == 1
+		RowxNumber <- RowxCol$RowxNumber
+		NumberxCol <- RowxCol$NumberxCol
 		
 		
 		Parameters <- list()
@@ -489,6 +420,45 @@ robust.reset <- function(method_result){
 writeBic.GUI <- function(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" "){
 	fileName <- paste(fileName,".txt",sep="")
 	writeBic(dset=dset, fileName=fileName, bicResult=bicResult, bicname=bicname, mname =mname, append = append, delimiter = delimiter)
+	
+	
+}
+
+rqubic.GUI <- function(x,eSetData.name,q,rank,minColWidth,report.no,tolerance,filter.proportion,check.disc){
+
+	# x is already a eSet object. It will not be used here, just for show (make it fit in the framework)
+
+	
+	if(check.disc==TRUE){
+	# Picking the correct data and doing Discretization!
+	# 
+		if(eSetData.name!="NULL"){
+			doItAndPrint(paste0("data.disc <- quantileDiscretize(",eSetData.name,",q=",q,",rank=",rank,")"))
+			
+			justDoIt(paste0(eSetData.name,"_exprs <- as.data.frame(exprs(",eSetData.name,"))"))
+			activeDataSet(paste0(eSetData.name,"_exprs"))
+		}
+		else{
+			doItAndPrint(paste0("data.disc <- quantileDiscretize(as.ExprSet(",ActiveDataSet(),"),q=",q,",rank=",rank,")"))
+		}
+	}
+	else{
+		if(eSetData.name!="NULL"){
+			doItAndPrint(paste0("data.disc <-" ,eSetData.name))
+			
+			justDoIt(paste0(eSetData.name,"_exprs <- as.data.frame(exprs(",eSetData.name,"))"))
+			activeDataSet(paste0(eSetData.name,"_exprs"))
+		}
+		else{
+			doItAndPrint(paste0("data.disc <- as.ExprSet(",ActiveDataSet(),")"))
+		}
+	}
+	
+	
+	
+	doItAndPrint(paste0("data.seed <- generateSeeds(data.disc,minColWidth=",minColWidth,")"))
+	doItAndPrint(paste0("Rqubic <- quBicluster(data.seed,data.disc,report.no=",report.no,",tolerance=",tolerance,",filter.proportion=",filter.proportion,")"))
+	doItAndPrint("Rqubic")
 	
 	
 }

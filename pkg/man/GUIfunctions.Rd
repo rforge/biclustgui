@@ -1,7 +1,7 @@
 \name{GUI Functions}
-\alias{biclust.bimax}
+\alias{biclust.bimax.GUI}
 \alias{biclustGUI_help}
-\alias{biclust.quest}
+\alias{biclust.quest.GUI}
 \alias{biclust.robust.fuse}
 \alias{fabia.biplot}
 \alias{isa.extract}
@@ -21,15 +21,16 @@
 \alias{export.Biclust}
 \alias{export.fabia.threshL}
 \alias{export.fabia}
+\alias{rqubic.GUI}
 
 
 \title{GUI Functions}
 
 \description{List of GUI functions used for certain buttons.}
 \usage{
-biclust.bimax(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck)
+biclust.bimax.GUI(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck)
 biclustGUI_help()
-biclust.quest(x,method,ns,nd,sd,alpha,number,d,quant,vari)
+biclust.quest.GUI(x,method,ns,nd,sd,alpha,number,d,quant,vari)
 biclust.robust.fuse(CutTree,method_result,type="biclust")
 export.Biclust(biClust,x,baseName,clusterAssignments=NULL,clusterNames=NULL)
 export.fabia(fabiaRes,baseName,clusterAssignments=NULL,clusterNames=NULL,threshZ=0.5,threshL=NULL)
@@ -48,6 +49,7 @@ parallelCoordinates3(x,bicResult,number,type2="default",plotBoth=FALSE,
     order=FALSE,order2=0,ylab="Value",col=1,...)
 plotSuper.GUI(type,which.robust,CutTree)
 robust.reset(method_result)
+rqubic.GUI(x,eSetData.name,q,rank,minColWidth,report.no,tolerance,filter.proportion,check.disc)
 spfabia.GUI(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,norm,
     scale,lap,nL,lL,bL,samples,initL,iter,quant,lowerB,upperB,
     dorescale,doini,eps,eps1,datatype,filename)

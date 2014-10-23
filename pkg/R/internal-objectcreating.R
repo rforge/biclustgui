@@ -4,7 +4,7 @@
 ###############################################################################
 
 
-.add.frame <- function(input="plotdiagTab",type,frame.name,argument.names="",arguments="",initial.values=c(),title="",border=FALSE,entry.width="2",argument.values=c(),argument.types=c(),from=c(),to=c(),by=c(),length=c(),button.name="",button.function="",button.data="",arg.frames=c(),button.otherarg="",button.biclust="",save=TRUE,show=TRUE ,new.frames=new.frames){
+.add.frame <- function(input="plotdiagTab",type,frame.name,argument.names="",arguments="",initial.values=c(),title="",border=FALSE,entry.width="2",argument.values=c(),argument.types=c(),from=c(),to=c(),by=c(),length=c(),button.name="",button.function="",button.data="",arg.frames=c(),button.otherarg="",button.biclust="",save=TRUE,show=TRUE,button.width="12",button.data.transf="matrix" ,new.frames=new.frames){
 	
 	
 	# Entry Fields
@@ -94,7 +94,7 @@
 		# Manual Buttons
 		
 		if(type=="buttons"){
-			new <- list(frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.otherarg=button.otherarg,arg.frames=arg.frames,button.biclust=button.biclust,title="",border=FALSE,save=save,show=show)
+			new <- list(frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.otherarg=button.otherarg,arg.frames=arg.frames,button.biclust=button.biclust,title="",border=FALSE,save=save,show=show,button.width=button.width,button.data.transf=button.data.transf)
 			new.frames$plotdiagTab[[length(new.frames$plotdiagTab)+1]] <- new
 			
 			new.frames <- .order.button.frames(new.frames)
@@ -491,7 +491,7 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 
 .fabia2biclust <- function(x,thresZ=0.5,thresL=NULL){
 	
-	if(class(x)=="Biclust"){return(x)}
+	if(class(x)=="Biclust"){return(x)}  # This is actually for the biclust plots for fabia superbiclust-save has been used on fabia
 	else{
 		
 		fabia.extract <- extractBic(x,thresZ,thresL)
@@ -572,6 +572,10 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 		#iBBiG # PLACEHOLDER
 		method_data <- rbind(method_data,c("iBBiG","Constant","iBBiG_WIN()"))
 		
+		#rQubic # PLACEHOLDER
+		method_data <- rbind(method_data,c("Rqubic","Coherent Evolution","rqubic_WINDOW()"))
+		
+		
 		# Assigning to Global Variable
 		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)
 		
@@ -610,8 +614,15 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 				if(class(x)=="iBBiG"){return(TRUE)}
 				if(class(x)=="Biclust"){return(TRUE)}
 				if(class(x)=="Factorization"){return(TRUE)}
+				if(class(x)=="QUBICBiclusterSet"){return(TRUE)}
 				if(.isISA(x)){return(TRUE)}
 				return(FALSE)
 			})
 	return(globalVars[select])
+}
+
+as.ExprSet <- function(x){
+	datamatrix <- as.matrix(x)
+	out <- new("ExpressionSet",exprs=datamatrix)
+	return(out)
 }

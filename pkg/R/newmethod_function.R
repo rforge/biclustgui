@@ -6,7 +6,7 @@
 # methodname
 
 
-cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg,other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames,superbiclust.comp,bcdiag.comp,data.matrix=FALSE,data.discr=FALSE,data.bin=FALSE,extrabiclustplot=FALSE,methodshow=TRUE,extrabiclustforisa=FALSE){
+cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg,other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames,superbiclust.comp,bcdiag.comp,data.transf="matrix",data.discr=FALSE,data.bin=FALSE,extrabiclustplot=FALSE,methodshow=TRUE,methodsave=TRUE,extrabiclustforisa=FALSE){
 	
 
 	
@@ -340,7 +340,9 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 		if(current.frame$button.data!=""){
 			
 			input.data <- ActiveDataSet()		
-			if(data.matrix==TRUE){input.data <- paste("as.matrix(",input.data,")",sep="")}
+			
+			if(current.frame$button.data.transf=="matrix"){input.data <- paste("as.matrix(",input.data,")",sep="")}
+			if(current.frame$button.data.transf=="ExprSet"){input.data <- paste0("as.ExprSet(",input.data,")")}
 			
 			function.command <- paste(function.command,current.frame$button.data,"=",input.data  ,sep="")
 			first.arg=FALSE
@@ -412,7 +414,7 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 		
 		current.frame$button.command <- button.command
 		
-		current.frame$buttonRcmdr <- buttonRcmdr(current.frame$frame,command=current.frame$button.command,text=gettextRcmdr(current.frame$button.name),foreground="darkgreen",default="active",width="12",borderwidth=3)
+		current.frame$buttonRcmdr <- buttonRcmdr(current.frame$frame,command=current.frame$button.command,text=gettextRcmdr(current.frame$button.name),foreground="darkgreen",default="active",width=current.frame$button.width,borderwidth=3)
 		
 		#OKbutton <- buttonRcmdr(resultsFrame,text=gettextRcmdr("Show Result"),foreground="darkgreen",width="12",command=onOK,default="active",borderwidth=3)
 		
@@ -506,9 +508,8 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 	
 	## Making the discretize box in the clusterTab ##
 	if(data.discr==TRUE){
-		if(data.matrix==FALSE){stop("To avoid data input errors, please put data.matrix to TRUE",call.=FALSE)}
 		
-		discrFrame <- ttklabelframe(clusterTab,text=gettextRcmdr("Discretize Data"))
+		discrFrame <- ttklabelframe(clusterTab,text=gettextRcmdr("Discretize Data (Biclust)"))
 		
 		checkBoxes(discrFrame,frame="discrcheck",boxes="discr.check",initialValues=c(0),labels=gettextRcmdr("Discretize?"))
 		
@@ -532,9 +533,8 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 	
 	
 	if(data.bin==TRUE){
-		if(data.matrix==FALSE){stop("To avoid data input errors, please put data.matrix to TRUE",call.=FALSE)}
 		
-		binFrame <- ttklabelframe(clusterTab,text=gettextRcmdr("Binarize Data"))
+		binFrame <- ttklabelframe(clusterTab,text=gettextRcmdr("Binarize Data (Biclust)"))
 		checkBoxes(binFrame,frame="bincheck",boxes="bin.check",initialValues=c(0),labels=gettextRcmdr("Binarize?"))
 		
 		binentryFrame <- tkframe(binFrame)
@@ -565,9 +565,18 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 	
 	
 		input.data <- ActiveDataSet()
-		
+		input.data.transf <- ""
+
 		# Convert to data to matrix if asked:
-		if(data.matrix==TRUE){input.data <- paste("as.matrix(",input.data,")",sep="")}
+		if(data.transf=="matrix"){
+			input.data <- paste("as.matrix(",input.data,")",sep="")
+			input.data.transf <- "as.matrix"
+		}
+		# Convert data to ExprSet if asked:
+		if(data.transf=="ExprSet"){
+			input.data <- paste("as.ExprSet(",input.data,")",sep="")
+			input.data.transf <- "as.ExprSet"
+		}
 		
 		
 		# Make sure discretize and binarize are not checked at the same time
@@ -579,92 +588,106 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 
 		if( GO==TRUE){
 		
-		
-		if(data.discr==TRUE & data.bin==TRUE){
-			
-			if(tclvalue(discr.checkVariable)=="1"){
-				
-				if(tclvalue(discr.quantVariable)=="1"){temp.quant <- TRUE}else{temp.quant <- FALSE}
-				
-				discr.command <- paste("x <- discretize(",input.data,",nof=",tclvalue(discr.nof),",quant=",temp.quant,")",sep="")
-				doItAndPrint(discr.command)
-				
-				command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=x",other.arg,sep="")
-				
-			}
-			
-			else if(tclvalue(bin.checkVariable)=="1"){
-				
-				bin.command <- paste("x <- binarize(",input.data,",threshold=",tclvalue(bin.threshold),")",sep="")
-				doItAndPrint(bin.command)
-				
-				command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=x",other.arg,sep="")
-				
-			}
-			
+			if(methodsave==FALSE){
+				methodshow <- FALSE
+				command <- ""
+			}	
 			else{
-				command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
+				command <- paste0(method_result," <- ")
 			}
-		}
+			
+			if(data.discr==TRUE & data.bin==TRUE){
+			
+				if(tclvalue(discr.checkVariable)=="1"){
+				
+					if(tclvalue(discr.quantVariable)=="1"){temp.quant <- TRUE}else{temp.quant <- FALSE}
+					
+					discr.command <- paste("x <- discretize(as.matrix(",ActiveDataSet(),"),nof=",tclvalue(discr.nof),",quant=",temp.quant,")",sep="")
+					doItAndPrint(discr.command)
+				
+					command <- paste(command,methodfunction,"(",data.arg,"=",input.data.transf,"(x)",other.arg,sep="")
+				
+				}
+			
+				else if(tclvalue(bin.checkVariable)=="1"){
+				
+					bin.command <- paste("x <- binarize(as.matrix(",ActiveDataSet(),",)threshold=",tclvalue(bin.threshold),")",sep="")
+					doItAndPrint(bin.command)
+					
+					command <- paste(command,methodfunction,"(",data.arg,"=",input.data.transf,"(x)",other.arg,sep="")
+				
+				}
+			
+				else{
+					command <- paste(command,methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
+				}
+			}
 		
-		if(data.bin==TRUE & data.discr==FALSE){
-			if(tclvalue(bin.checkVariable)=="1"){
+			if(data.bin==TRUE & data.discr==FALSE){# I AM HERE
+				if(tclvalue(bin.checkVariable)=="1"){
 				
-				bin.command <- paste("x <- binarize(",input.data,",threshold=",tclvalue(bin.threshold),")",sep="")
-				doItAndPrint(bin.command)
+					bin.command <- paste("x <- binarize(as.matrix(",ActiveDataSet(),"),threshold=",tclvalue(bin.threshold),")",sep="")
+					doItAndPrint(bin.command)
 				
-				command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=x",other.arg,sep="")
+					command <- paste(command,methodfunction,"(",data.arg,"=",input.data.transf,"(x)",other.arg,sep="")
 				
+				}
+				else{
+					command <- paste(command,methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
+				
+				}
+			}
+		
+			if(data.discr==TRUE & data.bin==FALSE){
+				if(tclvalue(discr.checkVariable)=="1"){
+				
+					if(tclvalue(discr.quantVariable)=="1"){temp.quant <- TRUE}else{temp.quant <- FALSE}
+				
+					discr.command <- paste("x <- discretize(as.matrix(",input.data,",)nof=",tclvalue(discr.nof),",quant=",temp.quant,")",sep="")
+					doItAndPrint(discr.command)
+				
+					command <- paste(command,methodfunction,"(",data.arg,"=",input.data.transf,"(x)",other.arg,sep="")
+				
+				}
+				else{
+					command <- paste(command,methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
+				}
+			
+			}
+		
+			if(data.discr==FALSE & data.bin==FALSE){
+				command <- paste(command,methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
+			}
+		
+			#command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
+		
+			for(i in 1:length(new.frames[[1]])){
+				current.frame <- new.frames[[1]][[i]]
+			
+				command <- .build.command.argument(current.frame,command)
+			
+			
+			}
+		
+			command <- paste(command,")",sep="")
+		
+			if(methodseed==TRUE){doItAndPrint(paste("set.seed(",tclvalue(seedVar),")",sep=""))}
+			
+			if(methodsave==TRUE){
+				doItAndPrint(command)
 			}
 			else{
-				command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
-				
-			}
-		}
-		
-		if(data.discr==TRUE & data.bin==FALSE){
-			if(tclvalue(discr.checkVariable)=="1"){
-				
-				if(tclvalue(discr.quantVariable)=="1"){temp.quant <- TRUE}else{temp.quant <- FALSE}
-				
-				discr.command <- paste("x <- discretize(",input.data,",nof=",tclvalue(discr.nof),",quant=",temp.quant,")",sep="")
-				doItAndPrint(discr.command)
-				
-				command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=x",other.arg,sep="")
-				
-			}
-			else{
-				command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
+				justDoIt(command)
 			}
 			
-		}
+			#assign(method_result,eval(parse(text=method_result)),envir=.GlobalEnv)  # Not necessary, doItAndPrint already makes it 'global' do to printing it in the console
+			if(methodshow==TRUE){doItAndPrint(method_result)}
+			# NOTE: ADD GLOBAL VARIABLES TO 2 GLOBAL LIST: ALL BICLUST OBJECTS + ALL COMPATIBLE BICLUST OBJECTS (TRUE/FALSE)
 		
-		if(data.discr==FALSE & data.bin==FALSE){
-			command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
-		}
+			if(method_result %in% ls(,envir=.GlobalEnv)){.update.biclustering.object(method_result,where="all")}
 		
-		#command <- paste(method_result,"<-",methodfunction,"(",data.arg,"=",input.data,other.arg,sep="")
-		
-		for(i in 1:length(new.frames[[1]])){
-			current.frame <- new.frames[[1]][[i]]
-			
-			command <- .build.command.argument(current.frame,command)
-			
-			
-		}
-		
-		command <- paste(command,")",sep="")
-		
-		if(methodseed==TRUE){doItAndPrint(paste("set.seed(",tclvalue(seedVar),")",sep=""))}
-		doItAndPrint(command)
-		#assign(method_result,eval(parse(text=method_result)),envir=.GlobalEnv)  # Not necessary, doItAndPrint already makes it 'global' do to printing it in the console
-		if(methodshow==TRUE){doItAndPrint(method_result)}
-		# NOTE: ADD GLOBAL VARIABLES TO 2 GLOBAL LIST: ALL BICLUST OBJECTS + ALL COMPATIBLE BICLUST OBJECTS (TRUE/FALSE)
-		
-		if(method_result %in% ls(,envir=.GlobalEnv)){.update.biclustering.object(method_result,where="all")}
-		
-		if(superbiclust.comp==TRUE){.update.biclustering.object(method_result,where="superbiclust")}
-		if(bcdiag.comp==TRUE){.update.biclustering.object(method_result,where="bcdiag")}
+			if(superbiclust.comp==TRUE){.update.biclustering.object(method_result,where="superbiclust")}
+			if(bcdiag.comp==TRUE){.update.biclustering.object(method_result,where="bcdiag")}
 		}
 		else{justDoIt("warning('Cannot discretize and binarize at the same time')")}
 		

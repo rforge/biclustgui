@@ -12,7 +12,7 @@ bcdiag_WINDOW <- function(methodname){
 	
 	
 	# Some extra code to determine the input type: "biclust", "fabia", "isa2"
-	biclust.names <- c("Bimax","CC","Plaid","Questmotif","Spectral","XMotifs","IBBIG")
+	biclust.names <- c("Bimax","CC","Plaid","Questmotif","Spectral","XMotifs","IBBIG","Rqubic")
 	fabia.names <- c("Fabia Laplace Prior","Fabia Post-Projection","Fabia Sparseness Projection","Fabia SPARSE")
 	isa.names <- c("ISA")
 	
@@ -24,7 +24,7 @@ bcdiag_WINDOW <- function(methodname){
 
 		# Exception when superbiclust has been used on fabia:
 		method_result <- gsub(" ","",methodname,fixed=TRUE)
-		method_result <- gsub("-","",method_result,fixed=TRUE) 
+		method_result <- gsub("-","",method_result,fixed=TRUE)
 		if(method_result %in% ls(envir=.GlobalEnv)){
 			eval(parse(text=paste("method_class <- class(",method_result,")",sep="")))
 			if(method_class=="Biclust"){
@@ -46,7 +46,6 @@ bcdiag_WINDOW <- function(methodname){
 	
 	toolhelp <- "BcDiag-package" # TO BE FILLED IN WHEN PACKAGE AGAIN AVAILABLE ON CRAN
 	
-	data.matrix <- TRUE
 	
 	# Do not change this line:
 	input <- "plotdiagTab"
@@ -322,7 +321,7 @@ bcdiag_WINDOW <- function(methodname){
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL NEW TOOL FUNCTION ##
 	##################################################################
 	
-	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,data.matrix=data.matrix,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
+	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
 	
 	
 }

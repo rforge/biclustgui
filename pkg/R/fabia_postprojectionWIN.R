@@ -45,9 +45,8 @@ fabiapostprojection_WIN <- function(){     # Change newmethod to your own method
 	# Define the name of the data argument for your function
 	data.arg <- "X"
 	
-	# Data will be loaded in as a dataframe, should it be transformed to a matrix for your function?
-	data.matrix <- TRUE
-	
+
+
 	methodshow <- FALSE
 	
 	# Define any other arguments in the function, which should not be changed by the user.
@@ -573,7 +572,7 @@ fabiapostprojection_WIN <- function(){     # Change newmethod to your own method
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	
-	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.matrix=data.matrix,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow)
+	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow)
 	
 }
 

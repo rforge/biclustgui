@@ -14,13 +14,13 @@ superbiclust_WINDOW <- function(methodname){
 	method_result <- gsub(" ","",methodname,fixed=TRUE)
 	method_result <- gsub("-","",method_result,fixed=TRUE)
 	
-	biclust.names <- c("Bimax","CC","Plaid","Questmotif","Spectral","XMotifs","IBBIG")
+	biclust.names <- c("Bimax","CC","Plaid","Questmotif","Spectral","XMotifs","IBBIG","Rqubic")
 	fabia.names <- c("Fabia Laplace Prior","Fabia Post-Projection","Fabia Sparseness Projection","Fabia SPARSE")
 	isa.names <- c("ISA")
 	
 	if(methodname %in% biclust.names){
 		#extra.arg <- paste("x=",method_result,sep="")
-		extra.arg <- paste(",method_result='",method_result,"'",sep="")
+		extra.arg <- paste(",method_result='",method_result,"',type.method='biclust'",sep="")
 		#isa2 <- FALSE
 		biclust.combine <- TRUE
 		make.save.button <- TRUE
@@ -28,7 +28,7 @@ superbiclust_WINDOW <- function(methodname){
 	}
 	if(methodname %in% fabia.names){
 		#extra.arg <- paste("x=",method_result,sep="")
-		extra.arg <- paste(",method_result='",method_result,"'",sep="")
+		extra.arg <- paste(",method_result='",method_result,"',type.method='fabia'",sep="")
 		#isa2 <- FALSE
 		biclust.combine <- FALSE
 		make.save.button <- TRUE
@@ -36,7 +36,7 @@ superbiclust_WINDOW <- function(methodname){
 	}
 	if(methodname %in% isa.names){
 		#extra.arg <- paste("x=isa.biclust",method_result,")",sep="")
-		extra.arg <- paste(",method_result='",method_result,"',isa2=TRUE",sep="")
+		extra.arg <- paste(",method_result='",method_result,"',type.method='isa'",sep="")
 		#isa2 <- TRUE
 		biclust.combine <- FALSE
 		make.save.button <- TRUE
@@ -53,7 +53,7 @@ superbiclust_WINDOW <- function(methodname){
 	
 	toolhelp <- "superbiclust" 
 	
-	data.matrix <- TRUE
+
 	
 	# Do not change this line:
 	input <- "plotdiagTab"
@@ -338,7 +338,7 @@ superbiclust_WINDOW <- function(methodname){
 	button.function <- "biclust.robust.fuse" 
 	button.data <- "" 
 	button.biclust <-  ""
-	button.otherarg <- paste("CutTree=CutTree",",method_result='",method_result,"'",",type='",save.type,"'",sep="")
+	button.otherarg <- paste("CutTree=CutTree,superbiclust.result=superbiclust.result",",method_result='",method_result,"'",",type='",save.type,"'",sep="")
 	save <- FALSE
 	show <- TRUE
 	arg.frames <- c() 
@@ -424,7 +424,7 @@ superbiclust_WINDOW <- function(methodname){
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL NEW TOOL FUNCTION ##
 	##################################################################
 	
-	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,data.matrix=data.matrix,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
+	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
 	
 	
 }

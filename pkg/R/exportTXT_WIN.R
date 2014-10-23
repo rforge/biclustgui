@@ -88,6 +88,7 @@ exportTXT_WINDOW <- function(){
 		if(class(sel.result)=="Biclust"){mname <- "biclust"}
 		if(class(sel.result)=="Factorization"){mname <- "fabia"}
 		if(class(sel.result)=="iBBiG"){mname <- "biclust"}
+		if(class(sel.result)=="QUBICBiclusterSet"){mname <- "biclust"}
 		if(.isISA(sel.result)){mname <- "isa2"}
 		
 		delimiter <- tclvalue(delim_vars)

@@ -19,11 +19,14 @@ newmethod_WINDOW <- function(){     # Change newmethod to your own method name
 
 	methodfunction <- "methodfunction"
 	data.arg <- "d"
-	data.matrix <- FALSE
 	methodshow <- TRUE
+	methodsave <- TRUE
 	other.arg <- ""
 	methodhelp <- ""
 
+	# Transform the data from data.arg
+	data.transf <- "matrix" # Values: "matrix" (default), "ExprSet"
+	
 	# Extra Data Conversion Boxes
 	data.discr <- FALSE
 	data.bin <- FALSE
@@ -84,6 +87,6 @@ newmethod_WINDOW <- function(){     # Change newmethod to your own method name
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	
-	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.matrix=data.matrix,data.discr=data.discr,data.bin=data.bin,methodshow=methodshow)
+	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.transf=data.transf,data.discr=data.discr,data.bin=data.bin,methodshow=methodshow,methodsave=methodsave)
 	
 }

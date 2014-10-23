@@ -18,11 +18,13 @@
 \alias{robust.fuse.support}
 \alias{SearchMethodData}
 \alias{Setwd}
+\alias{as.ExprSet}
 
 \title{List of Internal Functions}
 
 \description{List of internal functions used in various functions in the package.}
 \usage{
+as.ExprSet(x)
 .binary.activematrix.check()
 .build.button.function(function.command,arg.names,button_result,new.frames,save)
 .build.command.argument(current.frame,command)

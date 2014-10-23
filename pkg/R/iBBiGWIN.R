@@ -46,8 +46,6 @@ iBBiG_WIN <- function(){     # Change newmethod to your own method name
 	# Define the name of the data argument for your function
 	data.arg <- "binaryMatrix"
 	
-	# Data will be loaded in as a dataframe, should it be transformed to a matrix for your function?
-	data.matrix <- TRUE
 	
 	methodshow <- TRUE
 	
@@ -100,7 +98,7 @@ iBBiG_WIN <- function(){     # Change newmethod to your own method name
 	
 	# Change variables accordingly:
 	frame.name <- "entryframe1"  
-	argument.names <- c("Number of Expected Clusters (will be optimized)","Weighting Factor [0,1] (Suggested: [0.3,0.5])") 
+	argument.names <- c("Number of Expected Biclusters (will be optimized)","Weighting Factor [0,1] (Suggested: [0.3,0.5])") 
 	argument.types <- c("num","num")
 	arguments <- c("nModules","alpha") 
 	initial.values <- c(10,0.3)
@@ -590,7 +588,7 @@ iBBiG_WIN <- function(){     # Change newmethod to your own method name
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	
-	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.matrix=data.matrix,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow)
+	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow)
 	
 }
 

@@ -121,6 +121,8 @@ button.name <- "Button 1"
 button.function <- "buttonfunction" 
 button.data <- "d" 
 button.biclust <-  "biclust" 
+button.width <- "12"
+button.data.transf <- "matrix"
 
 arg.frames <- c("frame1","frame2")
 
@@ -133,6 +135,7 @@ new.frames <- .add.frame(input=input,frame.name=frame.name,
 		type=type,button.name=button.name,
 		button.function=button.function,button.data=button.data,
 		button.biclust=button.biclust,button.otherarg=button.otherarg,
+		button.width=button.width,button.data.transf=button.data.transf,
 		arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
 
 

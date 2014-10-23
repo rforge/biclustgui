@@ -16,12 +16,18 @@ biclustextraplots_WINDOW <- function(methodname){
 	## GENERAL INFORMATION ABOUT THE NEW TOOL		   ##
 	#####################################################
 	
+	## Determining of the option for extra results should be given
+	make.extra.results <- TRUE
+	list.methods.noextra <- c("Rqubic")
+	if(methodname %in% list.methods.noextra){make.extra.results <- FALSE}
+	##
+	
 	
 	toolname <- "Extra Plots from `biclust'"
 	
 	toolhelp <- "bubbleplot"
 	
-	data.matrix <- TRUE
+	
 	
 	# Do not change this line:
 	input <- "plotdiagTab"
@@ -195,9 +201,12 @@ biclustextraplots_WINDOW <- function(methodname){
 	###############################################################
 	
 	### CONFIGURING GRID ###
-	
-	grid.config <- .grid.matrix(input=input,c("bubbleplotprojframe","bubbleplotentryframe","bubbleplotbuttonframe","bubbleplotlabelframe",NA,NA,"plotclustentryframe","plotclustcheckframe","plotclustbuttonframe"   ,"barchartbuttonframe",NA,NA)    ,byrow=TRUE,nrow=4,ncol=3,grid.config=grid.config)
-	
+	if(make.extra.results==TRUE){
+		grid.config <- .grid.matrix(input=input,c("bubbleplotprojframe","bubbleplotentryframe","bubbleplotbuttonframe","bubbleplotlabelframe",NA,NA,"plotclustentryframe","plotclustcheckframe","plotclustbuttonframe"   ,"barchartbuttonframe",NA,NA)    ,byrow=TRUE,nrow=4,ncol=3,grid.config=grid.config)
+	}
+	else{
+		grid.config <- .grid.matrix(input=input,c("bubbleplotprojframe",NA,"bubbleplotbuttonframe","bubbleplotlabelframe",NA,NA,"plotclustentryframe","plotclustcheckframe","plotclustbuttonframe"   ,"barchartbuttonframe",NA,NA)    ,byrow=TRUE,nrow=4,ncol=3,grid.config=grid.config)
+	}
 	### COMBINING ROWS ###
 	grid.rows <- .combine.rows(input=input,rows=c(1,2),title="Biclust Bubble Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	grid.rows <- .combine.rows(input=input,rows=c(3),title="Barplot of Bicluster",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
@@ -208,7 +217,7 @@ biclustextraplots_WINDOW <- function(methodname){
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL NEW TOOL FUNCTION ##
 	##################################################################
 	
-	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,data.matrix=data.matrix,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
+	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
 	
 	
 }

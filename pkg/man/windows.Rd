@@ -21,6 +21,7 @@
 \alias{search_WINDOW}
 \alias{exportTXT_WINDOW}
 \alias{exportFURBY_WINDOW}
+\alias{rqubic_WINDOW}
 
 \title{Window Functions}
 
@@ -44,6 +45,7 @@ fabiaSPARSE_WIN()
 iBBiG_WIN()
 isadefault_WIN()
 isaextraplots_WINDOW(methodname)
+rqubic_WINDOW()
 search_WINDOW()
 superbiclust_WINDOW(methodname)
 }

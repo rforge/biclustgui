@@ -22,7 +22,6 @@ newtool_WINDOW <- function(methodname){
 
 	toolhelp <- "testool"
 
-	data.matrix <- TRUE
 	
 	# Do not change this line:
 	input <- "plotdiagTab"
@@ -46,7 +45,7 @@ newtool_WINDOW <- function(methodname){
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL NEW TOOL FUNCTION ##
 	##################################################################
 	
-	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,data.matrix=data.matrix,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
+	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
 		
 	
 }

@@ -39,11 +39,20 @@ newmethod_WINDOW <- function(){     # Change newmethod to your own method name
 	
 	# Define the name of the data argument for your function
 	data.arg <- "d"
-	# Data will be loaded in as a dataframe, should it be transformed to a matrix for your function?
-	data.matrix <- FALSE
+
+	# Transform the data from data.arg
+	data.transf <- "matrix" # Values: "matrix" (default), "ExprSet"
+	
+#	# Data will be loaded in as a dataframe, should it be transformed to a matrix for your function?
+#	data.matrix <- FALSE
+#	# Or should the data be transformed into a ExpressionSet object ("Biobase" package)
+#	data.ExprSet <- FALSE
 	
 	# Define if you want the object in which the results are shown to be printed
 	methodshow <- TRUE
+	
+	# Define if the result should be saved. (ADVANCED USERS ONLY!)
+	methodsave <- TRUE  # FALSE will imply methodshow=FALSE
 	
 	# Define any other arguments in the function, which should not be changed by the user.
 	# These arguments may also include a certain method for your function, since it is the idea to give each method a separate window.
@@ -493,11 +502,13 @@ newmethod_WINDOW <- function(){     # Change newmethod to your own method name
 	# otherarg DOES work if you do it like this: button.otherarg <- " method=\"default\" "
 	# So for quotations on the inside, you need to use \"
 	# NOTE: NOW WORKS WITH ' ' !
+	button.width <- "12"
+	button.data.transf <- "matrix" # Can be "matrix" or "ExprSet"
 	
 	#showprint <- FALSE # For own use only, will not print first function
 	
 	# Do not change this line: 
-	new.frames <- .add.frame(input=input,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,button.otherarg=button.otherarg,arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+	new.frames <- .add.frame(input=input,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,button.otherarg=button.otherarg,arg.frames=arg.frames,button.width=button.width,save=save,show=show,new.frames=new.frames,button.data.transf=button.data.transf)
 
 	###############################################################
 	
@@ -540,6 +551,6 @@ newmethod_WINDOW <- function(){     # Change newmethod to your own method name
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	
-	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.matrix=data.matrix,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow,extrabiclustforisa=extrabiclustforisa)
+	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.transf=data.transf,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow,extrabiclustforisa=extrabiclustforisa,methodsave=methodsave)
 	
 }

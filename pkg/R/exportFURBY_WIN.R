@@ -208,6 +208,7 @@ exportFURBY_WINDOW <- function(){
 	
 		if(class(biClust.temp)=="Biclust"){biClust <- biClust.name}
 		if(class(biClust.temp)=="iBBiG"){biClust <- biClust.name}
+		if(class(biClust.temp)=="QUBICBiclusterSet"){biClust <- biClust.name}
 		if(.isISA(biClust.temp)){biClust <- paste0("isa.biclust(",biClust.name,")")}
 		
 		

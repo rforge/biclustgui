@@ -6,7 +6,7 @@
 # methodname
 
 
-newtool_template <- function(toolname="",methodname="",toolhelp="",data.matrix=TRUE,grid.config=grid.config,grid.rows=grid.rows,new.frames){
+newtool_template <- function(toolname="",methodname="",toolhelp="",grid.config=grid.config,grid.rows=grid.rows,new.frames){
 	
 	
 	
@@ -322,7 +322,8 @@ newtool_template <- function(toolname="",methodname="",toolhelp="",data.matrix=T
 					if(current.frame$button.data!=""){
 						
 						input.data <- ActiveDataSet()		
-						if(data.matrix==TRUE){input.data <- paste("as.matrix(",input.data,")",sep="")}
+						if(current.frame$button.data.transf=="matrix"){input.data <- paste("as.matrix(",input.data,")",sep="")}
+						if(current.frame$button.data.transf=="ExprSet"){input.data <- paste0("as.ExprSet(",input.data,")")}
 						
 						function.command <- paste(function.command,current.frame$button.data,"=",input.data  ,sep="")
 						first.arg=FALSE
@@ -391,7 +392,7 @@ newtool_template <- function(toolname="",methodname="",toolhelp="",data.matrix=T
 					
 					current.frame$button.command <- button.command
 					
-					current.frame$buttonRcmdr <- buttonRcmdr(current.frame$frame,command=current.frame$button.command,text=gettextRcmdr(current.frame$button.name),foreground="darkgreen",default="active",width="12",borderwidth=3)
+					current.frame$buttonRcmdr <- buttonRcmdr(current.frame$frame,command=current.frame$button.command,text=gettextRcmdr(current.frame$button.name),foreground="darkgreen",default="active",width=current.frame$button.width,borderwidth=3)
 					
 					#OKbutton <- buttonRcmdr(resultsFrame,text=gettextRcmdr("Show Result"),foreground="darkgreen",width="12",command=onOK,default="active",borderwidth=3)
 					
