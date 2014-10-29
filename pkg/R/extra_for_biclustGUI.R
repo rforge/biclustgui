@@ -235,6 +235,9 @@ superbiclust.GUI <- function(x,index,type,method_result,extra.biclust=NULL,type.
 		doItAndPrint(paste("superbiclust.result <- BiclustSet(x=",method_result,")"))
 		
 	}
+	if(type.method=="bicare"){
+		doItAndPrint(paste0("superbiclust.result <- BiclustSet(x=.bicare2biclust(",method_result,"))"))
+	}
 		
 	doItAndPrint(paste("superbiclust.sim <- similarity(x=superbiclust.result,index='",index,"',type='",type,"')",sep=""))
 	doItAndPrint(paste("superbiclust.tree <- HCLtree(superbiclust.sim)",sep=""))
@@ -402,9 +405,30 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust",superbiclus
 		
 		doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
 		doItAndPrint(paste(method_result," <- new.biclust",sep=""))
+	}
+	
+	if(type=="bicare"){
+		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
+		RowxNumber <- t(RowxCol$RowxNumber)+0
+		NumberxCol <- RowxCol$NumberxCol+0
 		
+		eval(parse(text=paste0("Call <- ",method_result,"$Call")))
+		eval(parse(text=paste0("ExpressionSet <- ",method_result,"$ExpressionSet")))
+		eval(parse(text=paste0("param <- ",method_result,"$param")))
+		mat.resvol.bic <- list()
 		
+		new.biclust <- list(Call=Call,ExpressionSet=ExpressionSet,param=param,bicRow=RowxNumber,bicCol=NumberxCol,mat.resvol.bic=mat.resvol.bic)
+		class(new.biclust) <- "biclustering"
 
+		assign("new.biclust",new.biclust,envir=.GlobalEnv)	
+		
+		paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
+		cat(paste.cat)
+		paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
+		cat(paste.cat,"\n")
+		
+		doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
+		doItAndPrint(paste(method_result," <- new.biclust",sep=""))
 		
 		
 	}
@@ -462,3 +486,86 @@ rqubic.GUI <- function(x,eSetData.name,q,rank,minColWidth,report.no,tolerance,fi
 	
 	
 }
+
+bicare.GUI <- function(Data,k,pGene,pSample,r,N,M,t,blocGene,blocSample,eSetData.name){
+	
+	if(pSample=="pGene"){pSample <- pGene}
+	if(eSetData.name!="NULL"){
+				
+		justDoIt(paste0(eSetData.name,"_exprs <- as.data.frame(exprs(",eSetData.name,"))"))
+		activeDataSet(paste0(eSetData.name,"_exprs"))
+		
+		doItAndPrint(paste0("BICARE <- FLOC(Data=",eSetData.name,",k=",k,",pGene=",pGene,",pSample=",pSample,",r=",r,",N=",N,",M=",M,",t=",t,",blocGene=",blocGene,",blocSample=",blocSample,")"))
+		doItAndPrint("BICARE")
+	}
+	
+	else{
+		doItAndPrint(paste0("BICARE <- FLOC(Data=as.matrix(",ActiveDataSet(),"),k=",k,",pGene=",pGene,",pSample=",pSample,",r=",r,",N=",N,",M=",M,",t=",t,",blocGene=",blocGene,",blocSample=",blocSample,")"))
+		doItAndPrint("BICARE")
+		
+	}
+	
+	
+}
+
+summary.BICARE <- function(x){
+	return(x$mat.resvol.bic)
+}
+
+bicare.residuplot <- function(result){
+	result_residu <- result$mat.resvol.bic[,1]
+	x <- seq(1,length(result_residu),1)
+	mr <- max(result_residu)
+	plot(x,result_residu,xlab="Bicluster Number",ylab="Residu",main="Residues of Biclusters",ylim=c(0,mr+0.05*mr))
+}
+
+bicare.genesetenrichment <- function(result,setType,gene.from,gene.to){
+	if(identical(annotation(result$ExpressionSet),character(0))){
+		justDoIt(paste0("warning('Not a complete eSet!',call.=FALSE)"))
+	}
+	else{
+		doItAndPrint(paste0("GSC <- GeneSetCollection(BICARE$ExpressionSet[",gene.from,":",gene.to,"],setType=",setType,")"))
+		doItAndPrint(paste0("BICARE <- testSet(BICARE,GSC)"))
+		doItAndPrint(paste0("BICARE$geneSet"))
+	}
+}
+
+
+
+bicare.samplesenrichment <- function(result,covariates){
+	if(dim(pData(result$ExpressionSet))[2]==0){
+		justDoIt(paste0("warning('Not a complete eSet!',call.=FALSE)"))
+	}
+	else{
+		eval(parse(text=paste0("temp <- names(pData(result$ExpressionSet))[",covariates,"]")))
+		temp2 <- "c("
+		for(i.names in 1:length(temp)){
+			temp2 <- paste0(temp2,",'",temp[i.names],"'")
+		}
+		temp2 <- paste0(temp2,")")
+		temp2 <- gsub("\\(,","\\(",temp2) 
+		doItAndPrint(paste0("BICARE <- testAnnot(BICARE,annot=pData(BICARE$ExpressionSet),covariates=",temp2,")"))
+		justDoIt("temp <- BICARE$covar")
+		justDoIt("cov.counts <- temp[[1]]")
+		justDoIt("p <- temp$pvalues")
+		justDoIt("adjp <- temp$adjpvalues")
+		justDoIt("colnames(p) <- .putbefore(colnames(p),'pvalue.')")
+		justDoIt("colnames(adjp) <- .putbefore(colnames(adjp),'adjpvalue.')")
+		justDoIt("padjp <- cbind(p,adjp)")
+		justDoIt("samplesenrichment <- list(cov.counts=cov.counts,pvalues=padjp)")
+		doItAndPrint("samplesenrichment")
+	}
+	
+}
+
+bicare.pdata <- function(result){
+	doItAndPrint("pData(BICARE$ExpressionSet)")
+}
+
+bicare.makereport <- function(dirName){
+	Setwd()
+	doItAndPrint(paste0("makeReport(dirPath=getwd(),dirName='",dirName,"',resBic=BICARE,browse=TRUE)"))
+}
+
+
+

@@ -3,12 +3,10 @@
 # Author: Ewoud
 ###############################################################################
 
-fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){  
+bicarebiclust_WINDOW <- function(methodname){  
 	
-#	fabia.names <- c("Fabia Laplace Prior","Fabia Post-Projection","Fabia Sparseness Projection","Fabia SPARSE")
 	method_result <- gsub(" ","",methodname,fixed=TRUE)
 	method_result <- gsub("-","",method_result,fixed=TRUE)
-	if(is.null(thresL)){thresL <- "NULL"}
 	
 	new.frames <- .initialize.new.frames()
 	grid.config <- .initialize.grid.config()
@@ -25,7 +23,6 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	
 	toolhelp <- "biclust"
 	
-
 	
 	
 	#######################
@@ -111,7 +108,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "parallelCoordinates3" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",bicResult=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",bicResult=.bicare2biclust(",method_result,")",sep="")
 	save <- FALSE
 	arg.frames <- c("pplotcheckframe","pplotentryframe","pplottypeframe") 
 	
@@ -172,7 +169,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "drawHeatmap" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",bicResult=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",bicResult=.bicare2biclust(",method_result,")",sep="")
 	
 	save <- FALSE
 	arg.frames <- c("heatplotcheckframe","heatplotentryframe") 
@@ -232,7 +229,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "biclustmember" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",bicResult=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",bicResult=.bicare2biclust(",method_result,")",sep="")
 	
 	save <- FALSE
 	arg.frames <- c("mplotcheckframe","mplotentryframe") 
@@ -248,7 +245,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	###							###
 	
 	
-
+	
 	####	    	MANUAL BUTTONS FRAME		  ####
 	#                               	 			 #
 	
@@ -260,7 +257,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "computeObservedFstat" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",bicResult=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",bicResult=.bicare2biclust(",method_result,")",sep="")
 	
 	arg.frames <- c("fstatentryframe") 
 	
@@ -335,7 +332,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "diagnoseColRow" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",bicResult=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",bicResult=.bicare2biclust(",method_result,")",sep="")
 	
 	arg.frames <- c("bootstrapentryframe","bootstrapreplacementframe") 
 	
@@ -379,7 +376,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "biclustbarchart" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",Bicres=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",Bicres=.bicare2biclust(",method_result,")",sep="")
 	
 	save <- FALSE
 	arg.frames <- c() 
@@ -440,7 +437,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "bubbleplot" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",bicResult1=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",bicResult1=.bicare2biclust(",method_result,")",sep="")
 	
 	arg.frames <- c("bubbleplotprojframe","bubbleplotlabelframe") 
 	
@@ -499,7 +496,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	button.function <- "plotclust" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",res=.fabia2biclust(",method_result,",",thresZ,",",thresL,")",sep="")
+	button.otherarg <- paste(",res=.bicare2biclust(",method_result,")",sep="")
 	
 	save <- FALSE
 	arg.frames <- c("plotclustcheckframe","plotclustentryframe") 
@@ -524,6 +521,24 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	# DO NOT CHANGE THIS LINE:
 	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,new.frames=new.frames)
 	
+	####	    	MANUAL BUTTONS FRAME 	  ####
+	#             								 #
+	
+	type <- "buttons"
+	
+	# Change variables accordingly:
+	frame.name <- "summarybuttonframe"  
+	button.name <- "Summary"  
+	button.function <- "summary" 
+	button.data <- "" 
+	button.biclust <-  "" 
+	arg.frames <- c()
+	save <- FALSE
+	button.otherarg <- paste(",object=.bicare2biclust(",method_result,")",sep="")
+	
+	
+	# Do not change this line: (without button.otherarg)
+	new.frames <- .add.frame(input=input,frame.name=frame.name,button.otherarg=button.otherarg,save=save,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
 	
 	
 	###############################################################################################################################################################################
@@ -536,15 +551,15 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	#########################
 	
 	
-	grid.config <- .grid.matrix(input=input,c("barchartbuttonframe","fstatentryframe","fstatbuttonframe","bootstrapentryframe",NA,NA,"bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,"pplottypeframe","pplotentryframe","parallelbuttonframe","pplotcheckframe",NA,NA,"heatplotcheckframe","heatplotentryframe","heatbuttonframe","mplotcheckframe","mplotentryframe","memberbuttonframe","plotclustentryframe","plotclustcheckframe","plotclustbuttonframe","bubbleplotlabelframe","bubbleplotprojframe","bubbleplotbuttonframe"),byrow=TRUE,nrow=9,ncol=3,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("summarybuttonframe","fstatentryframe","fstatbuttonframe","barchartbuttonframe","bootstrapentryframe",NA,"bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,"pplottypeframe","pplotentryframe","parallelbuttonframe","pplotcheckframe",NA,NA,"heatplotcheckframe","heatplotentryframe","heatbuttonframe","mplotcheckframe","mplotentryframe","memberbuttonframe","plotclustentryframe","plotclustcheckframe","plotclustbuttonframe","bubbleplotlabelframe","bubbleplotprojframe","bubbleplotbuttonframe"),byrow=TRUE,nrow=9,ncol=3,grid.config=grid.config)
 	
-
+	
 	
 	########################
 	#### COMBINING ROWS ####
 	########################
 	
-	grid.rows <- .combine.rows(input=input,rows=c(1,2,3),title="Barchart & Diagnostics",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(1,2,3),title="Summary, Barchart & Diagnostics",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	grid.rows <- .combine.rows(input=input,rows=c(4,5),title="Parallel Coordinate Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	grid.rows <- .combine.rows(input=input,rows=c(6),title="Heatmap Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	grid.rows <- .combine.rows(input=input,rows=c(7),title="Biclustmember Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
@@ -552,7 +567,7 @@ fabiabiclust_WINDOW <- function(methodname,thresZ,thresL){
 	#grid.rows <- .combine.rows(input=input,rows=c(10),title="Barplot of Bicluster",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
-		
+	
 	
 	
 	##################################################################

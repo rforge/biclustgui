@@ -397,6 +397,8 @@
 	}
 
 	function.command <- paste(function.command,")" ,sep="")
+	function.command <- gsub("\\(,","\\(",function.command) # Fixing the case when no data or otherarg is used (function(,x=1))
+	
 	
 	if(save==TRUE){function.command <- paste(button_result," <- ",function.command,sep="")}
 	#cat(function.command)
@@ -575,6 +577,8 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 		#rQubic # PLACEHOLDER
 		method_data <- rbind(method_data,c("Rqubic","Coherent Evolution","rqubic_WINDOW()"))
 		
+		#BicARE # PLACEHOLDER
+		method_data <- rbind(method_data,c("BicARE","Coherent Values","bicare_WINDOW()"))
 		
 		# Assigning to Global Variable
 		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)
@@ -615,6 +619,7 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 				if(class(x)=="Biclust"){return(TRUE)}
 				if(class(x)=="Factorization"){return(TRUE)}
 				if(class(x)=="QUBICBiclusterSet"){return(TRUE)}
+				if(class(x)=="biclustering"){return(TRUE)}
 				if(.isISA(x)){return(TRUE)}
 				return(FALSE)
 			})
@@ -626,3 +631,26 @@ as.ExprSet <- function(x){
 	out <- new("ExpressionSet",exprs=datamatrix)
 	return(out)
 }
+
+.bicare2biclust <- function(x){
+	if(class(x)=="Biclust"){ # In case of superbiclust is used # NOTE2: THIS IS ACTUALLY NOT NECESSARY !!
+		return(x)
+	} else if(class(x)=="biclustering"){
+		Parameters <- list(numberofbicluster=x$param[1,2],residuthreshold=x$param[2,2],genesinitialprobability=x$param[3,2],samplesinitialprobability=x$param[4,2],numberofiterations=x$param[5,2],date=x$param[6,2])
+		RowxNumber <- t(x$bicRow==1)
+		NumberxCol <- x$bicCol==1
+		Number <- as.numeric(dim(RowxNumber)[2])
+		info <- list()
+		return(new("Biclust",Parameters=Parameters,RowxNumber=RowxNumber,NumberxCol=NumberxCol,Number=Number,info=info))
+	}
+}
+
+
+
+.putbefore <- function(colnames,pre){
+	for(i.names in 1:length(colnames)){
+		colnames[i.names] <- paste0(pre,colnames[i.names])
+	}
+	return(colnames)
+}
+

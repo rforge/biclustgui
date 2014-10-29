@@ -8,7 +8,7 @@
 The package is a \emph{Graphical User Interface} (GUI) in which several 
 \emph{biclustering} methods can be executed, followed by diagnostics and 
 plots of the results. Further, the GUI also has the possibility to connect the methods to more general diagnostic packages for biclustering.
-Biclustering methods from  \pkg{biclust}, \pkg{fabia}, \pkg{iBBiG} and  \pkg{isa2} are implemented. Additionally, \pkg{superbiclust} and \pkg{BcDiag} are also implemented to be able to further investigate results.
+Biclustering methods from  \pkg{biclust}, \pkg{fabia}, \pkg{iBBiG}, \pkg{isa2}, \pkg{rqubic} and \pkg{BicARE} are implemented. Additionally, \pkg{superbiclust} and \pkg{BcDiag} are also implemented to be able to further investigate results.
 
 \code{RcmdrPlugin.BiclustGUI} also provides a very specific framework for biclustering in which new methods, diagnostics and plots can be added. 
 Scripts were prepared so that R-package developers can freely design their own dialogs in the GUI which can then be added by the maintainer of \code{RcmdrPlugin.BiclustGUI}. 
@@ -26,7 +26,7 @@ Biological Data Analysis: A Survey. IEEE/ACM Transactions, Computational
 Biology and Bioinformatics.
  }
 \seealso{
-  The Bicluster algorithms in the packages: \pkg{biclust}, \pkg{fabia}, \pkg{iBBiG} and  \pkg{isa2}.
+  The Bicluster algorithms in the packages: \pkg{biclust}, \pkg{fabia}, \pkg{iBBiG}, \pkg{isa2}, \pkg{rqubic} and \pkg{BicARE}.
   
   Additional Plotting & Diagnostics packages: \pkg{superbiclust} and \pkg{BcDiag}
 }

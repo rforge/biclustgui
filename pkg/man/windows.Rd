@@ -22,11 +22,15 @@
 \alias{exportTXT_WINDOW}
 \alias{exportFURBY_WINDOW}
 \alias{rqubic_WINDOW}
+\alias{bicare_WINDOW}
+\alias{bicarebiclust_WINDOW}
 
 \title{Window Functions}
 
 \description{List of window functions, responsible for creating all the dialogs.}
 \usage{
+bicare_WINDOW()
+bicarebiclust_WINDOW(methodname)
 bcdiag_WINDOW(methodname)
 bcdiagwrite_WINDOW(methodname)
 biclustbimax_WIN()

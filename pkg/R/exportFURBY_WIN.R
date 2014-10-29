@@ -210,7 +210,7 @@ exportFURBY_WINDOW <- function(){
 		if(class(biClust.temp)=="iBBiG"){biClust <- biClust.name}
 		if(class(biClust.temp)=="QUBICBiclusterSet"){biClust <- biClust.name}
 		if(.isISA(biClust.temp)){biClust <- paste0("isa.biclust(",biClust.name,")")}
-		
+		if(class(biClust.temp)=="biclustering"){biClust <- paste0(".bicare2biclust(",biClust.name,")")}
 		
 		export.command <- paste0("export.Biclust(biClust=",biClust,",x=as.matrix(",ActiveDataSet(),"),baseName='",baseName,"',clusterAssignments=",clusterAssignments,",clusterNames=",clusterNames,")")
 		doItAndPrint(export.command)

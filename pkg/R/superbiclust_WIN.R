@@ -17,6 +17,7 @@ superbiclust_WINDOW <- function(methodname){
 	biclust.names <- c("Bimax","CC","Plaid","Questmotif","Spectral","XMotifs","IBBIG","Rqubic")
 	fabia.names <- c("Fabia Laplace Prior","Fabia Post-Projection","Fabia Sparseness Projection","Fabia SPARSE")
 	isa.names <- c("ISA")
+	bicare.names <- c("BICARE")
 	
 	if(methodname %in% biclust.names){
 		#extra.arg <- paste("x=",method_result,sep="")
@@ -41,6 +42,13 @@ superbiclust_WINDOW <- function(methodname){
 		biclust.combine <- FALSE
 		make.save.button <- TRUE
 		save.type <- "isa"
+	}
+	
+	if(methodname %in% bicare.names){
+		extra.arg <- paste0(",method_result='",method_result,"',type.method='bicare'")
+		biclust.combine <- FALSE
+		make.save.button <- TRUE
+		save.type <- "bicare"
 	}
 	
 	

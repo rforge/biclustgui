@@ -50,6 +50,8 @@ item	BICLUSTERINGmenu	command		"iBBiG"				"iBBiG_WIN"		"activeDataSetP()"	""
 ### rqubic Package Menu
 item	BICLUSTERINGmenu	command		"rqubic"			"rqubic_WINDOW"		""	""
 
+## BicARE Package Menu
+item	BICLUSTERINGmenu	command		"BicARE"			"bicare_WINDOW"		""	""
 
 ### DEFINE TOP BICLUSTERING HELP & EXPORT MENU	
 menu	BICLUSTERINGHELPmenu       topMenu	  ""					"" 		""		""

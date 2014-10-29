@@ -15,6 +15,7 @@ bcdiag_WINDOW <- function(methodname){
 	biclust.names <- c("Bimax","CC","Plaid","Questmotif","Spectral","XMotifs","IBBIG","Rqubic")
 	fabia.names <- c("Fabia Laplace Prior","Fabia Post-Projection","Fabia Sparseness Projection","Fabia SPARSE")
 	isa.names <- c("ISA")
+	bicare.names <- c("BICARE")
 	
 	if(methodname %in% biclust.names){
 		extra.arg <- ",mname='biclust'"
@@ -34,6 +35,10 @@ bcdiag_WINDOW <- function(methodname){
 	}
 	if(methodname %in% isa.names){
 		extra.arg <- ",mname='isa2'"
+	}
+	
+	if(methodname %in% bicare.names){
+		extra.arg <- ",mname='bicare'"
 	}
 	
 	

@@ -22,12 +22,26 @@
 \alias{export.fabia.threshL}
 \alias{export.fabia}
 \alias{rqubic.GUI}
+\alias{bicare.GUI}
+\alias{summary.BICARE}
+\alias{bicare.residuplot}
+\alias{bicare.genesetenrichment}
+\alias{bicare.samplesenrichment}
+\alias{bicare.pdata}
+\alias{bicare.makereport}
 
 
 \title{GUI Functions}
 
 \description{List of GUI functions used for certain buttons.}
 \usage{
+
+bicare.genesetenrichment(result,setType,gene.from,gene.to)
+bicare.GUI(Data,k,pGene,pSample,r,N,M,t,blocGene,blocSample,eSetData.name)
+bicare.makereport(dirName)
+bicare.pdata(result)
+bicare.residuplot(result)
+bicare.samplesenrichment(result,covariates)
 biclust.bimax.GUI(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck)
 biclustGUI_help()
 biclust.quest.GUI(x,method,ns,nd,sd,alpha,number,d,quant,vari)
@@ -53,6 +67,7 @@ rqubic.GUI(x,eSetData.name,q,rank,minColWidth,report.no,tolerance,filter.proport
 spfabia.GUI(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,norm,
     scale,lap,nL,lL,bL,samples,initL,iter,quant,lowerB,upperB,
     dorescale,doini,eps,eps1,datatype,filename)
+summary.BICARE(x)
 superbiclust.GUI(x,index,type,method_result,extra.biclust=NULL,isa2=FALSE)
 superbiclust.robust.GUI(CutTree,show.which=FALSE)
 writeBic.GUI(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" ")

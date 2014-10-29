@@ -19,16 +19,21 @@
 \alias{SearchMethodData}
 \alias{Setwd}
 \alias{as.ExprSet}
+\alias{.bicare2biclust}
+\alias{.fabia2biclust}
+\alias{.putbefore}
 
 \title{List of Internal Functions}
 
 \description{List of internal functions used in various functions in the package.}
 \usage{
 as.ExprSet(x)
+.bicare2biclust(x)
 .binary.activematrix.check()
 .build.button.function(function.command,arg.names,button_result,new.frames,save)
 .build.command.argument(current.frame,command)
 .eval.command(x)
+.fabia2biclust(x,thresZ=0.5,thresL=NULL)
 .find.frame(x,frame.name)
 .give.doublequote(x)
 .is.binary.matrix(x)
@@ -38,6 +43,7 @@ as.ExprSet(x)
 .makesearchdata()
 .order.button.frames(new.frames)
 .output.sparse.txt(X,file)
+.putbefore(colnames,pre)
 .rcmdr.warning(x)
 SearchMethodData(data,type)
 robust.fuse.support(robust.list,RowxNumber,NumberxCol)

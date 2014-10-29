@@ -358,9 +358,9 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 			}
 		}
 			
-		if(current.frame$button.data=="" & current.frame$button.biclust=="" & current.frame$button.otherarg==""){
-			function.command <- paste(function.command,"...",sep="")
-		}
+#		if(current.frame$button.data=="" & current.frame$button.biclust=="" & current.frame$button.otherarg==""){
+#			function.command <- paste(function.command,"...",sep="")
+#		}
 		
 		if(current.frame$button.otherarg!=""){
 			
