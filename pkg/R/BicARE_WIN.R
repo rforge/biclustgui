@@ -81,7 +81,7 @@ bicare_WINDOW <- function(){     # Change newmethod to your own method name
 	
 	# Change variables accordingly:
 	frame.name <- "optionsentry"  
-	argument.names <- c("Number of biclusters searched","Genes init. membership prob.","Samples init/ membership prob.","Residu Threshold","Min. number genes per bicluster","Min. number cond. per bicluster","Number of iterations") 
+	argument.names <- c("Number of biclusters searched","Genes init. membership prob.","Samples init/ membership prob.","Residue Threshold ( NULL=(Data Residue)/10 )","Min. number genes per bicluster","Min. number cond. per bicluster","Number of iterations") 
 	argument.types <- c("num","num","char","char","num","num","num") 
 	arguments <- c("k","pGene","pSample","r","N","M","t") 
 	initial.values <- c("20","0.5","pGene","NULL","8","6","500")
@@ -120,13 +120,13 @@ bicare_WINDOW <- function(){     # Change newmethod to your own method name
 	
 	### 2. CONFIGURING THE GRID ###
 	
-	grid.config <- .grid.matrix(input=input,c("eSetentry",NA,"optionsentry","initentry"),nrow=2,ncol=2,byrow=TRUE,grid.config=grid.config)
+	grid.config <- .grid.matrix(input=input,c("eSetentry","optionsentry","initentry"),nrow=3,ncol=1,byrow=TRUE,grid.config=grid.config)
 	
 	
 	### 3. COMBING THE ROWS ###
 	
 	grid.rows <- .combine.rows(input=input,rows=c(1),title="Expression Set Input (NULL='Active Dataset') ",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
-	grid.rows <- .combine.rows(input=input,rows=c(2),title="BicARE Options ",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+	grid.rows <- .combine.rows(input=input,rows=c(2,3),title="BicARE Options ",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
 	
@@ -171,7 +171,7 @@ bicare_WINDOW <- function(){     # Change newmethod to your own method name
 	
 	# Change variables accordingly:
 	frame.name <- "residuplotbutton"  
-	button.name <- "Residu Plot"  
+	button.name <- "Residue Plot"  
 	button.function <- "bicare.residuplot" 
 	button.data <- "" 
 	button.biclust <-  "result" 
