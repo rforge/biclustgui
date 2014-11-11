@@ -362,18 +362,19 @@ superbiclust_WINDOW <- function(methodname){
 	
 	# Change variables accordingly:
 	frame.name <- "resetbutton"  
-	button.name <- "Reset"  
+	button.name <- paste0("Reset (Original ",methodname,")")  
 	button.function <- "robust.reset" 
 	button.data <- "" 
 	button.biclust <-  ""
 	button.otherarg <-  paste("method_result='",method_result,"'",sep="")
+	button.width <- paste0(nchar(button.name)-2)
 	save <- FALSE
 	show <- FALSE
 	arg.frames <- c() 
 	
 	
 	# Do not change this line:
-	new.frames <- .add.frame(input=input,frame.name=frame.name,show=show,save=save,type=type,button.name=button.name,button.otherarg=button.otherarg,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
+	new.frames <- .add.frame(input=input,frame.name=frame.name,button.width=button.width,show=show,save=save,type=type,button.name=button.name,button.otherarg=button.otherarg,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
 	
 	
 	

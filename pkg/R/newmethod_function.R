@@ -643,7 +643,7 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 				
 					if(tclvalue(discr.quantVariable)=="1"){temp.quant <- TRUE}else{temp.quant <- FALSE}
 				
-					discr.command <- paste("x <- discretize(as.matrix(",input.data,",)nof=",tclvalue(discr.nof),",quant=",temp.quant,")",sep="")
+					discr.command <- paste("x <- discretize(as.matrix(",ActiveDataSet(),"),nof=",tclvalue(discr.nof),",quant=",temp.quant,")",sep="")
 					doItAndPrint(discr.command)
 				
 					command <- paste(command,methodfunction,"(",data.arg,"=",input.data.transf,"(x)",other.arg,sep="")

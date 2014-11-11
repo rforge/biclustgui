@@ -1,10 +1,21 @@
 
+
 import(stats, Rcmdr)
-import(biclust,fabia,isa2,iBBiG,superbiclust,BcDiag)
 importFrom(tcltk,ttknotebook,tkwidget,.Tk.subwin,.Tk.newwin,tkbutton,ttklabel,tkadd)
 
+# THESE BELOW ARE IN "DEPENDS" RIGHT NOW, MOVE THEM TO IMPORT
+import(biclust,fabia,isa2,iBBiG,superbiclust,BcDiag,rqubic,BicARE)
+
+
+# IMPORT ALL NECESSARY FUNCTIONS FROM PACKAGES ABOVE WITH "IMPORTFROM"
+importFrom(limma,ebayes)
+
+
+# OWN FUNCTIONS EXPORT
 exportPattern("^[^\\.]")
 export(.add.frame,.order.button.frames,.find.frame,.eval.command,.combine.rows,.make.correct.frame,.update.biclustering.object,.initialize.new.frames,.initialize.grid.config,.initialize.grid.rows,.grid.matrix,.build.command.argument,.transform.vector2text,.build.button.function,.give.doublequote,.output.sparse.txt,.is.binary.matrix,.binary.activematrix.check,.rcmdr.warning,.fabia2biclust,.makesearchdata,.bicare2biclust,.putbefore)
 
+
+# EXPORT FUNCTIONS FROM IMPORTFROM 
 
 

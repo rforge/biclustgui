@@ -16,19 +16,19 @@
     initial.values=c(),title="",border=FALSE,entry.width="2",
     argument.values=c(),argument.types=c(),from=c(),to=c(),by=c(),length=c(),
     button.name="",button.function="",button.data="",arg.frames=c(),
-    button.otherarg="",button.biclust="",save=TRUE,show=TRUE ,
-    new.frames=new.frames)
+    button.otherarg="",button.biclust="",save=TRUE,show=TRUE, button.width="12",
+    button.data.transf="matrix", new.frames=new.frames)
 cluster_template(methodname="",methodfunction,methodhelp="",data.arg,
     other.arg,methodseed=methodseed,grid.config=grid.config,
     grid.rows=grid.rows,new.frames,superbiclust.comp,bcdiag.comp,
-    data.matrix=FALSE,data.discr=FALSE,data.bin=FALSE,extrabiclustplot=FALSE,
-    methodshow=TRUE,extrabiclustforisa=FALSE)
+    data.transf="matrix",data.discr=FALSE,data.bin=FALSE,extrabiclustplot=FALSE,
+    methodshow=TRUE,methodsave=TRUE,extrabiclustforisa=FALSE)
 .combine.rows(input,rows,title,border,grid.rows,grid.config)
 .grid.matrix(input,data,grid.config=grid.config,...)
 .initialize.grid.config()
 .initialize.grid.rows()
 .initialize.new.frames()
-newtool_template(toolname="",methodname="",toolhelp="",data.matrix=TRUE,
+newtool_template(toolname="",methodname="",toolhelp="",
     grid.config=grid.config,grid.rows=grid.rows,new.frames)
 
 
