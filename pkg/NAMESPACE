@@ -8,7 +8,7 @@ import(biclust,fabia,isa2,iBBiG,superbiclust,BcDiag,rqubic,BicARE)
 
 
 # IMPORT ALL NECESSARY FUNCTIONS FROM PACKAGES ABOVE WITH "IMPORTFROM"
-importFrom(limma,ebayes)
+
 
 
 # OWN FUNCTIONS EXPORT
