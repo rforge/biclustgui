@@ -98,7 +98,7 @@ iBBiG_WIN <- function(){     # Change newmethod to your own method name
 	
 	# Change variables accordingly:
 	frame.name <- "entryframe1"  
-	argument.names <- c("Number of Expected Biclusters (will be optimized)","Weighting Factor [0,1] (Suggested: [0.3,0.5])") 
+	argument.names <- c("Number of Expected Biclusters (will be optimized)","Weighting Factor [0,1]") 
 	argument.types <- c("num","num")
 	arguments <- c("nModules","alpha") 
 	initial.values <- c(10,0.3)
