@@ -5,39 +5,41 @@
 
 # NOTE: Note that newtool can ALSO be used to make new dialogs bound a button in the plotdiag Frame !!!
 
-bcdiagwrite_WINDOW <- function(methodname){  
+bcdiagwrite_WINDOW <- function(methodname,fabia.thresZ=0.5,fabia.thresL=NULL){  
 	
 	new.frames <- .initialize.new.frames()
 	grid.config <- .initialize.grid.config()
 	grid.rows <- .initialize.grid.rows()
 	
-	# Some extra code to determine the input type: "biclust", "fabia", "isa2"
-	biclust.names <- c("Bimax","CC","Plaid","Questmotif","Spectral","XMotifs","IBBIG","Rqubic")
-	fabia.names <- c("Fabia Laplace Prior","Fabia Post-Projection","Fabia Sparseness Projection","Fabia SPARSE")
-	isa.names <- c("ISA")
-	bicare.names <- c("BICARE")
 	
-	if(methodname %in% biclust.names){
-		extra.arg <- ",mname='biclust'"
-	}
+	
+	method_result <- gsub(" ","",methodname,fixed=TRUE)
+	method_result <- gsub("-","",method_result,fixed=TRUE)	
+	
+	# Special Case names
+	fabia.names <- c("Fabia Laplace Prior","Fabia Post-Projection","Fabia Sparseness Projection","Fabia SPARSE")
+	
+	## Special Case: Fabia  (Because of the need for thresholds)
 	if(methodname %in% fabia.names){
-		extra.arg <- ",mname='fabia'"
-		# Exception when superbiclust has been used on fabia:
-		method_result <- gsub(" ","",methodname,fixed=TRUE)
-		method_result <- gsub("-","",method_result,fixed=TRUE)
-		if(method_result %in% ls(envir=.GlobalEnv)){
-			eval(parse(text=paste("method_class <- class(",method_result,")",sep="")))
-			if(method_class=="Biclust"){
-				extra.arg <- ",mname='biclust'"
-			}
+		eval(parse(text=paste("method_class <- class(",method_result,")",sep=""))) # Can only do it here and not earlier, cause not sure of the object exists at this point
+		if(method_class == "Factorization" ){
+			#bcdiag.fabia <- TRUE
+			extra.arg <- paste0(method_result,",mname='fabia',fabia.thresZ=",fabia.thresZ,",fabia.thresL=",fabia.thresL)
+			
+		}
+		else{ # This handles the case if superbiclust has been applied to Fabia object
+			#bcdiag.fabia <- FALSE
+			result_temp <- .tobiclust_transf(method_result)
+			extra.arg <- paste0(result_temp,",mname='biclust'")
 		}
 	}
-	if(methodname %in% isa.names){
-		extra.arg <- ",mname='isa2'"
+	## General Case
+	else{
+		#bcdiag.fabia <- FALSE
+		result_temp <- .tobiclust_transf(method_result)
+		extra.arg <- paste0(result_temp,",mname='biclust'")
 	}
-	if(methodname %in% bicare.names){
-		extra.arg <- ",mname='bicare'"
-	}
+	
 	
 	###############################################################################################################################################################################
 	## GENERAL INFORMATION ABOUT THE NEW TOOL		   ##
@@ -124,8 +126,8 @@ bcdiagwrite_WINDOW <- function(methodname){
 	button.name <- "Write"  
 	button.function <- "writeBic.GUI" 
 	button.data <- "dset" 
-	button.biclust <-  "bicResult" 
-	button.otherarg <- extra.arg
+	button.biclust <-  "" 
+	button.otherarg <- paste0(",bicResult=",extra.arg)
 	save <- FALSE
 	arg.frames <- c("entryframe","appendframe") 
 	

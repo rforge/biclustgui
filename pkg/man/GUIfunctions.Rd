@@ -19,6 +19,7 @@
 \alias{superbiclust.robust.GUI}
 \alias{writeBic.GUI}
 \alias{export.Biclust}
+\alias{chooseresultsGUI}
 \alias{export.fabia.threshL}
 \alias{export.fabia}
 \alias{rqubic.GUI}
@@ -29,49 +30,54 @@
 \alias{bicare.samplesenrichment}
 \alias{bicare.pdata}
 \alias{bicare.makereport}
-
+\alias{ExtractBiclustersGUI_general}
+\alias{ExtractBiclustersGUI}
+\alias{FindBiclusters}
 
 \title{GUI Functions}
 
 \description{List of GUI functions used for certain buttons.}
-\usage{
-
-bicare.genesetenrichment(result,setType,gene.from,gene.to)
-bicare.GUI(Data,k,pGene,pSample,r,N,M,t,blocGene,blocSample,eSetData.name)
-bicare.makereport(dirName)
-bicare.pdata(result)
-bicare.residuplot(result)
-bicare.samplesenrichment(result,covariates)
-biclust.bimax.GUI(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck)
-biclustGUI_help()
-biclust.quest.GUI(x,method,ns,nd,sd,alpha,number,d,quant,vari)
-biclust.robust.fuse(CutTree,method_result,type="biclust")
-export.Biclust(biClust,x,baseName,clusterAssignments=NULL,clusterNames=NULL)
-export.fabia(fabiaRes,baseName,clusterAssignments=NULL,clusterNames=NULL,threshZ=0.5,threshL=NULL)
-export.fabia.threshL(fabiaRes,threshZ=0.5)
-fabia.biplot(x,dim1,dim2)
-isa.extract(modules)
-isa.GUI(data,thr.row.from,thr.row.to,thr.row.by,thr.col.from,thr.col.to,
-    thr.col.by,no.seeds,dir.row,dir.col)
-isa.scoreplots(ISA,type="row",biclust=c(1))
-isa.summary(ISA)
-openGUIScripts()
-openGUIVignette()
-parallelCoordinates2(x, bicResult, number, info = TRUE)
-parallelCoordinates3(x,bicResult,number,type2="default",plotBoth=FALSE,
-    plotcol=TRUE,compare=TRUE,info=FALSE,bothlab=c("Rows","Columns"),
-    order=FALSE,order2=0,ylab="Value",col=1,...)
-plotSuper.GUI(type,which.robust,CutTree)
-robust.reset(method_result)
-rqubic.GUI(x,eSetData.name,q,rank,minColWidth,report.no,tolerance,filter.proportion,check.disc)
-spfabia.GUI(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,norm,
-    scale,lap,nL,lL,bL,samples,initL,iter,quant,lowerB,upperB,
-    dorescale,doini,eps,eps1,datatype,filename)
-summary.BICARE(x)
-superbiclust.GUI(x,index,type,method_result,extra.biclust=NULL,isa2=FALSE)
-superbiclust.robust.GUI(CutTree,show.which=FALSE)
-writeBic.GUI(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" ")
-}
+%\usage{
+%
+%bicare.genesetenrichment(result,setType,gene.from,gene.to)
+%bicare.GUI(Data,k,pGene,pSample,r,N,M,t,blocGene,blocSample,eSetData.name)
+%bicare.makereport(dirName)
+%bicare.pdata(result)
+%bicare.residuplot(result)
+%bicare.samplesenrichment(result,covariates)
+%biclust.bimax.GUI(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck)
+%biclustGUI_help()
+%biclust.quest.GUI(x,method,ns,nd,sd,alpha,number,d,quant,vari)
+%biclust.robust.fuse(CutTree,method_result,type="biclust")
+%export.Biclust(biClust,x,baseName,clusterAssignments=NULL,clusterNames=NULL)
+%export.fabia(fabiaRes,baseName,clusterAssignments=NULL,clusterNames=NULL,threshZ=0.5,threshL=NULL)
+%export.fabia.threshL(fabiaRes,threshZ=0.5)
+%ExtractBiclustersGUI(result,which="all",from=1,to=1,selection=c(1),dim="both",save=FALSE,save.name="Extract")
+%ExtractBiclustersGUI_general(result,which="all",from=1,to=1,selection=c(1),dim="both",save=FALSE,save.name="Extract")
+%fabia.biplot(x,dim1,dim2)
+%FindBiclusters(results,cols=c(),rows=c(),data)
+%isa.extract(modules)
+%isa.GUI(data,thr.row.from,thr.row.to,thr.row.by,thr.col.from,thr.col.to,
+%    thr.col.by,no.seeds,dir.row,dir.col)
+%isa.scoreplots(ISA,type="row",biclust=c(1))
+%isa.summary(ISA)
+%openGUIScripts()
+%openGUIVignette()
+%parallelCoordinates2(x, bicResult, number, info = TRUE)
+%parallelCoordinates3(x,bicResult,number,type2="default",plotBoth=FALSE,
+%    plotcol=TRUE,compare=TRUE,info=FALSE,bothlab=c("Rows","Columns"),
+%    order=FALSE,order2=0,ylab="Value",col=1,...)
+%plotSuper.GUI(type,which.robust,CutTree)
+%robust.reset(method_result)
+%rqubic.GUI(x,eSetData.name,q,rank,minColWidth,report.no,tolerance,filter.proportion,check.disc)
+%spfabia.GUI(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,norm,
+%    scale,lap,nL,lL,bL,samples,initL,iter,quant,lowerB,upperB,
+%    dorescale,doini,eps,eps1,datatype,filename)
+%summary.BICARE(x)
+%superbiclust.GUI(x,index,type,method_result,extra.biclust=NULL,isa2=FALSE)
+%superbiclust.robust.GUI(CutTree,show.which=FALSE)
+%writeBic.GUI(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" ")
+%}
 %\arguments{
 %\item{x}{ }
 %\item{method}{ }

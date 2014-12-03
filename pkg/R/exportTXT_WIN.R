@@ -70,6 +70,7 @@ exportTXT_WINDOW <- function(){
 	tkgrid(labelRcmdr(delim_entry,text=gettextRcmdr("Delimiter (def=' '): ")),delim_field,sticky="nw")
 	tkgrid(delim_entry,sticky="ne")
 	
+		
 	### APPEND FRAME ###
 	appendoption <- tkframe(exportoptions)
 	
@@ -77,33 +78,71 @@ exportTXT_WINDOW <- function(){
 	append_vars <- appendVariable
 	tkgrid(appendFrame,padx="15")
 	
+	### FABIA OPTIONS FRAME ###
+	
+	fabiaoptionsFrame <- tkframe(top)
+	tkgrid(labelRcmdr(fabiaoptionsFrame,fg=getRcmdr("title.color"),font="RcmdrTitleFont",text=gettextRcmdr("Fabia Result Options")),sticky="nw")
+	
+	
+	thresZ_entry <- tkframe(fabiaoptionsFrame)
+	thresZ_vars <- tclVar("0.5")
+	thresZ_field <- ttkentry(thresZ_entry,width=6,textvariable=thresZ_vars)
+	tkgrid(labelRcmdr(thresZ_entry,text=gettextRcmdr("Threshold Bicluster Sample: ")),thresZ_field,sticky="nw")
+	tkgrid(thresZ_entry,sticky="ne")
+	
+	thresL_entry <- tkframe(fabiaoptionsFrame)
+	thresL_vars <- tclVar("NULL")
+	thresL_field <- ttkentry(thresL_entry,width=6,textvariable=thresL_vars)
+	tkgrid(labelRcmdr(thresL_entry,text=gettextRcmdr("Threshold Bicluster Loading: ")),thresL_field,sticky="nw")
+	tkgrid(thresL_entry,sticky="ne")
+	
+	
 	### THE EXPORT BUTTON FUNCTION ###
 	onOK <- function(){
 		sel <- as.integer(tkcurselection(resultBox))+1
+		if(length(AllResults)==0){
+			justDoIt(paste0("warning('No available results',call.=FALSE)"))
+		}
+		else if(length(sel)==0){
+			justDoIt(paste0("warning('No result selected',call.=FALSE)"))
+		}
+		else{
+			#sel <- as.integer(tkcurselection(resultBox))+1
 
-		sel.result.name <- AllResults[sel]
-
-		eval(parse(text=paste0("sel.result <-",sel.result.name)))
+			sel.result.name <- AllResults[sel]
+	
+			eval(parse(text=paste0("sel.result <-",sel.result.name)))
 		
-		if(class(sel.result)=="Biclust"){mname <- "biclust"}
-		if(class(sel.result)=="Factorization"){mname <- "fabia"}
-		if(class(sel.result)=="iBBiG"){mname <- "biclust"}
-		if(class(sel.result)=="QUBICBiclusterSet"){mname <- "biclust"}
-		if(class(sel.result)=="biclustering"){mname <- "bicare"}
-		if(.isISA(sel.result)){mname <- "isa2"}
+			mname <- "biclust"
+			# Special Case: fabia (because of thresholds)
+			if(class(sel.result)=="Factorization"){
+			
+				bicResult <- .tobiclust_transf(sel.result.name,thresZ=paste0(tclvalue(thresZ_vars)),thresL=paste0(tclvalue(thresL_vars)))
+			}
+			# General Case
+			else{
+			
+				bicResult <- .tobiclust_transf(sel.result.name)
+			}
 		
-		delimiter <- tclvalue(delim_vars)
-		if(delimiter==""){delimiter.paste <- delimiter}
-		if(delimiter!=""){delimiter.paste <- paste0(",delimiter='",delimiter,"'")}
+			delimiter <- tclvalue(delim_vars)
+			if(delimiter==""){delimiter.paste <- delimiter}
+			if(delimiter!=""){delimiter.paste <- paste0(",delimiter='",delimiter,"'")}
 		
-		bicResult <- sel.result.name
-		fileName <- tclvalue(filename_vars)
-		bicname <- tclvalue(title_vars)
-		append <- as.character(tclvalue(append_vars))
-								
-		export.command <- paste0("writeBic.GUI(dset=as.matrix(",ActiveDataSet(),"),fileName='",fileName,"',bicResult=",bicResult,",bicname='",bicname,"',mname='",mname,"',append=",append,delimiter.paste,")")
-		#print(export.command)
-		doItAndPrint(export.command)
+			#bicResult <- sel.result.name
+			fileName <- tclvalue(filename_vars)
+			bicname <- tclvalue(title_vars)
+			append <- as.character(tclvalue(append_vars))
+		
+			# Correct data check
+			eval(parse(text=paste0("temp.correct <- .correctdataforresult(",sel.result.name,")")))
+			if(temp.correct){
+	
+				export.command <- paste0("writeBic.GUI(dset=as.matrix(",ActiveDataSet(),"),fileName='",fileName,"',bicResult=",bicResult,",bicname='",bicname,"',mname='",mname,"',append=",append,delimiter.paste,")")
+				#print(export.command)
+				doItAndPrint(export.command)
+			}
+		}
 	}
 	
 	
@@ -133,6 +172,8 @@ exportTXT_WINDOW <- function(){
 	
 	
 	tkgrid(exportoptions,pady="10")
+	
+	tkgrid(fabiaoptionsFrame,pady="10",sticky="nw")
 	
 	tkgrid(buttonsleft,buttonsright)
 	tkgrid(buttons,sticky="sew",pady=8)

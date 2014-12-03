@@ -24,6 +24,11 @@
 \alias{rqubic_WINDOW}
 \alias{bicare_WINDOW}
 \alias{bicarebiclust_WINDOW}
+\alias{clearresults_WINDOW}
+\alias{extractbicluster_WINDOW}
+\alias{findbiclusters_WINDOW}
+\alias{fabiabiclust_WINDOW}
+\alias{saveload_WINDOW}
 
 \title{Window Functions}
 
@@ -32,7 +37,7 @@
 bicare_WINDOW()
 bicarebiclust_WINDOW(methodname)
 bcdiag_WINDOW(methodname)
-bcdiagwrite_WINDOW(methodname)
+bcdiagwrite_WINDOW(methodname,fabia.thresZ,fabia.thresL)
 biclustbimax_WIN()
 biclustCC_WIN()
 biclustextraplots_WINDOW(methodname)
@@ -40,24 +45,32 @@ biclustplaid_WIN()
 biclustquest_WIN()
 biclustspectral_WIN()
 biclustXMotif_WIN()
+clearresults_WINDOW()
 exportFURBY_WINDOW()
 exportTXT_WINDOW()
+extractbicluster_WINDOW()
+fabiabiclust_WINDOW(methodname,thresZ,thresL)
 fabialaplace_WIN()
 fabiapostprojection_WIN()
 fabiasparsenessprojection_WIN()
 fabiaSPARSE_WIN()
+findbiclusters_WINDOW()
 iBBiG_WIN()
 isadefault_WIN()
 isaextraplots_WINDOW(methodname)
 rqubic_WINDOW()
+saveload_WINDOW()
 search_WINDOW()
 superbiclust_WINDOW(methodname)
 }
 
 \arguments{
 \item{methodname}{These windows are called from a specific biclustering method window. The argument is a string containing the name of the method it is called from.}
+\item{thresZ}{Fabia bicluster samples threshold}
+\item{thresL}{Fabia bicluster loadings threshold}
+\item{fabia.thresZ}{See \code{thresZ}}
+\item{fabia.thresL}{See \code{thresL}}
 }
-
 \details{All these window functions for all the biclustering dialogs were created using the template scripts (\code{newmethod_script.R} & \code{newtool_script.R)}.
 A detailed description with an example on how to use these scripts and how to create the dialogs, can be found in the appendix (Guideline to New Implementations).
 

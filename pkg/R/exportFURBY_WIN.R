@@ -111,27 +111,44 @@ exportFURBY_WINDOW <- function(){
 
 	button.export.fabia.thresholds <- function(){
 		sel <- as.integer(tkcurselection(result1Box))+1
-		fabiaRes <- tab1.results[sel]
-		thresZ <- tclvalue(thresZ_vars)
+		if(length(tab1.results)==0){
+			justDoIt(paste0("warning('No available results',call.=FALSE)"))
+		}
+		else if(length(sel)==0){
+			justDoIt(paste0("warning('No result selected',call.=FALSE)"))
+		}
+		else{
+			#sel <- as.integer(tkcurselection(result1Box))+1
+			fabiaRes <- tab1.results[sel]
+			thresZ <- tclvalue(thresZ_vars)
 		
-		export.command <- paste0("export.fabia.threshL(fabiaRes=",fabiaRes,", threshZ=",thresZ,")")
-		doItAndPrint(export.command)
-		
+			export.command <- paste0("export.fabia.threshL(fabiaRes=",fabiaRes,", threshZ=",thresZ,")")
+			doItAndPrint(export.command)
+		}
 	}
 	button.export.fabia.results <- function(){
 		sel <- as.integer(tkcurselection(result1Box))+1
-		fabiaRes <- tab1.results[sel]
-		thresZ <- tclvalue(thresZ_vars)
-		thresL <- tclvalue(thresL_vars)
-		baseName <- tclvalue(baseName1_vars)
+		if(length(tab1.results)==0){
+			justDoIt(paste0("warning('No available results',call.=FALSE)"))
+		}
+		else if(length(sel)==0){
+			justDoIt(paste0("warning('No result selected',call.=FALSE)"))
+		}
+		else{
+			#sel <- as.integer(tkcurselection(result1Box))+1
+			fabiaRes <- tab1.results[sel]
+			thresZ <- tclvalue(thresZ_vars)
+			thresL <- tclvalue(thresL_vars)
+			baseName <- tclvalue(baseName1_vars)
 		
-		clusterAssignments <- tclvalue(clusass1_vars)
-		if(clusterAssignments!="NULL"){clusterAssignments <- paste0("'",clusterAssignments,"'")}
-		clusterNames <- tclvalue(clusnam1_vars)
-		if(clusterNames!="NULL"){clusterNames <- paste0("'",clusterNames,"'")}
+			clusterAssignments <- tclvalue(clusass1_vars)
+			if(clusterAssignments!="NULL"){clusterAssignments <- paste0("'",clusterAssignments,"'")}
+			clusterNames <- tclvalue(clusnam1_vars)
+			if(clusterNames!="NULL"){clusterNames <- paste0("'",clusterNames,"'")}
 		
-		export.command <- paste0("export.fabia(fabiaRes=",fabiaRes,",baseName='",baseName,"',clusterAssignments=",clusterAssignments,",clusterNames=",clusterNames,",threshZ=",thresZ,",threshL=",thresL,")")
-		doItAndPrint(export.command)
+			export.command <- paste0("export.fabia(fabiaRes=",fabiaRes,",baseName='",baseName,"',clusterAssignments=",clusterAssignments,",clusterNames=",clusterNames,",threshZ=",thresZ,",threshL=",thresL,")")
+			doItAndPrint(export.command)
+		}
 	}
 	
 	### Tab 1 - Buttons ###
@@ -196,24 +213,34 @@ exportFURBY_WINDOW <- function(){
 	### Tab 2 - Button Functions ###
 	button.export.biclust <- function(){
 		sel <- as.integer(tkcurselection(result2Box))+1
-		baseName <- tclvalue(baseName2_vars)
+		if(length(tab2.results)==0){
+			justDoIt(paste0("warning('No available results',call.=FALSE)"))
+		}
+		else if(length(sel)==0){
+			justDoIt(paste0("warning('No result selected',call.=FALSE)"))
+		}
+		else{
+			#sel <- as.integer(tkcurselection(result2Box))+1
+			baseName <- tclvalue(baseName2_vars)
 		
-		clusterAssignments <- tclvalue(clusass2_vars)
-		if(clusterAssignments!="NULL"){clusterAssignments <- paste0("'",clusterAssignments,"'")}
-		clusterNames <- tclvalue(clusnam2_vars)
-		if(clusterNames!="NULL"){clusterNames <- paste0("'",clusterNames,"'")}
+			clusterAssignments <- tclvalue(clusass2_vars)
+			if(clusterAssignments!="NULL"){clusterAssignments <- paste0("'",clusterAssignments,"'")}
+			clusterNames <- tclvalue(clusnam2_vars)
+			if(clusterNames!="NULL"){clusterNames <- paste0("'",clusterNames,"'")}
 		
-		biClust.name <- tab2.results[sel]
-		eval(parse(text=paste0("biClust.temp <- ",biClust.name)))
-	
-		if(class(biClust.temp)=="Biclust"){biClust <- biClust.name}
-		if(class(biClust.temp)=="iBBiG"){biClust <- biClust.name}
-		if(class(biClust.temp)=="QUBICBiclusterSet"){biClust <- biClust.name}
-		if(.isISA(biClust.temp)){biClust <- paste0("isa.biclust(",biClust.name,")")}
-		if(class(biClust.temp)=="biclustering"){biClust <- paste0(".bicare2biclust(",biClust.name,")")}
+			biClust.name <- tab2.results[sel]
 		
-		export.command <- paste0("export.Biclust(biClust=",biClust,",x=as.matrix(",ActiveDataSet(),"),baseName='",baseName,"',clusterAssignments=",clusterAssignments,",clusterNames=",clusterNames,")")
-		doItAndPrint(export.command)
+
+			# Choosing the correct transformation to biclust
+			biClust <- .tobiclust_transf(biClust.name)
+		
+			# Correct data check
+			eval(parse(text=paste0("temp.correct <- .correctdataforresult(",biClust.name,")")))	
+			if(temp.correct){
+				export.command <- paste0("export.Biclust(biClust=",biClust,",x=as.matrix(",ActiveDataSet(),"),baseName='",baseName,"',clusterAssignments=",clusterAssignments,",clusterNames=",clusterNames,")")
+				doItAndPrint(export.command)
+			}
+		}
 	}
 	
 	### Tab 2 - Buttons ###

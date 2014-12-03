@@ -53,7 +53,7 @@ isaextraplots_WINDOW <- function(methodname){
 	button.biclust <-  "" 
 	save <- FALSE
 	arg.frames <- c() 
-	button.otherarg <- paste(",Bicres=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",Bicres=.isa2biclust(",method_result,")",sep="")
 	
 	# Do not change this line: 
 	new.frames <- .add.frame(button.otherarg=button.otherarg,input=input,save=save,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
@@ -112,7 +112,7 @@ isaextraplots_WINDOW <- function(methodname){
 	button.data <- "x" 
 	button.biclust <-  "" 
 	arg.frames <- c("bubbleplotprojframe","bubbleplotlabelframe") 
-	button.otherarg <- paste(",bicResult1=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",bicResult1=.isa2biclust(",method_result,")",sep="")
 	
 	# Do not change this line: (without button.otherarg)
 	new.frames <- .add.frame(button.otherarg=button.otherarg,input=input,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
@@ -171,7 +171,7 @@ isaextraplots_WINDOW <- function(methodname){
 	button.biclust <-  "" 
 	save <- FALSE
 	arg.frames <- c("plotclustcheckframe","plotclustentryframe") 
-	button.otherarg <- paste(",res=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",res=.isa2biclust(",method_result,")",sep="")
 	
 	# Do not change this line: 
 	new.frames <- .add.frame(button.otherarg=button.otherarg,input=input,save=save,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
@@ -232,7 +232,7 @@ isaextraplots_WINDOW <- function(methodname){
 	button.biclust <-  "" 
 	save <- FALSE
 	arg.frames <- c("heatplotcheckframe","heatplotentryframe") 
-	button.otherarg <- paste(",bicResult=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",bicResult=.isa2biclust(",method_result,")",sep="")
 	
 	
 	# Do not change this line: (without button.otherarg)
@@ -292,7 +292,7 @@ isaextraplots_WINDOW <- function(methodname){
 	button.biclust <-  "" 
 	save <- FALSE
 	arg.frames <- c("mplotcheckframe","mplotentryframe") 
-	button.otherarg <- paste(",bicResult=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",bicResult=.isa2biclust(",method_result,")",sep="")
 	
 	
 	# Do not change this line: (without button.otherarg)

@@ -211,34 +211,39 @@ isa.scoreplots <- function(ISA,type="row",biclust=c(1)){
 }
 
 
-superbiclust.GUI <- function(x,index,type,method_result,extra.biclust=NULL,type.method="biclust"){
-	if(type.method=="biclust"){
-		if(!is.null(extra.biclust)){
-			
-			doItAndPrint(paste("x <- combine(",method_result,",",extra.biclust[1],")",sep=""))		
-			if(length(extra.biclust)>1){
-				for(i.extra in 2:length(extra.biclust)){
-					doItAndPrint(paste("x <- combine(x,",extra.biclust[i.extra] ,")",sep=""))
-				}
+superbiclust.GUI <- function(x,index,type,method_result,extra.biclust=NULL,fabia.thresZ=0.5,fabia.thresL=NULL){
+	
+	### automize...
+	# first, use transform on all the inputted objects...
+	
+	
+	
+	if(!is.null(extra.biclust)){
+		
+		
+		# COMPARED WITH BCDIAG PRE-AMBLE: Do not need to check if in the names to use object for class(). Button will be blocked if object not available anymway
+		# Need to have an IF for fabia
+
+		temp.method_result <- .tobiclust_transf(method_result,thresZ=fabia.thresZ,thresL=fabia.thresL)
+		temp.extra.biclust <- .tobiclust_transf(extra.biclust[1],thresZ=fabia.thresZ,thresL=fabia.thresL)	
+		
+		
+		doItAndPrint(paste("x <- combine(",temp.method_result,",",temp.extra.biclust,")",sep=""))		
+		if(length(extra.biclust)>1){
+			for(i.extra in 2:length(extra.biclust)){
+				temp.extra.biclust <- .tobiclust_transf(extra.biclust[i.extra],thresZ=fabia.thresZ,thresL=fabia.thresL)	
+				doItAndPrint(paste("x <- combine(x,",temp.extra.biclust ,")",sep=""))
 			}
-			doItAndPrint(paste("superbiclust.result <- BiclustSet(x)"))
 		}
-		if(is.null(extra.biclust)){
-			doItAndPrint(paste("superbiclust.result <- BiclustSet(x=",method_result,")"))
-		}
+		doItAndPrint(paste("superbiclust.result <- BiclustSet(x)"))
+	}
+	if(is.null(extra.biclust)){
+		temp.method_result <- .tobiclust_transf(method_result,thresZ=fabia.thresZ,thresL=fabia.thresL)
+		
+		doItAndPrint(paste("superbiclust.result <- BiclustSet(x=",temp.method_result,")"))
+	
 	}
 	
-	if(type.method=="isa"){
-		doItAndPrint(paste("superbiclust.result <- BiclustSet(x=isa.biclust(", method_result  ,"))"))
-	}
-	if(type.method=="fabia"){
-		doItAndPrint(paste("superbiclust.result <- BiclustSet(x=",method_result,")"))
-		
-	}
-	if(type.method=="bicare"){
-		doItAndPrint(paste0("superbiclust.result <- BiclustSet(x=.bicare2biclust(",method_result,"))"))
-	}
-		
 	doItAndPrint(paste("superbiclust.sim <- similarity(x=superbiclust.result,index='",index,"',type='",type,"')",sep=""))
 	doItAndPrint(paste("superbiclust.tree <- HCLtree(superbiclust.sim)",sep=""))
 	doItAndPrint("superbiclust.result")
@@ -304,7 +309,7 @@ plotSuper.GUI <- function(type,which.robust,CutTree){
 
 
 
-biclust.robust.fuse <- function(CutTree,method_result,type="biclust",superbiclust.result){
+biclust.robust.fuse <- function(CutTree,method_result,superbiclust.result){
 	
 	robust.list <- list()
 	
@@ -326,112 +331,26 @@ biclust.robust.fuse <- function(CutTree,method_result,type="biclust",superbiclus
 	RowxNumber <- superbiclust.result@GenesMembership
 	NumberxCol <- superbiclust.result@ColumnMembership
 	
-	if(type=="biclust"){
-
 	
-		# Create new RowxNumber and NumberxCol of the Robust Bicluster
-		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
-		RowxNumber <- RowxCol$RowxNumber
-		NumberxCol <- RowxCol$NumberxCol
+	# Create new RowxNumber and NumberxCol of the Robust Bicluster
+	RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
+	RowxNumber <- RowxCol$RowxNumber
+	NumberxCol <- RowxCol$NumberxCol
 			
-
+		
+	Parameters <- list()
+	#eval(parse(text=paste("Parameters <- ",method_result,"@Parameters",sep="")))
+	new.biclust <- new("Biclust", Number = dim(RowxNumber)[2], RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=Parameters)
+	assign("new.biclust",new.biclust,envir=.GlobalEnv)		
+		
+	paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
+	cat(paste.cat)
+	paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
+	cat(paste.cat,"\n")
 		
 		
-		eval(parse(text=paste("Parameters <- ",method_result,"@Parameters",sep="")))
-		new.biclust <- new("Biclust", Number = dim(RowxNumber)[2], RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=Parameters)
-		assign("new.biclust",new.biclust,envir=.GlobalEnv)		
-		
-		paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
-		cat(paste.cat)
-		paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
-		cat(paste.cat,"\n")
-		
-		
-		doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
-		doItAndPrint(paste(method_result," <- new.biclust",sep=""))
-		#return(new.biclust)
-		
-	}
-	
-	if(type=="isa"){
-		
-
-		
-		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
-		RowxNumber <- RowxCol$RowxNumber
-		NumberxCol <- RowxCol$NumberxCol
-		
-		
-
-		
-		rows = (RowxNumber)+0
-		columns = t(NumberxCol)+0
-		
-		
-		eval(parse(text=paste("rundata <- ",method_result,"$rundata",sep="")))
-	
-		new.isa <- list(rows=rows,columns=columns,seeddata=data.frame(),rundata=rundata)
-		assign("new.isa",new.isa,envir=.GlobalEnv)		
-				
-		
-		paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
-		cat(paste.cat)
-		paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
-		cat(paste.cat,"\n")
-		
-		
-		doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
-		doItAndPrint(paste(method_result," <- new.isa",sep=""))
-		
-	}
-	
-	if(type=="fabia"){
-
-		
-		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
-		RowxNumber <- RowxCol$RowxNumber
-		NumberxCol <- RowxCol$NumberxCol
-		
-		
-		Parameters <- list()
-		new.biclust <- new("Biclust", Number = dim(RowxNumber)[2], RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=Parameters)
-		assign("new.biclust",new.biclust,envir=.GlobalEnv)		
-		
-		paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
-		cat(paste.cat)
-		paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
-		cat(paste.cat,"\n")
-		
-		
-		doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
-		doItAndPrint(paste(method_result," <- new.biclust",sep=""))
-	}
-	
-	if(type=="bicare"){
-		RowxCol <- robust.fuse.support(robust.list=robust.list,RowxNumber=RowxNumber,NumberxCol=NumberxCol)
-		RowxNumber <- t(RowxCol$RowxNumber)+0
-		NumberxCol <- RowxCol$NumberxCol+0
-		
-		eval(parse(text=paste0("Call <- ",method_result,"$Call")))
-		eval(parse(text=paste0("ExpressionSet <- ",method_result,"$ExpressionSet")))
-		eval(parse(text=paste0("param <- ",method_result,"$param")))
-		mat.resvol.bic <- list()
-		
-		new.biclust <- list(Call=Call,ExpressionSet=ExpressionSet,param=param,bicRow=RowxNumber,bicCol=NumberxCol,mat.resvol.bic=mat.resvol.bic)
-		class(new.biclust) <- "biclustering"
-
-		assign("new.biclust",new.biclust,envir=.GlobalEnv)	
-		
-		paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
-		cat(paste.cat)
-		paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
-		cat(paste.cat,"\n")
-		
-		doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
-		doItAndPrint(paste(method_result," <- new.biclust",sep=""))
-		
-		
-	}
+	doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
+	doItAndPrint(paste(method_result," <- new.biclust",sep=""))
 	
 	
 }
@@ -441,12 +360,13 @@ robust.reset <- function(method_result){
 }
 
 
-writeBic.GUI <- function(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" "){
+writeBic.GUI <- function(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" ",fabia.thresZ=0.5,fabia.thresL=NULL){
 	fileName <- paste(fileName,".txt",sep="")
-	writeBic(dset=dset, fileName=fileName, bicResult=bicResult, bicname=bicname, mname =mname, append = append, delimiter = delimiter)
+	
+	writeBic(dset=dset, fileName=fileName, bicResult=bicResult, bicname=bicname, mname =mname, append = append, delimiter = delimiter,fabia.thresZ=fabia.thresZ,fabia.thresL=fabia.thresL)
 	
 	
-}
+}	
 
 rqubic.GUI <- function(x,eSetData.name,q,rank,minColWidth,report.no,tolerance,filter.proportion,check.disc){
 
@@ -568,4 +488,80 @@ bicare.makereport <- function(dirName){
 }
 
 
-
+chooseresultsGUI <- function(methodname,toolname){
+	
+	initializeDialog(title = gettextRcmdr("Choose Results...")) 
+	
+	method_result <- gsub(" ","",methodname,fixed=TRUE)
+	method_result <- gsub("-","",method_result,fixed=TRUE)
+	AllResults <- .makeResultList()
+		
+	# Remove the one which from which the superbiclust was used
+	AllResults <- AllResults[!(AllResults==method_result)]
+	
+	resultFrame <- tkframe(top)
+	buttonFrame <- tkframe(top)
+		
+	onCancel <- function() {
+		if (GrabFocus()) 
+			tkgrab.release(top)
+		tkdestroy(top)
+		tkfocus(CommanderWindow())
+	}
+	
+	onOK <- function(){
+		# ALSO MAKE AN IF IF NOTHING IS SELECTED, USE ONCANCEL
+		sel <- as.integer(tkcurselection(resultBox))+1
+		if(length(AllResults)==0){
+			justDoIt(paste0("warning('No available results',call.=FALSE)"))
+			onCancel()
+		}
+		else if(length(sel)==0){
+			onCancel()
+		}
+		else{
+			sel.result.name <- AllResults[sel]
+			
+			out.vector <- "c("
+			for(i.sel in 1:length(sel.result.name)){
+				out.vector <- paste0(out.vector,"'",sel.result.name[i.sel],"'")
+				if(i.sel!=length(sel.result.name)){out.vector <- paste0(out.vector,",")}
+			}
+			out.vector <- paste0(out.vector,")")
+			
+			method_result <- gsub(" ","",methodname,fixed=TRUE)
+			method_result <- gsub("-","",method_result,fixed=TRUE)
+			eval(parse(text=paste0("temp.env <- biclustering.objects$ENVIR$",toolname,method_result)))
+			
+			eval(parse(text=paste0("tclvalue(new.frames[[2]][[1]]$entry.vars[[1]]) <- \"",out.vector,"\"")),envir=temp.env)
+		
+			onCancel()
+		}
+	}
+	
+	resultBox <- tklistbox( resultFrame , height=5, exportselection="FALSE",
+			selectmode="multiple", background="white")
+	for (result in AllResults) tkinsert(resultBox, "end", result)
+	resultScroll <- ttkscrollbar(resultFrame,command=function(...) tkyview(resultBox, ...))
+	tkconfigure(resultBox, yscrollcommand=function(...) tkset(resultScroll, ...))
+	
+	tkgrid(labelRcmdr(top,fg=getRcmdr("title.color"),font="RcmdrTitleFont",text=gettextRcmdr("Biclustering Results (Select 1 or more):")),sticky="nw")
+		
+	tkgrid(resultBox,resultScroll,sticky="nws") 
+	tkgrid.configure(resultScroll,sticky="nws")
+	
+	selectButton <- buttonRcmdr(buttonFrame,command=onOK,text=gettextRcmdr("Ok"),foreground="darkgreen",width="6",borderwidth=3,default="active")
+	exitButton <- buttonRcmdr(buttonFrame,command=onCancel,text=gettextRcmdr("Exit"),foreground="darkgreen",width="8",borderwidth=3)
+	
+	tkgrid(selectButton,exitButton,sticky="ew")
+	tkgrid.columnconfigure(buttonFrame, 0, weight=1)
+	tkgrid.columnconfigure(buttonFrame, 1, weight=1)
+	tkgrid.configure(selectButton,sticky="w")
+	tkgrid.configure(exitButton,sticky="e")
+	
+	tkgrid(resultFrame,sticky="nwse")
+	tkgrid(buttonFrame,pady="10",sticky="ew")
+	
+	dialogSuffix(onOK=onOK)
+	
+}

@@ -22,36 +22,47 @@
 \alias{.bicare2biclust}
 \alias{.fabia2biclust}
 \alias{.putbefore}
+\alias{.correctdataforresults}
+\alias{.tobiclust}
+\alias{.isbiclustGUIresult}
+\alias{.tobiclust_transf}
+\alias{.isBiclustresult}
+\alias{.isa2biclust}
 
 \title{List of Internal Functions}
 
 \description{List of internal functions used in various functions in the package.}
-\usage{
-as.ExprSet(x)
-.bicare2biclust(x)
-.binary.activematrix.check()
-.build.button.function(function.command,arg.names,button_result,new.frames,save)
-.build.command.argument(current.frame,command)
-.eval.command(x)
-.fabia2biclust(x,thresZ=0.5,thresL=NULL)
-.find.frame(x,frame.name)
-.give.doublequote(x)
-.is.binary.matrix(x)
-.isISA(x)
-.make.correct.frame(title,border,window)
-.makeResultList()
-.makesearchdata()
-.order.button.frames(new.frames)
-.output.sparse.txt(X,file)
-.putbefore(colnames,pre)
-.rcmdr.warning(x)
-SearchMethodData(data,type)
-robust.fuse.support(robust.list,RowxNumber,NumberxCol)
-Setwd(x=TRUE)
-.transform.vector2text(x)
-.update.biclustering.object(object,where="all")
-
-}
+%\usage{
+%as.ExprSet(x)
+%.bicare2biclust(x)
+%.binary.activematrix.check()
+%.build.button.function(function.command,arg.names,button_result,new.frames,save)
+%.build.command.argument(current.frame,command)
+%.correctdataforresult(result)
+%.eval.command(x)
+%.fabia2biclust(x,thresZ=0.5,thresL=NULL)
+%.find.frame(x,frame.name)
+%.give.doublequote(x)
+%.isbiclustGUIresult(x)
+%.isBiclustresult(x)
+%.is.binary.matrix(x)
+%.isISA(x)
+%.make.correct.frame(title,border,window)
+%.makeResultList()
+%.makesearchdata()
+%.order.button.frames(new.frames)
+%.output.sparse.txt(X,file)
+%.putbefore(colnames,pre)
+%.rcmdr.warning(x)
+%SearchMethodData(data,type)
+%robust.fuse.support(robust.list,RowxNumber,NumberxCol)
+%Setwd(x=TRUE)
+%.tobiclust(x,fabia.thresZ=0.5,fabia.thresL=NULL)
+%.tobiclust_transf(methodresult,thresZ="0.5",thresL="NULL")
+%.transform.vector2text(x)
+%.update.biclustering.object(object,where="all")
+%
+%}
 %\arguments{
 %\item{function.command}{ }
 %\item{arg.names}{ }

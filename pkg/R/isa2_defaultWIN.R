@@ -403,7 +403,7 @@ isadefault_WIN <- function(){     # Change newmethod to your own method name
 	button.data <- "x" 
 	button.biclust <-  "" 
 	arg.frames <- c("fstatentryframe") 
-	button.otherarg <- paste(",bicResult=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",bicResult=.isa2biclust(",method_result,")",sep="")
 	
 	# Do not change this line: 
 	new.frames <- .add.frame(button.otherarg=button.otherarg,input=input,frame.name=frame.name,type=type,button.name=button.name,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
@@ -477,7 +477,7 @@ isadefault_WIN <- function(){     # Change newmethod to your own method name
 	button.data <- "x" 
 	button.biclust <-  "" 
 	arg.frames <- c("bootstrapentryframe","bootstrapreplacementframe") 
-	button.otherarg <- paste(",bicResult=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",bicResult=.isa2biclust(",method_result,")",sep="")
 
 
 	# Do not change this line: 
@@ -577,7 +577,7 @@ isadefault_WIN <- function(){     # Change newmethod to your own method name
 	button.function <- "parallelCoordinates3" 
 	button.data <- "x" 
 	button.biclust <-  "" 
-	button.otherarg <- paste(",bicResult=isa.biclust(",method_result,")",sep="")
+	button.otherarg <- paste(",bicResult=.isa2biclust(",method_result,")",sep="")
 	save <- FALSE
 	arg.frames <- c("pplotcheckframe","pplotentryframe","pplottypeframe") 
 	

@@ -55,7 +55,10 @@ item	BICLUSTERINGmenu	command		"BicARE"			"bicare_WINDOW"		""	""
 
 ### DEFINE TOP BICLUSTERING HELP & EXPORT MENU	
 menu	BICLUSTERINGHELPmenu       topMenu	  ""					"" 		""		""
-item 	topMenu	          cascade	  "Biclustering - Help & Export"                       BICLUSTERINGHELPmenu      ""               ""
+item 	topMenu	          cascade	  "Biclustering - Help & Utilities"                       BICLUSTERINGHELPmenu      ""               ""
+
+## Clear Results Menu
+item	BICLUSTERINGHELPmenu	command		"Clear All Results..."	"clearresults_WINDOW"	""		""
 
 ## Help Menu
 menu	helpmenu	BICLUSTERINGHELPmenu	""				""		""		""
@@ -73,3 +76,15 @@ item	BICLUSTERINGHELPmenu	cascade		"Export Results ..."				exportmenu	""		""
 
 item 	exportmenu	command		"as Text-file"	"exportTXT_WINDOW"	""			""
 item 	exportmenu	command		"for Furby"		"exportFURBY_WINDOW"	""			""
+
+
+## Extract/Find Menu
+menu	extractfindmenu		BICLUSTERINGHELPmenu	""		""		""		""
+item	BICLUSTERINGHELPmenu	cascade		"Extract/Find Biclusters..."	extractfindmenu		""	""
+
+item	extractfindmenu		command		"Extract Biclusters"	"extractbicluster_WINDOW"	""	""
+item	extractfindmenu		command		"Find Biclusters"		"findbiclusters_WINDOW"	""	""
+
+
+## Save/Load Menu
+item BICLUSTERINGHELPmenu	command		"Save/Load"				"saveload_WINDOW"	""	""

@@ -8,7 +8,11 @@
 
 newtool_template <- function(toolname="",methodname="",toolhelp="",grid.config=grid.config,grid.rows=grid.rows,new.frames){
 	
-	
+	# Saving the environment in the biclustering.objects + delete old environment of this window to clear memory!!!!!
+	method_result <- gsub(" ","",methodname,fixed=TRUE)
+	method_result <- gsub("-","",method_result,fixed=TRUE)
+	window.temp <- paste0(toolname,method_result)
+	.update.biclustering.object(window.temp,where="envir",ENVIR=environment())
 	
 	#########################################################################################################################################################
 	## General preparation ##

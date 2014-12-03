@@ -202,7 +202,7 @@
 }
 
 
-.update.biclustering.object <- function(object,where="all"){
+.update.biclustering.object <- function(object,where="all",ENVIR=environment()){
 	
 	if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
 		biclustering.objects <- list()
@@ -210,6 +210,8 @@
 		biclustering.objects$all <- c()
 		biclustering.objects$bcdiag <- c()
 		biclustering.objects$superbiclust <- c()
+		biclustering.objects$dataconnect <- data.frame(result=character(),data=character(),stringsAsFactors=FALSE)
+		biclustering.objects$ENVIR <- list()
 		
 		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
 	}
@@ -217,6 +219,19 @@
 	if(where=="all"){
 		#cat("UPDATEALL")
 		biclustering.objects$all <- unique(c(biclustering.objects$all,object))
+		biclustering.objects$dataconnect <- rbind(biclustering.objects$dataconnect,data.frame(result=object,data=ActiveDataSet()))
+#		if(dim(biclustering.objects$dataconnect)[1]==1){
+#			biclustering.objects$dataconnect$result <- as.character(biclustering.objects$dataconnect$result)
+#			biclustering.objects$dataconnect$data <- as.character(biclustering.objects$dataconnect$data)
+#		}
+		
+		# Check for double entries of a result
+		temp.check <- biclustering.objects$dataconnect$result==object
+		if(sum(temp.check)>1){
+			biclustering.objects$dataconnect <- biclustering.objects$dataconnect[-which(temp.check==TRUE)[1],]
+		}
+		
+		
 		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
 	}
 	
@@ -228,6 +243,21 @@
 	if(where=="superbiclust"){
 		biclustering.objects$superbiclust <- unique(c(biclustering.objects$superbiclust,object))
 		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+	}
+	if(where=="envir"){
+		if(object %in% names(biclustering.objects$ENVIR)){
+			index.env <- which(object==names(biclustering.objects$ENVIR))
+			temp.env <- biclustering.objects$ENVIR[[index.env]]
+			rm(list=ls(temp.env),envir=temp.env)
+		}
+		else{
+			index.env <- length(biclustering.objects$ENVIR)+1
+		}
+		biclustering.objects$ENVIR[[index.env]] <- ENVIR
+		names(biclustering.objects$ENVIR)[index.env] <- object
+		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		
+		
 	}
 }
 
@@ -491,44 +521,6 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 }
 
 
-.fabia2biclust <- function(x,thresZ=0.5,thresL=NULL){
-	
-	if(class(x)=="Biclust"){return(x)}  # This is actually for the biclust plots for fabia superbiclust-save has been used on fabia
-	else{
-		
-		fabia.extract <- extractBic(x,thresZ,thresL)
-		
-		n.rows <- dim(fabia.extract$X)[1]
-		n.cols <- dim(fabia.extract$X)[2]
-		
-		RowxNumber <- c()
-		NumberxCol <- c()
-		
-		
-		for(i.index in 1:fabia.extract$np){
-			
-			rows.index <- fabia.extract$numn[i.index,]$numng
-			cols.index <- fabia.extract$numn[i.index,]$numnp
-			
-			temp.rows <- rep(0,n.rows)
-			temp.cols <- rep(0,n.cols)
-			
-			temp.rows[rows.index] <- 1
-			temp.cols[cols.index] <- 1
-			
-			RowxNumber <- cbind(RowxNumber,temp.rows)
-			NumberxCol <- rbind(NumberxCol,temp.cols)
-			
-		}
-		
-		RowxNumber <- RowxNumber == 1  # 0/1 matrix needs to be converted to a logical matrix
-		NumberxCol <- NumberxCol == 1
-		
-		return(new("Biclust", Number = dim(RowxNumber)[2], RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=list()))
-		
-	}
-	
-}
 
 
 .makesearchdata <- function(){
@@ -537,48 +529,48 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 		method_data <- data.frame()
 				
 		#Plaid
-		method_data <- rbind(method_data,c("Plaid","Coherent Values","biclustplaid_WIN()"))
-		colnames(method_data) <- c("name","type","window")
-		for(i in 1:3){method_data[,i] <- as.character(method_data[,i])}
+		method_data <- rbind(method_data,c("Plaid","Coherent Values","biclustplaid_WIN()","Plaid"))
+		colnames(method_data) <- c("name","type","window","saveobject")
+		for(i in 1:4){method_data[,i] <- as.character(method_data[,i])}
 		
 		#CC
-		method_data <- rbind(method_data,c("CC","Coherent Values","biclustCC_WIN()"))
+		method_data <- rbind(method_data,c("CC","Coherent Values","biclustCC_WIN()","CC"))
 		
 		#XMotifs
-		method_data <- rbind(method_data,c("XMotifs","Coherent Evolution","biclustXMotif_WIN()"))
+		method_data <- rbind(method_data,c("XMotifs","Coherent Evolution","biclustXMotif_WIN()","XMotifs"))
 		
 		#Spectral
-		method_data <- rbind(method_data,c("Spectral","Coherent Values","biclustspectral_WIN()"))
+		method_data <- rbind(method_data,c("Spectral","Coherent Values","biclustspectral_WIN()","Spectral"))
 		
 		#QuestMotif
-		method_data <- rbind(method_data,c("QuestMotif","Coherent Evolution","biclustquest_WIN()"))
+		method_data <- rbind(method_data,c("QuestMotif","Coherent Evolution","biclustquest_WIN()","Questmotif"))
 		
 		#Bimax
-		method_data <- rbind(method_data,c("Bimax","Constant","biclustbimax_WIN()"))
+		method_data <- rbind(method_data,c("Bimax","Constant","biclustbimax_WIN()","Bimax"))
 		
 		#Laplace Prior
-		method_data <- rbind(method_data,c("Laplace Prior","Coherent Values","fabialaplace_WIN()"))
+		method_data <- rbind(method_data,c("Laplace Prior","Coherent Values","fabialaplace_WIN()","FabiaLaplacePrior"))
 		
 		#Post-Projection
-		method_data <- rbind(method_data,c("Post-Projection","Coherent Values","fabiapostprojection_WIN()"))
+		method_data <- rbind(method_data,c("Post-Projection","Coherent Values","fabiapostprojection_WIN()","FabiaPostProjection"))
 		
 		#Sparseness Projection
-		method_data <- rbind(method_data,c("Sparseness Projection","Coherent Values","fabiasparsenessprojection_WIN()"))
+		method_data <- rbind(method_data,c("Sparseness Projection","Coherent Values","fabiasparsenessprojection_WIN()","FabiaSparsenessProjection"))
 		
 		#SPARSE
-		method_data <- rbind(method_data,c("SPARSE","Coherent Values","fabiaSPARSE_WIN()"))
+		method_data <- rbind(method_data,c("SPARSE","Coherent Values","fabiaSPARSE_WIN()","FabiaSPARSE"))
 		
 		#ISA # PLACEHOLDER
-		method_data <- rbind(method_data,c("ISA","Coherent Evolution","isadefault_WIN()"))
+		method_data <- rbind(method_data,c("ISA","Coherent Evolution","isadefault_WIN()","ISA"))
 		
 		#iBBiG # PLACEHOLDER
-		method_data <- rbind(method_data,c("iBBiG","Constant","iBBiG_WIN()"))
+		method_data <- rbind(method_data,c("iBBiG","Constant","iBBiG_WIN()","IBBIG"))
 		
 		#rQubic # PLACEHOLDER
-		method_data <- rbind(method_data,c("Rqubic","Coherent Evolution","rqubic_WINDOW()"))
+		method_data <- rbind(method_data,c("Rqubic","Coherent Evolution","rqubic_WINDOW()","Rqubic"))
 		
 		#BicARE # PLACEHOLDER
-		method_data <- rbind(method_data,c("BicARE","Coherent Values","bicare_WINDOW()"))
+		method_data <- rbind(method_data,c("BicARE","Coherent Values","bicare_WINDOW()","BICARE"))
 		
 		# Assigning to Global Variable
 		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)
@@ -613,16 +605,7 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 	globalVars <- ls(envir=.GlobalEnv)
 	if(length(globalVars)==0){return(globalVars)}
 	
-	select <- sapply(globalVars,FUN=function(x){
-				eval(parse(text=paste("x <- ",x,sep="")))
-				if(class(x)=="iBBiG"){return(TRUE)}
-				if(class(x)=="Biclust"){return(TRUE)}
-				if(class(x)=="Factorization"){return(TRUE)}
-				if(class(x)=="QUBICBiclusterSet"){return(TRUE)}
-				if(class(x)=="biclustering"){return(TRUE)}
-				if(.isISA(x)){return(TRUE)}
-				return(FALSE)
-			})
+	select <- sapply(globalVars,FUN=.isbiclustGUIresult)
 	return(globalVars[select])
 }
 
@@ -632,18 +615,7 @@ as.ExprSet <- function(x){
 	return(out)
 }
 
-.bicare2biclust <- function(x){
-	if(class(x)=="Biclust"){ # In case of superbiclust is used # NOTE2: THIS IS ACTUALLY NOT NECESSARY !!
-		return(x)
-	} else if(class(x)=="biclustering"){
-		Parameters <- list(numberofbicluster=x$param[1,2],residuthreshold=x$param[2,2],genesinitialprobability=x$param[3,2],samplesinitialprobability=x$param[4,2],numberofiterations=x$param[5,2],date=x$param[6,2])
-		RowxNumber <- t(x$bicRow==1)
-		NumberxCol <- x$bicCol==1
-		Number <- as.numeric(dim(RowxNumber)[2])
-		info <- list()
-		return(new("Biclust",Parameters=Parameters,RowxNumber=RowxNumber,NumberxCol=NumberxCol,Number=Number,info=info))
-	}
-}
+
 
 
 
@@ -654,3 +626,80 @@ as.ExprSet <- function(x){
 	return(colnames)
 }
 
+
+.correctdataforresult <- function(result){
+	
+	# Is there an active dataset?
+	if(!activeDataSetP()){
+		justDoIt("warning('Please select an Active Dataset',call.=FALSE)")
+		return(FALSE)
+	}
+	else{
+	
+		resultname <- deparse(substitute(result))
+		
+		if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+			biclustering.objects <- list()
+			
+			biclustering.objects$all <- character()
+			biclustering.objects$bcdiag <- c()
+			biclustering.objects$superbiclust <- c()
+			biclustering.objects$dataconnect <- data.frame(result=character(),data=character(),stringsAsFactors=FALSE)
+			
+			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		}
+		
+		dataconnect <- biclustering.objects$dataconnect
+	
+		## Result is in object, but maybe wrong, use correct active dataset
+		if(resultname %in% dataconnect$result){
+			correct_data <- dataconnect$data[which(dataconnect$result==resultname)]
+			# Dataset is available
+			if(correct_data %in% listDataSets()){
+				# Already using correct dataset
+				if(correct_data==ActiveDataSet()){
+					# Nothing happens
+					return(TRUE)
+				}
+				# Not yet using correct dataset
+				else{
+					justDoIt(paste0("warning('Active Dataset is changed to ",correct_data,"',call.=FALSE)"))
+					justDoIt(paste0("activeDataSet('",correct_data,"')"))
+					return(TRUE)
+				}
+			}
+			# Dataset is not available
+			else{
+				justDoIt(paste0("warning('The correct dataset, ",correct_data,", is not loaded in in R-Commander. Please load it.',call.=FALSE)"))
+				return(FALSE)
+			}
+		}
+		
+		## Result is not in object, was not done in this session. Current active data will be used, but dimensions will be checked
+		else{
+			justDoIt(paste0("warning('Result was not obtained in this session. Corresponding data could not be determined, therefore the Active Dataset will be used.',call.=FALSE)"))
+			
+			### NEED TO HAVE BICLUST OBJECT HERE, CHECK IF THIS ALSO WORKS WITH OTHER IMPLEMENTATIONS APART FROM EXTRACTING
+			### SIMPLY TRANSFORM RESULT WITH .2BICLUST!! (MEMORY?) FABIA THRESH DOES NOT MATTER HERE
+			result.biclust <- .tobiclust(result)
+			# Do the dimensions of the active dataset correspond with the biclust result?
+			eval(parse(text=paste0("matrixdata <- as.matrix(",ActiveDataSet(),")")))
+			nrow <- dim(matrixdata)[1]
+			ncol <- dim(matrixdata)[2]
+			nrow_biclust <- dim(result.biclust@RowxNumber)[1]
+			ncol_biclust <- dim(result.biclust@NumberxCol)[2]
+			if(!(nrow==nrow_biclust & ncol==ncol_biclust  )){
+				justDoIt("warning('Dimensions of biclustering result and active dataset do not agree. Please select the correct Active Dataset',call.=FALSE)")
+				return(FALSE)
+			}
+			else{
+				return(TRUE)
+			}
+			
+	
+			# DON't FORGET TO ADD TRUE AND FALSE
+		}
+	
+	}
+	
+}

@@ -8,7 +8,10 @@
 
 cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg,other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames,superbiclust.comp,bcdiag.comp,data.transf="matrix",data.discr=FALSE,data.bin=FALSE,extrabiclustplot=FALSE,methodshow=TRUE,methodsave=TRUE,extrabiclustforisa=FALSE){
 	
-
+	# Saving the environment in the biclustering.objects + delete old environment of this window to clear memory!!!!!
+	method_result <- gsub(" ","",methodname,fixed=TRUE)
+	method_result <- gsub("-","",method_result,fixed=TRUE)
+	.update.biclustering.object(method_result,where="envir",ENVIR=environment())
 	
 	#########################################################################################################################################################
 	## General preparation ##
