@@ -408,7 +408,7 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 												doItAndPrint('",button_result,"')
 											}
 
-											if(!is.null(dev.list())){par(mfrow=c(1,1))} 
+											.checkplotgridpref()
 										}
 									}
 								}",sep="")

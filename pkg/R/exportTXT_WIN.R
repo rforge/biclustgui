@@ -12,7 +12,7 @@ exportTXT_WINDOW <- function(){
 	AllResults <- .makeResultList()
 	
 	onSetwd <- function(){	Setwd()	}
-
+	
 	onCancel <- function() {
 		if (GrabFocus()) 
 			tkgrab.release(top)
@@ -51,11 +51,11 @@ exportTXT_WINDOW <- function(){
 	### EXPORT ENTRY FRAMES ### 
 	exportentry <- tkframe(exportoptions)
 	
-	filename_entry <- tkframe(exportentry)
-	filename_vars <- tclVar("output")
-	filename_field <- ttkentry(filename_entry,width=15,textvariable=filename_vars)
-	tkgrid(labelRcmdr(filename_entry,text=gettextRcmdr("Filename: ")),filename_field,sticky="nw")
-	tkgrid(filename_entry,sticky="ne")
+#	filename_entry <- tkframe(exportentry)
+#	filename_vars <- tclVar("output")
+#	filename_field <- ttkentry(filename_entry,width=15,textvariable=filename_vars)
+#	tkgrid(labelRcmdr(filename_entry,text=gettextRcmdr("Filename: ")),filename_field,sticky="nw")
+#	tkgrid(filename_entry,sticky="ne")
 	
 	title_entry <- tkframe(exportentry)
 	title_vars <- tclVar("Output Result")
@@ -130,15 +130,19 @@ exportTXT_WINDOW <- function(){
 			if(delimiter!=""){delimiter.paste <- paste0(",delimiter='",delimiter,"'")}
 		
 			#bicResult <- sel.result.name
-			fileName <- tclvalue(filename_vars)
+			#fileName <- tclvalue(filename_vars)
 			bicname <- tclvalue(title_vars)
 			append <- as.character(tclvalue(append_vars))
-		
+			
+					
 			# Correct data check
 			eval(parse(text=paste0("temp.correct <- .correctdataforresult(",sel.result.name,")")))
 			if(temp.correct){
-	
-				export.command <- paste0("writeBic.GUI(dset=as.matrix(",ActiveDataSet(),"),fileName='",fileName,"',bicResult=",bicResult,",bicname='",bicname,"',mname='",mname,"',append=",append,delimiter.paste,")")
+				
+				# Old one with filename-input
+				#export.command <- paste0("writeBic.GUI(dset=as.matrix(",ActiveDataSet(),"),fileName='",fileName,"',bicResult=",bicResult,",bicname='",bicname,"',mname='",mname,"',append=",append,delimiter.paste,")")
+				export.command <- paste0("writeBic.GUI(dset=as.matrix(",ActiveDataSet(),"),bicResult=",bicResult,",bicname='",bicname,"',mname='",mname,"',append=",append,delimiter.paste,")")
+				
 				#print(export.command)
 				doItAndPrint(export.command)
 			}
@@ -149,10 +153,10 @@ exportTXT_WINDOW <- function(){
 	### WORKING DIR & EXPORT BUTTON ###
 
 	buttonsleft <- tkframe(buttons)
-	setwdButton <- buttonRcmdr(buttonsleft,command=onSetwd,text=gettextRcmdr("Set Work Dir."),foreground="darkgreen",default="active",width="12",borderwidth=3)
+	#setwdButton <- buttonRcmdr(buttonsleft,command=onSetwd,text=gettextRcmdr("Set Work Dir."),foreground="darkgreen",default="active",width="12",borderwidth=3)
 	exportButton <- buttonRcmdr(buttonsleft,command=onOK,text=gettextRcmdr("Export"),foreground="darkgreen",default="active",width="10",borderwidth=3)
-	tkgrid(setwdButton,exportButton)
-	
+	#tkgrid(setwdButton,exportButton)
+	tkgrid(exportButton)
 	
 	
 	

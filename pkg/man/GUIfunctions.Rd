@@ -24,7 +24,7 @@
 \alias{export.fabia}
 \alias{rqubic.GUI}
 \alias{bicare.GUI}
-\alias{summary.BICARE}
+\alias{summaryBICARE}
 \alias{bicare.residuplot}
 \alias{bicare.genesetenrichment}
 \alias{bicare.samplesenrichment}

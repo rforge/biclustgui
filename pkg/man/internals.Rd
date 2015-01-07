@@ -28,6 +28,7 @@
 \alias{.tobiclust_transf}
 \alias{.isBiclustresult}
 \alias{.isa2biclust}
+\alias{.checkplotgridpref}
 
 \title{List of Internal Functions}
 

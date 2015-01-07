@@ -360,9 +360,18 @@ robust.reset <- function(method_result){
 }
 
 
-writeBic.GUI <- function(dset,fileName,bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" ",fabia.thresZ=0.5,fabia.thresL=NULL){
-	fileName <- paste(fileName,".txt",sep="")
+writeBic.GUI <- function(dset,fileName="",bicResult,bicname,mname=c("fabia","isa2","biclust"),append=TRUE,delimiter=" ",fabia.thresZ=0.5,fabia.thresL=NULL){
 	
+	# In the case, filename is not given, use save window:
+	if(fileName==""){
+		fileName <- tclvalue(tkgetSaveFile(initialfile="ExportResult.txt",filetypes="{{Text Files} {.txt}} {{All files} *}"))
+		
+	}
+	else{
+		fileName <- paste(fileName,".txt",sep="")
+		
+	}
+		
 	writeBic(dset=dset, fileName=fileName, bicResult=bicResult, bicname=bicname, mname =mname, append = append, delimiter = delimiter,fabia.thresZ=fabia.thresZ,fabia.thresL=fabia.thresL)
 	
 	
@@ -428,7 +437,7 @@ bicare.GUI <- function(Data,k,pGene,pSample,r,N,M,t,blocGene,blocSample,eSetData
 	
 }
 
-summary.BICARE <- function(x){
+summaryBICARE <- function(x){
 	return(x$mat.resvol.bic)
 }
 

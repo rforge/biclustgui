@@ -1,12 +1,13 @@
 Package: RcmdrPlugin.BiclustGUI
 Type: Package
 Title: Rcmdr Plugin-in
-Version: 0.6.0
-Date: 2015-5-01
+Version: 0.6.1
+Date: 2015-07-01
 Author: De Troyer Ewoud
 Maintainer: De Troyer Ewoud <ewoud.detroyer@student.uhasselt.be>
 Description: Rcmdr Plug-in for biclustering
 License: CC BY-NC-SA 3.0
-Depends: biclust, fabia, isa2, iBBiG,superbiclust(>= 1.1),BcDiag(>= 1.0.7),rqubic,BicARE
+Depends: biclust, fabia, isa2, iBBiG,superbiclust(>= 1.1),BcDiag(>= 1.0.8),rqubic,BicARE
 Imports: Rcmdr, tcltk
-
+VignetteBuilder: knitr
+Suggests: knitr

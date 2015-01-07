@@ -31,9 +31,11 @@ saveload_WINDOW <- function(){
 		
 		# Open the data with Lazy Load in the environment of this function (not yet globally)
 		fileNameLoc <- tclvalue(tkgetOpenFile(filetypes="{{RData Files} {.RData .rda}} {{All files} *}")) 
+		tempLoc <- paste0(dirname(fileNameLoc),"/tempload")
+		
 		e = local({load(fileNameLoc); environment()})
-		tools:::makeLazyLoadDB(e, "New")
-		lazyLoad("New")
+		tools:::makeLazyLoadDB(e, tempLoc)
+		lazyLoad(tempLoc)
 		
 		filename <- basename(fileNameLoc)
 		filename <- gsub(".RData","",filename)
@@ -83,7 +85,7 @@ saveload_WINDOW <- function(){
 			if(temp.type %in% biclustering.objects$all){
 				# GIVE WARNING FOR OVERWRITING!!
 				
-				ReturnVal <- tkmessageBox(title="Loading Biclustering Results",message = paste0("This will overwrite the current ",temp.type,"Result. Are you sure?"),icon = "warning", type = "yesno", default = "no")
+				ReturnVal <- tkmessageBox(title="Loading Biclustering Results",message = paste0("This will overwrite the current ",temp.type," Result. Are you sure?"),icon = "warning", type = "yesno", default = "no")
 				
 				if(tclvalue(ReturnVal)=="yes"){
 									
@@ -109,11 +111,15 @@ saveload_WINDOW <- function(){
 						# NOW DO THE LOAD in global environmnent + overwrite
 						doItAndPrint(paste0("load('",fileNameLoc,"')"))
 						doItAndPrint(paste0(temp.type," <- ",filename))
+						unlink(paste0(tempLoc,".rdb"))
+						unlink(paste0(tempLoc,".rdx"))
 					}
 					else{
 						ReturnVal2 <- tkmessageBox(title="Loading Biclustering Results",message ="Correct Active Dataset unavailable. See warning in Message Box",icon = "error", type = "ok")
 						assign("biclustering.objects",biclustering.objects.original,envir=.GlobalEnv) # Put the original biclustering.objects back
 						get("biclustering.objects",envir=.GlobalEnv)
+						unlink(paste0(tempLoc,".rdb"))
+						unlink(paste0(tempLoc,".rdx"))
 						
 					}
 
@@ -137,11 +143,15 @@ saveload_WINDOW <- function(){
 					# NOW DO THE LOAD in global environmnent + overwrite
 					doItAndPrint(paste0("load('",fileNameLoc,"')"))
 					doItAndPrint(paste0(temp.type," <- ",filename))
+					unlink(paste0(tempLoc,".rdb"))
+					unlink(paste0(tempLoc,".rdx"))
 				}
 				else{
 					ReturnVal2 <- tkmessageBox(title="Loading Biclustering Results",message ="Correct Active Dataset unavailable. See warning in Message Box",icon = "error", type = "ok")
 					assign("biclustering.objects",biclustering.objects.original,envir=.GlobalEnv) # Put the original biclustering.objects back
 					get("biclustering.objects",envir=.GlobalEnv)
+					unlink(paste0(tempLoc,".rdb"))
+					unlink(paste0(tempLoc,".rdx"))
 					
 				}
 				
@@ -150,7 +160,8 @@ saveload_WINDOW <- function(){
 		}
 		else{
 			ReturnVal2 <- tkmessageBox(title="Loading Biclustering Results",message ="The Optional Load Information was not filled in correctly.",icon = "error", type = "ok")
-			
+			unlink(paste0(tempLoc,".rdb"))
+			unlink(paste0(tempLoc,".rdx"))
 		}
 		
 	}

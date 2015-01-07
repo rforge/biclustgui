@@ -57,6 +57,10 @@ item	BICLUSTERINGmenu	command		"BicARE"			"bicare_WINDOW"		""	""
 menu	BICLUSTERINGHELPmenu       topMenu	  ""					"" 		""		""
 item 	topMenu	          cascade	  "Biclustering - Help & Utilities"                       BICLUSTERINGHELPmenu      ""               ""
 
+## Set Plot Grid Menu
+item 	BICLUSTERINGHELPmenu	command		"Set Plot Grid"	"plotgridpref_WINDOW"	""			""
+item 	BICLUSTERINGHELPmenu	separator	""				""			""			""
+
 ## Clear Results Menu
 item	BICLUSTERINGHELPmenu	command		"Clear All Results..."	"clearresults_WINDOW"	""		""
 

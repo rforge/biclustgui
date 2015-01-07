@@ -145,7 +145,7 @@ bicare_WINDOW <- function(){     # Change newmethod to your own method name
 	# Change variables accordingly:
 	frame.name <- "summarybutton"  
 	button.name <- "Summary"  
-	button.function <- "summary.BICARE" 
+	button.function <- "summaryBICARE" 
 	button.data <- "" 
 	button.biclust <-  "x" 
 	button.width <- "12"

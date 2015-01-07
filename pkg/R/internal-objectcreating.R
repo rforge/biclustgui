@@ -703,3 +703,28 @@ as.ExprSet <- function(x){
 	}
 	
 }
+
+
+.checkplotgridpref <- function(){
+	#Note: Old code in newmethod_function and newtool_function  (which this function replaces)
+	#if(!is.null(dev.list())){par(mfrow=c(1,1))}
+	
+	if(!is.null(dev.list())){ #Only do something if there is an active graphics device
+		current.griddim1 <- par()$mfrow[1]
+		current.griddim2 <- par()$mfrow[2]
+		
+		if(!("plotgrid" %in% names(biclustering.objects))){
+			biclustering.objects$plotgrid <- c(1,1)
+			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+			
+		}
+		
+		griddim1 <- biclustering.objects$plotgrid[1]
+		griddim2 <- biclustering.objects$plotgrid[2]
+		
+		if(current.griddim1!=griddim1 & current.griddim2!=griddim2){
+			par(mfrow=c(griddim1,griddim2))
+		}
+		
+	}
+}

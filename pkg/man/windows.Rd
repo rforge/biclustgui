@@ -29,6 +29,7 @@
 \alias{findbiclusters_WINDOW}
 \alias{fabiabiclust_WINDOW}
 \alias{saveload_WINDOW}
+\alias{plotgridpref_WINDOW}
 
 \title{Window Functions}
 
@@ -58,6 +59,7 @@ findbiclusters_WINDOW()
 iBBiG_WIN()
 isadefault_WIN()
 isaextraplots_WINDOW(methodname)
+plotgridpref_WINDOW()
 rqubic_WINDOW()
 saveload_WINDOW()
 search_WINDOW()

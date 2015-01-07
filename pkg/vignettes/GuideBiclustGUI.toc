@@ -1,0 +1,68 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}R Commander}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Biclustering}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}A New Concept in Software Development using R}{6}{section.2}
+\contentsline {section}{\numberline {3}The BiclustGUI R Package}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Installing and Loading}{7}{subsection.3.1}
+\contentsline {subsubsection}{\numberline {3.1.1}R Commander}{7}{subsubsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.2}RcmdrPlugin.BiclustGUI}{7}{subsubsection.3.1.2}
+\contentsline {subsubsection}{\numberline {3.1.3}Data Input}{7}{subsubsection.3.1.3}
+\contentsline {subsection}{\numberline {3.2}GUI Structure}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Extra Utilities}{10}{subsection.3.3}
+\contentsline {subsubsection}{\numberline {3.3.1}Search Dialog}{10}{subsubsection.3.3.1}
+\contentsline {subsubsection}{\numberline {3.3.2}Help Documentation \& Scripts}{11}{subsubsection.3.3.2}
+\contentsline {subsubsection}{\numberline {3.3.3}Plot Grid}{11}{subsubsection.3.3.3}
+\contentsline {subsubsection}{\numberline {3.3.4}Clear Results}{12}{subsubsection.3.3.4}
+\contentsline {subsubsection}{\numberline {3.3.5}Export Results}{12}{subsubsection.3.3.5}
+\contentsline {subsubsection}{\numberline {3.3.6}Extract Biclusters}{12}{subsubsection.3.3.6}
+\contentsline {subsubsection}{\numberline {3.3.7}Search for genes or samples in biclusters}{13}{subsubsection.3.3.7}
+\contentsline {subsubsection}{\numberline {3.3.8}Save/Load}{14}{subsubsection.3.3.8}
+\contentsline {subsection}{\numberline {3.4}\texttt {biclust}-package}{14}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Plaid Biclustering}{14}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}CC($\delta $) Biclustering}{16}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}XMotifs Biclustering}{16}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Spectral Biclustering}{17}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}QuestMotif Biclustering}{18}{subsubsection.3.4.5}
+\contentsline {subsubsection}{\numberline {3.4.6}Bimax Biclustering}{19}{subsubsection.3.4.6}
+\contentsline {subsubsection}{\numberline {3.4.7}Biclust: Plots \& Diagnostics}{20}{subsubsection.3.4.7}
+\contentsline {subsection}{\numberline {3.5}\texttt {fabia}-package}{22}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Laplace Prior}{23}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}Post-Projection}{24}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}Sparseness Projection}{24}{subsubsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.4}SPARSE}{25}{subsubsection.3.5.4}
+\contentsline {subsubsection}{\numberline {3.5.5}Fabia: Plots \& Diagnostics}{26}{subsubsection.3.5.5}
+\contentsline {subsection}{\numberline {3.6}\texttt {isa2}-package}{28}{subsection.3.6}
+\contentsline {subsection}{\numberline {3.7}\texttt {iBBiG}-package}{30}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}\texttt {rqubic}-package}{31}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}\texttt {BicARE}-package}{33}{subsection.3.9}
+\contentsline {subsection}{\numberline {3.10}Diagnostic Packages}{36}{subsection.3.10}
+\contentsline {subsubsection}{\numberline {3.10.1}\texttt {BcDiag}-package}{36}{subsubsection.3.10.1}
+\contentsline {subsubsection}{\numberline {3.10.2}\texttt {superbiclust}-package}{38}{subsubsection.3.10.2}
+\contentsline {section}{\numberline {4}A Guideline to New Implementations}{41}{section.4}
+\contentsline {subsection}{\numberline {4.1}Implementing a New Method}{41}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}New Method Script - ClusterTab \& PlotDiagTab}{41}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}The Frame Scripts}{46}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}A quick example - Plaid}{52}{subsubsection.4.1.3}
+\contentsline {subsection}{\numberline {4.2}Implementing a New Tool}{54}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}New Tool Script}{54}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}A quick example - BcDiag}{55}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Testing your Script}{56}{subsection.4.3}
+\contentsline {section}{\numberline {5}Appendix}{59}{section.5}
+\contentsline {subsection}{\numberline {5.1}Introduction}{59}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}The BiclustGUI R Package}{59}{subsection.5.2}
+\contentsline {subsubsection}{\numberline {5.2.1}Installing and Loading - Installing Script}{59}{subsubsection.5.2.1}
+\contentsline {subsubsection}{\numberline {5.2.2}\texttt {biclust}-package}{60}{subsubsection.5.2.2}
+\contentsline {subsubsection}{\numberline {5.2.3}\texttt {fabia}-package}{63}{subsubsection.5.2.3}
+\contentsline {subsubsection}{\numberline {5.2.4}\texttt {isa2}-package}{67}{subsubsection.5.2.4}
+\contentsline {subsubsection}{\numberline {5.2.5}\texttt {iBBiG}-package}{67}{subsubsection.5.2.5}
+\contentsline {subsubsection}{\numberline {5.2.6}\texttt {BicARE}-package}{68}{subsubsection.5.2.6}
+\contentsline {subsubsection}{\numberline {5.2.7}\texttt {BcDiag}-package}{69}{subsubsection.5.2.7}
+\contentsline {subsubsection}{\numberline {5.2.8}\texttt {superbiclust}-package}{71}{subsubsection.5.2.8}
+\contentsline {subsection}{\numberline {5.3}Guideline - Template Scripts}{71}{subsection.5.3}
+\contentsline {subsubsection}{\numberline {5.3.1}newmethod\_script}{71}{subsubsection.5.3.1}
+\contentsline {subsubsection}{\numberline {5.3.2}frames\_script}{73}{subsubsection.5.3.2}
+\contentsline {subsubsection}{\numberline {5.3.3}Quick Example - Plaid}{75}{subsubsection.5.3.3}
+\contentsline {subsubsection}{\numberline {5.3.4}newtool\_script}{85}{subsubsection.5.3.4}
+\contentsline {subsubsection}{\numberline {5.3.5}Quick Example - BcDiag}{86}{subsubsection.5.3.5}
+\contentsline {subsubsection}{\numberline {5.3.6}Extra Example - Superbiclust}{92}{subsubsection.5.3.6}

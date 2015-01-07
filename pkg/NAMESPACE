@@ -12,5 +12,5 @@ importFrom(tcltk,ttknotebook,tkwidget,.Tk.subwin,.Tk.newwin,tkbutton,ttklabel,tk
 
 ## OWN FUNCTIONS EXPORT ##
 exportPattern("^[^\\.]")
-export(.add.frame,.order.button.frames,.find.frame,.eval.command,.combine.rows,.make.correct.frame,.update.biclustering.object,.initialize.new.frames,.initialize.grid.config,.initialize.grid.rows,.grid.matrix,.build.command.argument,.transform.vector2text,.build.button.function,.give.doublequote,.output.sparse.txt,.is.binary.matrix,.binary.activematrix.check,.rcmdr.warning,.fabia2biclust,.makesearchdata,.bicare2biclust,.putbefore,.makeResultList,.isISA,.correctdataforresult,.tobiclust,.isbiclustGUIresult,.tobiclust_transf,.isBiclustresult,.isa2biclust)
+export(.add.frame,.order.button.frames,.find.frame,.eval.command,.combine.rows,.make.correct.frame,.update.biclustering.object,.initialize.new.frames,.initialize.grid.config,.initialize.grid.rows,.grid.matrix,.build.command.argument,.transform.vector2text,.build.button.function,.give.doublequote,.output.sparse.txt,.is.binary.matrix,.binary.activematrix.check,.rcmdr.warning,.fabia2biclust,.makesearchdata,.bicare2biclust,.putbefore,.makeResultList,.isISA,.correctdataforresult,.tobiclust,.isbiclustGUIresult,.tobiclust_transf,.isBiclustresult,.isa2biclust,.checkplotgridpref)
 

@@ -387,7 +387,7 @@ newtool_template <- function(toolname="",methodname="",toolhelp="",grid.config=g
 											if(",save,"==TRUE){
 												doItAndPrint('",button_result,"')
 											}
-											if(!is.null(dev.list())){par(mfrow=c(1,1))} 
+											.checkplotgridpref()
 									}
 									}
 									}",sep="")
