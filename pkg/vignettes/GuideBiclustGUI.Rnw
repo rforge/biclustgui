@@ -693,7 +693,7 @@ method will construct a series of layers that represent the biclusters.
 %$
 \theta_{mnp}=\left\{ \begin{array}{ll}
     \mu_p&\text{(3.1)}\\\mu_p+\alpha_{mp}&\text{(3.2)}\\\mu_p+\beta_{np}&\text{(3.3)}\\\mu_p+\alpha_{mp}+\beta_{np}&\text{(3.4)}
-\end{array} \right
+\end{array} \right.
 \end{align}
 \end{center}
 \noindent In (1), $Y_{mn}$ is the expression level of gene $m$ in

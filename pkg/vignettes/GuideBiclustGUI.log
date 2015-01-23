@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.20)  23 JAN 2015 11:44
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.20)  23 JAN 2015 13:03
 entering extended mode
 **C:/Users/lucp8394/Documents/StatFiles/CenStat/R*Development/BiclustGUI/pkg/vi
 gnettes/GuideBiclustGUI.tex
@@ -604,26 +604,6 @@ LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
 Underfull \hbox (badness 10000) in paragraph at lines 712--721
 
  []
-
-C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg/vign
-ettes/GuideBiclustGUI.tex:747: Missing delimiter (. inserted)
-I was expecting to see something like `(' or `\{' or
-`\}' here. If you typed, e.g., `{' instead of `\{', you
-should probably delete the `{' by typing `1' now, so that
-braces don't get unbalanced. Otherwise just proceed.
-Acceptable delimiters are characters whose \delcode is
-nonnegative, or you can use `\delimiter <delimiter code>'.
-
-
-C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg/vign
-ettes/GuideBiclustGUI.tex:747: Missing delimiter (. inserted)
-I was expecting to see something like `(' or `\{' or
-`\}' here. If you typed, e.g., `{' instead of `\{', you
-should probably delete the `{' by typing `1' now, so that
-braces don't get unbalanced. Otherwise just proceed.
-Acceptable delimiters are characters whose \delcode is
-nonnegative, or you can use `\delimiter <delimiter code>'.
-
 
 C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg/vign
 ettes/GuideBiclustGUI.tex:747: Missing delimiter (. inserted)
@@ -1529,7 +1509,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4631.
 Here is how much of TeX's memory you used:
  9291 strings out of 493705
  143746 string characters out of 3144560
- 240683 words of memory out of 3000000
+ 240687 words of memory out of 3000000
  12082 multiletter control sequences out of 15000+200000
  14803 words of font info for 57 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
@@ -1549,7 +1529,7 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt12.pfb>
-Output written on GuideBiclustGUI.pdf (100 pages, 3622487 bytes).
+Output written on GuideBiclustGUI.pdf (100 pages, 3622522 bytes).
 PDF statistics:
  1406 PDF objects out of 1440 (max. 8388607)
  318 named destinations out of 1000 (max. 500000)
