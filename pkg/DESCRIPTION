@@ -1,9 +1,9 @@
 Package: RcmdrPlugin.BiclustGUI
 Type: Package
 Title: Rcmdr Plugin-in
-Version: 0.6.1
+Version: 0.6.2
 Date: 2015-07-01
-Author: De Troyer Ewoud
+Author: De Troyer Ewoud, Otava Martin
 Maintainer: De Troyer Ewoud <ewoud.detroyer@student.uhasselt.be>
 Description: Rcmdr Plug-in for biclustering
 License: CC BY-NC-SA 3.0
