@@ -15,7 +15,7 @@
 \contentsline {subsubsection}{\numberline {3.3.3}Plot Grid}{11}{subsubsection.3.3.3}
 \contentsline {subsubsection}{\numberline {3.3.4}Draw Heatmaps}{12}{subsubsection.3.3.4}
 \contentsline {subsubsection}{\numberline {3.3.5}Clear Results}{12}{subsubsection.3.3.5}
-\contentsline {subsubsection}{\numberline {3.3.6}Export Results}{12}{subsubsection.3.3.6}
+\contentsline {subsubsection}{\numberline {3.3.6}Export Results}{13}{subsubsection.3.3.6}
 \contentsline {subsubsection}{\numberline {3.3.7}Extract Biclusters}{13}{subsubsection.3.3.7}
 \contentsline {subsubsection}{\numberline {3.3.8}Search for genes or samples in biclusters}{14}{subsubsection.3.3.8}
 \contentsline {subsubsection}{\numberline {3.3.9}Save/Load}{15}{subsubsection.3.3.9}

@@ -621,9 +621,9 @@ all fields are white if they don't belong to a bicluster, they can also be gray.
 This simply means that this row and column combination had a '1' response, but
 was not included in a bicluster.\\
 Next, the following option will reorder the rows and columns of the matrix so
-the resulted biclusters are generally put more together. Finally, the last
-option will determine if row/column combinations in biclusters should also be
-colored even if the response was '0'. This is mostly helpfull when investigating
+the resulted biclusters are generally put more together. The algorithm to
+accomplish this was borrowed from the heatmap plot in the \verb|iBBiG| package.
+Finally, the last option will determine if row/column combinations in biclusters should also be colored even if the response was '0'. This is mostly helpfull when investigating
 binary data if for example you know the resulting biclusters might still
 contain zeros (depending on the algorithm). In this case checking this option would show
 the full biclusters, but when unchecked, some fields of the biclusters might
@@ -2780,11 +2780,12 @@ on top of the R Commander one, containing whatever you specified in the script.
 \subsubsection{Installing and Loading - Installing Script}
 \begin{verbatim}
 install.packages("biclust")
-#install.packages("BcDiag")
-install.packages("BcDiag", repos="http://R-Forge.R-project.org") # More up to date than CRAN
+install.packages("BcDiag")
+#install.packages("BcDiag", repos="http://R-Forge.R-project.org") # More up to date than CRAN
 install.packages("superbiclust")
 install.packages("Rcmdr")
 install.packages("isa2")
+install.packages("gplots")
 
 source("http://bioconductor.org/biocLite.R")
 biocLite("iBBiG")
