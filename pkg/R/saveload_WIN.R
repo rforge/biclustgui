@@ -179,7 +179,8 @@ saveload_WINDOW <- function(){
 		else{
 			SelResult <- AllResults[sel]
 			init.name <- paste0(SelResult,".RData")
-		
+
+			
 			filenameLoc <- tclvalue(tkgetSaveFile(initialfile=init.name,filetypes="{{RData Files} {.RData .rda}} {{All files} *}"))
 			#doItAndPrint(print(filenameLoc))
 			
@@ -200,6 +201,7 @@ saveload_WINDOW <- function(){
 			doItAndPrint(save.command)
 			
 			onCancel()
+			
 
 		}
 

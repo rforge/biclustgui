@@ -3,14 +3,15 @@
 
 import(stats, Rcmdr)
 importFrom(tcltk,ttknotebook,tkwidget,.Tk.subwin,.Tk.newwin,tkbutton,ttklabel,tkadd)
-
+importFrom(gplots,greenred)
 
 ## IMPORT ALL NECESSARY BICLUSTERING PACKAGES - FULL IMPORT ##
-#import(biclust,fabia,isa2,iBBiG,superbiclust,BcDiag,rqubic,BicARE)
-
-
+#import(biclust,fabia,isa2,iBBiG,superbiclust,BcDiag)
+#importFrom(BicARE,FLOC, testAnnot, testSet, residue, makeReport)
+#import(rqubic)
+#importFrom(rqubic,...)
 
 ## OWN FUNCTIONS EXPORT ##
 exportPattern("^[^\\.]")
 export(.add.frame,.order.button.frames,.find.frame,.eval.command,.combine.rows,.make.correct.frame,.update.biclustering.object,.initialize.new.frames,.initialize.grid.config,.initialize.grid.rows,.grid.matrix,.build.command.argument,.transform.vector2text,.build.button.function,.give.doublequote,.output.sparse.txt,.is.binary.matrix,.binary.activematrix.check,.rcmdr.warning,.fabia2biclust,.makesearchdata,.bicare2biclust,.putbefore,.makeResultList,.isISA,.correctdataforresult,.tobiclust,.isbiclustGUIresult,.tobiclust_transf,.isBiclustresult,.isa2biclust,.checkplotgridpref)
-
+export(greenred)

@@ -92,3 +92,6 @@ item	extractfindmenu		command		"Find Biclusters"		"findbiclusters_WINDOW"	""	""
 
 ## Save/Load Menu
 item BICLUSTERINGHELPmenu	command		"Save/Load"				"saveload_WINDOW"	""	""
+
+## Draw Heatmap Menu
+item BICLUSTERINGHELPmenu	command		"Draw Heatmaps"			"image_WINDOW"		""	""

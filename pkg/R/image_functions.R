@@ -1,0 +1,157 @@
+# Project: BiclustGUI
+# 
+# Author: lucp8394
+###############################################################################
+
+
+
+HeatmapBC <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=TRUE,transf=c("none","bin","disc"),bin.thres=NA,disc.nof=10,disc.quant=FALSE){
+	
+	orderRec <- function(col, resBC) {
+		if (col < ncol(resBC)) {
+			currentCovs <- resBC[, col] == 1
+			sub1 <- sum(currentCovs) > 0
+			if (sub1) {
+				subMod <- resBC
+				subMod[!currentCovs, ] <- 2
+				covOrder <- orderRec(col + 1, subMod)
+			}
+			rest <- resBC[, col] == 0
+			sub2 <- sum(rest) > 0
+			if (sub2) {
+				subMod <- resBC
+				subMod[!rest, ] <- 2
+				restOrder <- orderRec(col + 1, subMod)
+			}
+			if (sub1 && sub2) {
+				combOrder <- c(covOrder, restOrder)
+			}
+			else if (sub1) {
+				combOrder <- covOrder
+			}
+			else {
+				combOrder <- restOrder
+			}
+		}
+		else {
+			combOrder <- (1:nrow(resBC))[resBC[, 1] != 	2]
+		}
+		return(combOrder)
+	}
+	
+	### PREP 1
+	data <- as.matrix(data)
+	
+	
+	### TRANFORM DATA IF ASKED
+	if(transf=="bin"){
+		data <- binarize(data,threshold=bin.thres)
+	}
+	if(transf=="disc"){
+		data <- discretize(data,nof=disc.nof,quant=disc.quant)
+	}	
+	
+	### PREP 2
+	BIN <- .is.binary.matrix(data)
+	
+	### DETERMINE BICLUSTERS TO PLOT
+	if(length(BC)==0){
+		nBC <- c(1:res@Number)
+	}
+	else{
+		nBC <- BC
+	}
+	
+	### MAKE START MATRIX + Background color
+	
+	if(background){
+		whiteCol <- "#FFFFFF00"
+	}
+	else{
+		whiteCol <- "#FFFFFF"
+	}
+	
+	
+	if(BIN){
+		image.mat <- data
+		colorBlackWhite = c(whiteCol, "#666666")
+	}		
+	else{
+		image.mat <- matrix(0,nrow=dim(data)[1],ncol=dim(data)[2])
+		colorBlackWhite = c(whiteCol)
+	}
+		
+	### Making color vector	 + legend color
+	col <- colors()[c(610,565,589,367,22,554,41,35,48,59,64,76,91,96,100,116,143,381,389,394.439,448,471,529,559,568,631,646)]
+	while (length(col) < length(nBC)){ col = c(col, col)}
+	legendcol = col[nBC]
+	col = c(colorBlackWhite, legendcol)
+	
+	### Fill in color for BC's
+	for (i in 1:length(nBC)) {
+		row.index <- res@RowxNumber[, nBC[i]] == 1
+		col.index <- res@NumberxCol[nBC[i], ] == 1
+				
+		if(zeroBC){
+			image.mat[row.index, col.index] <- (i + 1)
+		}
+		else{
+			image.mat[row.index, col.index][data[row.index, col.index] != 0] <- (i + 1)
+				
+		}
+	}
+	
+	### Reordering if necessary
+	if(reorder){
+		colOrder <- orderRec(1, t(res@NumberxCol)[,nBC])
+		rowOrder <- orderRec(1, res@RowxNumber[,nBC])
+		image.mat <- image.mat[rowOrder, colOrder]
+		data <- data[rowOrder,colOrder]
+	}
+	
+	### Making the image plot
+	oldpar = par(c("mai", "mar", "mgp", "xpd"))
+	par(mar=c(1,1,1,6),xpd=TRUE,mgp=c(0.1,1,0))
+	
+	
+	## Background data image
+	add <- FALSE
+	if(background){
+		if(BIN){
+			backCol <- c("#BEBEBE4D","#0000FF4D")
+		}
+		else{
+			backCol <- sapply(greenred(511),FUN=function(x){return(paste0(x,"4D"))}) # Add suffix to color code to make it opacity=0.3
+		}
+		image(c(1:dim(data)[2]),c(1:dim(data)[1]),t(data),col=backCol,axes=FALSE,useRaster=TRUE,,xlab="Samples",ylab="Genes")
+		add <- TRUE
+	}
+		
+	image(c(1:dim(image.mat)[2]),c(1:dim(image.mat)[1]),t(image.mat),col=col,axes=FALSE,useRaster=TRUE,xlab="Samples",ylab="Genes",add=add)
+	if (length(legendcol) > 0) {legend("topright",inset=c(-0.2,0), legend = as.character(paste("BC", nBC, sep = "")), fill = legendcol, col = legendcol)}
+	if(BIN){legend("bottomright",inset=c(-0.2,0),legend=c("0","1"),fill=colorBlackWhite,col=colorBlackWhite)}
+		
+	par(oldpar)
+	
+	
+}
+
+#HeatmapBC(data,res,BC=c(),transf="bin",zeroBC=FALSE,reorder=TRUE,background=TRUE)
+
+#pdf("test.pdf")
+#HeatmapBC(data,res,BC=c(),transf="none",zeroBC=TRUE,reorder=FALSE)
+#dev.off()
+
+#rgb(0,0,0,0) <-transparent OR just put NA's
+
+#heat.colors(10,alpha=0.3)
+#test <- sapply(greenred(511),FUN=function(x){return(paste0(x,"4D"))})
+
+#### NOTE:
+# Use re-ordering algorithm from iBBiG plot
+# Give user option to select biclusters (handy if many biclusters)
+# Device a colour scheme
+# Build in special case for binary data (namely grey for if it is 1, but not included in a bicluster). Note: use the binary check
+# Investigate if painting biclusters over original heatmap is feasible (like option 'keep original heatmap')
+# VIGNETTE: Put in explanation that it is not possible to see overlapping biclusters + external graphics device Architect
+# + explain use of zeroBC + explain order in which overlaps are plotted (plot only some clusters if you want..)

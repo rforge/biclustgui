@@ -21,9 +21,7 @@ More detailed information about all the implementations and scripting of \code{R
 }
 \author{Ewoud De Troyer \email{ewoud.detroyer@uhasselt.be}}
 \references{
-Madeira, S.C. and Oliveira, A.L. (2004). Biclustering Algorithm for
-Biological Data Analysis: A Survey. IEEE/ACM Transactions, Computational
-Biology and Bioinformatics.
+REFERENCE BICLUST BOOK
  }
 \seealso{
   The Bicluster algorithms in the packages: \pkg{biclust}, \pkg{fabia}, \pkg{iBBiG}, \pkg{isa2}, \pkg{rqubic} and \pkg{BicARE}.

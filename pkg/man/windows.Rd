@@ -30,6 +30,7 @@
 \alias{fabiabiclust_WINDOW}
 \alias{saveload_WINDOW}
 \alias{plotgridpref_WINDOW}
+\alias{image_WINDOW}
 
 \title{Window Functions}
 
@@ -57,6 +58,7 @@ fabiasparsenessprojection_WIN()
 fabiaSPARSE_WIN()
 findbiclusters_WINDOW()
 iBBiG_WIN()
+image_WINDOW()
 isadefault_WIN()
 isaextraplots_WINDOW(methodname)
 plotgridpref_WINDOW()

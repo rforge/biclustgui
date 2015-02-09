@@ -29,6 +29,7 @@
 \alias{.isBiclustresult}
 \alias{.isa2biclust}
 \alias{.checkplotgridpref}
+\alias{greenred}
 
 \title{List of Internal Functions}
 

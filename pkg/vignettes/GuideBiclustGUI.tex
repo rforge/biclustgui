@@ -76,7 +76,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 0.6.2}
+\title{The BiclustGUI R Package - 0.6.3}
 \author{De Troyer Ewoud}
 \date{}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -590,6 +590,53 @@ plots. If your grid setting is large enough, they will simply be added into it.
 \\
 Further, some more advanced grid settings, like for the General Plot for iBBiG,
 might require the user to re-apply your own settings.
+
+\subsubsection{Draw Heatmaps}
+The next utility is the ability to draw heatmaps of data or biclustering
+results. Clicking this button will open up a window which consists out of 2 tabs
+as shown in Figure \ref{drawheatmapswindow}. 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{figures/drawheatmapswindow.png}
+\caption{{\it Draw Heatmaps Window }\label{drawheatmapswindow}}
+\end{figure}
+
+\noindent In the first tab of the window, a heatmap of the Active Dataset can be
+plotted. It is also possible, if necessary, to binarize or discretize the data
+beforehand. An example of these plots are given in Figure
+\ref{drawheatmaps_example1} and \ref{drawheatmaps_example2} in the Appendix.
+\\ \\
+\noindent The {\it biclustering results} tab provides all the tools to plot the
+heatmap of any of the results in the current session. Simply select a result in
+the result box and press the {\it Heatmap} button. \\
+Further there are also some extra options under the {\it Heatmap Options} title.
+If required, only some specific biclusters can be plotted by putting a vector
+(e.g. \verb|c(1,2,3)|) in the entry field. Next it is also possible to add the
+original data heatmap on the background in a transparent fashion (Again this
+background heatmap can be binarized or discretized with the options above).
+Also note that if binary data is being used (by default or through the
+transformation option), regardless of the fact if the background option is
+checked, the heatmap will look slightly different. The difference is that not
+all fields are white if they don't belong to a bicluster, they can also be gray.
+This simply means that this row and column combination had a '1' response, but
+was not included in a bicluster.\\
+Next, the following option will reorder the rows and columns of the matrix so
+the resulted biclusters are generally put more together. Finally, the last
+option will determine if row/column combinations in biclusters should also be
+colored even if the response was '0'. This is mostly helpfull when investigating
+binary data if for example you know the resulting biclusters might still
+contain zeros (depending on the algorithm). In this case checking this option would show
+the full biclusters, but when unchecked, some fields of the biclusters might
+turn white.
+\\ \\
+Lastly, do take care that it is not possible to visualize overlapping biclusters
+that well in these 2D heatmaps. The biclusters are drawn in the order they
+appear in the legend so a higher numbered bicluster might be drawn on top of
+another (if the biclustering algorithm is able to find such biclusters). Drawing only a
+selection of biclusters might be helpfull in this
+scenario. Another solution could be to turn to software like FURBY
+for which the results can be exported.
+
 
 \subsubsection{Clear Results}
 The {\it Clear Results} button in the {\it Help \& Utilities} menu will
@@ -2748,6 +2795,21 @@ biocLite("BicARE")
 install.packages("RcmdrPlugin.BiclustGUI", repos="http://R-Forge.R-project.org")
 
 \end{verbatim}
+
+\subsubsection{Extra Utilities}
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.33]{figures/drawheatmaps_example1.png}
+\caption{{\it Data Heatmap - Normal \& Binary }\label{drawheatmaps_example1}}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.33]{figures/drawheatmaps_example2.png}
+\caption{{\it Result Heatmap - Default \& Reordered with Background
+}\label{drawheatmaps_example2}}
+\end{figure}
+
 
 \subsubsection{\texttt{biclust}-package}
 \begin{figure}[H]
