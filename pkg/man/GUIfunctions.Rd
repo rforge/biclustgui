@@ -33,7 +33,7 @@
 \alias{ExtractBiclustersGUI_general}
 \alias{ExtractBiclustersGUI}
 \alias{FindBiclusters}
-\alias{HeatmapBC}
+\alias{HeatmapBC.GUI}
 
 \title{GUI Functions}
 

@@ -58,7 +58,7 @@ image_WINDOW <- function(){
 			trans.command <- paste0("x <- discretize(x=as.matrix(",ActiveDataSet(),"),nof=",nlvl,",quant=",quan,")")
 			doItAndPrint(trans.command)
 			
-			image.command <- paste0("image(c(1:dim(x)[2]),c(1:dim(x)[1]),t(x),col=greenred(511),axes=FALSE,useRaster=TRUE,ylab='Genes',xlab='Samples')")
+			image.command <- paste0("image(c(1:dim(x)[2]),c(1:dim(x)[1]),t(x),col=redgreen(511),axes=FALSE,useRaster=TRUE,ylab='Genes',xlab='Samples')")
 			doItAndPrint(image.command)
 		}
 		
@@ -94,7 +94,7 @@ image_WINDOW <- function(){
 				thresL <- tclvalue(thresL_vars)
 				BCResult <- .tobiclust_transf(SelResult,thresZ=paste0(thresZ),thresL=paste0(thresL))	
 				
-				image.command <- paste0("HeatmapBC(data=",ActiveDataSet(),",res=",BCResult,",BC=",BC,",reorder=",reorder,",background=",background,",zeroBC=",zeroBC,",transf='",transf,"',bin.thres=",bin.thres,",disc.nof=",disc.nof,",disc.quant=",disc.quant,")")
+				image.command <- paste0("HeatmapBC.GUI(data=",ActiveDataSet(),",res=",BCResult,",BC=",BC,",reorder=",reorder,",background=",background,",zeroBC=",zeroBC,",transf='",transf,"',bin.thres=",bin.thres,",disc.nof=",disc.nof,",disc.quant=",disc.quant,")")
 				doItAndPrint(image.command)
 				
 			}

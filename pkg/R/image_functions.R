@@ -5,9 +5,10 @@
 
 
 
-HeatmapBC <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=TRUE,transf=c("none","bin","disc"),bin.thres=NA,disc.nof=10,disc.quant=FALSE){
-	
-	orderRec <- function(col, resBC) {
+HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=TRUE,transf=c("none","bin","disc"),bin.thres=NA,disc.nof=10,disc.quant=FALSE){
+	if(res@Number==0){stop("No biclusters available",call.=FALSE)}
+		
+	orderRec <- function(col, resBC) { ## THIS ALGORITHM IS BORROWED FROM THE plot.iBBiG function in the iBBiG package.
 		if (col < ncol(resBC)) {
 			currentCovs <- resBC[, col] == 1
 			sub1 <- sum(currentCovs) > 0
@@ -90,7 +91,13 @@ HeatmapBC <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=TRUE
 	### Fill in color for BC's
 	for (i in 1:length(nBC)) {
 		row.index <- res@RowxNumber[, nBC[i]] == 1
-		col.index <- res@NumberxCol[nBC[i], ] == 1
+		
+		if(res@Number==1){  ## IF THERE IS ONLY 1 BICLUSTERS, YOU CANNOT TAKE ROWS
+			col.index <- res@NumberxCol==1
+		}
+		else{
+			col.index <- res@NumberxCol[nBC[i], ] == 1
+		}
 				
 		if(zeroBC){
 			image.mat[row.index, col.index] <- (i + 1)
@@ -119,6 +126,9 @@ HeatmapBC <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=TRUE
 	if(background){
 		if(BIN){
 			backCol <- c("#BEBEBE4D","#0000FF4D")
+		}
+		if(transf=="disc"){
+			backCol <- sapply(redgreen(511),FUN=function(x){return(paste0(x,"4D"))}) # Add suffix to color code to make it opacity=0.3
 		}
 		else{
 			backCol <- sapply(greenred(511),FUN=function(x){return(paste0(x,"4D"))}) # Add suffix to color code to make it opacity=0.3

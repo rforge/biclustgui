@@ -387,7 +387,7 @@
 }
 
 @Article{Prelic2006,
-  Title                    = {A systematic comparison and evaluation of biclustering methods for gene expression data},
+  Title                    = {A Systematic comparison and evaluation of biclustering methods for gene expression data},
   Author                   = {Preli\'{c}, A. and Bleuler, S. and Zimmermann, P. and Wille A. and B\"{u}hlmann, P. and Gruissem, W. and Henning, L. and Thiele, L. and Zitzler, E.},
   Journal                  = {Bioinformatics},
   Year                     = {2006},

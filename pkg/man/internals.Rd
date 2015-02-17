@@ -30,6 +30,7 @@
 \alias{.isa2biclust}
 \alias{.checkplotgridpref}
 \alias{greenred}
+\alias{redgreen}
 
 \title{List of Internal Functions}
 
