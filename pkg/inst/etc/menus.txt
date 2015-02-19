@@ -95,3 +95,6 @@ item BICLUSTERINGHELPmenu	command		"Save/Load"				"saveload_WINDOW"	""	""
 
 ## Draw Heatmap Menu
 item BICLUSTERINGHELPmenu	command		"Draw Heatmaps"			"image_WINDOW"		""	""
+
+## Jaccard Index Menu
+item BICLUSTERINGHELPmenu	command		"Jaccard Index..."		"jaccard_WINDOW"		""	""

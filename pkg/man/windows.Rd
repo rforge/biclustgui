@@ -31,6 +31,7 @@
 \alias{saveload_WINDOW}
 \alias{plotgridpref_WINDOW}
 \alias{image_WINDOW}
+\alias{jaccard_WINDOW}
 
 \title{Window Functions}
 
@@ -61,6 +62,7 @@ iBBiG_WIN()
 image_WINDOW()
 isadefault_WIN()
 isaextraplots_WINDOW(methodname)
+jaccard_WINDOW()
 plotgridpref_WINDOW()
 rqubic_WINDOW()
 saveload_WINDOW()

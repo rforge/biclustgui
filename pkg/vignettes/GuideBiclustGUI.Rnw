@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 0.6.4}
+\title{The BiclustGUI R Package - 0.6.5}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}
@@ -441,10 +441,11 @@ will appear after loading the plug-in.
 
 \begin{table}[H]
 \centering
+\resizebox{\linewidth}{!}{
 \begin{tabular}{ccl}
 {\bf Type} & {\bf Package} & {\bf Method/Description}\\
 \hline
-\multirow{12}{*}{{\it Biclustering Algorithms}} &
+\multirow{20}{*}{{\it Biclustering Algorithms}} &
 \multirow{6}{*}{\texttt{biclust}} & Plaid \\
 & & CC\\
 & & XMotif\\
@@ -467,11 +468,12 @@ will appear after loading the plug-in.
 & & \\
 \hline
 & & \\
-\multirow{2}{*}{{\it General Plots/Diagnostics}} & \texttt{BcDiag} & Bicluster
+\multirow{3}{*}{{\it General Plots/Diagnostics}} & \texttt{BcDiag} & Bicluster
 Diagnostics Plots \\
 & & \\
 & \texttt{superbiclust} & Generating Robust Biclusters from a Bicluster Set
 \end{tabular}
+}
 \caption{{\it Table of implemented packages}\label{package_table}}
 \end{table}
 \begin{figure}[H]
@@ -587,6 +589,16 @@ selection of biclusters might be helpfull in this
 scenario. Another solution could be to turn to software like FURBY
 for which the results can be exported.
 
+\subsubsection{Jaccard Index}
+\noindent In the Jaccard Index Window (Figure \ref{jaccardindexwindow}) it is
+possible to compute the Jaccard Index between 2 biclustering results which can
+be selected in the results box.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{figures/jaccardindexwindow.png}
+\caption{{\it Compute Jaccard Index Window }\label{jaccardindexwindow}}
+\end{figure}
 
 \subsubsection{Clear Results}
 The {\it Clear Results} button in the {\it Help \& Utilities} menu will
