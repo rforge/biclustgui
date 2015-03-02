@@ -529,48 +529,48 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 		method_data <- data.frame()
 				
 		#Plaid
-		method_data <- rbind(method_data,c("Plaid","Coherent Values","biclustplaid_WIN()","Plaid"))
-		colnames(method_data) <- c("name","type","window","saveobject")
-		for(i in 1:4){method_data[,i] <- as.character(method_data[,i])}
+		method_data <- rbind(method_data,c("Plaid","Coherent Values","Additive","biclustplaid_WIN()","Plaid"))
+		colnames(method_data) <- c("name","type","discovery","window","saveobject")
+		for(i in 1:dim(method_data)[2]){method_data[,i] <- as.character(method_data[,i])}
 		
 		#CC
-		method_data <- rbind(method_data,c("CC","Coherent Values","biclustCC_WIN()","CC"))
+		method_data <- rbind(method_data,c("CC","Coherent Values","Additive","biclustCC_WIN()","CC"))
 		
 		#XMotifs
-		method_data <- rbind(method_data,c("XMotifs","Coherent Evolution","biclustXMotif_WIN()","XMotifs"))
+		method_data <- rbind(method_data,c("XMotifs","Coherent Evolution","NA","biclustXMotif_WIN()","XMotifs"))
 		
 		#Spectral
-		method_data <- rbind(method_data,c("Spectral","Coherent Values","biclustspectral_WIN()","Spectral"))
+		method_data <- rbind(method_data,c("Spectral","Coherent Values","Multiplicative","biclustspectral_WIN()","Spectral"))
 		
 		#QuestMotif
-		method_data <- rbind(method_data,c("QuestMotif","Coherent Evolution","biclustquest_WIN()","Questmotif"))
+		method_data <- rbind(method_data,c("QuestMotif","Coherent Evolution","NA","biclustquest_WIN()","Questmotif"))
 		
 		#Bimax
-		method_data <- rbind(method_data,c("Bimax","Constant","biclustbimax_WIN()","Bimax"))
+		method_data <- rbind(method_data,c("Bimax","Constant","NA","biclustbimax_WIN()","Bimax"))
 		
 		#Laplace Prior
-		method_data <- rbind(method_data,c("Laplace Prior","Coherent Values","fabialaplace_WIN()","FabiaLaplacePrior"))
+		method_data <- rbind(method_data,c("Laplace Prior","Coherent Values","Multiplicative","fabialaplace_WIN()","FabiaLaplacePrior"))
 		
 		#Post-Projection
-		method_data <- rbind(method_data,c("Post-Projection","Coherent Values","fabiapostprojection_WIN()","FabiaPostProjection"))
+		method_data <- rbind(method_data,c("Post-Projection","Coherent Values","Multiplicative","fabiapostprojection_WIN()","FabiaPostProjection"))
 		
 		#Sparseness Projection
-		method_data <- rbind(method_data,c("Sparseness Projection","Coherent Values","fabiasparsenessprojection_WIN()","FabiaSparsenessProjection"))
+		method_data <- rbind(method_data,c("Sparseness Projection","Coherent Values","Multiplicative","fabiasparsenessprojection_WIN()","FabiaSparsenessProjection"))
 		
 		#SPARSE
-		method_data <- rbind(method_data,c("SPARSE","Coherent Values","fabiaSPARSE_WIN()","FabiaSPARSE"))
+		method_data <- rbind(method_data,c("SPARSE","Coherent Values","Multiplicative","fabiaSPARSE_WIN()","FabiaSPARSE"))
 		
 		#ISA # PLACEHOLDER
-		method_data <- rbind(method_data,c("ISA","Coherent Evolution","isadefault_WIN()","ISA"))
+		method_data <- rbind(method_data,c("ISA","Coherent Evolution","NA","isadefault_WIN()","ISA"))
 		
 		#iBBiG # PLACEHOLDER
-		method_data <- rbind(method_data,c("iBBiG","Constant","iBBiG_WIN()","IBBIG"))
+		method_data <- rbind(method_data,c("iBBiG","Constant","NA","iBBiG_WIN()","IBBIG"))
 		
 		#rQubic # PLACEHOLDER
-		method_data <- rbind(method_data,c("Rqubic","Coherent Evolution","rqubic_WINDOW()","Rqubic"))
+		method_data <- rbind(method_data,c("Rqubic","Coherent Evolution","NA","rqubic_WINDOW()","Rqubic"))
 		
 		#BicARE # PLACEHOLDER
-		method_data <- rbind(method_data,c("BicARE","Coherent Values","bicare_WINDOW()","BICARE"))
+		method_data <- rbind(method_data,c("BicARE","Coherent Values","Additive","bicare_WINDOW()","BICARE"))
 		
 		# Assigning to Global Variable
 		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)

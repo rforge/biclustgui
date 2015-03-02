@@ -76,7 +76,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 0.6.5}
+\title{The BiclustGUI R Package - 0.99.0}
 \author{De Troyer Ewoud}
 \date{}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -837,7 +837,7 @@ both (recommended). Next the model which is fitted to each layer can be
 specified in the {\it Model Box}. This coincides with formula (3) and is
 defaulted to \verb|y ~ m + a + b| (\verb|m|=constant for all elements in
 bicluster; \verb|a|=constant for all rows in bicluster; \verb|b|=constant for all columns in
-bicluster).
+bicluster). 
 \\ \\
 \noindent The remaining parameters are there to further specify the layer
 options in the algorithm. The {\it background} check specifies if there is a
@@ -1952,11 +1952,10 @@ the following items:
 \begin{itemize}
   \item The necessary window scripts (manually or through the templates)
   \item A description of how the menu should look like in R-Commander (e.g. Biclust menu opens up into several subitems like Plaid, Xmotif,\dots)
-  \item \textcolor{red}{(A list of functions which are used from your packages to
-  be able to selectively import them in the namespace of the GUI.)}
   \item A function to transform your results object to a \verb|biclust| object.
   This will make sure your package will be immediately compatible with
-  \verb|BcDiag| and \verb|superbiclust|.
+  \verb|BcDiag| and \verb|superbiclust| as well as all the {\it Extra Utilities}
+  the GUI offers.
   \item {\it Optional:} The correct criteria which should be used in the {\it Search Window}
 \end{itemize}
  
@@ -2109,7 +2108,10 @@ information for the Plaid method.
   value determining compatibility with the \verb|BcDiag| and \verb|superbiclust|
   package respectively. Please note that this only enables the appearance of the
   buttons in the second tab. For a button to function properly, some minor
-  coding needs to be carried out by the maintainer.
+  coding needs to be carried out by the maintainer.\\
+  (Note that if a transformation function to a \verb|biclust| object is given,
+  namely the format in which the results of methods in the \verb|biclust|
+  package are, this almost requires no work on the maintainer's side)
   
 \end{description}
 
@@ -2791,21 +2793,27 @@ on top of the R Commander one, containing whatever you specified in the script.
 \subsection{The BiclustGUI R Package}
 \subsubsection{Installing and Loading - Installing Script}
 \begin{verbatim}
+## PACKAGES AVAILABLE ON CRAN ##
 install.packages("biclust")
 install.packages("BcDiag")
-#install.packages("BcDiag", repos="http://R-Forge.R-project.org") # More up to date than CRAN
 install.packages("superbiclust")
 install.packages("Rcmdr")
 install.packages("isa2")
 install.packages("gplots")
 
+## PACKAGES AVAILABLE ON BIOCONDUCTOR ##
 source("http://bioconductor.org/biocLite.R")
 biocLite("iBBiG")
 biocLite("fabia")
 biocLite("rqubic")
 biocLite("BicARE")
 
-install.packages("RcmdrPlugin.BiclustGUI", repos="http://R-Forge.R-project.org")
+## Biclust GUI - Development Version ##
+install.packages("RcmdrPlugin.BiclustGUI", 
+repos="http://R-Forge.R-project.org")
+
+## Biclust GUI - Release Version (April 2015) ##
+biocLite("RcmdrPlugin.BiclustGUI")
 
 \end{verbatim}
 

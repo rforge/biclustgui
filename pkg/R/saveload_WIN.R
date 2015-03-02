@@ -71,7 +71,7 @@ saveload_WINDOW <- function(){
 			temp.data <- tclvalue(data_vars)
 			GO <- FALSE
 			if((length(sel2)!=0)&(temp.data!="")){	
-				temp.type <- method_data[sel2,4]
+				temp.type <- method_data$saveobject[sel2]
 				GO <- TRUE
 			}
 			
@@ -252,7 +252,7 @@ saveload_WINDOW <- function(){
 	tkgrid(loadButton,sticky="nw",padx="6",pady="15")
 	
 	.makesearchdata()
-	method_data <- biclustGUI_biclusteringsearchdata # Save the global variable in method_data
+	method_data <- get("biclustGUI_biclusteringsearchdata", envir =.GlobalEnv)# Save the global variable in method_data
 	
 	tkgrid(labelRcmdr(tab2Frame,fg=getRcmdr("title.color"),font="RcmdrTitleFont",text=gettextRcmdr("Optional Load Information (for non-GUI saves)")),sticky="nw",padx="6")
 		

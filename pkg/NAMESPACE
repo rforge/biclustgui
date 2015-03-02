@@ -5,7 +5,7 @@ import(stats, Rcmdr)
 importFrom(tcltk,ttknotebook,tkwidget,.Tk.subwin,.Tk.newwin,tkbutton,ttklabel,tkadd)
 importFrom(gplots,greenred,redgreen)
 
-## IMPORT ALL NECESSARY BICLUSTERING PACKAGES - FULL IMPORT ##
+## IMPORT ALL NECESSARY BICLUSTERING PACKAGES - FULL IMPORT ##  
 #import(biclust,fabia,isa2,iBBiG,superbiclust,BcDiag)
 #importFrom(BicARE,FLOC, testAnnot, testSet, residue, makeReport)
 #import(rqubic)
