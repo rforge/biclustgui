@@ -40,9 +40,9 @@ newtool_WINDOW <- function(methodname){
 	grid.rows <- .combine.rows(input=input,rows=c(),title="Plot 1",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
-	##################################################################
-	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL NEW TOOL FUNCTION ##
-	##################################################################
+	############################################################
+	## USE ALL THE ARGUMENTS IN THE GENERAL NEW TOOL FUNCTION ##
+	############################################################
 	
 	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
 	

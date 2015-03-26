@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 0.99.0}
+\title{The BiclustGUI R Package - 0.99.1}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}
@@ -1936,13 +1936,14 @@ template script.
 
 
 \subsubsection{New Method Script - ClusterTab \& PlotDiagTab}
+\label{sec:newmethodscript}
 We will now start going through \verb|newmethod_script.R| which can be found in
 the Appendix.
 \\ \\
 \noindent {\bf \underline{General Method Information}}\\
 \noindent The script starts by making a function which will be called on to
 create a window. First thing you should do of course is to rename this function
-to your own liking. Next, some objects are initialized that will be used to
+to your own liking. Next, some objects are initialized (\verb|new.frames|, \verb|grid.config| and \verb|grid.rows|) that will be used to
 store information in about your window you are about to create.
 
 
@@ -1985,9 +1986,10 @@ newmethod_WINDOW <- function(){
 	superbiclust.comp <- FALSE
 
 	
-} # ignore
+} # Note: The curly bracket is placed here for syntax reasons. 
+  #       It should be placed after the call of cluster_template.
 @
-\noindent The scripts starts be filling in some information about your
+\noindent The scripts starts by filling in some information about your
 biclustering method. A clarifying example follows later, filling in this
 information for the Plaid method.
 \begin{description}
@@ -2074,7 +2076,6 @@ information for the Plaid method.
 \label{discr.bin}}
 \end{figure}
 
-\newpage
 \noindent {\bf \underline{Cluster Tab}}\\
 After providing the information about the method we can finally start making
 windows! Both the clustering tab and the plotting \& diagnostics tab are created
@@ -2133,6 +2134,7 @@ generated in the clustering tab.
   \item Entry Fields
   \item Sliders
   \item Spinboxes
+  \item Manual Buttons (only for plot \& diagnotics tab)
 \end{itemize}
 \noindent In future updates, there is still the possibility to add even more
 types if required.
@@ -2196,9 +2198,9 @@ grid.config <- .grid.matrix(input=input,c("frame5","frame6"),nrow=1,ncol=2,
 grid.rows <- .combine.rows(input=input,rows=c(1),title="Plot 1",border=TRUE,
    grid.rows=grid.rows,grid.config=grid.config)
 
-#########################################################################
-## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
-#########################################################################
+###################################################################
+## USE ALL THE ARGUMENTS IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
+###################################################################
 
 cluster_template(methodname=methodname,methodfunction=methodfunction,
    methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,
@@ -2221,6 +2223,10 @@ tied to a plot or diagnostics function which uses some arguments or it can lead
 to a new window entirely which can be created with the {\it new tool script}.\\
 Finally at the end of the script, all the variables and created objects are used
 in the \verb|cluster_template| function which will create the actual window.
+\\ \\
+This \verb|cluster_template| call is the final line of the function
+\verb|newmethod_WINDOW| we started creating in Section
+\ref{sec:newmethodscript}.
 
 \subsubsection{The Frame Scripts}
 In this section, the several types of frames which can be used in the
@@ -2240,7 +2246,7 @@ this previous mentioned \verb|.add.frame| function.
 \centering
 \includegraphics[scale=0.5]{figures/title_border.png}
 \caption{{\bf a.}{\it Title \& No Border} {\bf b.}{\it Title \& Border} {\bf
-c.}{\it No Title \& No Border}
+c.}{\it No Title \& Border}
 \label{titleborder}}
 \end{figure}
 
@@ -2582,9 +2588,9 @@ newtool_WINDOW <- function(methodname){
 	grid.rows <- .combine.rows(input=input,rows=c(),title="Plot 1",
 	   border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
-	##################################################################
-	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL NEW TOOL FUNCTION ##
-	##################################################################
+	############################################################
+	## USE ALL THE ARGUMENTS IN THE GENERAL NEW TOOL FUNCTION ##
+	############################################################
 	
 	newtool_template(toolname=toolname,methodname=methodname,
 	   toolhelp=toolhelp,grid.config=grid.config,
@@ -2617,7 +2623,6 @@ become clear in the example shortly.
 \subsubsection{A quick example - BcDiag}
 \noindent We will now go through a couple of parts of the script responsible for
 the BcDiag window. The full script can once again be found in the Appendix.
-\textcolor{red}{NOTE: THIS CODE IS NOT THE MOST UPDATED VERSION OF THIS SCRIPT (SINCE THE AUTOMATISATION FOR NEW METHODS). THE EXAMPLE IS STILL GOOD AND CORRECT SO THEREFORE KEEP IT TO NOT MAKE IT UNNECESSARILY COMPLEX?}
 
 <<bcdiag_script,eval=FALSE,echo=TRUE>>=
 bcdiag_WINDOW <- function(methodname){  
@@ -2980,9 +2985,9 @@ newmethod_WINDOW <- function(){     # Change newmethod to your own method name
 	grid.rows <- .combine.rows(input=input,rows=c(1),title="Plot 1",
     border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		
-	#########################################################################
-	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
-	#########################################################################
+	###################################################################
+	## USE ALL THE ARGUMENTS IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
+	###################################################################
 	
 	cluster_template(methodname=methodname,methodfunction=methodfunction,
     methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg
@@ -3768,9 +3773,9 @@ newtool_WINDOW <- function(methodname){
     border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 	
 	
-	##################################################################
-	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL NEW TOOL FUNCTION ##
-	##################################################################
+	############################################################
+	## USE ALL THE ARGUMENTS IN THE GENERAL NEW TOOL FUNCTION ##
+	############################################################
 	
 	newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,
     data.matrix=data.matrix,grid.config=grid.config,grid.rows=grid.rows,

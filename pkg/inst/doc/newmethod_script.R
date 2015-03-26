@@ -83,9 +83,9 @@ newmethod_WINDOW <- function(){     # Change newmethod to your own method name
 	
 	grid.rows <- .combine.rows(input=input,rows=c(1),title="Plot 1",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		
-	#########################################################################
-	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
-	#########################################################################
+	###################################################################
+	## USE ALL THE ARGUMENTS IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
+	###################################################################
 	
 	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.transf=data.transf,data.discr=data.discr,data.bin=data.bin,methodshow=methodshow,methodsave=methodsave)
 	
