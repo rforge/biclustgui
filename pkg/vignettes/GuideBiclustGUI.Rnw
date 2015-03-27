@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 0.99.1}
+\title{The BiclustGUI R Package - 0.99.2}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}
@@ -2728,7 +2728,8 @@ install.packages("BcDiag")
 install.packages("superbiclust")
 install.packages("Rcmdr")
 install.packages("isa2")
-install.packages("gplots")
+
+install.packages("gplots") # Extra package
 
 ## PACKAGES AVAILABLE ON BIOCONDUCTOR ##
 source("http://bioconductor.org/biocLite.R")

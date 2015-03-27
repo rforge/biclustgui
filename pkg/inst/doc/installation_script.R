@@ -5,6 +5,8 @@ install.packages("superbiclust")
 install.packages("Rcmdr")
 install.packages("isa2")
 
+install.packages("gplots") # Extra package
+
 ## PACKAGES AVAILABLE ON BIOCONDUCTOR ##
 source("http://bioconductor.org/biocLite.R")
 biocLite("iBBiG")
