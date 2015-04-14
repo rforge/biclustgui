@@ -286,6 +286,6 @@ saveload_WINDOW <- function(){
 	
 	
 	
-	dialogSuffix(use.tabs=TRUE, grid.buttons=TRUE,onOK=onOK,tabs=c("tab1","tab2"),tab.names=c("Save","Load"))
+	dialogSuffix(use.tabs=TRUE, grid.buttons=TRUE,onOK=onOK,tabs=c("tab1","tab2"),tab.names=c("Save","Load"),preventGrabFocus=TRUE)
 		
 }

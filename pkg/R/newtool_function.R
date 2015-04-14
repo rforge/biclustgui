@@ -537,7 +537,7 @@ newtool_template <- function(toolname="",methodname="",toolhelp="",grid.config=g
 	tkgrid(exithelpFrame,sticky="e",padx=5,pady=6)
 	
 	
-	dialogSuffix(use.tabs=FALSE,onOK=onOK)
+	dialogSuffix(use.tabs=FALSE,onOK=onOK,preventGrabFocus=TRUE)
 	
 }
 

@@ -227,7 +227,7 @@ extractbicluster_WINDOW <- function(){
 	tkgrid.configure(exitButton,sticky="e")
 	
 	
-	dialogSuffix(onOK=onOK)
+	dialogSuffix(onOK=onOK,preventGrabFocus=TRUE)
 	
 	
 	

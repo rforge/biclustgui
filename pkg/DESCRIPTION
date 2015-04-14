@@ -1,7 +1,7 @@
 Package: RcmdrPlugin.BiclustGUI
 Type: Package
 Title: Rcmdr Plug-in Biclust GUI
-Version: 0.99.2
+Version: 0.99.3
 Date: 2015-03-27
 Author: De Troyer Ewoud, Otava Martin
 Maintainer: De Troyer Ewoud <ewoud.detroyer@uhasselt.be>

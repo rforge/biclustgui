@@ -278,7 +278,7 @@ exportFURBY_WINDOW <- function(){
 	
 
 	
-	dialogSuffix(use.tabs=TRUE, grid.buttons=TRUE,onOK=onOK,tabs=c("tab1","tab2"),tab.names=c("FABIA","Other"))
+	dialogSuffix(use.tabs=TRUE, grid.buttons=TRUE,onOK=onOK,tabs=c("tab1","tab2"),tab.names=c("FABIA","Other"),preventGrabFocus=TRUE)
 }
 
 #exportFURBY_WINDOW()

@@ -828,7 +828,7 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 	tkgrid.configure(diagFrame,sticky="w")
 	tkgrid.configure(exitFrame,sticky="e")
 	
-	dialogSuffix(use.tabs=TRUE, grid.buttons=FALSE,onOK=onOK,tabs=c("clusterTab","plotdiagTab"),tab.names=c("Biclustering","Plots & Diagnostics"))
+	dialogSuffix(use.tabs=TRUE, grid.buttons=FALSE,onOK=onOK,tabs=c("clusterTab","plotdiagTab"),tab.names=c("Biclustering","Plots & Diagnostics"),preventGrabFocus=TRUE)
 	
 }
 

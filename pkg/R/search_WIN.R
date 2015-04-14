@@ -92,7 +92,7 @@ search_WINDOW <- function(){
 	onCancel <- function(){}
 	
 	
-	dialogSuffix(onOK=onOK)
+	dialogSuffix(onOK=onOK,preventGrabFocus=TRUE)
 	
 	
 }

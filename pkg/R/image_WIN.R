@@ -266,6 +266,6 @@ image_WINDOW <- function(){
 	
 	tkgrid(tab1Frame)
 	tkgrid(tab2Frame)
-	dialogSuffix(use.tabs=TRUE, grid.buttons=TRUE,onOK=onOK,tabs=c("tab1","tab2"),tab.names=c("Data","Biclustering Results"))
+	dialogSuffix(use.tabs=TRUE, grid.buttons=TRUE,onOK=onOK,tabs=c("tab1","tab2"),tab.names=c("Data","Biclustering Results"),preventGrabFocus=TRUE)
 		
 }

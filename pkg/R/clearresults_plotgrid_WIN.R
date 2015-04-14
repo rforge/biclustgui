@@ -154,6 +154,6 @@ plotgridpref_WINDOW <- function(){
 	tkgrid.configure(okButton,sticky="w")
 	tkgrid.configure(rightbuttonFrame,sticky="e")
 	
-	dialogSuffix(onOK=onOK)
+	dialogSuffix(onOK=onOK,preventGrabFocus=TRUE)
 	
 }

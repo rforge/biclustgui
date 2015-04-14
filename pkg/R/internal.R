@@ -19,3 +19,10 @@
 	
 	
 }
+
+
+#if(getRversion() >= "2.15.1"){
+#	globalVariables(c("x","matrixdata","extractBic","isa.biclust","binarize","discretize",
+#					"method_class","annotation","pData","temp","biclust","BCBimax",""))
+#	
+#}

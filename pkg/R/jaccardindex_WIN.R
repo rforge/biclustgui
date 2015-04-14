@@ -135,7 +135,7 @@ jaccard_WINDOW <- function(){
 	tkgrid.configure(buttonsleft,sticky="w")
 	tkgrid.configure(buttonsright,sticky="e")
 	
-	dialogSuffix(onOK=onOK)
+	dialogSuffix(onOK=onOK,preventGrabFocus=TRUE)
 	
 }
 

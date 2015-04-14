@@ -187,7 +187,7 @@ findbiclusters_WINDOW <- function(){
 
 	
 	
-	dialogSuffix(onOK=onOK)
+	dialogSuffix(onOK=onOK,preventGrabFocus=TRUE)
 	
 	
 	
