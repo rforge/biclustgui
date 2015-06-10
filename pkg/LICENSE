@@ -1,3 +1,3 @@
 DISCLAIMER: 
 The RcmdrPlugin.BiclustGUI package also makes use of the isa algorithm, implemented in the isa2 package. 
-Please make note that the use of the implementation of this algorithm in the isa2 package is under a non-commercial license "CC BY-NC-SA 3.0"
+Please make note that the use of the implementation of this algorithm in the isa2 package is under a non-commercial license "CC BY-NC-SA 4.0"
