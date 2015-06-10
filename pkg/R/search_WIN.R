@@ -33,7 +33,8 @@ search_WINDOW <- function(){
 		discovery <- tclvalue(radiodiscoVariable)
 		method.names <- SearchMethodData(method_data,type,discovery)
 		for (name in method.names) tkinsert(methodBox, "end", name)
-		global.variable.list<<- method.names
+		assign("global.variable.list",method.names,envir=.GlobalEnv)
+		#global.variable.list<<- method.names
 		
 	}
 	

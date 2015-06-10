@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 0.99.3}
+\title{The BiclustGUI R Package - 0.99.4}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}
@@ -159,8 +159,8 @@ analysis. These are the main advantages \verb|Rcmdr| has over other available
 RGUI packages.\\ \\
 Starting with version 1.3-0, \verb|Rcmdr| also provides the possibility of {\it
 plug-in} packages which can augment the R Commander menus. These packages are
-developed, maintained, distributed and installed indepently of \verb|Rcmdr| and
-can provide a wide variety of new dialog boxes and statistical functionality.
+developed, maintained, distributed and installed independently of \verb|Rcmdr|
+and can provide a wide variety of new dialog boxes and statistical functionality.
 More information on developing such a plug-in can be found in \citet{Fox2007}.\\
 It is through this functionality that the \verb|RcmdrPlugin.BiclustGUI| has been
 created which brings a new menu to the R Commander GUI containing a collection
@@ -1206,10 +1206,12 @@ as said before, the factor model assumes sparseness of factors and their
 loadings and this is reflected by the choice of the corresponding prior on
 loadings and factors (i.e. a Laplace Distribution).\\
 Using this factor model, biclusters can be be obtained as following. On a
-side note, it is important to mention that the method works on normalized data.
+side note, it is important to mention that the method requires normalized and
+centered data.
 Now, the algorithm will estimate the parameters and factors through maximizing
-the posterior of $\boldsymbol\lambda$, $\boldsymbol\Psi$ and $\mathbf{Z}$. Using
-the estimates for $\boldsymbol\Lambda$ and $\mathbf{Z}$, the denoized data is
+the posterior of $\boldsymbol\lambda$, $\boldsymbol\Psi$ and $\mathbf{Z}$ with
+the help of a variational EM algorithm.
+Using the estimates for $\boldsymbol\Lambda$ and $\mathbf{Z}$, the denoized data is
 obtained and the biclusters are derived from $\lambda_p Z_p$. This means that
 this component can be seen as a bicluster of which the non-zero genes and
 samples are members of the bicluster. \\
