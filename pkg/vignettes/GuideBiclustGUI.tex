@@ -76,7 +76,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 0.99.4}
+\title{The BiclustGUI R Package - 1.0.0}
 \author{De Troyer Ewoud}
 \date{}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -388,11 +388,10 @@ More information on the use of \verb|R commander| can be found in {\it `Getting
 Started With the R Commander'} by \citet{Fox2007}.
 
 \subsubsection{RcmdrPlugin.BiclustGUI}
-\noindent The latest version of the package can be obtained by sending a mail to
-\href{mailto:ewoud.detroyer@uhasselt.be}{ewoud.detroyer@student.uhasselt.be}. You will get a zip-file which
-contents will have to be placed inside the library folder of R. Another
-possibility is to use the following command to install it from
-R-forge:\\ \verb|install.packages("RcmdrPlugin.BiclustGUI",repos="http://R-Forge.R-project.org")|\\
+\noindent The \texttt{RcmdrPlugin.BiclustGUI} can be obtained from 2 repositories.
+The development version is available on R-Forge 
+(verb|install.packages("RcmdrPlugin.BiclustGUI",repos="http://R-Forge.R-project.org")|) 
+and the release version on CRAN (install.packages("RcmdrPlugin.BiclustGUI")).\\
 Also note that \verb|RcmdrPlugin.BiclustGUI| depends on several other
 biclustering packages which should also be installed. Some can be found on
 {\bf CRAN}, others on {\bf Bioconductor}.
@@ -2820,8 +2819,8 @@ biocLite("BicARE")
 install.packages("RcmdrPlugin.BiclustGUI", 
 repos="http://R-Forge.R-project.org")
 
-## Biclust GUI - Release Version (April 2015) ##
-biocLite("RcmdrPlugin.BiclustGUI")
+## Biclust GUI - Release Version  ##
+install.packages("RcmdrPlugin.BiclustGUI")
 
 \end{verbatim}
 

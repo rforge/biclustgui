@@ -56,7 +56,7 @@ parallelCoordinates3 <- function(x,bicResult,number,type2="default",plotBoth=FAL
 biclust.quest.GUI <- function(x,method,ns,nd,sd,alpha,number,d,quant,vari){
 	
 	if(method=="BCQuest"){
-		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuest(),ns=",ns,",nd=",nd,",sd=",sd,",number=",number,")`",sep=""))
+		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuest(),ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
 		return(biclust(x=x, method=BCQuest(), ns=ns, nd=nd, sd=sd, alpha=alpha, number=number))
 		
 	}

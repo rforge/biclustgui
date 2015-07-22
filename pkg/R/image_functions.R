@@ -9,7 +9,7 @@ HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=
 	if(res@Number==0){stop("No biclusters available",call.=FALSE)}
 		
 	orderRec <- function(col, resBC) { ## THIS ALGORITHM IS BORROWED FROM THE plot.iBBiG function in the iBBiG package.
-		if (col < ncol(resBC)) {
+		if (col <= ncol(resBC)) {
 			currentCovs <- resBC[, col] == 1
 			sub1 <- sum(currentCovs) > 0
 			if (sub1) {
@@ -82,13 +82,8 @@ HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=
 		colorBlackWhite = c(whiteCol)
 	}
 		
-	### Making color vector	 + legend color
-	col <- colors()[c(610,565,589,367,22,554,41,35,48,59,64,76,91,96,100,116,143,381,389,394.439,448,471,529,559,568,631,646)]
-	while (length(col) < length(nBC)){ col = c(col, col)}
-	legendcol = col[nBC]
-	col = c(colorBlackWhite, legendcol)
-	
-	### Fill in color for BC's
+	### Fill in color for BC's + DELETING EMPTY BICLUSTERS (0 rows or columns)
+	remove.BC <- c()
 	for (i in 1:length(nBC)) {
 		row.index <- res@RowxNumber[, nBC[i]] == 1
 		
@@ -98,20 +93,41 @@ HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=
 		else{
 			col.index <- res@NumberxCol[nBC[i], ] == 1
 		}
+		
+		if(sum(row.index)>0 & sum(col.index)>0){
+			if(zeroBC){
+				image.mat[row.index, col.index] <- (i + 1)
+			}
+			else{
+				image.mat[row.index, col.index][data[row.index, col.index] != 0] <- (i + 1)
 				
-		if(zeroBC){
-			image.mat[row.index, col.index] <- (i + 1)
+			}
 		}
 		else{
-			image.mat[row.index, col.index][data[row.index, col.index] != 0] <- (i + 1)
-				
+			remove.BC <- c(remove.BC,i)			
+			
 		}
 	}
 	
+	if(length(remove.BC)>0){nBC <- nBC[-remove.BC]}
+	
+	
+	### Making color vector	 + legend color
+	col <- colors()[c(610,565,589,367,22,554,41,35,48,59,64,76,91,96,100,116,143,381,389,394.439,448,471,529,559,568,631,646)]
+	while (length(col) < length(nBC)){ col = c(col, col)}
+	legendcol = col[nBC]
+	col = c(colorBlackWhite, legendcol)
+	
 	### Reordering if necessary
-	if(reorder){
+	if(reorder & length(nBC)>1){
 		colOrder <- orderRec(1, t(res@NumberxCol)[,nBC])
 		rowOrder <- orderRec(1, res@RowxNumber[,nBC])
+		image.mat <- image.mat[rowOrder, colOrder]
+		data <- data[rowOrder,colOrder]
+	}
+	if(reorder & length(nBC)==1){
+		colOrder <- orderRec(1, matrix(t(res@NumberxCol)[,nBC],ncol=1))
+		rowOrder <- orderRec(1, matrix(res@RowxNumber[,nBC],ncol=1))
 		image.mat <- image.mat[rowOrder, colOrder]
 		data <- data[rowOrder,colOrder]
 	}
