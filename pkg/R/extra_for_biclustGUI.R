@@ -338,11 +338,30 @@ biclust.robust.fuse <- function(CutTree,method_result,superbiclust.result){
 	NumberxCol <- RowxCol$NumberxCol
 			
 		
-	Parameters <- list()
+#	Parameters <- list()
 	#eval(parse(text=paste("Parameters <- ",method_result,"@Parameters",sep="")))
-	new.biclust <- new("Biclust", Number = dim(RowxNumber)[2], RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=Parameters)
-	assign("new.biclust",new.biclust,envir=.GlobalEnv)		
+	new.biclust.command <- paste0("new.biclust <- new(\"Biclust\", Number = ",dim(RowxNumber)[2],", RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=list())")
+#	assign("new.biclust",new.biclust,envir=.GlobalEnv)	
+	
 		
+	# Making RowxNumber and NumberxCol in justDoIt - Very superfluous but necessary for using no global assigning for CRAN policies
+	.matrix2vectorasstring <- function(x){
+		dim.x <- dim(x)
+		x <- as.vector(x)
+		
+		command <- "matrix(c("
+	
+		x.string <- sapply(x,function(y){return(paste0(y))})
+		x.collapse <- paste0(x.string,collapse=",")
+	
+		command <- paste0(command,x.collapse,"),nrow=",dim.x[1],",ncol=",dim.x[2],")")
+		return(command)
+	}
+	justDoIt(paste0("RowxNumber <- ",.matrix2vectorasstring(RowxNumber)))
+	justDoIt(paste0("NumberxCol <- ",.matrix2vectorasstring(NumberxCol)))
+	
+	
+	
 	paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
 	cat(paste.cat)
 	paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
@@ -350,6 +369,7 @@ biclust.robust.fuse <- function(CutTree,method_result,superbiclust.result){
 		
 		
 	doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
+	doItAndPrint(new.biclust.command)
 	doItAndPrint(paste(method_result," <- new.biclust",sep=""))
 	
 	
@@ -540,6 +560,9 @@ chooseresultsGUI <- function(methodname,toolname){
 			
 			method_result <- gsub(" ","",methodname,fixed=TRUE)
 			method_result <- gsub("-","",method_result,fixed=TRUE)
+			
+			biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+			
 			eval(parse(text=paste0("temp.env <- biclustering.objects$ENVIR$",toolname,method_result)))
 			
 			eval(parse(text=paste0("tclvalue(new.frames[[2]][[1]]$entry.vars[[1]]) <- \"",out.vector,"\"")),envir=temp.env)

@@ -381,8 +381,9 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 
 		# in this button command, it should be checked if method_result is in biclustering.objects$all
 		temp.command <- paste("function(){
+									biclustering.objects <- .GetEnvBiclustGUI(\"biclustering.objects\")
 
-									if(!('biclustering.objects' %in% ls(envir=.GlobalEnv))){
+									if(is.null(biclustering.objects)){
 										
 										.rcmdr.warning('Apply Show Results first')
 									}

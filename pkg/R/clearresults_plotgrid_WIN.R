@@ -11,7 +11,12 @@ clearresults_WINDOW <- function(){
 	ReturnVal <- tkmessageBox(title="Clear all Bicluster Results",message = "Are you sure?",icon = "warning", type = "yesno", default = "no")
 	if(tclvalue(ReturnVal)=="yes"){
 		rm(list=.makeResultList(),envir=.GlobalEnv)
-		rm(list="biclustering.objects",envir=.GlobalEnv)
+		#rm(list="biclustering.objects",envir=.GlobalEnv)
+		rm(list="biclustering.objects",envir=.EnvBiclustGUI)
+		
+		# Also remove objects that end on "INFO"
+		info.index <- sapply(ls(envir=.GlobalEnv),FUN=function(x){grepl("[[:alnum:]]+INFO$",x)})
+		rm(list=ls(envir=.GlobalEnv)[info.index],envir=.GlobalEnv)
 	}
 	
 	
@@ -66,7 +71,9 @@ plotgridpref_WINDOW <- function(){
 	initializeDialog(title = gettextRcmdr("Make Plot Grid Dimensions...")) 
 	
 	# Making biclustering object if necessary + adding the grid preferences if necessary
-	if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+	biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+#	if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+	if(is.null(biclustering.objects)){
 		biclustering.objects <- list()
 		
 		biclustering.objects$all <- character()
@@ -74,11 +81,15 @@ plotgridpref_WINDOW <- function(){
 		biclustering.objects$superbiclust <- c()
 		biclustering.objects$dataconnect <- data.frame(result=character(),data=character(),stringsAsFactors=FALSE)
 		
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+		
 	}
 	if(!("plotgrid" %in% names(biclustering.objects))){
 		biclustering.objects$plotgrid <- c(1,1)
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
 		
 	}
 
@@ -99,7 +110,9 @@ plotgridpref_WINDOW <- function(){
 		# ps: don't forget to check biclustering.objects and see if the default has been made (1,1)
 		
 		biclustering.objects$plotgrid <- c(as.numeric(griddim1),as.numeric(griddim2))
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+		
 		
 		doItAndPrint(paste0("par(mfrow=c(",griddim1,",",griddim2,"))"))
 		
@@ -108,7 +121,9 @@ plotgridpref_WINDOW <- function(){
 	
 	onDefault <- function(){
 		biclustering.objects$plotgrid <- c(1,1)
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+		
 		
 		doItAndPrint("par(mfrow=c(1,1))")
 		onCancel()

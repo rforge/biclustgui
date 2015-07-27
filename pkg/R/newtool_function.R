@@ -363,8 +363,9 @@ newtool_template <- function(toolname="",methodname="",toolhelp="",grid.config=g
 					
 					# in this button command, it should be checked if method_result is in biclustering.objects$all
 					temp.command <- paste("function(){
-									
-									if(!('biclustering.objects' %in% ls(envir=.GlobalEnv))){
+									biclustering.objects <- .GetEnvBiclustGUI(\"biclustering.objects\")
+
+									if(is.null(biclustering.objects)){
 									
 									.rcmdr.warning('Apply Show Results first')
 									}

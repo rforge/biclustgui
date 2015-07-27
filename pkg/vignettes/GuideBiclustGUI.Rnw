@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 1.0.0}
+\title{The BiclustGUI R Package - 1.0.1}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}

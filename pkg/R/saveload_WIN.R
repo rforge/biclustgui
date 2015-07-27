@@ -31,17 +31,19 @@ saveload_WINDOW <- function(){
 		
 		# Open the data with Lazy Load in the environment of this function (not yet globally)
 		fileNameLoc <- tclvalue(tkgetOpenFile(filetypes="{{RData Files} {.RData .rda}} {{All files} *}")) 
-		tempLoc <- paste0(dirname(fileNameLoc),"/tempload")
+#		tempLoc <- paste0(dirname(fileNameLoc),"/tempload")
 		
-		e = local({load(fileNameLoc); environment()})
-		tools:::makeLazyLoadDB(e, tempLoc)
-		lazyLoad(tempLoc)
+#		e = local({load(fileNameLoc); environment()})
+#		tools:::makeLazyLoadDB(e, tempLoc)
+#		lazyLoad(tempLoc)
+		load(fileNameLoc)
 		
 		filename <- basename(fileNameLoc)
 		filename <- gsub(".RData","",filename)
 		filename <- gsub(".rda","",filename)
 		
-		if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+		biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+		if(is.null(biclustering.objects)){
 			biclustering.objects <- list()
 			
 			biclustering.objects$all <- character()
@@ -49,11 +51,13 @@ saveload_WINDOW <- function(){
 			biclustering.objects$superbiclust <- c()
 			biclustering.objects$dataconnect <- data.frame(result=character(),data=character(),stringsAsFactors=FALSE)
 			
-			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+			.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+			
 		}
 		
 		
-		get("biclustering.objects",envir=.GlobalEnv)
+#		get("biclustering.objects",envir=.GlobalEnv)
 		biclustering.objects.original <- biclustering.objects # Be able to put the old one back if correctdata returns FALSE
 		
 		# The case if the INFO file is available (when loading saved object from GUI)
@@ -102,7 +106,9 @@ saveload_WINDOW <- function(){
 					
 					# put in biclustering objects
 			
-					assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#					assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+					.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+			
 					
 					# Check if correct is or can be active dataset
 					eval(parse(text=paste0("temp.correct <- .correctdataforresult(",temp.type,")")))
@@ -111,15 +117,18 @@ saveload_WINDOW <- function(){
 						# NOW DO THE LOAD in global environmnent + overwrite
 						doItAndPrint(paste0("load('",fileNameLoc,"')"))
 						doItAndPrint(paste0(temp.type," <- ",filename))
-						unlink(paste0(tempLoc,".rdb"))
-						unlink(paste0(tempLoc,".rdx"))
+#						unlink(paste0(tempLoc,".rdb"))
+#						unlink(paste0(tempLoc,".rdx"))
 					}
 					else{
 						ReturnVal2 <- tkmessageBox(title="Loading Biclustering Results",message ="Correct Active Dataset unavailable. See warning in Message Box",icon = "error", type = "ok")
-						assign("biclustering.objects",biclustering.objects.original,envir=.GlobalEnv) # Put the original biclustering.objects back
-						get("biclustering.objects",envir=.GlobalEnv)
-						unlink(paste0(tempLoc,".rdb"))
-						unlink(paste0(tempLoc,".rdx"))
+#						assign("biclustering.objects",biclustering.objects.original,envir=.GlobalEnv) # Put the original biclustering.objects back
+						.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects.original)
+						biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+						
+#						get("biclustering.objects",envir=.GlobalEnv)
+#						unlink(paste0(tempLoc,".rdb"))
+#						unlink(paste0(tempLoc,".rdx"))
 						
 					}
 
@@ -134,7 +143,9 @@ saveload_WINDOW <- function(){
 				biclustering.objects$superbiclust <- c(biclustering.objects$superbiclust,temp.type)
 				biclustering.objects$dataconnect <- rbind(biclustering.objects$dataconnect,data.frame(result=temp.type,data=temp.data))
 	
-				assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#				assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+				.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+	
 				
 				# Check if correct is or can be active dataset
 				eval(parse(text=paste0("temp.correct <- .correctdataforresult(",temp.type,")")))
@@ -143,15 +154,17 @@ saveload_WINDOW <- function(){
 					# NOW DO THE LOAD in global environmnent + overwrite
 					doItAndPrint(paste0("load('",fileNameLoc,"')"))
 					doItAndPrint(paste0(temp.type," <- ",filename))
-					unlink(paste0(tempLoc,".rdb"))
-					unlink(paste0(tempLoc,".rdx"))
+#					unlink(paste0(tempLoc,".rdb"))
+#					unlink(paste0(tempLoc,".rdx"))
 				}
 				else{
 					ReturnVal2 <- tkmessageBox(title="Loading Biclustering Results",message ="Correct Active Dataset unavailable. See warning in Message Box",icon = "error", type = "ok")
-					assign("biclustering.objects",biclustering.objects.original,envir=.GlobalEnv) # Put the original biclustering.objects back
-					get("biclustering.objects",envir=.GlobalEnv)
-					unlink(paste0(tempLoc,".rdb"))
-					unlink(paste0(tempLoc,".rdx"))
+#					assign("biclustering.objects",biclustering.objects.original,envir=.GlobalEnv) # Put the original biclustering.objects back
+#					get("biclustering.objects",envir=.GlobalEnv)
+					.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects.original)
+					biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+#					unlink(paste0(tempLoc,".rdb"))
+#					unlink(paste0(tempLoc,".rdx"))
 					
 				}
 				
@@ -160,9 +173,13 @@ saveload_WINDOW <- function(){
 		}
 		else{
 			ReturnVal2 <- tkmessageBox(title="Loading Biclustering Results",message ="The Optional Load Information was not filled in correctly.",icon = "error", type = "ok")
-			unlink(paste0(tempLoc,".rdb"))
-			unlink(paste0(tempLoc,".rdx"))
+#			unlink(paste0(tempLoc,".rdb"))
+#			unlink(paste0(tempLoc,".rdx"))
 		}
+		
+		# Remove the result from window... or is window environment deleted automatically? NOTE: Yes, at new the environment is deleted
+		#rm(filename)
+		#rm(paste0(filename,"INFO"))
 		
 	}
 	# NOTE: ENABLE SHOW EXTENSIONS -> PUT IN VIGNETTE!!
@@ -188,6 +205,7 @@ saveload_WINDOW <- function(){
 			filename <- gsub(".RData","",filename)
 			filename <- gsub(".rda","",filename)
 			
+			biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
 			
 			index.dataconnect <- which(biclustering.objects$dataconnect$result==SelResult)
 			temp.info <- list()
@@ -196,7 +214,12 @@ saveload_WINDOW <- function(){
 			
 			save.command <- paste0("save(list=c('",filename,"','",filename,"INFO'),file='",filenameLoc,"')")
 			
-			assign(paste0(filename,"INFO"),temp.info,envir=.GlobalEnv)
+			#assign(paste0(filename,"INFO"),temp.info,envir=.GlobalEnv) # change to doItandPrint where temp.info is put in filenameINFO
+			
+			temp.info.command <- paste0(filename,"INFO <- list(dataconnect=data.frame(result=\"",as.character(temp.info$dataconnect$result),"\",data=\"",as.character(temp.info$dataconnect$data),"\"),all=\"",temp.info$all,"\")")
+			
+			
+			doItAndPrint(temp.info.command)
 			doItAndPrint(paste0(filename," <- ",SelResult))
 			doItAndPrint(save.command)
 			
@@ -252,7 +275,7 @@ saveload_WINDOW <- function(){
 	tkgrid(loadButton,sticky="nw",padx="6",pady="15")
 	
 	.makesearchdata()
-	method_data <- get("biclustGUI_biclusteringsearchdata", envir =.GlobalEnv)# Save the global variable in method_data
+	method_data <- .GetEnvBiclustGUI("biclustGUI_biclusteringsearchdata")# Save the global variable in method_data
 	
 	tkgrid(labelRcmdr(tab2Frame,fg=getRcmdr("title.color"),font="RcmdrTitleFont",text=gettextRcmdr("Optional Load Information (for non-GUI saves)")),sticky="nw",padx="6")
 		

@@ -25,7 +25,7 @@ search_WINDOW <- function(){
 	initializeDialog(title = gettextRcmdr("Search Methods... ")) # Change to Search Biclustering Methods...
 	
 	.makesearchdata()
-	method_data <- biclustGUI_biclusteringsearchdata # Save the global variable in method_data
+	method_data <- .GetEnvBiclustGUI("biclustGUI_biclusteringsearchdata") # Save the global variable in method_data
 	
 	onOK <- function(){
 		tkdelete(methodBox, "0", "end")
@@ -33,13 +33,17 @@ search_WINDOW <- function(){
 		discovery <- tclvalue(radiodiscoVariable)
 		method.names <- SearchMethodData(method_data,type,discovery)
 		for (name in method.names) tkinsert(methodBox, "end", name)
-		assign("global.variable.list",method.names,envir=.GlobalEnv)
+#		assign("global.variable.list",method.names,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("global.variable.list",method.names)
+		
 		#global.variable.list<<- method.names
 		
 	}
 	
 	onWindow <- function(){
-		if(!("global.variable.list" %in% ls(envir=.GlobalEnv))){justDoIt("warning('Search for methods first',call.=FALSE)")}
+		global.variable.list <- .GetEnvBiclustGUI("global.variable.list")
+		
+		if(is.null(global.variable.list)){justDoIt("warning('Search for methods first',call.=FALSE)")}
 		else{
 			sel1 <- as.integer(tkcurselection(methodBox))+1
 			sel2 <- which(global.variable.list[sel1]==method_data$name)

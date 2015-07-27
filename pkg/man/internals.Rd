@@ -31,6 +31,8 @@
 \alias{.checkplotgridpref}
 \alias{greenred}
 \alias{redgreen}
+\alias{.GetEnvBiclustGUI}
+\alias{.AssignEnvBiclustGUI}
 
 \title{List of Internal Functions}
 

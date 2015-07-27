@@ -204,7 +204,9 @@
 
 .update.biclustering.object <- function(object,where="all",ENVIR=environment()){
 	
-	if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+	biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+	#if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+	if(is.null(biclustering.objects)){
 		biclustering.objects <- list()
 		
 		biclustering.objects$all <- c()
@@ -213,7 +215,8 @@
 		biclustering.objects$dataconnect <- data.frame(result=character(),data=character(),stringsAsFactors=FALSE)
 		biclustering.objects$ENVIR <- list()
 		
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		#assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
 	}
 	
 	if(where=="all"){
@@ -232,17 +235,23 @@
 		}
 		
 		
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+		
 	}
 	
 	if(where=="bcdiag"){
 		biclustering.objects$bcdiag <- unique(c(biclustering.objects$bcdiag,object))
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+		
 	}
 	
 	if(where=="superbiclust"){
 		biclustering.objects$superbiclust <- unique(c(biclustering.objects$superbiclust,object))
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+	
 	}
 	if(where=="envir"){
 		if(object %in% names(biclustering.objects$ENVIR)){
@@ -255,7 +264,9 @@
 		}
 		biclustering.objects$ENVIR[[index.env]] <- ENVIR
 		names(biclustering.objects$ENVIR)[index.env] <- object
-		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#		assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+	
 		
 		
 	}
@@ -524,8 +535,10 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 
 
 .makesearchdata <- function(){
-		
-	if(!("biclustGUI_biclusteringsearchdata" %in% ls(envir=.GlobalEnv))){
+	
+	biclustGUI_biclusteringsearchdata <- .GetEnvBiclustGUI("biclustGUI_biclusteringsearchdata")
+	
+	if(is.null(biclustGUI_biclusteringsearchdata)){
 		method_data <- data.frame()
 				
 		#Plaid
@@ -573,7 +586,9 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 		method_data <- rbind(method_data,c("BicARE","Coherent Values","Additive","bicare_WINDOW()","BICARE"))
 		
 		# Assigning to Global Variable
-		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)
+#		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)
+		.AssignEnvBiclustGUI("biclustGUI_biclusteringsearchdata",method_data)
+
 		
 	}
 	
@@ -638,7 +653,9 @@ as.ExprSet <- function(x){
 	
 		resultname <- deparse(substitute(result))
 		
-		if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+		biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+#		if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
+		if(is.null(biclustering.objects)){
 			biclustering.objects <- list()
 			
 			biclustering.objects$all <- character()
@@ -646,7 +663,9 @@ as.ExprSet <- function(x){
 			biclustering.objects$superbiclust <- c()
 			biclustering.objects$dataconnect <- data.frame(result=character(),data=character(),stringsAsFactors=FALSE)
 			
-			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+#			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+			.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+			
 		}
 		
 		dataconnect <- biclustering.objects$dataconnect
@@ -713,10 +732,12 @@ as.ExprSet <- function(x){
 		current.griddim1 <- par()$mfrow[1]
 		current.griddim2 <- par()$mfrow[2]
 		
+		biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
 		if(!("plotgrid" %in% names(biclustering.objects))){
 			biclustering.objects$plotgrid <- c(1,1)
-			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
-			
+#			assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
+			.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+						
 		}
 		
 		griddim1 <- biclustering.objects$plotgrid[1]
@@ -727,4 +748,22 @@ as.ExprSet <- function(x){
 		}
 		
 	}
+}
+
+
+.EnvBiclustGUI <- new.env()
+
+
+.GetEnvBiclustGUI <- function(x){
+	if(!exists(x,envir=.EnvBiclustGUI,inherits=FALSE)){
+		return(NULL)
+	}
+	else{
+		return(get(x=x,envir=.EnvBiclustGUI,inherits=FALSE))
+	}
+	
+}
+
+.AssignEnvBiclustGUI <- function(x,value){
+	assign(x=x,value=value,envir=.EnvBiclustGUI)
 }
