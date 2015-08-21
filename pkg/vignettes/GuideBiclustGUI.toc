@@ -38,34 +38,38 @@
 \contentsline {subsection}{\numberline {3.7}\texttt {iBBiG}-package}{31}{subsection.3.7}
 \contentsline {subsection}{\numberline {3.8}\texttt {rqubic}-package}{32}{subsection.3.8}
 \contentsline {subsection}{\numberline {3.9}\texttt {BicARE}-package}{34}{subsection.3.9}
-\contentsline {subsection}{\numberline {3.10}Diagnostic Packages}{37}{subsection.3.10}
-\contentsline {subsubsection}{\numberline {3.10.1}\texttt {BcDiag}-package}{37}{subsubsection.3.10.1}
-\contentsline {subsubsection}{\numberline {3.10.2}\texttt {superbiclust}-package}{39}{subsubsection.3.10.2}
-\contentsline {section}{\numberline {4}A Guideline to New Implementations}{42}{section.4}
-\contentsline {subsection}{\numberline {4.1}Implementing a New Method}{42}{subsection.4.1}
-\contentsline {subsubsection}{\numberline {4.1.1}New Method Script - ClusterTab \& PlotDiagTab}{42}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}The Frame Scripts}{47}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}A quick example - Plaid}{53}{subsubsection.4.1.3}
-\contentsline {subsection}{\numberline {4.2}Implementing a New Tool}{55}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}New Tool Script}{55}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}A quick example - BcDiag}{56}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}Testing your Script}{57}{subsection.4.3}
-\contentsline {section}{\numberline {5}Appendix}{60}{section.5}
-\contentsline {subsection}{\numberline {5.1}Introduction}{60}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}The BiclustGUI R Package}{60}{subsection.5.2}
-\contentsline {subsubsection}{\numberline {5.2.1}Installing and Loading - Installing Script}{60}{subsubsection.5.2.1}
-\contentsline {subsubsection}{\numberline {5.2.2}Extra Utilities}{61}{subsubsection.5.2.2}
-\contentsline {subsubsection}{\numberline {5.2.3}\texttt {biclust}-package}{62}{subsubsection.5.2.3}
-\contentsline {subsubsection}{\numberline {5.2.4}\texttt {fabia}-package}{65}{subsubsection.5.2.4}
-\contentsline {subsubsection}{\numberline {5.2.5}\texttt {isa2}-package}{69}{subsubsection.5.2.5}
-\contentsline {subsubsection}{\numberline {5.2.6}\texttt {iBBiG}-package}{69}{subsubsection.5.2.6}
-\contentsline {subsubsection}{\numberline {5.2.7}\texttt {BicARE}-package}{70}{subsubsection.5.2.7}
-\contentsline {subsubsection}{\numberline {5.2.8}\texttt {BcDiag}-package}{71}{subsubsection.5.2.8}
-\contentsline {subsubsection}{\numberline {5.2.9}\texttt {superbiclust}-package}{73}{subsubsection.5.2.9}
-\contentsline {subsection}{\numberline {5.3}Guideline - Template Scripts}{73}{subsection.5.3}
-\contentsline {subsubsection}{\numberline {5.3.1}newmethod\_script}{73}{subsubsection.5.3.1}
-\contentsline {subsubsection}{\numberline {5.3.2}frames\_script}{75}{subsubsection.5.3.2}
-\contentsline {subsubsection}{\numberline {5.3.3}Quick Example - Plaid}{77}{subsubsection.5.3.3}
-\contentsline {subsubsection}{\numberline {5.3.4}newtool\_script}{87}{subsubsection.5.3.4}
-\contentsline {subsubsection}{\numberline {5.3.5}Quick Example - BcDiag}{88}{subsubsection.5.3.5}
-\contentsline {subsubsection}{\numberline {5.3.6}Extra Example - Superbiclust}{94}{subsubsection.5.3.6}
+\contentsline {subsection}{\numberline {3.10}\texttt {s4vd}-package}{37}{subsection.3.10}
+\contentsline {subsubsection}{\numberline {3.10.1}SSVD - Biclustering via Sparse Singular Value Decomposition}{37}{subsubsection.3.10.1}
+\contentsline {subsubsection}{\numberline {3.10.2}S4VD - Robust biclustering by ssvd incorporating stability selection}{38}{subsubsection.3.10.2}
+\contentsline {subsection}{\numberline {3.11}Diagnostic Packages}{40}{subsection.3.11}
+\contentsline {subsubsection}{\numberline {3.11.1}\texttt {BcDiag}-package}{40}{subsubsection.3.11.1}
+\contentsline {subsubsection}{\numberline {3.11.2}\texttt {superbiclust}-package}{42}{subsubsection.3.11.2}
+\contentsline {section}{\numberline {4}A Guideline to New Implementations}{45}{section.4}
+\contentsline {subsection}{\numberline {4.1}Implementing a New Method}{45}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}New Method Script - ClusterTab \& PlotDiagTab}{45}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}The Frame Scripts}{50}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}A quick example - Plaid}{56}{subsubsection.4.1.3}
+\contentsline {subsection}{\numberline {4.2}Implementing a New Tool}{58}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}New Tool Script}{58}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}A quick example - BcDiag}{59}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Testing your Script}{60}{subsection.4.3}
+\contentsline {section}{\numberline {5}Extensions - Shiny App \& \texttt {REST}}{61}{section.5}
+\contentsline {section}{\numberline {6}Appendix}{64}{section.6}
+\contentsline {subsection}{\numberline {6.1}Introduction}{64}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}The BiclustGUI R Package}{64}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Installing and Loading - Installing Script}{64}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Extra Utilities}{65}{subsubsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.3}\texttt {biclust}-package}{66}{subsubsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.4}\texttt {fabia}-package}{69}{subsubsection.6.2.4}
+\contentsline {subsubsection}{\numberline {6.2.5}\texttt {isa2}-package}{73}{subsubsection.6.2.5}
+\contentsline {subsubsection}{\numberline {6.2.6}\texttt {iBBiG}-package}{73}{subsubsection.6.2.6}
+\contentsline {subsubsection}{\numberline {6.2.7}\texttt {BicARE}-package}{74}{subsubsection.6.2.7}
+\contentsline {subsubsection}{\numberline {6.2.8}\texttt {BcDiag}-package}{75}{subsubsection.6.2.8}
+\contentsline {subsubsection}{\numberline {6.2.9}\texttt {superbiclust}-package}{77}{subsubsection.6.2.9}
+\contentsline {subsection}{\numberline {6.3}Guideline - Template Scripts}{77}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}newmethod\_script}{77}{subsubsection.6.3.1}
+\contentsline {subsubsection}{\numberline {6.3.2}frames\_script}{79}{subsubsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.3}Quick Example - Plaid}{81}{subsubsection.6.3.3}
+\contentsline {subsubsection}{\numberline {6.3.4}newtool\_script}{91}{subsubsection.6.3.4}
+\contentsline {subsubsection}{\numberline {6.3.5}Quick Example - BcDiag}{92}{subsubsection.6.3.5}
+\contentsline {subsubsection}{\numberline {6.3.6}Extra Example - Superbiclust}{98}{subsubsection.6.3.6}

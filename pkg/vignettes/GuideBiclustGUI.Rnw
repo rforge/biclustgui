@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 1.0.1}
+\title{The BiclustGUI R Package - 1.0.2}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}
@@ -444,7 +444,7 @@ will appear after loading the plug-in.
 \begin{tabular}{ccl}
 {\bf Type} & {\bf Package} & {\bf Method/Description}\\
 \hline
-\multirow{20}{*}{{\it Biclustering Algorithms}} &
+\multirow{22}{*}{{\it Biclustering Algorithms}} &
 \multirow{6}{*}{\texttt{biclust}} & Plaid \\
 & & CC\\
 & & XMotif\\
@@ -464,6 +464,9 @@ will appear after loading the plug-in.
 & \texttt{rqubic} & Qualitative Biclustering\\
 & & \\
 & \texttt{BicARE} & Biclustering Analysis and Results Exploration\\
+& & \\
+& \multirow{2}{*}{\texttt{s4vd}} & SSVD (Sparse Singular Value Decomposition) \\
+& & S4VD (SSVD incorporating stability correction) \\
 & & \\
 \hline
 & & \\
@@ -1032,7 +1035,7 @@ the original data matrix will be used which is the active data set in your sessi
 
 
 
-\subsubsection{Biclust: Plots \& Diagnostics}
+\subsubsection{Biclust: Plots \& Diagnostics}\label{sec:biclustplots}
 After executing any of the biclustering methods available in the
 \verb|biclust| package, the user is now able to proceed to the second tab {\it
 `Plots \& Diagnostics'} which is identical for all of these methods.
@@ -1537,7 +1540,7 @@ seed beforehand. The result should be saved if it is to be investigated later.}
 \caption{{\it iBBiG - Plots \& Diagnostics Tab}\label{ibbig_plotdiagtab}}
 \end{figure}
 \noindent As can be seen in Figure \ref{ibbig_plotdiagtab}, a lot of the
-functionality is the same as for the \verb|biclust| algorithms so it therefore
+functionality is the same as for the \verb|biclust| algorithms (Section \ref{sec:biclustplots}) so it therefore
 will not be explained again here.\\ \\
 On the top, three \verb|iBBiG| specific buttons can be found. The {\it
 summary} button will give some basic information about the number of clusters found and
@@ -1707,6 +1710,118 @@ Finaly, the user can find a button here which will open up a new window which
 contains all the \verb|biclust| plots and diagnostics. The correct information
 from the \verb|BicARE| will be used and does not require any intervention from
 the user itself.
+
+\subsection{\texttt{s4vd}-package}
+
+\subsubsection{SSVD - Biclustering via Sparse Singular Value Decomposition}
+Sparse singular value decomposition (SSVD) was first proposed as a biclustering
+algorithm by \citet{Lee2010}. It seeks a low-rank checkerboard structured
+matrix approximation to data matrices through SVD. \\
+For example the following formula shows a rank-$K$ approximation to $\mathbf{X}$
+with SVD
+$$
+\mathbf{X} \approx \mathbf{X}^{(K)} = \sum_{k=1}^K s_k \mathbf{u}_k \mathbf{v}_k^T
+$$
+in which $\mathbf{u}_k$ and $\mathbf{v}_k$ are the left and right singular
+vector.\\
+In the SSVD algorithm, biclusters are discovered by forcing the singular
+vectors of SVD to be sparse. This is achieved by interpreting the singular
+vectors as regression coefficients of a linear model. The algorithm alternately
+fits penalized least squares regression models (Adaptive Lasso or Hard
+Threshold) to the singular vector pair (left and right) to obtain a sparse matrix decomposition which will then represent the desired checkerboard structure.\\
+This procedure minimizes the following formula with respect to the triplet
+$(s,\mathbf{u},\mathbf{v})$ in which $P_1 (s \mathbf{u})$ and $P_2 (s
+\mathbf{v})$ are the sparsity-inducing penalty terms, and $\lambda_u$ and
+$\lambda_v$ the nonnegative penalty parameters
+$$
+|| \mathbf{X} - s \mathbf{u} \mathbf{v}^T ||^2_F + \lambda_u P_1 (s \mathbf{u}) + \lambda_v P_2 (s \mathbf{v})
+$$
+The penalty parameters for the optimal degree of sparsity (number of non-zero
+coefficients in the singular vector) are determined by minimizing the Bayesian
+information criterion (BIC).\\
+The SSVD algorithm to estimate the sparse singular vector pair is run on the
+original data matrix to find the first layer or bicluster. To find the
+subsequent biclusters, the algorithm is run on the residual matrix after
+subtracting the original matrix with the previous Sparse SVD layer..
+\\ \\
+While R code for the algorithm was written, it was only later included in the
+\texttt{s4vd} R package by \citet{Sill2011a} which this GUI uses.
+\\ \\
+Figure \ref{ssvd_clusttab} shows the {\it SSVD window}.
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{figures/ssvd_clusttab.png}
+\caption{{\it SSVD Window - Clustering Tab}\label{ssvd_clusttab}}
+\end{figure}
+\noindent The biclustering tab with the parameters of the algorithm consists out
+of 3 parts. The first part contains some general parameters such as the {\it
+number of biclusters} (= SSVD Layers), the {\it number of iterations} and {\it
+convergence threshold}.\\
+The second and third part contain the penalty type for respectively the left and
+right singular vector. Note that for the Adaptive LASSO, the user can specify
+the weight. A zero weight would coincide with the normal LASSO.
+\\ \\
+The second tab is completely similar to the plots \& diagnostics tab of the
+\texttt{biclust} packages in Section \ref{sec:biclustplots} so it will not be
+discussed here again.
+
+\subsubsection{S4VD - Robust biclustering by ssvd incorporating stability
+selection}
+
+The S4VD algorithm by \citet{Sill2011} is an extension of the SSVD algorithm.
+They proposed to incorporate stability selection in the original algorithm,
+which is a subsampling-based variable selection that allows to control Type I error rates.
+The goal was to improve both the selection
+of penalization parameters and the control of the degree of sparsity.
+Furthermore, the error control also serves as a stopping criterion for the S4VD algorithm and
+determines the number of reasonable layers or biclusters.\\
+In brief, in each iteration of the alternate estimation and updating of the
+singular vector pair, for each possible penalty parameter (separately
+of the left and right singular vector) subsamples are drawn and the
+relative selection probability of respectively the rows and columns is
+estimated. By doing this a stable set of non-zero rows and columns is created
+which is then used in the last step to determine the final left and right sparse
+singular vectors.\\
+Just like for SSVD, this algorithm is applied to find the first layer or
+bicluster. To find the next one, the same steps are applied to the residual
+matrix after subtracting the rank-one approximation derived by applying a
+regular SVD to the submatrix defined by the stable set of left and right
+singular vectors.
+\\ \\
+Presented in Figure \ref{s4vd_clusttab} is the {\it window for S4VD}.
+%extension
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{figures/s4vd_clusttab.png}
+\caption{{\it S4VD Window - Clustering Tab}\label{s4vd_clusttab}}
+\end{figure}
+\noindent This time the window is built out of 2 parts. In the first part, which
+contains the general parameters, there are some similar parameters as for the
+the SSVD algorithm (e.g. {\it Number of biclusters}, {\it Max Iterations}, {\it
+Weight Parameter}, {\it Convergence threshold},...). There are also additional
+parameters such as the option to save the stability path in order to plot it
+later on. However for extreme high dimensional data set, this option might need
+to be disabled as the resulting object may exceed the available memory.\\
+The second and last part is dedicated to the Stability Selection segment of the
+algorithm which contains parameters such as the error rates (= {\it PCWER}).
+Since the subsampling steps of the stability selection makes the S4VD algorithm
+computationally very demanding, the option is given to use the pointwise error
+control to reduce the computation time.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{figures/s4vd_plotdiagtab.png}
+\caption{{\it S4VD Window - Plots \& Diagnostics Tab}\label{s4vd_plotdiagtab}}
+\end{figure}
+\noindent Finally, Figure \ref{s4vd_plotdiagtab} shows the {\it Plots \&
+Diagnostics window for S4VD}. It is nearly completely the same as the window in
+Section \ref{sec:biclustplots} for the \texttt{biclust} package apart from one
+addition at the bottom. Here it is possible to plot the stability path for the
+rows and columns in a specified bicluster regarding the last iteration. The
+path in the plot is basically the selection probabilities for the rows and
+columns for the possible penalty parameters. However note that if the pointwise
+error control was used, only the final selection probabilities (for the final
+penalty parameter) for the rows and columns will be plotted.
 
 
 \subsection{Diagnostic Packages}
@@ -2699,7 +2814,17 @@ on top of the R Commander one, containing whatever you specified in the script.
 % rest of construction similar to already seen
 % full code, see script
 % for more complicated example -> superbiclust
-
+\section{Extensions - Shiny App \& \texttt{REST}}
+The main functionality of the \texttt{BiclustGUI} was also recreated in the form of a Shiny Application. The \texttt{shiny} R package, developed by RStudio, allows the creation of web-based applications from R-code. Shiny Apps are very accessible since they do not require any installation on the user side. They can be hosted on a private website, Shiny Cloud and also Amazon Cloud. It also possible to distribute them in a stand-alone version. The Shiny Apps are often highly interactive due to the use of reactive functions, allowing the App to immediately adapt to any input of the user. The \texttt{shiny} R package, provides a large amount of basic widgets, i.e. web elements users can interact with, of which some are built using the Bootstrap Project. Note that compared to the \texttt{BiclustGUI} in R Commander, the user will not shown the generated R on the fly.\\
+The biclustGUI Shiny App can found at \href{ewouddetroyer.shinyapps.io/shiny-biclust}{ewouddetroyer.shinyapps.io/shiny-biclust}. It is also available as a stand-alone version to run locally on your pc at \href{http://www.xxxxxx}{http://www.xxxxxx}. Simply extract the zip-file and double click the \texttt{LAUNCH.vbs} file (no installation, e.g. R, required!).
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.45\textwidth]{figures/shinyibbig.png}
+\caption{Shiny Example (iBBiG) - Biclusters Heatmap}\label{fig:shinyibbig}
+\end{figure}
+\noindent The template scripts for biclustering windows were also the foundations for the \texttt{REST} package. With this package, it is possible to create plug-ins for R Commander without expert knowledge, providing a tool to create envelope GUI packages similar to \texttt{BiclustGUI}.\\ \\
+The \texttt{REST} package ({\bf R}mdrPlugin {\bf E}asy {\bf S}cript {\bf T}emplates) contains a generalization of the biclustering window scripts. These scripts, previously tailored towards a window structure for the biclustering dialogs, are now more general and flexible (i.e. allowing more tabs, more buttons,etc.).\\
+The \texttt{REST} package allows a fast and easy creation of a R Commander plug-in without the \texttt{tcltk} syntax, can be used to create the windows for a new applications, and is freely available on CRAN with \texttt{install.packages("REST")} (Dependencies: \texttt{Rcmdr}).
 
 \newpage
 \nocite{*}

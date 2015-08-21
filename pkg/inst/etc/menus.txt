@@ -40,6 +40,13 @@ item	fabiamenu		command			"Fabia - Post-Projection"		"fabiapostprojection_WIN"	"
 item	fabiamenu		command			"Fabia - Sparseness Projection"		"fabiasparsenessprojection_WIN"	"activeDataSetP()"	""
 item	fabiamenu		command			"Fabia - SPARSE"			"fabiaSPARSE_WIN"		"activeDataSetP()"	""
 
+### s4vd Package Menu
+menu	s4vdmenu		BICLUSTERINGmenu	""					""				""			""
+item	BICLUSTERINGmenu	cascade			"s4vd"					s4vdmenu			""			""
+
+item	s4vdmenu		command			"Sparse Singular Value Decomposition"	"ssvd_WIN"			"activeDataSetP()"	""
+item	s4vdmenu		command			"SSVD with Stability Selection (s4vd)"	"s4vd_WIN"			"activeDataSetP()"	""
+
 
 ### ISA Package Menu
 item	BICLUSTERINGmenu	command			"ISA"					"isadefault_WIN"		"activeDataSetP()"	""

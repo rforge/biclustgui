@@ -32,6 +32,8 @@
 \alias{plotgridpref_WINDOW}
 \alias{image_WINDOW}
 \alias{jaccard_WINDOW}
+\alias{ssvd_WIN}
+\alias{s4vd_WIN}
 
 \title{Window Functions}
 
@@ -66,7 +68,9 @@ jaccard_WINDOW()
 plotgridpref_WINDOW()
 rqubic_WINDOW()
 saveload_WINDOW()
+s4vd_WIN()
 search_WINDOW()
+ssvd_WIN()
 superbiclust_WINDOW(methodname)
 }
 

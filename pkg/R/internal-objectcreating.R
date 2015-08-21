@@ -486,9 +486,7 @@ Setwd <- function (x=TRUE)
 
 .binary.activematrix.check <- function(){
 	
-	dataname <- ActiveDataSet()
-	eval(parse(text=paste("x<-",dataname,sep="")))
-	
+	x <- get(ActiveDataSet(),envir=.GlobalEnv)
 	
 	if(!.is.binary.matrix(as.matrix(x))){
 		warning.command <- "warning('The current Active Data Set is not in binary format! Use the binarize option or a different data set.',call.=FALSE)"
@@ -584,6 +582,12 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 		
 		#BicARE # PLACEHOLDER
 		method_data <- rbind(method_data,c("BicARE","Coherent Values","Additive","bicare_WINDOW()","BICARE"))
+		
+		#SSVD # PLACEHOLDER
+		method_data <- rbind(method_data,c("SSVD","Coherent Values","Multiplicative","ssvd_WIN()","SSVD"))
+		
+		#S4VD # PLACEHOLDER
+		method_data <- rbind(method_data,c("S4VD","Coherent Values","Multiplicative","s4vd_WIN()","S4VD"))
 		
 		# Assigning to Global Variable
 #		assign("biclustGUI_biclusteringsearchdata", method_data, envir = .GlobalEnv)
@@ -702,7 +706,8 @@ as.ExprSet <- function(x){
 			### SIMPLY TRANSFORM RESULT WITH .2BICLUST!! (MEMORY?) FABIA THRESH DOES NOT MATTER HERE
 			result.biclust <- .tobiclust(result)
 			# Do the dimensions of the active dataset correspond with the biclust result?
-			eval(parse(text=paste0("matrixdata <- as.matrix(",ActiveDataSet(),")")))
+			matrixdata <- as.matrix(get(ActiveDataSet(),envir=.GlobalEnv))
+			
 			nrow <- dim(matrixdata)[1]
 			ncol <- dim(matrixdata)[2]
 			nrow_biclust <- dim(result.biclust@RowxNumber)[1]

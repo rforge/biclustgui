@@ -323,6 +323,18 @@
   Timestamp                = {2014.10.03}
 }
 
+@Article{Lee2010,
+  Title                    = {Biclustering via Sparse Singular Value Decomposition},
+  Author                   = {Lee, Mihee and Shen, Haipeng and Huang, Jianhua Z. and Marron, J. S.},
+  Journal                  = {Biometrics},
+  Year                     = {2010},
+  Pages                    = {1087-1095},
+  Volume                   = {66},
+
+  Owner                    = {lucp8394},
+  Timestamp                = {2015.08.20}
+}
+
 @Article{Li2009,
   Title                    = {QUBIC: a qualitative biclustering algorithm for analyses of gene expression data},
   Author                   = {Li, G. and Ma, Q. and Tang, H. and Paterson, A.H. and Xu, Y.},
@@ -387,7 +399,7 @@
 }
 
 @Article{Prelic2006,
-  Title                    = {A Systematic comparison and evaluation of biclustering methods for gene expression data},
+  Title                    = {A systematic comparison and evaluation of biclustering methods for gene expression data},
   Author                   = {Preli\'{c}, A. and Bleuler, S. and Zimmermann, P. and Wille A. and B\"{u}hlmann, P. and Gruissem, W. and Henning, L. and Thiele, L. and Zitzler, E.},
   Journal                  = {Bioinformatics},
   Year                     = {2006},
@@ -408,6 +420,29 @@
 
   Owner                    = {lucp8394},
   Timestamp                = {2014.10.03}
+}
+
+@Manual{Sill2011a,
+  Title                    = {Package 's4vd': Robust biclustering by sparse singular value decomposition incorporating stability selection},
+  Author                   = {Sill, Martin and Kaiser, Sebastian},
+  Year                     = {2011},
+
+  Owner                    = {lucp8394},
+  Timestamp                = {2015.08.20},
+  Url                      = {https://cran.r-project.org/web/packages/s4vd/s4vd.pdf}
+}
+
+@Article{Sill2011,
+  Title                    = {Robust biclustering by sparse singular value decomposition incorporating stability selection},
+  Author                   = {Sill, Martin and Kaiser, Sebastian and Benner, Axel and Kopp-Schneider, Annette},
+  Journal                  = {Bioinformatics},
+  Year                     = {2011},
+  Number                   = {15},
+  Pages                    = {2089-2097},
+  Volume                   = {27},
+
+  Owner                    = {lucp8394},
+  Timestamp                = {2015.08.20}
 }
 
 @Unpublished{Tanay2004,

@@ -25,7 +25,9 @@ ExtractBiclustersGUI <-function(result,which="all",from=1,to=1,selection=c(1),di
 		selected_biclusters <- selection
 	}
 	
-	eval(parse(text=paste0("matrixdata <- as.matrix(",ActiveDataSet(),")")))
+#	eval(parse(text=paste0("matrixdata <- as.matrix(",ActiveDataSet(),")")))
+	matrixdata <- as.matrix(get(ActiveDataSet(),envir=.GlobalEnv))
+	
 	# Making the desired list object
 	out <- list()
 	names_temp <- c()

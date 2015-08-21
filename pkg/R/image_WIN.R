@@ -22,9 +22,12 @@ image_WINDOW <- function(){
 	onDataImage <- function(){
 		
 		transf <- tclvalue(trans_vars)
+		
 		if(transf=="none"){
 			# still do a binary check here !! if the case, use color scheme of bin  | .is.binary.matrix
-			eval(parse(text=paste0("temp.data <-",ActiveDataSet())))
+			
+#			eval(parse(text=paste0("temp.data <-",ActiveDataSet())))
+			temp.data <- get(ActiveDataSet(),envir=.GlobalEnv)
 			
 			if(.is.binary.matrix(as.matrix(temp.data))){
 				col="c('grey','blue')"
@@ -32,7 +35,9 @@ image_WINDOW <- function(){
 				doItAndPrint(image.command)
 			}
 			else{
+				
 				image.command <- paste0("image(c(1:dim(",ActiveDataSet(),")[2]),c(1:dim(",ActiveDataSet(),")[1]),t(as.matrix(",ActiveDataSet(),")),col=greenred(511),axes=FALSE,useRaster=TRUE,ylab='Genes',xlab='Samples')")
+								
 				doItAndPrint(image.command)
 	
 				

@@ -4,6 +4,10 @@ install.packages("BcDiag")
 install.packages("superbiclust")
 install.packages("Rcmdr")
 install.packages("isa2")
+install.packages("s4vd")
+# NOTE: At this moment, it is suggested to install s4vd through github
+#library(devtools)
+#install_github("mwsill/s4vd")
 
 install.packages("gplots") # Extra package
 
