@@ -503,3 +503,18 @@
   Url                      = {http://www.bioconductor.org/packages/release/bioc/vignettes/rqubic/inst/doc/rqubic.pdf}
 }
 
+@Manual{,
+    Title = {REST: RcmdrPlugin Easy Script Templates},
+    Author = {De Troyer, Ewoud},
+    Year = {2015},
+    Note = {R package version 1.0.2},
+	Url = {https://cran.r-project.org/web/packages/REST/REST.pdf}
+}
+
+@Manual{,
+    title = {shiny: Web Application Framework for R},
+    author = {Chang, Winston and Cheng, Joe and Allaire, J.J. and Xie, Yihui and McPherson, Jonathan },
+    year = {2015},
+    note = {R package version 0.12.1},
+    url = {http://CRAN.R-project.org/package=shiny},
+}

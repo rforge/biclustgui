@@ -13,7 +13,7 @@
 \contentsline {subsubsection}{\numberline {3.3.1}Search Dialog}{10}{subsubsection.3.3.1}
 \contentsline {subsubsection}{\numberline {3.3.2}Help Documentation \& Scripts}{11}{subsubsection.3.3.2}
 \contentsline {subsubsection}{\numberline {3.3.3}Plot Grid}{11}{subsubsection.3.3.3}
-\contentsline {subsubsection}{\numberline {3.3.4}Draw Heatmaps}{11}{subsubsection.3.3.4}
+\contentsline {subsubsection}{\numberline {3.3.4}Draw Heatmaps}{12}{subsubsection.3.3.4}
 \contentsline {subsubsection}{\numberline {3.3.5}Jaccard Index}{12}{subsubsection.3.3.5}
 \contentsline {subsubsection}{\numberline {3.3.6}Clear Results}{13}{subsubsection.3.3.6}
 \contentsline {subsubsection}{\numberline {3.3.7}Export Results}{13}{subsubsection.3.3.7}
@@ -47,29 +47,29 @@
 \contentsline {section}{\numberline {4}A Guideline to New Implementations}{45}{section.4}
 \contentsline {subsection}{\numberline {4.1}Implementing a New Method}{45}{subsection.4.1}
 \contentsline {subsubsection}{\numberline {4.1.1}New Method Script - ClusterTab \& PlotDiagTab}{45}{subsubsection.4.1.1}
-\contentsline {subsubsection}{\numberline {4.1.2}The Frame Scripts}{50}{subsubsection.4.1.2}
-\contentsline {subsubsection}{\numberline {4.1.3}A quick example - Plaid}{56}{subsubsection.4.1.3}
-\contentsline {subsection}{\numberline {4.2}Implementing a New Tool}{58}{subsection.4.2}
-\contentsline {subsubsection}{\numberline {4.2.1}New Tool Script}{58}{subsubsection.4.2.1}
-\contentsline {subsubsection}{\numberline {4.2.2}A quick example - BcDiag}{59}{subsubsection.4.2.2}
-\contentsline {subsection}{\numberline {4.3}Testing your Script}{60}{subsection.4.3}
-\contentsline {section}{\numberline {5}Extensions - Shiny App \& \texttt {REST}}{61}{section.5}
-\contentsline {section}{\numberline {6}Appendix}{64}{section.6}
-\contentsline {subsection}{\numberline {6.1}Introduction}{64}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}The BiclustGUI R Package}{64}{subsection.6.2}
-\contentsline {subsubsection}{\numberline {6.2.1}Installing and Loading - Installing Script}{64}{subsubsection.6.2.1}
-\contentsline {subsubsection}{\numberline {6.2.2}Extra Utilities}{65}{subsubsection.6.2.2}
-\contentsline {subsubsection}{\numberline {6.2.3}\texttt {biclust}-package}{66}{subsubsection.6.2.3}
-\contentsline {subsubsection}{\numberline {6.2.4}\texttt {fabia}-package}{69}{subsubsection.6.2.4}
-\contentsline {subsubsection}{\numberline {6.2.5}\texttt {isa2}-package}{73}{subsubsection.6.2.5}
-\contentsline {subsubsection}{\numberline {6.2.6}\texttt {iBBiG}-package}{73}{subsubsection.6.2.6}
-\contentsline {subsubsection}{\numberline {6.2.7}\texttt {BicARE}-package}{74}{subsubsection.6.2.7}
-\contentsline {subsubsection}{\numberline {6.2.8}\texttt {BcDiag}-package}{75}{subsubsection.6.2.8}
-\contentsline {subsubsection}{\numberline {6.2.9}\texttt {superbiclust}-package}{77}{subsubsection.6.2.9}
-\contentsline {subsection}{\numberline {6.3}Guideline - Template Scripts}{77}{subsection.6.3}
-\contentsline {subsubsection}{\numberline {6.3.1}newmethod\_script}{77}{subsubsection.6.3.1}
-\contentsline {subsubsection}{\numberline {6.3.2}frames\_script}{79}{subsubsection.6.3.2}
-\contentsline {subsubsection}{\numberline {6.3.3}Quick Example - Plaid}{81}{subsubsection.6.3.3}
-\contentsline {subsubsection}{\numberline {6.3.4}newtool\_script}{91}{subsubsection.6.3.4}
-\contentsline {subsubsection}{\numberline {6.3.5}Quick Example - BcDiag}{92}{subsubsection.6.3.5}
-\contentsline {subsubsection}{\numberline {6.3.6}Extra Example - Superbiclust}{98}{subsubsection.6.3.6}
+\contentsline {subsubsection}{\numberline {4.1.2}The Frame Scripts}{51}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}A quick example - Plaid}{57}{subsubsection.4.1.3}
+\contentsline {subsection}{\numberline {4.2}Implementing a New Tool}{59}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}New Tool Script}{59}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}A quick example - BcDiag}{60}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}Testing your Script}{61}{subsection.4.3}
+\contentsline {section}{\numberline {5}Extensions - Shiny App \& \texttt {REST}}{62}{section.5}
+\contentsline {section}{\numberline {6}Appendix}{65}{section.6}
+\contentsline {subsection}{\numberline {6.1}Introduction}{65}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}The BiclustGUI R Package}{65}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Installing and Loading - Installing Script}{65}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Extra Utilities}{66}{subsubsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.3}\texttt {biclust}-package}{67}{subsubsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.4}\texttt {fabia}-package}{70}{subsubsection.6.2.4}
+\contentsline {subsubsection}{\numberline {6.2.5}\texttt {isa2}-package}{74}{subsubsection.6.2.5}
+\contentsline {subsubsection}{\numberline {6.2.6}\texttt {iBBiG}-package}{74}{subsubsection.6.2.6}
+\contentsline {subsubsection}{\numberline {6.2.7}\texttt {BicARE}-package}{75}{subsubsection.6.2.7}
+\contentsline {subsubsection}{\numberline {6.2.8}\texttt {BcDiag}-package}{76}{subsubsection.6.2.8}
+\contentsline {subsubsection}{\numberline {6.2.9}\texttt {superbiclust}-package}{78}{subsubsection.6.2.9}
+\contentsline {subsection}{\numberline {6.3}Guideline - Template Scripts}{78}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}newmethod\_script}{78}{subsubsection.6.3.1}
+\contentsline {subsubsection}{\numberline {6.3.2}frames\_script}{80}{subsubsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.3}Quick Example - Plaid}{82}{subsubsection.6.3.3}
+\contentsline {subsubsection}{\numberline {6.3.4}newtool\_script}{92}{subsubsection.6.3.4}
+\contentsline {subsubsection}{\numberline {6.3.5}Quick Example - BcDiag}{93}{subsubsection.6.3.5}
+\contentsline {subsubsection}{\numberline {6.3.6}Extra Example - Superbiclust}{99}{subsubsection.6.3.6}

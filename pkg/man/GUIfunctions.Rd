@@ -34,6 +34,7 @@
 \alias{ExtractBiclustersGUI}
 \alias{FindBiclusters}
 \alias{HeatmapBC.GUI}
+\alias{bcdiaghighlight_WINDOW}
 
 \title{GUI Functions}
 

@@ -69,7 +69,7 @@ return(out)
 ExtractBiclustersGUI_general <- function(result,which="all",from=1,to=1,selection=c(1),dim="both",save=FALSE,save.name="Extract"){
 	
 	temp <- .tobiclust(result)
-	return(ExtractBiclustersGUI(result,which=which,from=from,to=to,selection=selection,dim=dim,save=FALSE,save.name="Extract"))
+	return(ExtractBiclustersGUI(temp,which=which,from=from,to=to,selection=selection,dim=dim,save=FALSE,save.name="Extract"))
 	
 }
 

@@ -152,3 +152,115 @@ bcdiagwrite_WINDOW <- function(methodname,fabia.thresZ=0.5,fabia.thresL=NULL){
 	
 	
 }
+
+
+bcdiaghighlight_WINDOW <- function(methodname,dset,bnum,bres,mname="biclust",fabia.thresZ=0.5,fabia.thresL=NULL){
+	initializeDialog(title = gettextRcmdr(paste0(methodname,"- BCDIAG - Select Genes/Samples for Line Plot")),use.tabs=FALSE) 
+	
+	
+	method_result <- gsub(" ","",methodname,fixed=TRUE)
+	method_result <- gsub("-","",method_result,fixed=TRUE)
+	method_result <- gsub("&","",method_result,fixed=TRUE)
+	
+
+	index <- BcDiag:::indexedBic(dset=dset,bres=bres,mname=mname,bnum=bnum,fabia.thresZ=fabia.thresZ,fabia.thresL=fabia.thresL)
+	
+	index.rows <- index[[1]]
+	index.cols <- index[[2]]
+	
+	rows.names <- rownames(dset)[index.rows]
+	cols.names <- colnames(dset)[index.cols]
+	
+	
+	onOK <- function(){
+		
+		# create string of vector
+		rows.sel <- as.integer(tkcurselection(rowsBox))+1
+		cols.sel <- as.integer(tkcurselection(colsBox))+1
+		
+		rows.vector <- paste0("c(",paste0(as.character(index.rows[rows.sel]),collapse=","),")")
+		cols.vector <- paste0("c(",paste0(as.character(index.cols[cols.sel]),collapse=","),")")
+
+		
+		biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+		
+		eval(parse(text=paste0("temp.env <- biclustering.objects$ENVIR$BCDIAG",method_result)))
+		
+		eval(parse(text=paste0("tclvalue(new.frames$plotdiagTab[[1]]$entry.vars[[1]]) <- '",rows.vector,"'")),envir=temp.env)
+		eval(parse(text=paste0("tclvalue(new.frames$plotdiagTab[[1]]$entry.vars[[2]]) <- '",cols.vector,"'")),envir=temp.env)
+		# eval this in temp.env
+#		tclvalue(new.frames$plotdiagTab[[8]]$frame$entry.vars[[1]]) <- ""
+#		tclvalue(new.frames$plotdiagTab[[8]]$frame$entry.vars[[2]]) <- ""
+		if (GrabFocus()) 
+			tkgrab.release(top)
+		tkdestroy(top)
+		tkfocus(CommanderWindow())
+	}
+	
+	
+	onCancel <- function() {
+		
+		#return input back to c()
+		biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+		eval(parse(text=paste0("temp.env <- biclustering.objects$ENVIR$BCDIAG",method_result)))
+		
+		eval(parse(text=paste0("tclvalue(new.frames$plotdiagTab[[1]]$entry.vars[[1]]) <- 'c()'")),envir=temp.env)
+		eval(parse(text=paste0("tclvalue(new.frames$plotdiagTab[[1]]$entry.vars[[2]]) <- 'c()'")),envir=temp.env)
+		
+		
+		if (GrabFocus()) 
+			tkgrab.release(top)
+		tkdestroy(top)
+		tkfocus(CommanderWindow())
+	}
+	
+	mainFrame <- tkframe(top)
+	
+	rowsFrame <- tkframe(mainFrame)
+	colsFrame <- tkframe(mainFrame)
+	
+	rowsBox <- tklistbox( rowsFrame , height=8, exportselection="FALSE",
+			selectmode="multiple", background="white")
+	for (rows in rows.names) tkinsert(rowsBox, "end", rows)
+	rowsScroll <- ttkscrollbar(rowsFrame,command=function(...) tkyview(rowsBox, ...))
+	tkconfigure(rowsBox, yscrollcommand=function(...) tkset(rowsScroll, ...))
+	if(length(rowsFrame)!=0){tkselection.set(rowsBox,0)}
+	
+	colsBox <- tklistbox( colsFrame , height=8, exportselection="FALSE",
+			selectmode="multiple", background="white")
+	for (cols in cols.names) tkinsert(colsBox, "end", cols)
+	colsScroll <- ttkscrollbar(colsFrame,command=function(...) tkyview(colsBox, ...))
+	tkconfigure(colsBox, yscrollcommand=function(...) tkset(colsScroll, ...))
+	if(length(colsFrame)!=0){tkselection.set(colsBox,0)}
+	
+	
+	
+	tkgrid(labelRcmdr(rowsFrame,fg=getRcmdr("title.color"),font="RcmdrTitleFont",text=gettextRcmdr("BC Row Names:")),sticky="nw")
+	tkgrid(rowsBox,rowsScroll,padx="4") #,sticky="ns"
+	tkgrid.configure(rowsScroll,sticky="ns")
+	
+	tkgrid(labelRcmdr(colsFrame,fg=getRcmdr("title.color"),font="RcmdrTitleFont",text=gettextRcmdr("BC Col Names:")),sticky="nw")
+	tkgrid(colsBox,colsScroll,padx="4") #,sticky="ns"
+	tkgrid.configure(colsScroll,sticky="ns")
+		
+	tkgrid(rowsFrame,colsFrame,sticky="nw",padx="6",pady="6")
+	
+	buttonFrame <- tkframe(top)
+	okButton <- buttonRcmdr(buttonFrame,command=onOK,text=gettextRcmdr("Set"),foreground="darkgreen",default="active",width="12",borderwidth=3)
+	cancelButton <- buttonRcmdr(buttonFrame,command=onCancel,text=gettextRcmdr("Cancel"),foreground="darkgreen",default="active",width="12",borderwidth=3)
+	
+	
+	tkgrid(okButton,cancelButton,sticky="ew")
+	tkgrid.columnconfigure(buttonFrame, 0, weight=1)
+	tkgrid.columnconfigure(buttonFrame, 1, weight=1)
+	tkgrid.configure(okButton,sticky="w")
+	tkgrid.configure(cancelButton,sticky="e")
+	
+	tkgrid(mainFrame)
+	tkgrid(buttonFrame,sticky="sew",pady="10")
+			
+	
+	dialogSuffix(use.tabs=FALSE, grid.buttons=FALSE,onOK=onOK,preventGrabFocus=TRUE)
+	
+	
+}

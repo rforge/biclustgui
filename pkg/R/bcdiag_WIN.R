@@ -101,6 +101,24 @@ bcdiag_WINDOW <- function(methodname){
 	#######################
 	
 	### ADDING FRAMES ####
+	######		  ENTRY FIELDS FRAME 				#####
+	#							    		 			#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "entry_highlight"  
+	argument.names <- c("Higlight Genes","Highlight Conditions") 
+	argument.types <- c("num","num")
+	arguments <- c("gene.lines","condition.lines")
+	initial.values <- c("c()","c()")
+	title <- "Higlights for Line Plot"
+	border <- FALSE
+	entry.width <- c("8","8")  
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+	
 	
 	####					 ####
 	## Fabia Thresholds Frames ##
@@ -361,6 +379,29 @@ bcdiag_WINDOW <- function(methodname){
 	new.frames <- .add.frame(input=input,type=type,title=title,border=border,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,from=from,to=to,by=by,length=length,new.frames=new.frames)
 	
 	
+	####	    	MANUAL BUTTONS FRAME 			  ####
+	#                               					 #
+	
+	type <- "buttons"
+	
+	# Change variables accordingly:
+	frame.name <- "button_highlight"  
+	button.name <- "Set Highlights"  
+	button.function <- "bcdiaghighlight_WINDOW" 
+	button.data <- "dset" 
+	button.biclust <-  "" 
+	button.otherarg <- paste0(",methodname='",methodname,"',bres=",extra.arg)
+	button.width <- "14"
+	save <- FALSE
+	show <- FALSE
+	if(bcdiag.fabia==TRUE){
+		arg.frames <- c("entry_number","fabia1","fabia2") 
+	}
+	else{
+		arg.frames <- c("entry_number") 
+	}
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,show=show,button.width=button.width,type=type,button.name=button.name,button.otherarg=button.otherarg,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
 	
 	
 	
@@ -378,10 +419,10 @@ bcdiag_WINDOW <- function(methodname){
 	button.otherarg <- paste0(",bres=",extra.arg)
 	save <- FALSE
 	if(bcdiag.fabia==TRUE){
-		arg.frames <- c("radio1_profile","radio2_profile","entry_number","slider_profile","fabia1","fabia2") 
+		arg.frames <- c("radio1_profile","radio2_profile","entry_number","slider_profile","fabia1","fabia2","entry_highlight") 
 	}
 	else{
-		arg.frames <- c("radio1_profile","radio2_profile","entry_number","slider_profile") 
+		arg.frames <- c("radio1_profile","radio2_profile","entry_number","slider_profile","entry_highlight") 
 	}
 	# Do not change this line:
 	new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,type=type,button.name=button.name,button.otherarg=button.otherarg,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
@@ -419,10 +460,10 @@ bcdiag_WINDOW <- function(methodname){
 	### CONFIGURING GRID ###
 	
 	if(bcdiag.fabia==TRUE){
-		grid.config <- .grid.matrix(input=input,c("entry_number","fabia1","fabia2","button_summaryoutput","radio_anomed","button_anomed",NA,NA,"radio1_explore","radio2_explore",NA,NA,"button_explore","button2_explore",NA,NA,"radio1_profile","radio2_profile","slider_profile",NA,"button_profile",NA,NA,NA),byrow=TRUE,nrow=6,ncol=4,grid.config=grid.config)
+		grid.config <- .grid.matrix(input=input,c("entry_number","fabia1","fabia2","button_summaryoutput","radio_anomed","button_anomed",NA,NA,"radio1_explore","radio2_explore",NA,NA,"button_explore","button2_explore",NA,NA,"radio1_profile","radio2_profile","slider_profile",NA,"button_profile","button_highlight","entry_highlight",NA),byrow=TRUE,nrow=6,ncol=4,grid.config=grid.config)
 	}
 	else{
-		grid.config <- .grid.matrix(input=input,c("entry_number","button_summaryoutput",NA,"radio_anomed","button_anomed",NA,"radio1_explore","radio2_explore",NA,"button_explore","button2_explore",NA,"radio1_profile","radio2_profile","slider_profile","button_profile",NA,NA),byrow=TRUE,nrow=6,ncol=3,grid.config=grid.config)
+		grid.config <- .grid.matrix(input=input,c("entry_number","button_summaryoutput",NA,"radio_anomed","button_anomed",NA,"radio1_explore","radio2_explore",NA,"button_explore","button2_explore",NA,"radio1_profile","radio2_profile","slider_profile","button_profile","button_highlight","entry_highlight"),byrow=TRUE,nrow=6,ncol=3,grid.config=grid.config)
 	}
 	
 	

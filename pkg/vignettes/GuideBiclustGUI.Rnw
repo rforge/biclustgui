@@ -609,7 +609,7 @@ helpfull if one would like to investigate a new dataset.
 
 \subsubsection{Export Results}
 Further it is also possible to export the results either as a text file or in
-the necessary format for FURBY (\url{http://caleydo.github.io/projects/furby/}). \\
+the necessary format for FURBY, Fuzzy Force-Directed Bicluster Visualization (\url{http://caleydo.github.io/projects/furby/}). \\
 Note that all the results will appear in the result box. This means that those
 result object which are for example manually named by the user will also appear
 in the box. Also take care that the correct data set is the active one in R
@@ -787,8 +787,8 @@ found which contains all the necessary paramaters to apply plaid biclustering. F
 the user is able to decide they only want to cluster the rows and columns, or on
 both (recommended). Next the model which is fitted to each layer can be
 specified in the {\it Model Box}. This coincides with formula (3) and is
-defaulted to \verb|y ~ m + a + b| (\verb|m|=constant for all elements in
-bicluster; \verb|a|=constant for all rows in bicluster; \verb|b|=constant for all columns in
+defaulted to \texttt{y {\raise.17ex\hbox{$\mathtt{\scriptstyle\sim}$}} m + a +
+b} (\verb|m|=constant for all elements in bicluster; \verb|a|=constant for all rows in bicluster; \verb|b|=constant for all columns in
 bicluster). 
 \\ \\
 \noindent The remaining parameters are there to further specify the layer
@@ -1586,8 +1586,8 @@ In the next part of the dialog, the user gets the option to apply quantile
 discretization for which both the number of levels (e.g. level 1 means -1,
 0, 1 label) and the estimated proportion of conditions where a gene is up- or
 downregulated can be set.\\
-The next option is to set the minimum score for the generation of seeds 
-(a seed is chosen by picking edges with higher scores than this value).\\
+The next option is to set the minimum score for the generation of seeds.
+A seed is chosen by picking edges with higher scores than this value after composing a complete graph of all genes with coincidence score as weights. This score is the number of samples in which the connected gene pair has the same expression level.\\
 Finally, the parameters for the bicluster identifying process can be decided
 upon. Parameters such as the maximum number of biclusters ({\it Max Biclusters}), the percentage of
 tolerated incoherent samples ({\it Tolerance}) and the proportion of a cluster over which the
@@ -1739,7 +1739,7 @@ $$
 The penalty parameters for the optimal degree of sparsity (number of non-zero
 coefficients in the singular vector) are determined by minimizing the Bayesian
 information criterion (BIC).\\
-The SSVD algorithm to estimate the sparse singular vector pair is run on the
+The SSVD algorithm, to estimate the sparse singular vector pair, is run on the
 original data matrix to find the first layer or bicluster. To find the
 subsequent biclusters, the algorithm is run on the residual matrix after
 subtracting the original matrix with the previous Sparse SVD layer..
@@ -1888,8 +1888,17 @@ scenario each line is a gene in the bicluster and it gets a red colour labeling
 if the column also is a part of the bicluster. The other way around, namely
 choosing the genes dimension, would mean that each line is one condition which
 is red when the gene on the x-axis is part of the bicluster. Some examples of these
-are shown in Figure \ref{bcdiag_example2} in the Appendix.
-\\ \\
+are shown in Figure \ref{bcdiag_example2} in the Appendix.\\
+Further, there is also an option to highlight gene or condition profiles for the
+line plot type. Either give a vector with indicies or character names in the
+{\it Highlight Genes/Conditions} boxes, or use the {\it Set Highlights} button
+to open up a new window as shown in Figure \ref{bcdiag_summary}. This dialog
+will show a list of the gene and conditions names of the chosen
+bicluster. From this list the to-be-highlighted members can be selected and
+after pressing {\it Set}, the highlight vectors will be filled out corresponding
+to this selection.
+\\
+\\
 \noindent {\bf Exploratory Plots}\\
 These plots are summary plots for the {\it mean}, {\it median}, {\it variance},
 {\it MAD} and {\it quantiles} of the data. Just like for the profile plots, the
@@ -2142,7 +2151,7 @@ information for the Plaid method.
   \item[$\bullet$ \texttt{other.arg}:] A string containing extra arguments you
   do {\it not} want the user to change. For example in the Plaid window, it is
   used as following: since the \verb|biclust| package uses only one function to
-  execute all of the different methods, for the Plaid method the string here was
+  execute all of the different methods, namely \verb|biclust()|, for the Plaid method the string here was
   \verb|",method='BCPlaid'"|. Also note the use of the comma in the beginning!
   This is because this string is not restricted to only one argument, it could
   contain several of them. They simply need to be added in this string as they
@@ -2279,7 +2288,8 @@ The second purpose is connected to the way frames are added in this {\it grid}.
 Sometimes if frames have a large difference in size, other frames might seem to
 be jumping to the right, trying to fit in one general grid. In general if you
 see this happening, putting this row(s) in a box will solve this problem and the
-frames will again be pulled towards the left.\\
+frames will again be pulled towards the left (see Figure \ref{combinerows_grid}
+for an example).\\
 Creating these boxes by combining rows is again very easy, one simply needs to
 use the \verb|.combine.rows| function which will save the necessary information
 in the \verb|grid.rows| object. The function only has three arguments you should
@@ -2288,6 +2298,14 @@ combine, \verb|title| to give the box a title (\verb|""| means no title) and
 \verb|border| to decide if there should be a border.\\
 Note that in contrast to the grid configuration, you can call this function
 multiple times until the desired result is obtained.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{figures/combinerows_grid.png}
+\caption{{\it Left:} Rows 1 and 2+3 were combined with boxes and titles ; {\it
+Right:} No rows combined. Frames are stuck in a general grid and jump more to
+the right instead of in a `local' grid in a row box \label{combinerows_grid}}
+\end{figure}
 
 \newpage
 \noindent {\bf \underline{PlotDiag Tab}}\\
@@ -2815,14 +2833,14 @@ on top of the R Commander one, containing whatever you specified in the script.
 % full code, see script
 % for more complicated example -> superbiclust
 \section{Extensions - Shiny App \& \texttt{REST}}
-The main functionality of the \texttt{BiclustGUI} was also recreated in the form of a Shiny Application. The \texttt{shiny} R package, developed by RStudio, allows the creation of web-based applications from R-code. Shiny Apps are very accessible since they do not require any installation on the user side. They can be hosted on a private website, Shiny Cloud and also Amazon Cloud. It also possible to distribute them in a stand-alone version. The Shiny Apps are often highly interactive due to the use of reactive functions, allowing the App to immediately adapt to any input of the user. The \texttt{shiny} R package, provides a large amount of basic widgets, i.e. web elements users can interact with, of which some are built using the Bootstrap Project. Note that compared to the \texttt{BiclustGUI} in R Commander, the user will not shown the generated R on the fly.\\
+The main functionality of the \texttt{BiclustGUI} was also recreated in the form of a Shiny Application. The \texttt{shiny} R package \citep{Chang2015}, developed by RStudio, allows the creation of web-based applications from R-code. Shiny Apps are very accessible since they do not require any installation on the user side. They can be hosted on a private website, Shiny Cloud and also Amazon Cloud. It also possible to distribute them in a stand-alone version. The Shiny Apps are often highly interactive due to the use of reactive functions, allowing the App to immediately adapt to any input of the user. The \texttt{shiny} R package, provides a large amount of basic widgets, i.e. web elements users can interact with, of which some are built using the Bootstrap Project. Note that compared to the \texttt{BiclustGUI} in R Commander, the user will not shown the generated R on the fly.\\
 The biclustGUI Shiny App can found at \href{ewouddetroyer.shinyapps.io/shiny-biclust}{ewouddetroyer.shinyapps.io/shiny-biclust}. It is also available as a stand-alone version to run locally on your pc at \href{http://www.xxxxxx}{http://www.xxxxxx}. Simply extract the zip-file and double click the \texttt{LAUNCH.vbs} file (no installation, e.g. R, required!).
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.45\textwidth]{figures/shinyibbig.png}
 \caption{Shiny Example (iBBiG) - Biclusters Heatmap}\label{fig:shinyibbig}
 \end{figure}
-\noindent The template scripts for biclustering windows were also the foundations for the \texttt{REST} package. With this package, it is possible to create plug-ins for R Commander without expert knowledge, providing a tool to create envelope GUI packages similar to \texttt{BiclustGUI}.\\ \\
+\noindent The template scripts for biclustering windows were also the foundations for the \texttt{REST} package \citep{DeTroyer2015}. With this package, it is possible to create plug-ins for R Commander without expert knowledge, providing a tool to create envelope GUI packages similar to \texttt{BiclustGUI}.\\ \\
 The \texttt{REST} package ({\bf R}mdrPlugin {\bf E}asy {\bf S}cript {\bf T}emplates) contains a generalization of the biclustering window scripts. These scripts, previously tailored towards a window structure for the biclustering dialogs, are now more general and flexible (i.e. allowing more tabs, more buttons,etc.).\\
 The \texttt{REST} package allows a fast and easy creation of a R Commander plug-in without the \texttt{tcltk} syntax, can be used to create the windows for a new applications, and is freely available on CRAN with \texttt{install.packages("REST")} (Dependencies: \texttt{Rcmdr}).
 
