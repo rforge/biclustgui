@@ -1,0 +1,72 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{R Commander}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Biclustering}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Envelope Packages - Software Development using R}{}% 4
+\BOOKMARK [1][-]{section.3}{The BiclustGUI R Package}{}% 5
+\BOOKMARK [2][-]{subsection.3.1}{GUI Structure}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{Installing and Loading}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{Data Input}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.4}{Extra Utilities}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.4.1}{Search Dialog}{subsection.3.4}% 10
+\BOOKMARK [3][-]{subsubsection.3.4.2}{Help Documentation \046 Scripts}{subsection.3.4}% 11
+\BOOKMARK [3][-]{subsubsection.3.4.3}{Plot Grid}{subsection.3.4}% 12
+\BOOKMARK [3][-]{subsubsection.3.4.4}{Draw Heatmaps}{subsection.3.4}% 13
+\BOOKMARK [3][-]{subsubsection.3.4.5}{Jaccard Index}{subsection.3.4}% 14
+\BOOKMARK [3][-]{subsubsection.3.4.6}{Clear Results}{subsection.3.4}% 15
+\BOOKMARK [3][-]{subsubsection.3.4.7}{Export Results}{subsection.3.4}% 16
+\BOOKMARK [3][-]{subsubsection.3.4.8}{Extract Biclusters}{subsection.3.4}% 17
+\BOOKMARK [3][-]{subsubsection.3.4.9}{Search for genes or samples in biclusters}{subsection.3.4}% 18
+\BOOKMARK [3][-]{subsubsection.3.4.10}{Save/Load}{subsection.3.4}% 19
+\BOOKMARK [2][-]{subsection.3.5}{biclust-package}{section.3}% 20
+\BOOKMARK [3][-]{subsubsection.3.5.1}{Plaid Biclustering}{subsection.3.5}% 21
+\BOOKMARK [3][-]{subsubsection.3.5.2}{CC\(\) Biclustering}{subsection.3.5}% 22
+\BOOKMARK [3][-]{subsubsection.3.5.3}{XMotifs Biclustering}{subsection.3.5}% 23
+\BOOKMARK [3][-]{subsubsection.3.5.4}{Spectral Biclustering}{subsection.3.5}% 24
+\BOOKMARK [3][-]{subsubsection.3.5.5}{QuestMotif Biclustering}{subsection.3.5}% 25
+\BOOKMARK [3][-]{subsubsection.3.5.6}{Bimax Biclustering}{subsection.3.5}% 26
+\BOOKMARK [3][-]{subsubsection.3.5.7}{Biclust: Plots \046 Diagnostics}{subsection.3.5}% 27
+\BOOKMARK [2][-]{subsection.3.6}{fabia-package}{section.3}% 28
+\BOOKMARK [3][-]{subsubsection.3.6.1}{Laplace Prior}{subsection.3.6}% 29
+\BOOKMARK [3][-]{subsubsection.3.6.2}{Post-Projection}{subsection.3.6}% 30
+\BOOKMARK [3][-]{subsubsection.3.6.3}{Sparseness Projection}{subsection.3.6}% 31
+\BOOKMARK [3][-]{subsubsection.3.6.4}{SPARSE}{subsection.3.6}% 32
+\BOOKMARK [3][-]{subsubsection.3.6.5}{Fabia: Plots \046 Diagnostics}{subsection.3.6}% 33
+\BOOKMARK [2][-]{subsection.3.7}{isa2-package}{section.3}% 34
+\BOOKMARK [2][-]{subsection.3.8}{iBBiG-package}{section.3}% 35
+\BOOKMARK [2][-]{subsection.3.9}{rqubic-package}{section.3}% 36
+\BOOKMARK [2][-]{subsection.3.10}{BicARE-package}{section.3}% 37
+\BOOKMARK [2][-]{subsection.3.11}{s4vd-package}{section.3}% 38
+\BOOKMARK [3][-]{subsubsection.3.11.1}{SSVD - Biclustering via Sparse Singular Value Decomposition}{subsection.3.11}% 39
+\BOOKMARK [3][-]{subsubsection.3.11.2}{S4VD - Robust biclustering by ssvd incorporating stability selection}{subsection.3.11}% 40
+\BOOKMARK [2][-]{subsection.3.12}{Diagnostic Packages}{section.3}% 41
+\BOOKMARK [3][-]{subsubsection.3.12.1}{BcDiag-package}{subsection.3.12}% 42
+\BOOKMARK [3][-]{subsubsection.3.12.2}{superbiclust-package}{subsection.3.12}% 43
+\BOOKMARK [1][-]{section.4}{A Guideline to New Implementations}{}% 44
+\BOOKMARK [2][-]{subsection.4.1}{Implementing a New Method}{section.4}% 45
+\BOOKMARK [3][-]{subsubsection.4.1.1}{New Method Script - ClusterTab \046 PlotDiagTab}{subsection.4.1}% 46
+\BOOKMARK [3][-]{subsubsection.4.1.2}{The Frame Scripts}{subsection.4.1}% 47
+\BOOKMARK [3][-]{subsubsection.4.1.3}{A quick example - Plaid}{subsection.4.1}% 48
+\BOOKMARK [2][-]{subsection.4.2}{Implementing a New Tool}{section.4}% 49
+\BOOKMARK [3][-]{subsubsection.4.2.1}{New Tool Script}{subsection.4.2}% 50
+\BOOKMARK [3][-]{subsubsection.4.2.2}{A quick example - BcDiag}{subsection.4.2}% 51
+\BOOKMARK [2][-]{subsection.4.3}{How to start?}{section.4}% 52
+\BOOKMARK [1][-]{section.5}{Extensions - Shiny App \046 REST}{}% 53
+\BOOKMARK [1][-]{section.6}{Appendix}{}% 54
+\BOOKMARK [2][-]{subsection.6.1}{Introduction}{section.6}% 55
+\BOOKMARK [2][-]{subsection.6.2}{The BiclustGUI R Package}{section.6}% 56
+\BOOKMARK [3][-]{subsubsection.6.2.1}{Installing and Loading - Installing Script}{subsection.6.2}% 57
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Extra Utilities}{subsection.6.2}% 58
+\BOOKMARK [3][-]{subsubsection.6.2.3}{biclust-package}{subsection.6.2}% 59
+\BOOKMARK [3][-]{subsubsection.6.2.4}{fabia-package}{subsection.6.2}% 60
+\BOOKMARK [3][-]{subsubsection.6.2.5}{isa2-package}{subsection.6.2}% 61
+\BOOKMARK [3][-]{subsubsection.6.2.6}{iBBiG-package}{subsection.6.2}% 62
+\BOOKMARK [3][-]{subsubsection.6.2.7}{BicARE-package}{subsection.6.2}% 63
+\BOOKMARK [3][-]{subsubsection.6.2.8}{BcDiag-package}{subsection.6.2}% 64
+\BOOKMARK [3][-]{subsubsection.6.2.9}{superbiclust-package}{subsection.6.2}% 65
+\BOOKMARK [2][-]{subsection.6.3}{Guideline - Template Scripts}{section.6}% 66
+\BOOKMARK [3][-]{subsubsection.6.3.1}{newmethod\137script}{subsection.6.3}% 67
+\BOOKMARK [3][-]{subsubsection.6.3.2}{frames\137script}{subsection.6.3}% 68
+\BOOKMARK [3][-]{subsubsection.6.3.3}{Quick Example - Plaid}{subsection.6.3}% 69
+\BOOKMARK [3][-]{subsubsection.6.3.4}{newtool\137script}{subsection.6.3}% 70
+\BOOKMARK [3][-]{subsubsection.6.3.5}{Quick Example - BcDiag}{subsection.6.3}% 71
+\BOOKMARK [3][-]{subsubsection.6.3.6}{Extra Example - Superbiclust}{subsection.6.3}% 72

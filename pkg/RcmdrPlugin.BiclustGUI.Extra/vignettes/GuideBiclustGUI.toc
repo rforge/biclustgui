@@ -1,0 +1,73 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Introduction}{2}{section.1}
+\contentsline {subsection}{\numberline {1.1}R Commander}{3}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Biclustering}{4}{subsection.1.2}
+\contentsline {section}{\numberline {2}Envelope Packages - Software Development using R}{6}{section.2}
+\contentsline {section}{\numberline {3}The BiclustGUI R Package}{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}GUI Structure}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Installing and Loading}{9}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Data Input}{10}{subsection.3.3}
+\contentsline {subsection}{\numberline {3.4}Extra Utilities}{11}{subsection.3.4}
+\contentsline {subsubsection}{\numberline {3.4.1}Search Dialog}{11}{subsubsection.3.4.1}
+\contentsline {subsubsection}{\numberline {3.4.2}Help Documentation \& Scripts}{11}{subsubsection.3.4.2}
+\contentsline {subsubsection}{\numberline {3.4.3}Plot Grid}{11}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.4}Draw Heatmaps}{12}{subsubsection.3.4.4}
+\contentsline {subsubsection}{\numberline {3.4.5}Jaccard Index}{13}{subsubsection.3.4.5}
+\contentsline {subsubsection}{\numberline {3.4.6}Clear Results}{13}{subsubsection.3.4.6}
+\contentsline {subsubsection}{\numberline {3.4.7}Export Results}{13}{subsubsection.3.4.7}
+\contentsline {subsubsection}{\numberline {3.4.8}Extract Biclusters}{14}{subsubsection.3.4.8}
+\contentsline {subsubsection}{\numberline {3.4.9}Search for genes or samples in biclusters}{15}{subsubsection.3.4.9}
+\contentsline {subsubsection}{\numberline {3.4.10}Save/Load}{16}{subsubsection.3.4.10}
+\contentsline {subsection}{\numberline {3.5}\texttt {biclust}-package}{16}{subsection.3.5}
+\contentsline {subsubsection}{\numberline {3.5.1}Plaid Biclustering}{16}{subsubsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.2}CC($\delta $) Biclustering}{18}{subsubsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.3}XMotifs Biclustering}{18}{subsubsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.4}Spectral Biclustering}{19}{subsubsection.3.5.4}
+\contentsline {subsubsection}{\numberline {3.5.5}QuestMotif Biclustering}{20}{subsubsection.3.5.5}
+\contentsline {subsubsection}{\numberline {3.5.6}Bimax Biclustering}{21}{subsubsection.3.5.6}
+\contentsline {subsubsection}{\numberline {3.5.7}Biclust: Plots \& Diagnostics}{22}{subsubsection.3.5.7}
+\contentsline {subsection}{\numberline {3.6}\texttt {fabia}-package}{24}{subsection.3.6}
+\contentsline {subsubsection}{\numberline {3.6.1}Laplace Prior}{25}{subsubsection.3.6.1}
+\contentsline {subsubsection}{\numberline {3.6.2}Post-Projection}{26}{subsubsection.3.6.2}
+\contentsline {subsubsection}{\numberline {3.6.3}Sparseness Projection}{26}{subsubsection.3.6.3}
+\contentsline {subsubsection}{\numberline {3.6.4}SPARSE}{27}{subsubsection.3.6.4}
+\contentsline {subsubsection}{\numberline {3.6.5}Fabia: Plots \& Diagnostics}{28}{subsubsection.3.6.5}
+\contentsline {subsection}{\numberline {3.7}\texttt {isa2}-package}{30}{subsection.3.7}
+\contentsline {subsection}{\numberline {3.8}\texttt {iBBiG}-package}{32}{subsection.3.8}
+\contentsline {subsection}{\numberline {3.9}\texttt {rqubic}-package}{33}{subsection.3.9}
+\contentsline {subsection}{\numberline {3.10}\texttt {BicARE}-package}{35}{subsection.3.10}
+\contentsline {subsection}{\numberline {3.11}\texttt {s4vd}-package}{38}{subsection.3.11}
+\contentsline {subsubsection}{\numberline {3.11.1}SSVD - Biclustering via Sparse Singular Value Decomposition}{38}{subsubsection.3.11.1}
+\contentsline {subsubsection}{\numberline {3.11.2}S4VD - Robust biclustering by ssvd incorporating stability selection}{39}{subsubsection.3.11.2}
+\contentsline {subsection}{\numberline {3.12}Diagnostic Packages}{41}{subsection.3.12}
+\contentsline {subsubsection}{\numberline {3.12.1}\texttt {BcDiag}-package}{41}{subsubsection.3.12.1}
+\contentsline {subsubsection}{\numberline {3.12.2}\texttt {superbiclust}-package}{43}{subsubsection.3.12.2}
+\contentsline {section}{\numberline {4}A Guideline to New Implementations}{46}{section.4}
+\contentsline {subsection}{\numberline {4.1}Implementing a New Method}{46}{subsection.4.1}
+\contentsline {subsubsection}{\numberline {4.1.1}New Method Script - ClusterTab \& PlotDiagTab}{47}{subsubsection.4.1.1}
+\contentsline {subsubsection}{\numberline {4.1.2}The Frame Scripts}{52}{subsubsection.4.1.2}
+\contentsline {subsubsection}{\numberline {4.1.3}A quick example - Plaid}{58}{subsubsection.4.1.3}
+\contentsline {subsection}{\numberline {4.2}Implementing a New Tool}{60}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}New Tool Script}{60}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}A quick example - BcDiag}{61}{subsubsection.4.2.2}
+\contentsline {subsection}{\numberline {4.3}How to start?}{62}{subsection.4.3}
+\contentsline {section}{\numberline {5}Extensions - Shiny App \& \texttt {REST}}{63}{section.5}
+\contentsline {section}{\numberline {6}Appendix}{66}{section.6}
+\contentsline {subsection}{\numberline {6.1}Introduction}{66}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}The BiclustGUI R Package}{66}{subsection.6.2}
+\contentsline {subsubsection}{\numberline {6.2.1}Installing and Loading - Installing Script}{66}{subsubsection.6.2.1}
+\contentsline {subsubsection}{\numberline {6.2.2}Extra Utilities}{67}{subsubsection.6.2.2}
+\contentsline {subsubsection}{\numberline {6.2.3}\texttt {biclust}-package}{68}{subsubsection.6.2.3}
+\contentsline {subsubsection}{\numberline {6.2.4}\texttt {fabia}-package}{71}{subsubsection.6.2.4}
+\contentsline {subsubsection}{\numberline {6.2.5}\texttt {isa2}-package}{75}{subsubsection.6.2.5}
+\contentsline {subsubsection}{\numberline {6.2.6}\texttt {iBBiG}-package}{75}{subsubsection.6.2.6}
+\contentsline {subsubsection}{\numberline {6.2.7}\texttt {BicARE}-package}{76}{subsubsection.6.2.7}
+\contentsline {subsubsection}{\numberline {6.2.8}\texttt {BcDiag}-package}{77}{subsubsection.6.2.8}
+\contentsline {subsubsection}{\numberline {6.2.9}\texttt {superbiclust}-package}{79}{subsubsection.6.2.9}
+\contentsline {subsection}{\numberline {6.3}Guideline - Template Scripts}{79}{subsection.6.3}
+\contentsline {subsubsection}{\numberline {6.3.1}newmethod\_script}{79}{subsubsection.6.3.1}
+\contentsline {subsubsection}{\numberline {6.3.2}frames\_script}{81}{subsubsection.6.3.2}
+\contentsline {subsubsection}{\numberline {6.3.3}Quick Example - Plaid}{83}{subsubsection.6.3.3}
+\contentsline {subsubsection}{\numberline {6.3.4}newtool\_script}{93}{subsubsection.6.3.4}
+\contentsline {subsubsection}{\numberline {6.3.5}Quick Example - BcDiag}{94}{subsubsection.6.3.5}
+\contentsline {subsubsection}{\numberline {6.3.6}Extra Example - Superbiclust}{100}{subsubsection.6.3.6}
