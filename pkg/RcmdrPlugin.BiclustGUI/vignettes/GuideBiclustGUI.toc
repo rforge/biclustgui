@@ -10,7 +10,7 @@
 \contentsline {subsection}{\numberline {3.4}Extra Utilities}{11}{subsection.3.4}
 \contentsline {subsubsection}{\numberline {3.4.1}Search Dialog}{11}{subsubsection.3.4.1}
 \contentsline {subsubsection}{\numberline {3.4.2}Help Documentation \& Scripts}{11}{subsubsection.3.4.2}
-\contentsline {subsubsection}{\numberline {3.4.3}Plot Grid}{11}{subsubsection.3.4.3}
+\contentsline {subsubsection}{\numberline {3.4.3}Plot Grid}{12}{subsubsection.3.4.3}
 \contentsline {subsubsection}{\numberline {3.4.4}Draw Heatmaps}{12}{subsubsection.3.4.4}
 \contentsline {subsubsection}{\numberline {3.4.5}Jaccard Index}{13}{subsubsection.3.4.5}
 \contentsline {subsubsection}{\numberline {3.4.6}Clear Results}{13}{subsubsection.3.4.6}

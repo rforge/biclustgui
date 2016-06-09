@@ -473,8 +473,16 @@ Diagnostics Plots \\
 from CRAN at \url{http://cran.r-project.org/web/packages/Rcmdr/index.html} or
 simply by using \verb|install.packages| in the R console. \\ \\
 Since the BiclustGUI package relies on other biclustering packages, these
-should be installed as well as shown in the panels below. Note that some of
-the packages are located on CRAN,
+should be installed as well. This can be done automatically by setting the
+repository to both CRAN and Bioconductor as shown in the panel below:
+\begin{verbatim}
+setRepositories(ind=c(1:5))
+install.packages("RcmdrPlugin.BiclustGUI")
+\end{verbatim}
+
+\noindent If there are any installation issues, the dependencies can also be
+installed manually as shown in the following panels.
+Some of the packages are located on CRAN,
 \begin{verbatim}
 ## PACKAGES AVAILABLE ON CRAN ##
 install.packages("biclust")
@@ -504,8 +512,8 @@ repos="http://R-Forge.R-project.org")
 ## Biclust GUI - Release Version ##
 install.packages("RcmdrPlugin.BiclustGUI")
 \end{verbatim}
-It could very well be that at first launch the GUI will still prompt to install
-some suggested packages. These can be installed by accepting the request.\\
+Note that at first launch the GUI (R Commander) will still prompt to install
+some required packages. These can be installed by accepting the request.\\
 \noindent After succesfully installing the plug-in, the easiest way to load the
 BiclustGUI is by using the command
 \begin{verbatim}
