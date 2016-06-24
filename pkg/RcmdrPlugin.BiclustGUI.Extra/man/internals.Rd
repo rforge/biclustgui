@@ -33,6 +33,9 @@
 \alias{redgreen}
 \alias{.GetEnvBiclustGUI}
 \alias{.AssignEnvBiclustGUI}
+\alias{indexedBic}
+\alias{BCDIAG_isa2biclust}
+
 
 \title{List of Internal Functions}
 

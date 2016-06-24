@@ -78,7 +78,9 @@ biclust.quest.GUI <- function(x,method,ns,nd,sd,alpha,number,d,quant,vari){
 biclust.bimax.GUI <- function(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck){
 	if(maxbicheck==2){
 		doItAndPrint(paste("       # Original biclust R-code: 'biclust:::maxbimaxbiclust(x=...,minr=",minr,",minc=",minc,",backfit=",backfit,",n2=",n2,",number=",number,")'",sep=""))
+#		return(biclust:::maxbimaxbiclust(logicalmatrix=x,minr=minr,minc=minc,backfit=backfit,n2=n2,number=number))
 		return(biclust:::maxbimaxbiclust(logicalmatrix=x,minr=minr,minc=minc,backfit=backfit,n2=n2,number=number))
+		
 	}
 	
 	if(maxbicheck==3){

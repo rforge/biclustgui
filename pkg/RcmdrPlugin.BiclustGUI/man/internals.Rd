@@ -34,6 +34,9 @@
 \alias{.GetEnvBiclustGUI}
 \alias{.AssignEnvBiclustGUI}
 
+\alias{indexedBic}
+\alias{BCDIAG_isa2biclust}
+
 \title{List of Internal Functions}
 
 \description{List of internal functions used in various functions in the package.}
