@@ -5,9 +5,22 @@
 
 
 
-HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=TRUE,transf=c("none","bin","disc"),bin.thres=NA,disc.nof=10,disc.quant=FALSE){
-	if(res@Number==0){stop("No biclusters available",call.=FALSE)}
+HeatmapBC.GUI <- function(data,res,BC=c(),legend=TRUE,reorder=FALSE,background=FALSE,zeroBC=TRUE,
+		transf=c("none","bin","disc"),bin.thres=NA,disc.nof=10,disc.quant=FALSE,
 		
+		BC.highlight=NULL,BC.highlight.opacity=1){
+	
+	makeTransparent<-function(someColor, opacity=1)
+	{
+		newColor<-col2rgb(someColor)
+		apply(newColor, 2, function(curcoldata){rgb(red=curcoldata[1], green=curcoldata[2],
+							blue=curcoldata[3],alpha=opacity*255, maxColorValue=255)})
+	}
+	
+	if(res@Number==0){stop("No biclusters available",call.=FALSE)}
+	
+	
+	
 	orderRec <- function(col, resBC) { ## THIS ALGORITHM IS BORROWED FROM THE plot.iBBiG function in the iBBiG package.
 		if (col <= ncol(resBC)) {
 			currentCovs <- resBC[, col] == 1
@@ -63,6 +76,20 @@ HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=
 		nBC <- BC
 	}
 	
+	# Some checks for BC.highlight
+	if(!is.null(BC.highlight)){
+		if(length(BC.highlight)>1){
+			warning("BC.highlight should be a single numeric")
+			BC.highlight <- NULL
+		}
+		if(!(BC.highlight%in%nBC)){
+			warning("BC.highlight was not one of the visualised BC's")
+			BC.highlight <- NULL
+		}
+	}
+	
+	### Look if any biclusters have 0 rows or columns, these will be deleted!
+	
 	### MAKE START MATRIX + Background color
 	
 	if(background){
@@ -81,9 +108,17 @@ HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=
 		image.mat <- matrix(0,nrow=dim(data)[1],ncol=dim(data)[2])
 		colorBlackWhite = c(whiteCol)
 	}
-		
+	
+	
 	### Fill in color for BC's + DELETING EMPTY BICLUSTERS (0 rows or columns)
 	remove.BC <- c()
+	
+	
+	# Change order of BC's if highlight is chosen (the highlight should be plotted on top of all the rest)
+	if(!is.null(BC.highlight)){
+		nBC <- c(nBC[-BC.highlight],BC.highlight)
+	}
+	
 	for (i in 1:length(nBC)) {
 		row.index <- res@RowxNumber[, nBC[i]] == 1
 		
@@ -111,12 +146,37 @@ HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=
 	
 	if(length(remove.BC)>0){nBC <- nBC[-remove.BC]}
 	
+	# Extra check if highlighted BC was not removed
+	if(!is.null(BC.highlight)){
+		if(!(BC.highlight%in%nBC)){
+			warning("BC.highlight was removed because it was empty.")
+			BC.highlight <- NULL
+		}
+	}	
 	
 	### Making color vector	 + legend color
 	col <- colors()[c(610,565,589,367,22,554,41,35,48,59,64,76,91,96,100,116,143,381,389,394.439,448,471,529,559,568,631,646)]
 	while (length(col) < length(nBC)){ col = c(col, col)}
 	legendcol = col[nBC]
+	
+	
+	
+	# When highlighting BC, apply transparancy to all the other colors if asked	
+	if(!is.null(BC.highlight)){
+		col[-BC.highlight] <- makeTransparent(col[-BC.highlight],opacity=BC.highlight.opacity)
+		legendcol=col[nBC]
+		
+	}
+	
+	
+	
 	col = c(colorBlackWhite, legendcol)
+	
+	# For reordering and legend, put the BC's and legendcols in the original order
+	if(!is.null(BC.highlight)){
+		legendcol <- legendcol[order(nBC)]
+		nBC <- sort(nBC)
+	}
 	
 	### Reordering if necessary
 	if(reorder & length(nBC)>1){
@@ -134,33 +194,39 @@ HeatmapBC.GUI <- function(data,res,BC=c(),reorder=FALSE,background=FALSE,zeroBC=
 	
 	### Making the image plot
 	oldpar = par(c("mai", "mar", "mgp", "xpd"))
-	par(mar=c(1,1,1,6),xpd=TRUE,mgp=c(0.1,1,0))
+	#par(mar=c(1,1,1,6),xpd=TRUE,mgp=c(0.1,1,0))
 	
 	
 	## Background data image
 	add <- FALSE
-	if(background){
-		if(BIN){
-			backCol <- c("#BEBEBE4D","#0000FF4D")
-		}
+	if(background & !BIN){
 		if(transf=="disc"){
-			backCol <- sapply(redgreen(511),FUN=function(x){return(paste0(x,"4D"))}) # Add suffix to color code to make it opacity=0.3
+			backCol <- viridis(511,begin=1,end=0,alpha=0.3) 
 		}
 		else{
-			backCol <- sapply(greenred(511),FUN=function(x){return(paste0(x,"4D"))}) # Add suffix to color code to make it opacity=0.3
+			backCol <- viridis(511,alpha=0.3) 
 		}
 		image(c(1:dim(data)[2]),c(1:dim(data)[1]),t(data),col=backCol,axes=FALSE,useRaster=TRUE,,xlab="Samples",ylab="Genes")
 		add <- TRUE
 	}
-		
+	
 	image(c(1:dim(image.mat)[2]),c(1:dim(image.mat)[1]),t(image.mat),col=col,axes=FALSE,useRaster=TRUE,xlab="Samples",ylab="Genes",add=add)
-	if (length(legendcol) > 0) {legend("topright",inset=c(-0.2,0), legend = as.character(paste("BC", nBC, sep = "")), fill = legendcol, col = legendcol)}
-	if(BIN){legend("bottomright",inset=c(-0.2,0),legend=c("0","1"),fill=colorBlackWhite,col=colorBlackWhite)}
-		
-	par(oldpar)
+#	if (length(legendcol) > 0) {legend("topright",inset=c(-0.2,0), legend = as.character(paste("BC", nBC, sep = "")), fill = legendcol, col = legendcol)}
+#	if(BIN){legend("bottomright",inset=c(-0.2,0),legend=c("0","1"),fill=colorBlackWhite,col=colorBlackWhite)}
+	if(legend){
+		if (length(legendcol) > 0) {
+			
+			legend("topright", legend = as.character(paste("BC", nBC, sep = "")), fill = legendcol, col = legendcol)
+			
+		}
+		if(BIN){legend("bottomright",legend=c("0","1"),fill=colorBlackWhite,col=colorBlackWhite)}	
+	}
+	#par(oldpar)
 	
 	
 }
+
+
 
 #HeatmapBC(data,res,BC=c(),transf="bin",zeroBC=FALSE,reorder=TRUE,background=TRUE)
 

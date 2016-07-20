@@ -31,6 +31,7 @@
 \alias{.checkplotgridpref}
 \alias{greenred}
 \alias{redgreen}
+\alias{viridis}
 \alias{.GetEnvBiclustGUI}
 \alias{.AssignEnvBiclustGUI}
 \alias{indexedBic}

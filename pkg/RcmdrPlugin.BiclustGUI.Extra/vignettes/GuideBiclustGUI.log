@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.20)  9 JUN 2016 14:02
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.10.20)  20 JUL 2016 20:46
 entering extended mode
 **C:/Users/lucp8394/Documents/StatFiles/CenStat/R*Development/BiclustGUI/pkg/vi
 gnettes/GuideBiclustGUI.tex
@@ -481,12 +481,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 322--369
 
  []
 
-[6] <figures/standard_buttons.png, id=461, 703.62875pt x 172.645pt>
+[6] <figures/standard_buttons.png, id=460, 703.62875pt x 172.645pt>
 File: figures/standard_buttons.png Graphic file (type png)
 <use figures/standard_buttons.png>
 Package pdftex.def Info: figures/standard_buttons.png used on input line 401.
 (pdftex.def)             Requested size: 351.8135pt x 86.32228pt.
-<figures/biclustering_menu.png, id=463, 699.61375pt x 285.065pt>
+<figures/biclustering_menu.png, id=462, 699.61375pt x 285.065pt>
 File: figures/biclustering_menu.png Graphic file (type png)
 <use figures/biclustering_menu.png>
 Package pdftex.def Info: figures/biclustering_menu.png used on input line 419.
@@ -496,7 +496,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 404--421
 
  []
 
-<figures/biclustGUI_diagram.pdf, id=465, 422.57875pt x 452.69125pt>
+<figures/biclustGUI_diagram.pdf, id=464, 422.57875pt x 452.69125pt>
 File: figures/biclustGUI_diagram.pdf Graphic file (type pdf)
 <use figures/biclustGUI_diagram.pdf>
 Package pdftex.def Info: figures/biclustGUI_diagram.pdf used on input line 467.
@@ -519,25 +519,25 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 531.
-<figures/rcmdr_datainput.png, id=492, 699.61375pt x 250.9375pt>
+<figures/rcmdr_datainput.png, id=491, 699.61375pt x 250.9375pt>
 File: figures/rcmdr_datainput.png Graphic file (type png)
 <use figures/rcmdr_datainput.png>
 Package pdftex.def Info: figures/rcmdr_datainput.png used on input line 543.
 (pdftex.def)             Requested size: 349.80602pt x 125.46843pt.
-<figures/rcmdr_activedataset.png, id=493, 461.725pt x 278.03876pt>
+<figures/rcmdr_activedataset.png, id=492, 461.725pt x 278.03876pt>
 File: figures/rcmdr_activedataset.png Graphic file (type png)
 <use figures/rcmdr_activedataset.png>
 Package pdftex.def Info: figures/rcmdr_activedataset.png used on input line 548
 .
 (pdftex.def)             Requested size: 230.86194pt x 139.01903pt.
 [10 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
-/vignettes/figures/rcmdr_datainput.png>] <figures/searchwindow.png, id=502, 393
+/vignettes/figures/rcmdr_datainput.png>] <figures/searchwindow.png, id=501, 393
 .47pt x 241.90375pt>
 File: figures/searchwindow.png Graphic file (type png)
 <use figures/searchwindow.png>
 Package pdftex.def Info: figures/searchwindow.png used on input line 568.
 (pdftex.def)             Requested size: 236.0838pt x 145.14336pt.
-<figures/biclustering_helpmenu.png, id=504, 759.83875pt x 230.8625pt>
+<figures/biclustering_helpmenu.png, id=503, 759.83875pt x 230.8625pt>
 File: figures/biclustering_helpmenu.png Graphic file (type png)
 <use figures/biclustering_helpmenu.png>
 Package pdftex.def Info: figures/biclustering_helpmenu.png used on input line 5
@@ -546,84 +546,84 @@ Package pdftex.def Info: figures/biclustering_helpmenu.png used on input line 5
 [11 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/rcmdr_activedataset.png> <C:/Users/lucp8394/Documents/StatFi
 les/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/searchwindow.png>] <
-figures/plotgridwindow.png, id=514, 237.88875pt x 144.54pt>
+figures/plotgridwindow.png, id=513, 237.88875pt x 144.54pt>
 File: figures/plotgridwindow.png Graphic file (type png)
 <use figures/plotgridwindow.png>
 Package pdftex.def Info: figures/plotgridwindow.png used on input line 598.
 (pdftex.def)             Requested size: 118.94408pt x 72.2698pt.
-<figures/drawheatmapswindow.png, id=516, 1064.97874pt x 573.14125pt>
+<figures/drawheatmapswindow.png, id=515, 1078.0275pt x 594.22pt>
 File: figures/drawheatmapswindow.png Graphic file (type png)
 <use figures/drawheatmapswindow.png>
 Package pdftex.def Info: figures/drawheatmapswindow.png used on input line 619.
 
-(pdftex.def)             Requested size: 425.98395pt x 229.25243pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 623--658
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 623--658
-
- []
-
+(pdftex.def)             Requested size: 431.20335pt x 237.68379pt.
 [12 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/biclustering_helpmenu.png> <C:/Users/lucp8394/Documents/Stat
 Files/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/plotgridwindow.png
-> <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg/v
-ignettes/figures/drawheatmapswindow.png>] <figures/jaccardindexwindow.png, id=5
-29, 425.59pt x 200.75pt>
-File: figures/jaccardindexwindow.png Graphic file (type png)
-<use figures/jaccardindexwindow.png>
-Package pdftex.def Info: figures/jaccardindexwindow.png used on input line 666.
-
-(pdftex.def)             Requested size: 170.23297pt x 80.29857pt.
-<figures/exportwindows.png, id=532, 903.375pt x 698.61pt>
-File: figures/exportwindows.png Graphic file (type png)
-<use figures/exportwindows.png>
-Package pdftex.def Info: figures/exportwindows.png used on input line 687.
-(pdftex.def)             Requested size: 451.6864pt x 349.30414pt.
-[13 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
-/vignettes/figures/jaccardindexwindow.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 692--711
+>]
+Underfull \hbox (badness 10000) in paragraph at lines 623--663
 
  []
 
-<figures/extractwindow.png, id=544, 403.5075pt x 422.57875pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 623--663
+
+ []
+
+<figures/jaccardindexwindow.png, id=528, 425.59pt x 200.75pt>
+File: figures/jaccardindexwindow.png Graphic file (type png)
+<use figures/jaccardindexwindow.png>
+Package pdftex.def Info: figures/jaccardindexwindow.png used on input line 671.
+
+(pdftex.def)             Requested size: 170.23297pt x 80.29857pt.
+[13 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
+/vignettes/figures/drawheatmapswindow.png>] <figures/exportwindows.png, id=540,
+ 903.375pt x 698.61pt>
+File: figures/exportwindows.png Graphic file (type png)
+<use figures/exportwindows.png>
+Package pdftex.def Info: figures/exportwindows.png used on input line 692.
+(pdftex.def)             Requested size: 451.6864pt x 349.30414pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 697--716
+
+ []
+
+[14 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
+/vignettes/figures/jaccardindexwindow.png> <C:/Users/lucp8394/Documents/StatFil
+es/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/exportwindows.png>] <
+figures/extractwindow.png, id=550, 403.5075pt x 422.57875pt>
 File: figures/extractwindow.png Graphic file (type png)
 <use figures/extractwindow.png>
-Package pdftex.def Info: figures/extractwindow.png used on input line 715.
+Package pdftex.def Info: figures/extractwindow.png used on input line 720.
 (pdftex.def)             Requested size: 201.75325pt x 211.28885pt.
-[14 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
-/vignettes/figures/exportwindows.png>] <figures/findwindow.png, id=552, 348.301
-25pt x 424.58624pt>
+<figures/findwindow.png, id=552, 348.30125pt x 424.58624pt>
 File: figures/findwindow.png Graphic file (type png)
 <use figures/findwindow.png>
-Package pdftex.def Info: figures/findwindow.png used on input line 726.
+Package pdftex.def Info: figures/findwindow.png used on input line 731.
 (pdftex.def)             Requested size: 174.15019pt x 212.2926pt.
 <figures/findwindow_example1.png, id=554, 1104.125pt x 233.87375pt>
 File: figures/findwindow_example1.png Graphic file (type png)
 <use figures/findwindow_example1.png>
-Package pdftex.def Info: figures/findwindow_example1.png used on input line 751
+Package pdftex.def Info: figures/findwindow_example1.png used on input line 756
 .
 (pdftex.def)             Requested size: 441.64218pt x 93.54782pt.
 [15 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/extractwindow.png> <C:/Users/lucp8394/Documents/StatFiles/Ce
 nStat/R Development/BiclustGUI/pkg/vignettes/figures/findwindow.png>] <figures/
-saveloadwindow.png, id=564, 659.46375pt x 339.2675pt>
+saveloadwindow.png, id=563, 659.46375pt x 339.2675pt>
 File: figures/saveloadwindow.png Graphic file (type png)
 <use figures/saveloadwindow.png>
-Package pdftex.def Info: figures/saveloadwindow.png used on input line 767.
+Package pdftex.def Info: figures/saveloadwindow.png used on input line 772.
 (pdftex.def)             Requested size: 263.78082pt x 135.70459pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 770--784
+Underfull \hbox (badness 10000) in paragraph at lines 775--789
 
  []
 
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 785.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 790.
 
-Underfull \hbox (badness 10000) in paragraph at lines 788--797
+Underfull \hbox (badness 10000) in paragraph at lines 793--802
 
  []
 
@@ -633,127 +633,127 @@ les/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/saveloadwindow.png>]
 <figures/plaid_clusttab.png, id=583, 523.9575pt x 424.58624pt>
 File: figures/plaid_clusttab.png Graphic file (type png)
 <use figures/plaid_clusttab.png>
-Package pdftex.def Info: figures/plaid_clusttab.png used on input line 847.
+Package pdftex.def Info: figures/plaid_clusttab.png used on input line 852.
 (pdftex.def)             Requested size: 261.9781pt x 212.2926pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 825--849
+Underfull \hbox (badness 10000) in paragraph at lines 830--854
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 850--870
+Underfull \hbox (badness 10000) in paragraph at lines 855--875
 
  []
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 872.
+(hyperref)                removing `math shift' on input line 877.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\delta' on input line 872.
+(hyperref)                removing `\delta' on input line 877.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 872.
+(hyperref)                removing `math shift' on input line 877.
 
 [17 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/plaid_clusttab.png>] <figures/cc_clusttab.png, id=599, 513.9
 2pt x 236.885pt>
 File: figures/cc_clusttab.png Graphic file (type png)
 <use figures/cc_clusttab.png>
-Package pdftex.def Info: figures/cc_clusttab.png used on input line 902.
+Package pdftex.def Info: figures/cc_clusttab.png used on input line 907.
 (pdftex.def)             Requested size: 256.95937pt x 118.4422pt.
 <figures/xmotif_clusttab.png, id=605, 514.92375pt x 339.2675pt>
 File: figures/xmotif_clusttab.png Graphic file (type png)
 <use figures/xmotif_clusttab.png>
-Package pdftex.def Info: figures/xmotif_clusttab.png used on input line 939.
+Package pdftex.def Info: figures/xmotif_clusttab.png used on input line 944.
 (pdftex.def)             Requested size: 257.46124pt x 169.63333pt.
 [18 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/cc_clusttab.png>] <figures/spectral_clusttab.png, id=626, 51
 7.935pt x 382.42876pt>
 File: figures/spectral_clusttab.png Graphic file (type png)
 <use figures/spectral_clusttab.png>
-Package pdftex.def Info: figures/spectral_clusttab.png used on input line 994.
+Package pdftex.def Info: figures/spectral_clusttab.png used on input line 999.
 (pdftex.def)             Requested size: 258.96686pt x 191.2139pt.
 [19 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/xmotif_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 997--1018
+Underfull \hbox (badness 10000) in paragraph at lines 1002--1023
 
  []
 
 <figures/questmotif_clusttab.png, id=648, 515.9275pt x 471.7625pt>
 File: figures/questmotif_clusttab.png Graphic file (type png)
 <use figures/questmotif_clusttab.png>
-Package pdftex.def Info: figures/questmotif_clusttab.png used on input line 102
-7.
+Package pdftex.def Info: figures/questmotif_clusttab.png used on input line 103
+2.
 (pdftex.def)             Requested size: 257.96312pt x 235.88066pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1020--1029
+Underfull \hbox (badness 10000) in paragraph at lines 1025--1034
 
  []
 
 [20 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/spectral_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1030--1053
+Underfull \hbox (badness 10000) in paragraph at lines 1035--1058
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1030--1053
+Underfull \hbox (badness 10000) in paragraph at lines 1035--1058
 
  []
 
 <figures/bimax_clusttab.png, id=663, 515.9275pt x 481.8pt>
 File: figures/bimax_clusttab.png Graphic file (type png)
 <use figures/bimax_clusttab.png>
-Package pdftex.def Info: figures/bimax_clusttab.png used on input line 1074.
+Package pdftex.def Info: figures/bimax_clusttab.png used on input line 1079.
 (pdftex.def)             Requested size: 257.96312pt x 240.8994pt.
 [21 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/questmotif_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1077--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1082--1105
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1077--1100
+Underfull \hbox (badness 10000) in paragraph at lines 1082--1105
 
  []
 
 <figures/biclust_plotdiagtab.png, id=675, 973.6375pt x 665.48625pt>
 File: figures/biclust_plotdiagtab.png Graphic file (type png)
 <use figures/biclust_plotdiagtab.png>
-Package pdftex.def Info: figures/biclust_plotdiagtab.png used on input line 111
-5.
+Package pdftex.def Info: figures/biclust_plotdiagtab.png used on input line 112
+0.
 (pdftex.def)             Requested size: 438.13283pt x 299.46603pt.
 [22 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bimax_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1239
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1239
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1239
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1239
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1239
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1244
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1118--1239
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1244
 
  []
 
@@ -763,15 +763,15 @@ b.png, id=717, 619.31375pt x 552.0625pt>
 File: figures/fabialaplace_clusttab.png Graphic file (type png)
 <use figures/fabialaplace_clusttab.png>
 Package pdftex.def Info: figures/fabialaplace_clusttab.png used on input line 1
-293.
+298.
 (pdftex.def)             Requested size: 309.65611pt x 276.03056pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1264--1296
+Underfull \hbox (badness 10000) in paragraph at lines 1269--1301
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1297--1308
+Underfull \hbox (badness 10000) in paragraph at lines 1302--1313
 
  []
 
@@ -781,51 +781,51 @@ png, id=731, 619.31375pt x 547.04375pt>
 File: figures/fabiapostproj_clusttab.png Graphic file (type png)
 <use figures/fabiapostproj_clusttab.png>
 Package pdftex.def Info: figures/fabiapostproj_clusttab.png used on input line 
-1320.
+1325.
 (pdftex.def)             Requested size: 309.65611pt x 273.5212pt.
 <figures/fabiasparseproj_clusttab.png, id=735, 619.31375pt x 531.9875pt>
 File: figures/fabiasparseproj_clusttab.png Graphic file (type png)
 <use figures/fabiasparseproj_clusttab.png>
 Package pdftex.def Info: figures/fabiasparseproj_clusttab.png used on input lin
-e 1337.
+e 1342.
 (pdftex.def)             Requested size: 309.65611pt x 265.9931pt.
 [26 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/fabiapostproj_clusttab.png>] <figures/fabia_sparse.png, id=7
 57, 619.31375pt x 722.7pt>
 File: figures/fabia_sparse.png Graphic file (type png)
 <use figures/fabia_sparse.png>
-Package pdftex.def Info: figures/fabia_sparse.png used on input line 1359.
+Package pdftex.def Info: figures/fabia_sparse.png used on input line 1364.
 (pdftex.def)             Requested size: 309.65611pt x 361.3491pt.
 [27 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/fabiasparseproj_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1363--1392
+Underfull \hbox (badness 10000) in paragraph at lines 1368--1397
 
  []
 
 <figures/fabia_plotdiagtab.png, id=771, 630.355pt x 778.91pt>
 File: figures/fabia_plotdiagtab.png Graphic file (type png)
 <use figures/fabia_plotdiagtab.png>
-Package pdftex.def Info: figures/fabia_plotdiagtab.png used on input line 1402.
+Package pdftex.def Info: figures/fabia_plotdiagtab.png used on input line 1407.
 
 (pdftex.def)             Requested size: 315.17673pt x 389.45406pt.
 [28 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/fabia_sparse.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1405--1474
+Underfull \hbox (badness 10000) in paragraph at lines 1410--1479
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1405--1474
+Underfull \hbox (badness 10000) in paragraph at lines 1410--1479
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1405--1474
+Underfull \hbox (badness 10000) in paragraph at lines 1410--1479
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1405--1474
+Underfull \hbox (badness 10000) in paragraph at lines 1410--1479
 
  []
 
@@ -834,16 +834,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 1405--1474
 10.90875pt x 381.425pt>
 File: figures/isa_clusttab.png Graphic file (type png)
 <use figures/isa_clusttab.png>
-Package pdftex.def Info: figures/isa_clusttab.png used on input line 1495.
+Package pdftex.def Info: figures/isa_clusttab.png used on input line 1500.
 (pdftex.def)             Requested size: 255.45375pt x 190.71202pt.
 <figures/isa_plotdiagtab.png, id=797, 509.905pt x 737.75626pt>
 File: figures/isa_plotdiagtab.png Graphic file (type png)
 <use figures/isa_plotdiagtab.png>
-Package pdftex.def Info: figures/isa_plotdiagtab.png used on input line 1517.
+Package pdftex.def Info: figures/isa_plotdiagtab.png used on input line 1522.
 (pdftex.def)             Requested size: 254.95187pt x 368.87723pt.
 [30 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/isa_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1520--1545
+Underfull \hbox (badness 10000) in paragraph at lines 1525--1550
 
  []
 
@@ -852,56 +852,56 @@ Underfull \hbox (badness 10000) in paragraph at lines 1520--1545
 86.81876pt x 416.55624pt>
 File: figures/ibbig_clusttab.png Graphic file (type png)
 <use figures/ibbig_clusttab.png>
-Package pdftex.def Info: figures/ibbig_clusttab.png used on input line 1572.
+Package pdftex.def Info: figures/ibbig_clusttab.png used on input line 1577.
 (pdftex.def)             Requested size: 243.40878pt x 208.2776pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1551--1574
+Underfull \hbox (badness 10000) in paragraph at lines 1556--1579
 
  []
 
 <figures/ibbig_plotdiagtab.png, id=828, 486.81876pt x 724.7075pt>
 File: figures/ibbig_plotdiagtab.png Graphic file (type png)
 <use figures/ibbig_plotdiagtab.png>
-Package pdftex.def Info: figures/ibbig_plotdiagtab.png used on input line 1604.
+Package pdftex.def Info: figures/ibbig_plotdiagtab.png used on input line 1609.
 
 (pdftex.def)             Requested size: 243.40878pt x 362.35286pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1575--1606
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1611
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1575--1606
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1611
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1575--1606
+Underfull \hbox (badness 10000) in paragraph at lines 1580--1611
 
  []
 
 [32 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/ibbig_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1607--1619
+Underfull \hbox (badness 10000) in paragraph at lines 1612--1624
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1621--1635
+Underfull \hbox (badness 10000) in paragraph at lines 1626--1640
 
  []
 
 <figures/rqubic_clusttab.png, id=844, 523.9575pt x 460.72125pt>
 File: figures/rqubic_clusttab.png Graphic file (type png)
 <use figures/rqubic_clusttab.png>
-Package pdftex.def Info: figures/rqubic_clusttab.png used on input line 1638.
+Package pdftex.def Info: figures/rqubic_clusttab.png used on input line 1643.
 (pdftex.def)             Requested size: 261.9781pt x 230.36006pt.
 [33 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/ibbig_plotdiagtab.png>] <figures/rqubic_plotdiagtab.png, id=
 854, 523.9575pt x 664.4825pt>
 File: figures/rqubic_plotdiagtab.png Graphic file (type png)
 <use figures/rqubic_plotdiagtab.png>
-Package pdftex.def Info: figures/rqubic_plotdiagtab.png used on input line 1663
+Package pdftex.def Info: figures/rqubic_plotdiagtab.png used on input line 1668
 .
 (pdftex.def)             Requested size: 261.9781pt x 332.24043pt.
 [34 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
@@ -909,10 +909,10 @@ Package pdftex.def Info: figures/rqubic_plotdiagtab.png used on input line 1663
 448.67625pt x 499.8675pt>
 File: figures/bicare_clusttab.png Graphic file (type png)
 <use figures/bicare_clusttab.png>
-Package pdftex.def Info: figures/bicare_clusttab.png used on input line 1700.
+Package pdftex.def Info: figures/bicare_clusttab.png used on input line 1705.
 (pdftex.def)             Requested size: 224.33757pt x 249.93314pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1671--1702
+Underfull \hbox (badness 10000) in paragraph at lines 1676--1707
 
  []
 
@@ -921,32 +921,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 1671--1702
 =885, 448.67625pt x 662.475pt>
 File: figures/bicare_plotdiagtab.png Graphic file (type png)
 <use figures/bicare_plotdiagtab.png>
-Package pdftex.def Info: figures/bicare_plotdiagtab.png used on input line 1720
+Package pdftex.def Info: figures/bicare_plotdiagtab.png used on input line 1725
 .
 (pdftex.def)             Requested size: 224.33757pt x 331.2367pt.
 [36 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bicare_clusttab.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 1723--1778
+Underfull \hbox (badness 10000) in paragraph at lines 1728--1783
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1723--1778
+Underfull \hbox (badness 10000) in paragraph at lines 1728--1783
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1723--1778
+Underfull \hbox (badness 10000) in paragraph at lines 1728--1783
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1723--1778
+Underfull \hbox (badness 10000) in paragraph at lines 1728--1783
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1723--1778
+Underfull \hbox (badness 10000) in paragraph at lines 1728--1783
 
  []
 
@@ -955,30 +955,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 1723--1778
  523.9575pt x 519.9425pt>
 File: figures/ssvd_clusttab.png Graphic file (type png)
 <use figures/ssvd_clusttab.png>
-Package pdftex.def Info: figures/ssvd_clusttab.png used on input line 1818.
+Package pdftex.def Info: figures/ssvd_clusttab.png used on input line 1823.
 (pdftex.def)             Requested size: 261.9781pt x 259.97061pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1803--1820
+Underfull \hbox (badness 10000) in paragraph at lines 1808--1825
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1803--1820
+Underfull \hbox (badness 10000) in paragraph at lines 1808--1825
 
  []
 
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 1821--1832
+Underfull \hbox (badness 10000) in paragraph at lines 1826--1837
 
  []
 
 <figures/s4vd_clusttab.png, id=923, 562.1pt x 610.28pt>
 File: figures/s4vd_clusttab.png Graphic file (type png)
 <use figures/s4vd_clusttab.png>
-Package pdftex.def Info: figures/s4vd_clusttab.png used on input line 1860.
+Package pdftex.def Info: figures/s4vd_clusttab.png used on input line 1865.
 (pdftex.def)             Requested size: 281.04932pt x 305.13925pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1836--1862
+Underfull \hbox (badness 10000) in paragraph at lines 1841--1867
 
  []
 
@@ -987,17 +987,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 1836--1862
 62.1pt x 724.7075pt>
 File: figures/s4vd_plotdiagtab.png Graphic file (type png)
 <use figures/s4vd_plotdiagtab.png>
-Package pdftex.def Info: figures/s4vd_plotdiagtab.png used on input line 1878.
+Package pdftex.def Info: figures/s4vd_plotdiagtab.png used on input line 1883.
 (pdftex.def)             Requested size: 281.04932pt x 362.35286pt.
 [40 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/s4vd_clusttab.png>] <figures/bcdiag_summary.png, id=942, 848
 .16875pt x 783.92876pt>
 File: figures/bcdiag_summary.png Graphic file (type png)
 <use figures/bcdiag_summary.png>
-Package pdftex.def Info: figures/bcdiag_summary.png used on input line 1915.
+Package pdftex.def Info: figures/bcdiag_summary.png used on input line 1920.
 (pdftex.def)             Requested size: 424.08333pt x 391.96342pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1907--1917
+Underfull \hbox (badness 10000) in paragraph at lines 1912--1922
 
  []
 
@@ -1006,30 +1006,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 1907--1917
 9.05125pt x 107.40125pt>
 File: figures/bcdiag_fabia.png Graphic file (type png)
 <use figures/bcdiag_fabia.png>
-Package pdftex.def Info: figures/bcdiag_fabia.png used on input line 1982.
+Package pdftex.def Info: figures/bcdiag_fabia.png used on input line 1987.
 (pdftex.def)             Requested size: 274.52495pt x 53.70049pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1918--1984
+Underfull \hbox (badness 10000) in paragraph at lines 1923--1989
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1918--1984
+Underfull \hbox (badness 10000) in paragraph at lines 1923--1989
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1918--1984
+Underfull \hbox (badness 10000) in paragraph at lines 1923--1989
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1918--1984
+Underfull \hbox (badness 10000) in paragraph at lines 1923--1989
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1918--1984
+Underfull \hbox (badness 10000) in paragraph at lines 1923--1989
 
  []
 
@@ -1038,78 +1038,78 @@ Underfull \hbox (badness 10000) in paragraph at lines 1918--1984
 805pt x 758.835pt>
 File: figures/superbiclust.png Graphic file (type png)
 <use figures/superbiclust.png>
-Package pdftex.def Info: figures/superbiclust.png used on input line 2002.
+Package pdftex.def Info: figures/superbiclust.png used on input line 2007.
 (pdftex.def)             Requested size: 375.40158pt x 379.41658pt.
 [43 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bcdiag_fabia.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 2005--2066
+Underfull \hbox (badness 10000) in paragraph at lines 2010--2071
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2005--2066
+Underfull \hbox (badness 10000) in paragraph at lines 2010--2071
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2005--2066
+Underfull \hbox (badness 10000) in paragraph at lines 2010--2071
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2005--2066
+Underfull \hbox (badness 10000) in paragraph at lines 2010--2071
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2005--2066
+Underfull \hbox (badness 10000) in paragraph at lines 2010--2071
 
  []
 
 [44 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/superbiclust.png>] [45]
-Underfull \hbox (badness 10000) in paragraph at lines 2070--2082
+Underfull \hbox (badness 10000) in paragraph at lines 2075--2087
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2090--2096
+Underfull \hbox (badness 10000) in paragraph at lines 2095--2101
 
  []
 
 File: figures/standard_buttons.png Graphic file (type png)
 <use figures/standard_buttons.png>
-Package pdftex.def Info: figures/standard_buttons.png used on input line 2122.
+Package pdftex.def Info: figures/standard_buttons.png used on input line 2127.
 (pdftex.def)             Requested size: 351.8135pt x 86.32228pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2125--2137
+Underfull \hbox (badness 10000) in paragraph at lines 2130--2142
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2125--2137
+Underfull \hbox (badness 10000) in paragraph at lines 2130--2142
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2141--2155
+Underfull \hbox (badness 10000) in paragraph at lines 2146--2160
 
  []
 
 [46]
-Package color Info: Redefining color shadecolor on input line 2158.
+Package color Info: Redefining color shadecolor on input line 2163.
 LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 216
-0.
+5.
 
 ("C:/Program Files/Architect/plugins/eu.openanalytics.architect.r.server.win32.
 win32_0.9.4.201408202157/R/share/texmf/tex/latex\omscmtt.fd"
 File: omscmtt.fd 
 )
 LaTeX Font Info:    Font shape `OMS/cmtt/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2160.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 2165.
 
 [47]
-Overfull \hbox (26.27359pt too wide) in paragraph at lines 2265--2273
+Overfull \hbox (26.27359pt too wide) in paragraph at lines 2270--2278
 []\OT1/cmr/m/n/10 Logical value de-ter-min-ing com-pat-i-bil-ity with the []\OT
 1/cmtt/m/n/10 BcDiag \OT1/cmr/m/n/10 and []\OT1/cmtt/m/n/10 superbiclust
  []
@@ -1117,53 +1117,53 @@ Overfull \hbox (26.27359pt too wide) in paragraph at lines 2265--2273
 <figures/showmethod.png, id=1022, 829.0975pt x 367.3725pt>
 File: figures/showmethod.png Graphic file (type png)
 <use figures/showmethod.png>
-Package pdftex.def Info: figures/showmethod.png used on input line 2278.
+Package pdftex.def Info: figures/showmethod.png used on input line 2283.
 (pdftex.def)             Requested size: 414.54774pt x 183.68579pt.
 <figures/discrbin.png, id=1023, 515.9275pt x 211.79124pt>
 File: figures/discrbin.png Graphic file (type png)
 <use figures/discrbin.png>
-Package pdftex.def Info: figures/discrbin.png used on input line 2284.
+Package pdftex.def Info: figures/discrbin.png used on input line 2289.
 (pdftex.def)             Requested size: 257.96312pt x 105.89536pt.
 [48 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/showmethod.png>] <figures/plaid_structure.png, id=1032, 1080
 .035pt x 752.8125pt>
 File: figures/plaid_structure.png Graphic file (type png)
 <use figures/plaid_structure.png>
-Package pdftex.def Info: figures/plaid_structure.png used on input line 2304.
+Package pdftex.def Info: figures/plaid_structure.png used on input line 2309.
 (pdftex.def)             Requested size: 475.21687pt x 331.23853pt.
-Package color Info: Redefining color shadecolor on input line 2309.
+Package color Info: Redefining color shadecolor on input line 2314.
 [49 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/discrbin.png> <C:/Users/lucp8394/Documents/StatFiles/CenStat
 /R Development/BiclustGUI/pkg/vignettes/figures/plaid_structure.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 2336--2348
+Underfull \hbox (badness 10000) in paragraph at lines 2341--2353
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2356--2393
+Underfull \hbox (badness 10000) in paragraph at lines 2361--2398
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2356--2393
+Underfull \hbox (badness 10000) in paragraph at lines 2361--2398
 
  []
 
 [50] <figures/combinerows_grid.png, id=1050, 672.5125pt x 304.13625pt>
 File: figures/combinerows_grid.png Graphic file (type png)
 <use figures/combinerows_grid.png>
-Package pdftex.def Info: figures/combinerows_grid.png used on input line 2396.
+Package pdftex.def Info: figures/combinerows_grid.png used on input line 2401.
 (pdftex.def)             Requested size: 269.00023pt x 121.65233pt.
 [51 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/combinerows_grid.png>]
-Package color Info: Redefining color shadecolor on input line 2407.
+Package color Info: Redefining color shadecolor on input line 2412.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2446--2463
+Underfull \hbox (badness 10000) in paragraph at lines 2451--2468
 
  []
 
 
-Overfull \hbox (3.85855pt too wide) in paragraph at lines 2465--2477
+Overfull \hbox (3.85855pt too wide) in paragraph at lines 2470--2482
 \OT1/cmr/m/n/10 idea is that these parts of the R-code (which are also in the A
 p-pendix) are copy-pasted into the []\OT1/cmtt/m/n/10 newmethod_script
  []
@@ -1171,17 +1171,17 @@ p-pendix) are copy-pasted into the []\OT1/cmtt/m/n/10 newmethod_script
 <figures/title_border.png, id=1058, 451.6875pt x 180.675pt>
 File: figures/title_border.png Graphic file (type png)
 <use figures/title_border.png>
-Package pdftex.def Info: figures/title_border.png used on input line 2480.
+Package pdftex.def Info: figures/title_border.png used on input line 2485.
 (pdftex.def)             Requested size: 225.84319pt x 90.33727pt.
 [52] <figures/entryfields.png, id=1064, 751.80875pt x 384.43625pt>
 File: figures/entryfields.png Graphic file (type png)
 <use figures/entryfields.png>
-Package pdftex.def Info: figures/entryfields.png used on input line 2494.
+Package pdftex.def Info: figures/entryfields.png used on input line 2499.
 (pdftex.def)             Requested size: 375.90344pt x 192.21765pt.
 <figures/checkboxes.png, id=1066, 678.535pt x 344.28625pt>
 File: figures/checkboxes.png Graphic file (type png)
 <use figures/checkboxes.png>
-Package pdftex.def Info: figures/checkboxes.png used on input line 2525.
+Package pdftex.def Info: figures/checkboxes.png used on input line 2530.
 (pdftex.def)             Requested size: 339.26666pt x 172.1427pt.
 [53 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/title_border.png> <C:/Users/lucp8394/Documents/StatFiles/Cen
@@ -1189,7 +1189,7 @@ Stat/R Development/BiclustGUI/pkg/vignettes/figures/entryfields.png>] <figures/
 radiobuttons.png, id=1074, 729.72626pt x 405.515pt>
 File: figures/radiobuttons.png Graphic file (type png)
 <use figures/radiobuttons.png>
-Package pdftex.def Info: figures/radiobuttons.png used on input line 2549.
+Package pdftex.def Info: figures/radiobuttons.png used on input line 2554.
 (pdftex.def)             Requested size: 364.86224pt x 202.75699pt.
 [54 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/checkboxes.png> <C:/Users/lucp8394/Documents/StatFiles/CenSt
@@ -1197,19 +1197,19 @@ at/R Development/BiclustGUI/pkg/vignettes/figures/radiobuttons.png>] <figures/s
 lider.png, id=1083, 819.06pt x 412.54124pt>
 File: figures/slider.png Graphic file (type png)
 <use figures/slider.png>
-Package pdftex.def Info: figures/slider.png used on input line 2581.
+Package pdftex.def Info: figures/slider.png used on input line 2586.
 (pdftex.def)             Requested size: 409.52899pt x 206.27011pt.
 <figures/spinboxes.png, id=1084, 715.67375pt x 413.545pt>
 File: figures/spinboxes.png Graphic file (type png)
 <use figures/spinboxes.png>
-Package pdftex.def Info: figures/spinboxes.png used on input line 2613.
+Package pdftex.def Info: figures/spinboxes.png used on input line 2618.
 (pdftex.def)             Requested size: 357.836pt x 206.77199pt.
 [55 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/slider.png>] <figures/manualbutton.png, id=1092, 700.6175pt 
 x 481.8pt>
 File: figures/manualbutton.png Graphic file (type png)
 <use figures/manualbutton.png>
-Package pdftex.def Info: figures/manualbutton.png used on input line 2648.
+Package pdftex.def Info: figures/manualbutton.png used on input line 2653.
 (pdftex.def)             Requested size: 350.30789pt x 240.8994pt.
 [56 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/spinboxes.png>] <figures/manualbutton_showsave.png, id=1100,
@@ -1217,58 +1217,58 @@ Package pdftex.def Info: figures/manualbutton.png used on input line 2648.
 File: figures/manualbutton_showsave.png Graphic file (type png)
 <use figures/manualbutton_showsave.png>
 Package pdftex.def Info: figures/manualbutton_showsave.png used on input line 2
-700.
+705.
 (pdftex.def)             Requested size: 357.33412pt x 78.2923pt.
 [57 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/manualbutton.png>]
-Package color Info: Redefining color shadecolor on input line 2718.
+Package color Info: Redefining color shadecolor on input line 2723.
 <figures/plaid_clusterbuild.png, id=1109, 948.54375pt x 761.84625pt>
 File: figures/plaid_clusterbuild.png Graphic file (type png)
 <use figures/plaid_clusterbuild.png>
-Package pdftex.def Info: figures/plaid_clusterbuild.png used on input line 2748
+Package pdftex.def Info: figures/plaid_clusterbuild.png used on input line 2753
 .
 (pdftex.def)             Requested size: 426.84074pt x 342.82764pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2740--2751
+Underfull \hbox (badness 10000) in paragraph at lines 2745--2756
 
  []
 
 [58 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/manualbutton_showsave.png>]
-Package color Info: Redefining color shadecolor on input line 2759.
+Package color Info: Redefining color shadecolor on input line 2764.
 <figures/plaid_plotdiagbuild.png, id=1118, 1041.8925pt x 731.73375pt>
 File: figures/plaid_plotdiagbuild.png Graphic file (type png)
 <use figures/plaid_plotdiagbuild.png>
 Package pdftex.def Info: figures/plaid_plotdiagbuild.png used on input line 278
-4.
+9.
 (pdftex.def)             Requested size: 458.43413pt x 321.96384pt.
 [59 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/plaid_clusterbuild.png>]
-Package color Info: Redefining color shadecolor on input line 2805.
+Package color Info: Redefining color shadecolor on input line 2810.
 [60 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/plaid_plotdiagbuild.png>]
-Package color Info: Redefining color shadecolor on input line 2875.
+Package color Info: Redefining color shadecolor on input line 2880.
 [61] <figures/bcdiag_build.png, id=1136, 982.67125pt x 587.19376pt>
 File: figures/bcdiag_build.png Graphic file (type png)
 <use figures/bcdiag_build.png>
-Package pdftex.def Info: figures/bcdiag_build.png used on input line 2921.
+Package pdftex.def Info: figures/bcdiag_build.png used on input line 2926.
 (pdftex.def)             Requested size: 442.19798pt x 264.23474pt.
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2953.
+(Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 2958.
 
 <figures/shinyibbig.png, id=1141, 1767.60374pt x 1035.87pt>
 File: figures/shinyibbig.png Graphic file (type png)
 <use figures/shinyibbig.png>
-Package pdftex.def Info: figures/shinyibbig.png used on input line 2958.
+Package pdftex.def Info: figures/shinyibbig.png used on input line 2963.
 (pdftex.def)             Requested size: 217.66211pt x 127.55508pt.
 [62 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bcdiag_build.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 2961--2974
+Underfull \hbox (badness 10000) in paragraph at lines 2966--2979
 
  []
 
 
-Overfull \hbox (16.85707pt too wide) in paragraph at lines 2961--2974
+Overfull \hbox (16.85707pt too wide) in paragraph at lines 2966--2979
 \OT1/cmr/m/n/10 used to cre-ate the win-dows for a new ap-pli-ca-tions, and is 
 freely avail-able on CRAN with \OT1/cmtt/m/n/10 install.packages("REST")
  []
@@ -1280,13 +1280,13 @@ gnettes\GuideBiclustGUI.bbl" [64]) [65] <figures/bicluster_types.png, id=1177,
 1168.365pt x 761.84625pt>
 File: figures/bicluster_types.png Graphic file (type png)
 <use figures/bicluster_types.png>
-Package pdftex.def Info: figures/bicluster_types.png used on input line 2986.
+Package pdftex.def Info: figures/bicluster_types.png used on input line 2991.
 (pdftex.def)             Requested size: 292.09053pt x 190.46109pt.
 <figures/bicluster_structures.png, id=1178, 1357.07pt x 839.135pt>
 File: figures/bicluster_structures.png Graphic file (type png)
 <use figures/bicluster_structures.png>
 Package pdftex.def Info: figures/bicluster_structures.png used on input line 29
-91.
+96.
 (pdftex.def)             Requested size: 271.4092pt x 167.82402pt.
 [66 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bicluster_types.png> <C:/Users/lucp8394/Documents/StatFiles/
@@ -1295,25 +1295,25 @@ CenStat/R Development/BiclustGUI/pkg/vignettes/figures/bicluster_structures.png
 File: figures/drawheatmaps_example1.png Graphic file (type png)
 <use figures/drawheatmaps_example1.png>
 Package pdftex.def Info: figures/drawheatmaps_example1.png used on input line 3
-026.
+031.
 (pdftex.def)             Requested size: 466.71509pt x 234.84811pt.
 <figures/drawheatmaps_example2.png, id=1186, 1417.295pt x 711.65875pt>
 File: figures/drawheatmaps_example2.png Graphic file (type png)
 <use figures/drawheatmaps_example2.png>
 Package pdftex.def Info: figures/drawheatmaps_example2.png used on input line 3
-031.
+036.
 (pdftex.def)             Requested size: 467.7088pt x 234.84811pt.
 <figures/biclustplot_example1.png, id=1187, 1148.29pt x 592.2125pt>
 File: figures/biclustplot_example1.png Graphic file (type png)
 <use figures/biclustplot_example1.png>
 Package pdftex.def Info: figures/biclustplot_example1.png used on input line 30
-40.
+45.
 (pdftex.def)             Requested size: 459.30786pt x 236.8808pt.
 <figures/biclustplot_example2.png, id=1188, 1167.36125pt x 591.20876pt>
 File: figures/biclustplot_example2.png Graphic file (type png)
 <use figures/biclustplot_example2.png>
 Package pdftex.def Info: figures/biclustplot_example2.png used on input line 30
-46.
+51.
 (pdftex.def)             Requested size: 466.93623pt x 236.47931pt.
 [67 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/drawheatmaps_example1.png> <C:/Users/lucp8394/Documents/Stat
@@ -1323,13 +1323,13 @@ le2.png>] <figures/biclustplot_example3.png, id=1196, 1169.36874pt x 592.2125pt
 File: figures/biclustplot_example3.png Graphic file (type png)
 <use figures/biclustplot_example3.png>
 Package pdftex.def Info: figures/biclustplot_example3.png used on input line 30
-53.
+58.
 (pdftex.def)             Requested size: 467.73921pt x 236.8808pt.
 <figures/biclustplot_example4.png, id=1197, 1158.3275pt x 592.2125pt>
 File: figures/biclustplot_example4.png Graphic file (type png)
 <use figures/biclustplot_example4.png>
 Package pdftex.def Info: figures/biclustplot_example4.png used on input line 30
-59.
+64.
 (pdftex.def)             Requested size: 463.3228pt x 236.8808pt.
 [68 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/biclustplot_example1.png> <C:/Users/lucp8394/Documents/StatF
@@ -1338,13 +1338,13 @@ iles/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/biclustplot_example
 File: figures/biclustplot_example5.png Graphic file (type png)
 <use figures/biclustplot_example5.png>
 Package pdftex.def Info: figures/biclustplot_example5.png used on input line 30
-65.
+70.
 (pdftex.def)             Requested size: 228.44945pt x 236.8808pt.
 <figures/biclustplot_example6.png, id=1205, 571.13374pt x 592.2125pt>
 File: figures/biclustplot_example6.png Graphic file (type png)
 <use figures/biclustplot_example6.png>
 Package pdftex.def Info: figures/biclustplot_example6.png used on input line 30
-71.
+76.
 (pdftex.def)             Requested size: 228.44945pt x 236.8808pt.
 [69 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/biclustplot_example3.png> <C:/Users/lucp8394/Documents/StatF
@@ -1353,7 +1353,7 @@ iles/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/biclustplot_example
 File: figures/biclustplot_example7.png Graphic file (type png)
 <use figures/biclustplot_example7.png>
 Package pdftex.def Info: figures/biclustplot_example7.png used on input line 30
-76.
+81.
 (pdftex.def)             Requested size: 228.44945pt x 236.8808pt.
 [70 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/biclustplot_example5.png> <C:/Users/lucp8394/Documents/StatF
@@ -1361,19 +1361,19 @@ iles/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/biclustplot_example
 6.png>] <figures/fabiaplot_example1.png, id=1219, 1168.365pt x 592.2125pt>
 File: figures/fabiaplot_example1.png Graphic file (type png)
 <use figures/fabiaplot_example1.png>
-Package pdftex.def Info: figures/fabiaplot_example1.png used on input line 3082
+Package pdftex.def Info: figures/fabiaplot_example1.png used on input line 3087
 .
 (pdftex.def)             Requested size: 467.33772pt x 236.8808pt.
 <figures/fabiaplot_example2.png, id=1220, 1166.3575pt x 592.2125pt>
 File: figures/fabiaplot_example2.png Graphic file (type png)
 <use figures/fabiaplot_example2.png>
-Package pdftex.def Info: figures/fabiaplot_example2.png used on input line 3088
+Package pdftex.def Info: figures/fabiaplot_example2.png used on input line 3093
 .
 (pdftex.def)             Requested size: 466.53474pt x 236.8808pt.
 <figures/fabiaplot_example3.png, id=1221, 1172.38pt x 1850.915pt>
 File: figures/fabiaplot_example3.png Graphic file (type png)
 <use figures/fabiaplot_example3.png>
-Package pdftex.def Info: figures/fabiaplot_example3.png used on input line 3094
+Package pdftex.def Info: figures/fabiaplot_example3.png used on input line 3099
 .
 (pdftex.def)             Requested size: 351.7167pt x 555.2788pt.
 [71 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
@@ -1382,7 +1382,7 @@ iles/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/fabiaplot_example1.
 png>] <figures/fabiaplot_example4.png, id=1228, 1177.39874pt x 592.2125pt>
 File: figures/fabiaplot_example4.png Graphic file (type png)
 <use figures/fabiaplot_example4.png>
-Package pdftex.def Info: figures/fabiaplot_example4.png used on input line 3099
+Package pdftex.def Info: figures/fabiaplot_example4.png used on input line 3104
 .
 (pdftex.def)             Requested size: 470.95116pt x 236.8808pt.
 [72 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
@@ -1390,7 +1390,7 @@ Package pdftex.def Info: figures/fabiaplot_example4.png used on input line 3099
 =1234, 571.13374pt x 592.2125pt>
 File: figures/fabiaplot_example5.png Graphic file (type png)
 <use figures/fabiaplot_example5.png>
-Package pdftex.def Info: figures/fabiaplot_example5.png used on input line 3105
+Package pdftex.def Info: figures/fabiaplot_example5.png used on input line 3110
 .
 (pdftex.def)             Requested size: 228.44945pt x 236.8808pt.
 [73 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
@@ -1398,7 +1398,7 @@ Package pdftex.def Info: figures/fabiaplot_example5.png used on input line 3105
  1406.25375pt x 711.65875pt>
 File: figures/isa_example1.png Graphic file (type png)
 <use figures/isa_example1.png>
-Package pdftex.def Info: figures/isa_example1.png used on input line 3112.
+Package pdftex.def Info: figures/isa_example1.png used on input line 3117.
 (pdftex.def)             Requested size: 421.87938pt x 213.49927pt.
 [74 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/fabiaplot_example4.png> <C:/Users/lucp8394/Documents/StatFil
@@ -1406,17 +1406,17 @@ es/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/fabiaplot_example5.pn
 g>] <figures/ibbig_example1.png, id=1248, 690.58pt x 711.65875pt>
 File: figures/ibbig_example1.png Graphic file (type png)
 <use figures/ibbig_example1.png>
-Package pdftex.def Info: figures/ibbig_example1.png used on input line 3119.
+Package pdftex.def Info: figures/ibbig_example1.png used on input line 3124.
 (pdftex.def)             Requested size: 345.28915pt x 355.8285pt.
 <figures/bicare_example1.png, id=1249, 690.58pt x 711.65875pt>
 File: figures/bicare_example1.png Graphic file (type png)
 <use figures/bicare_example1.png>
-Package pdftex.def Info: figures/bicare_example1.png used on input line 3126.
+Package pdftex.def Info: figures/bicare_example1.png used on input line 3131.
 (pdftex.def)             Requested size: 276.2271pt x 284.65845pt.
 <figures/bicare_example2.png, id=1250, 690.58pt x 711.65875pt>
 File: figures/bicare_example2.png Graphic file (type png)
 <use figures/bicare_example2.png>
-Package pdftex.def Info: figures/bicare_example2.png used on input line 3131.
+Package pdftex.def Info: figures/bicare_example2.png used on input line 3136.
 (pdftex.def)             Requested size: 276.2271pt x 284.65845pt.
 [75 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/isa_example1.png> <C:/Users/lucp8394/Documents/StatFiles/Cen
@@ -1424,7 +1424,7 @@ Stat/R Development/BiclustGUI/pkg/vignettes/figures/ibbig_example1.png>] <figur
 es/bicare_example3.png, id=1257, 672.5125pt x 729.72626pt>
 File: figures/bicare_example3.png Graphic file (type png)
 <use figures/bicare_example3.png>
-Package pdftex.def Info: figures/bicare_example3.png used on input line 3136.
+Package pdftex.def Info: figures/bicare_example3.png used on input line 3141.
 (pdftex.def)             Requested size: 269.00023pt x 291.88533pt.
 [76 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bicare_example1.png> <C:/Users/lucp8394/Documents/StatFiles/
@@ -1432,17 +1432,17 @@ CenStat/R Development/BiclustGUI/pkg/vignettes/figures/bicare_example2.png>] <f
 igures/bcdiag_example1.png, id=1264, 1417.295pt x 709.65125pt>
 File: figures/bcdiag_example1.png Graphic file (type png)
 <use figures/bcdiag_example1.png>
-Package pdftex.def Info: figures/bcdiag_example1.png used on input line 3143.
+Package pdftex.def Info: figures/bcdiag_example1.png used on input line 3148.
 (pdftex.def)             Requested size: 354.32288pt x 177.41237pt.
 <figures/bcdiag_example2.png, id=1265, 1412.27625pt x 711.65875pt>
 File: figures/bcdiag_example2.png Graphic file (type png)
 <use figures/bcdiag_example2.png>
-Package pdftex.def Info: figures/bcdiag_example2.png used on input line 3149.
+Package pdftex.def Info: figures/bcdiag_example2.png used on input line 3154.
 (pdftex.def)             Requested size: 353.06819pt x 177.91425pt.
 <figures/bcdiag_example3.png, id=1266, 1413.28pt x 710.655pt>
 File: figures/bcdiag_example3.png Graphic file (type png)
 <use figures/bcdiag_example3.png>
-Package pdftex.def Info: figures/bcdiag_example3.png used on input line 3155.
+Package pdftex.def Info: figures/bcdiag_example3.png used on input line 3160.
 (pdftex.def)             Requested size: 353.31914pt x 177.66331pt.
 [77 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bicare_example3.png> <C:/Users/lucp8394/Documents/StatFiles/
@@ -1451,13 +1451,13 @@ igures/superbiclust_example1.png, id=1273, 690.58pt x 711.65875pt>
 File: figures/superbiclust_example1.png Graphic file (type png)
 <use figures/superbiclust_example1.png>
 Package pdftex.def Info: figures/superbiclust_example1.png used on input line 3
-162.
+167.
 (pdftex.def)             Requested size: 345.28915pt x 355.8285pt.
 <figures/superbiclust_example2.png, id=1274, 699.61375pt x 206.7725pt>
 File: figures/superbiclust_example2.png Graphic file (type png)
 <use figures/superbiclust_example2.png>
 Package pdftex.def Info: figures/superbiclust_example2.png used on input line 3
-168.
+173.
 (pdftex.def)             Requested size: 349.80602pt x 103.38599pt.
 [78 <C:/Users/lucp8394/Documents/StatFiles/CenStat/R Development/BiclustGUI/pkg
 /vignettes/figures/bcdiag_example2.png> <C:/Users/lucp8394/Documents/StatFiles/
@@ -1467,21 +1467,21 @@ ignettes/figures/superbiclust_example1.png> <C:/Users/lucp8394/Documents/StatFi
 les/CenStat/R Development/BiclustGUI/pkg/vignettes/figures/superbiclust_example
 2.png>] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93] [
 94] [95] [96] [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4916.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4921.
 [108]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 4916.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4921.
 
 ("C:\Users\lucp8394\Documents\StatFiles\CenStat\R Development\BiclustGUI\pkg\vi
 gnettes\GuideBiclustGUI.aux")
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4916.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4916.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4921.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 4921.
 
 Package rerunfilecheck Info: File `GuideBiclustGUI.out' has not changed.
 (rerunfilecheck)             Checksum: 9A7805E5B903E73307728DF8EC9EBA21;5505.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4916.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 4921.
  ) 
 Here is how much of TeX's memory you used:
  9404 strings out of 493705
@@ -1506,7 +1506,7 @@ iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 2.9
 /fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt12.pfb>
-Output written on GuideBiclustGUI.pdf (108 pages, 4229972 bytes).
+Output written on GuideBiclustGUI.pdf (108 pages, 2444095 bytes).
 PDF statistics:
  1535 PDF objects out of 1728 (max. 8388607)
  349 named destinations out of 1000 (max. 500000)

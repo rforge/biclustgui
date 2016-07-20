@@ -36,7 +36,7 @@ image_WINDOW <- function(){
 			}
 			else{
 				
-				image.command <- paste0("image(c(1:dim(",ActiveDataSet(),")[2]),c(1:dim(",ActiveDataSet(),")[1]),t(as.matrix(",ActiveDataSet(),")),col=greenred(511),axes=FALSE,useRaster=TRUE,ylab='Genes',xlab='Samples')")
+				image.command <- paste0("image(c(1:dim(",ActiveDataSet(),")[2]),c(1:dim(",ActiveDataSet(),")[1]),t(as.matrix(",ActiveDataSet(),")),col=viridis(511),axes=FALSE,useRaster=TRUE,ylab='Genes',xlab='Samples')")
 								
 				doItAndPrint(image.command)
 	
@@ -63,7 +63,7 @@ image_WINDOW <- function(){
 			trans.command <- paste0("x <- discretize(x=as.matrix(",ActiveDataSet(),"),nof=",nlvl,",quant=",quan,")")
 			doItAndPrint(trans.command)
 			
-			image.command <- paste0("image(c(1:dim(x)[2]),c(1:dim(x)[1]),t(x),col=redgreen(511),axes=FALSE,useRaster=TRUE,ylab='Genes',xlab='Samples')")
+			image.command <- paste0("image(c(1:dim(x)[2]),c(1:dim(x)[1]),t(x),col=viridis(511,begin=1,end=0),axes=FALSE,useRaster=TRUE,ylab='Genes',xlab='Samples')")
 			doItAndPrint(image.command)
 		}
 		
@@ -98,8 +98,11 @@ image_WINDOW <- function(){
 				thresZ <- tclvalue(thresZ_vars)
 				thresL <- tclvalue(thresL_vars)
 				BCResult <- .tobiclust_transf(SelResult,thresZ=paste0(thresZ),thresL=paste0(thresL))	
+				BC.highlight <- tclvalue(BChighlightSel_vars)
+				if(length(BC.highlight)==0){BC.highlight <- NULL}
+				BC.highlight.opacity <- tclvalue(BChighlightOpa_vars)
 				
-				image.command <- paste0("HeatmapBC.GUI(data=",ActiveDataSet(),",res=",BCResult,",BC=",BC,",reorder=",reorder,",background=",background,",zeroBC=",zeroBC,",transf='",transf,"',bin.thres=",bin.thres,",disc.nof=",disc.nof,",disc.quant=",disc.quant,")")
+				image.command <- paste0("HeatmapBC.GUI(data=",ActiveDataSet(),",res=",BCResult,",BC=",BC,",reorder=",reorder,",background=",background,",zeroBC=",zeroBC,",transf='",transf,"',bin.thres=",bin.thres,",disc.nof=",disc.nof,",disc.quant=",disc.quant,",BC.highlight=",BC.highlight,",BC.highlight.opacity=",BC.highlight.opacity,")")
 				doItAndPrint(image.command)
 				
 			}
@@ -233,6 +236,24 @@ image_WINDOW <- function(){
 	checkBoxes(plotOptions,frame="zeroBCCheck",boxes=paste("zeroBC"),initialValues=1,labels=gettextRcmdr("Also color genes of Biclusters which have '0' as response?"))
 	zeroBC_vars <- zeroBCVariable
 	tkgrid(zeroBCCheck,sticky="nw")
+	
+	# Highlight BC's
+	BChighlight <- tkframe(plotOptions)
+	
+	BChighlightSel_entry <- tkframe(BChighlight)
+	BChighlightSel_vars <- tclVar("")
+	BChighlightSel_field <- ttkentry(BChighlightSel_entry,width=4,textvariable=BChighlightSel_vars)
+	tkgrid(labelRcmdr(BChighlightSel_entry,text=gettextRcmdr("Bicluster Highlight: ")),BChighlightSel_field,sticky="nw")
+	
+	
+	BChighlightOpa_entry <- tkframe(BChighlight)
+	BChighlightOpa_vars <- tclVar("0.4")
+	BChighlightOpa_field <- ttkentry(BChighlightOpa_entry,width=4,textvariable=BChighlightOpa_vars)
+	tkgrid(labelRcmdr(BChighlightOpa_entry,text=gettextRcmdr("Opacity [0;1]: ")),BChighlightOpa_field,sticky="nw")
+	
+	tkgrid(BChighlightSel_entry,BChighlightOpa_entry,sticky="nw")
+	tkgrid(BChighlight,sticky="nw")
+	
 	
 	tkgrid(plotOptions,sticky="nw",padx="6",pady="6")
 	
