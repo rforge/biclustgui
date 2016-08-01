@@ -32,7 +32,8 @@ if(getRversion() >= "2.15.1"){
 					"radioTransform2Frame","backgroundVariable","backgroundCheck","reorderVariable",
 					"reorderCheck","zeroBCVariable","zeroBCCheck","temp.correct1","methodshow","temp.object",
 					"biclustering.objects","biclustGUI_biclusteringsearchdata","radiotypeVariable",
-					"radiodiscoVariable","global.variable.list","radiotypeFrame","radiodiscoFrame"))
+					"radiodiscoVariable","global.variable.list","radiotypeFrame","radiodiscoFrame",
+					"pushOutput","putRExcel"))
 	
 }
 
@@ -41,3 +42,8 @@ if(getRversion() >= "2.15.1"){
 #					"method_class","annotation","pData","temp","biclust","BCBimax",""))
 #	
 #}
+
+
+
+
+

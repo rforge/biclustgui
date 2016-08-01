@@ -60,6 +60,8 @@ biclustbimax_WIN <- function(){     # Change newmethod to your own method name
 	
 	data.transf <- "matrix"
 	
+	methodshow <- FALSE
+	methodsave <- FALSE
 	
 	
 	# Add a discretize box?
@@ -590,7 +592,7 @@ biclustbimax_WIN <- function(){     # Change newmethod to your own method name
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	
-	cluster_template(methodname=methodname,methodfunction=methodfunction,data.transf=data.transf,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot)
+	cluster_template(methodname=methodname,methodfunction=methodfunction,data.transf=data.transf,methodshow=methodshow,methodsave=methodsave,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot)
 	
 }
 

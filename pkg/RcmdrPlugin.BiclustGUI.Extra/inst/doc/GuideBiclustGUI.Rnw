@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 1.0.4}
+\title{The BiclustGUI R Package - 1.0.6}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}
@@ -442,6 +442,7 @@ install.packages("Rcmdr")
 install.packages("isa2")
 install.packages("s4vd")
 install.packages("gplots")
+install.packages("viridis")
 \end{verbatim}
 \noindent while others are available in Bioconductor
 \begin{verbatim}
@@ -592,11 +593,16 @@ was not included in a bicluster.\\
 Next, the following option will reorder the rows and columns of the matrix so
 the resulted biclusters are generally put more together. The algorithm to
 accomplish this was borrowed from the heatmap plot in the \verb|iBBiG| package.
-Finally, the last option will determine if row/column combinations in biclusters should also be colored even if the response was '0'. This is mostly helpfull when investigating
-binary data if for example you know the resulting biclusters might still
+The next option will determine if row/column combinations in biclusters should
+also be colored even if the response was '0'. This is mostly helpfull when investigating binary data if for example you know the resulting biclusters might still
 contain zeros (depending on the algorithm). In this case checking this option would show
-the full biclusters, but when unchecked, some fields of the biclusters might
-turn white.
+the full biclusters, but when unchecked, some blocks of the biclusters might
+turn white.\\
+\noindent Finally, the last option allows the user to highlight 1 single
+bicluster. This can be especially helpful after reordering the rows and columns
+which results in many overlapping parts. When highlighting the bicluster, it will be brought to
+the foreground and all other biclusters will become transparent as given by the
+opacity parameter.
 \\ \\
 Lastly, do take care that it is not possible to visualize overlapping biclusters
 that well in these 2D heatmaps. The biclusters are drawn in the order they
@@ -706,7 +712,7 @@ printed afterwards or not.)
 
 
 
-\subsubsection{Save/Load}
+\subsubsection{Save/Load}\label{sec:SaveLoad}
 
 \noindent Another available option for the user is to {\it Save} a result from a
 certain method (as a \verb|RData| or \verb|rda| file) and to also {\it Load} it
@@ -1952,6 +1958,27 @@ about the `superbiclust' concept itself.
 \includegraphics[scale=0.5]{figures/superbiclust.png}
 \caption{{\it Superbiclust Window}\label{superbiclust}}
 \end{figure}
+\noindent {\bf Repeat 'Method' with LAST USED parameters, NOT last selected.}\\
+Inside this first box of the Superbiclust window, it is possible to repeat the
+selected method multiple times and then easily feed it into the superbiclust
+framework in addition to the original result. Pressing the {\it Run} button will
+repeat the analysis for the chosen {\it Number of Repeats} and save these
+results in a list object with the chosen name of {\it Object Name}. It is also possible to set a starting seed of
+this analysis in the {\it Starting Seed} field. Leaving this field empty will
+choose a random seed (and print which one).\\
+Note that the chosen parameters for these repeats will be the {\it last used}
+parameters, not the {\it currently selected}. This is to ensure that the chosen
+parameters do not result in an error or nonsensical output.\\
+After the analysis is complete, the object will automatically be pasted in the
+{\it Extra Data Input} field to introduce it into the superbiclust framework.\\
+Finally, note that this list object of biclustering results can also be saved as
+an .RData object through {\it 'Help \& Utilities', 'Save/Load'} (See Section
+\ref{sec:SaveLoad}). Saving multiple repeated analysis in either R objects or
+.RData files will also enable you to compare multiple parameter settings of a
+specific method. Simply repeat the analysis with multiple parameter choices,
+save these in different list objects, and then input these objects in the {\it
+Extra Data Input} field.
+\\ \\
 \noindent {\bf Extra Data Input}\\
 \noindent First of all, at the top of the window in Figure \ref{superbiclust},
 there is room to add other biclustering results objects which are loaded in the
@@ -1959,7 +1986,9 @@ R workspace. The format should be as in the given example:
 \verb|c('result1','result2')|. The easiest way to do this is to use the {\it
 Choose} button. This will open up a small new window in which the user can
 select those results of interest. After pressing {\it Ok}, they will be
-immediately filled in in the entry field.
+immediately filled in in the entry field.\\
+Note that result objects added in this field are always {\it in addition} to the
+result of the original analysis in the first tab.
 \\ \\
 \noindent {\bf Fabia Thresholds}\\
 \noindent In this small box, the user can set the thresholds for biclustering
@@ -2206,7 +2235,9 @@ be added inside the function itself.
   
   \item[$\bullet$ \texttt{methodseed}:] Logical value determining if there
   should be a seed box below the {\it Show Results} button. This will make sure
-  a \verb|set.seed()| is executed before the biclustering function.
+  a \verb|set.seed()| is executed before the biclustering function. Further,
+  methods with \texttt{methodseed==TRUE} will also have the feature enabled in
+  the superbiclust window to repeat the analysis multiple times.
   
   \item[$\bullet$ \texttt{bcdiag.comp} \& \texttt{superbiclust.comp} :] Logical
   value determining compatibility with the \verb|BcDiag| and \verb|superbiclust|

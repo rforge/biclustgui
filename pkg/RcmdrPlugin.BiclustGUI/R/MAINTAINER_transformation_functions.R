@@ -26,7 +26,7 @@
 	if(class(x)=="iBBiG"){return(x)}
 	if(class(x)=="QUBICBiclusterSet"){return(x)}
 	if(class(x)=="biclustering"){return(.bicare2biclust(x))}
-#	if(.isISA(x)){return(isa.biclust(x))}
+	#if(.isISA(x)){return(isa.biclust(x))}
 }
 
 
@@ -40,8 +40,10 @@
 		
 		fabia.extract <- extractBic(x,thresZ,thresL)
 		
-		n.rows <- dim(fabia.extract$X)[1]
-		n.cols <- dim(fabia.extract$X)[2]
+#		n.rows <- dim(fabia.extract$X)[1]
+#		n.cols <- dim(fabia.extract$X)[2] 
+		n.rows <- dim(x@L)[1] # This was for Fabia SPARSE because the X slot is empty... but the loadings and factor scores are from the other dimension for this method...
+		n.cols <- dim(x@Z)[2]
 		
 		RowxNumber <- c()
 		NumberxCol <- c()

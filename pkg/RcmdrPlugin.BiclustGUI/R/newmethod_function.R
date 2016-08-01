@@ -692,6 +692,15 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 		
 			if(superbiclust.comp==TRUE){.update.biclustering.object(method_result,where="superbiclust")}
 			if(bcdiag.comp==TRUE){.update.biclustering.object(method_result,where="bcdiag")}
+			
+			# Save analysis commands
+			analysis.command <- c()
+			if(data.bin==TRUE){if(tclvalue(bin.checkVariable)=="1"){analysis.command <- c(analysis.command,bin.command)}}
+			if(data.discr==TRUE){if(tclvalue(discr.checkVariable)=="1"){analysis.command <- c(analysis.command,discr.command)}}
+			analysis.command <- c(analysis.command,command)
+			if(method_result %in% ls(,envir=.GlobalEnv)){.update.biclustering.object(method_result,where="analysis",ANALYSIS=analysis.command)}
+			
+			
 		}
 		else{justDoIt("warning('Cannot discretize and binarize at the same time')")}
 		
@@ -771,7 +780,7 @@ cluster_template <- function(methodname="",methodfunction,methodhelp="",data.arg
 	}
 	
 	on_superbiclust <- function(){
-		superbiclust_WINDOW(methodname)
+		superbiclust_WINDOW(methodname,methodseed,methodsave)  # add, methodseed
 	}
 	
 	if(extrabiclustplot==TRUE){

@@ -56,40 +56,48 @@ parallelCoordinates3 <- function(x,bicResult,number,type2="default",plotBoth=FAL
 biclust.quest.GUI <- function(x,method,ns,nd,sd,alpha,number,d,quant,vari){
 	
 	if(method=="BCQuest"){
-		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuest(),ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
-		return(biclust(x=x, method=BCQuest(), ns=ns, nd=nd, sd=sd, alpha=alpha, number=number))
 		
+		doItAndPrint(paste0("Questmotif <- biclust(x=as.matrix(",ActiveDataSet(),"),method=BCQuest(),ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")"))
+		doItAndPrint("Questmotif")
 	}
 	
 	if(method=="BCQuestord"){
-		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuestord(),d=",d,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
-		
-		return(biclust(x=x, method=BCQuestord(), d=d, ns=ns, nd=nd, sd=sd, alpha=alpha, number=number))
+	
+		doItAndPrint(paste0("Questmotif <- biclust(x=as.matrix(",ActiveDataSet(),"),method=BCQuestord(),d=",d,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")"))
+		doItAndPrint("Questmotif")		
 	}
 	
 	if(method=="BCQuestmet"){
-		doItAndPrint(paste("       # Original biclust R-code: `biclust(x=...,method=BCQuestmet(),quant=",quant,",vari=",vari,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")`",sep=""))
 		
-		return(biclust(x=x, method=BCQuestmet(), quant=quant, vari=vari, ns=ns, nd=nd, sd=sd, alpha=alpha, number=number))
+		doItAndPrint(paste0("Questmotif <- biclust(x=as.matrix(",ActiveDataSet(),"),method=BCQuestmet(),quant=",quant,",vari=",vari,",ns=",ns,",nd=",nd,",sd=",sd,",alpha=",alpha,",number=",number,")"))
+		doItAndPrint("Questmotif")
 	}
 	
 }
 
 biclust.bimax.GUI <- function(x,method,minr,minc,number,maxc,backfit,n2,maxbicheck){
+	
+	# check if data is binary, if so use 'x'
+	if(.is.binary.matrix(x)){
+		dataname <- "x"
+	}else{
+		dataname <- paste0("as.matrix(",ActiveDataSet(),")")
+	}
+	
 	if(maxbicheck==2){
-		doItAndPrint(paste("       # Original biclust R-code: 'biclust:::maxbimaxbiclust(x=...,minr=",minr,",minc=",minc,",backfit=",backfit,",n2=",n2,",number=",number,")'",sep=""))
-#		return(biclust:::maxbimaxbiclust(logicalmatrix=x,minr=minr,minc=minc,backfit=backfit,n2=n2,number=number))
-		return(biclust:::maxbimaxbiclust(logicalmatrix=x,minr=minr,minc=minc,backfit=backfit,n2=n2,number=number))
 		
+		doItAndPrint(paste0("Bimax <- biclust:::maxbimaxbiclust(x=",dataname,",minr=",minr,",minc=",minc,",backfit=",backfit,",n2=",n2,",number=",number,")"))
+		doItAndPrint("Bimax")
 	}
 	
 	if(maxbicheck==3){
-		doItAndPrint(paste("       # Original biclust R-code: 'biclust(x=...,method=BCBimax(),minr=",minr,",minc=",minc,",number=",number,")'",sep=""))
-		return(biclust(x=x,method=BCBimax(),minr=minr,minc=minc,number=number))
+		
+		doItAndPrint(paste0("Bimax <- biclust(x=",dataname,",method=BCBimax(),minr=",minr,",minc=",minc,",number=",number,")"))
+		doItAndPrint("Bimax")
 	}
 	if(maxbicheck==1){
-		doItAndPrint(paste("       # Original biclust R-code: 'biclust(x=...,method=BCrepBimax(),minr=",minr,",minc=",minc,",number=",number,")'",sep=""))
-		return(biclust(x=x,method=BCrepBimax(),minr=minr,minc=minc,number=number,maxc=maxc))
+		doItAndPrint(paste("Bimax <- biclust(x=",dataname,",method=BCrepBimax(),minr=",minr,",minc=",minc,",number=",number,")"))
+		doItAndPrint("Bimax")
 	}
 	
 }
@@ -108,28 +116,21 @@ spfabia.GUI <- function(X,p,alpha,cyc,spl,spz,non_negative,random,write_file,nor
 	if(datatype==1){
 		command <- paste("spfabia(X='",filename,"',p=",p,",alpha=",alpha,",cyc=",cyc,",spl=",spl,",spz=",spz,",non_negative=",non_negative,",random=",random,",write_file=",write_file,",norm=",norm,",scale=",scale,",lap=",lap,",lL=",lL,",samples=",samples,",initL=,",initL,",iter=",iter,",quant=",quant,",lowerB=",lowerB,",upperB=",upperB,",dorescale=",dorescale,",doini=",doini,",eps=",eps,",eps1=",eps,")",sep="")
 		
-		Setwd()
-		
-		doItAndPrint(paste("       # Original R-code: ",command,sep=""))
-	
-		return(eval(parse(text=command)))
-		#return(spfabia(X=filename,p=p,alpha=alpha,cyc=cyc,spl=spl,spz=spz,non_negative=non_negative,random=random,write_file=write_file,norm=norm,scale=scale,lap=lap,lL=lL,samples=samples,initL=initL,iter=iter,quant=quant,lowerB=lowerB,upperB=upperB,dorescale=dorescale,doini=doini,eps=eps,eps1=eps1))
+
+		doItAndPrint("Setwd()")
+		doItAndPrint(paste0("FabiaSPARSE <- ",command))
 		
 	}
 	
 	
 	if(datatype==2){
-		Setwd()
-		
-		
-		.output.sparse.txt(X=X,file=filename)
 		
 		command <- paste("spfabia(X='",filename,"',p=",p,",alpha=",alpha,",cyc=",cyc,",spl=",spl,",spz=",spz,",non_negative=",non_negative,",random=",random,",write_file=",write_file,",norm=",norm,",scale=",scale,",lap=",lap,",lL=",lL,",samples=",samples,",initL=,",initL,",iter=",iter,",quant=",quant,",lowerB=",lowerB,",upperB=",upperB,",dorescale=",dorescale,",doini=",doini,",eps=",eps,",eps1=",eps,")",sep="")
 		
-		doItAndPrint(paste("       # Original R-code: ",command,sep=""))
-		
-		return(.eval.command(command))
-		#return(spfabia(X=filename,p=p,alpha=alpha,cyc=cyc,spl=spl,spz=spz,non_negative=non_negative,random=random,write_file=write_file,norm=norm,scale=scale,lap=lap,lL=lL,samples=samples,initL=initL,iter=iter,quant=quant,lowerB=lowerB,upperB=upperB,dorescale=dorescale,doini=doini,eps=eps,eps1=eps1))
+
+		doItAndPrint("Setwd()")
+		doItAndPrint(paste0(".output.sparse.txt(X=t(as.matrix(",ActiveDataSet(),")),file='",filename,"')"))
+		doItAndPrint(paste0("FabiaSPARSE <- ",command))
 		
 	}
 	
@@ -142,8 +143,9 @@ isa.GUI <- function(data,thr.row.from,thr.row.to,thr.row.by,thr.col.from,thr.col
 	thr.col <- seq(thr.col.from,thr.col.to,by=thr.col.by)
 	
 	direction <- c(dir.row,dir.col)
-	doItAndPrint(paste("       # Original R-Code: isa(data=...,thr.row=seq(",thr.row.from,",",thr.row.to,",by=",thr.row.by,"),thr.col=seq(",thr.col.from,",",thr.col.to,",by=",thr.col.by,"),no.seeds=",no.seeds,",direction=c('",dir.row,"','",dir.col,"'))",sep=""))
-	return(isa(data=data,thr.row=thr.row,thr.col=thr.col,no.seeds=no.seeds,direction=direction))
+	
+	doItAndPrint(paste0("ISA <- isa(data=as.matrix(",ActiveDataSet(),"),thr.row=seq(",thr.row.from,",",thr.row.to,",by=",thr.row.by,"),thr.col=seq(",thr.col.from,",",thr.col.to,",by=",thr.col.by,"),no.seeds=",no.seeds,",direction=c('",dir.row,"','",dir.col,"'))"))
+	
 }
 
 
@@ -225,19 +227,30 @@ superbiclust.GUI <- function(x,index,type,method_result,extra.biclust=NULL,fabia
 		
 		# COMPARED WITH BCDIAG PRE-AMBLE: Do not need to check if in the names to use object for class(). Button will be blocked if object not available anymway
 		# Need to have an IF for fabia
-
+		
+		# update: Changed to also accept a list of biclustering results
+		
+				
 		temp.method_result <- .tobiclust_transf(method_result,thresZ=fabia.thresZ,thresL=fabia.thresL)
-		temp.extra.biclust <- .tobiclust_transf(extra.biclust[1],thresZ=fabia.thresZ,thresL=fabia.thresL)	
+		doItAndPrint(paste0("x <- ",temp.method_result))
+				
 		
-		
-		doItAndPrint(paste("x <- combine(",temp.method_result,",",temp.extra.biclust,")",sep=""))		
-		if(length(extra.biclust)>1){
-			for(i.extra in 2:length(extra.biclust)){
+		########
+		for(i.extra in 1:length(extra.biclust)){
+			if(.isbiclustGUIresult(extra.biclust[i.extra])){ # Case if the element is a biclustering result
 				temp.extra.biclust <- .tobiclust_transf(extra.biclust[i.extra],thresZ=fabia.thresZ,thresL=fabia.thresL)	
 				doItAndPrint(paste("x <- combine(x,",temp.extra.biclust ,")",sep=""))
+			}else if(.isListofBiclustGUIresults(extra.biclust[i.extra])){ # Case where the element is a list of biclustering results
+				doItAndPrint(paste0("for(i in 1:length(",extra.biclust[i.extra],")){
+	x <- combine(x,.tobiclust(",extra.biclust[i.extra],"[[i]],fabia.thresZ=",fabia.thresZ,",
+	fabia.thresL=",fabia.thresL,"))
+}"))
 			}
+		
 		}
+				
 		doItAndPrint(paste("superbiclust.result <- BiclustSet(x)"))
+				
 	}
 	if(is.null(extra.biclust)){
 		temp.method_result <- .tobiclust_transf(method_result,thresZ=fabia.thresZ,thresL=fabia.thresL)
@@ -308,10 +321,22 @@ plotSuper.GUI <- function(type,which.robust,CutTree){
 	
 }
 
+biclust.robust.fuse.GUI <- function(method_result){
+	
+	doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
+	doItAndPrint(paste0(method_result," <- biclust.robust.fuse(CutTree=CutTree,superbiclust.result=superbiclust.result)"))
+
+	paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original\n",sep="")
+#	cat(paste.cat)
+	.justDoIt2(paste0("cat('",paste.cat,"')"))
+	
+	paste.cat <- paste("The new result is saved in ",method_result,"\n",sep="")
+#	cat(paste.cat,"\n")
+	.justDoIt2(paste0("cat('",paste.cat,"')"))
+}
 
 
-
-biclust.robust.fuse <- function(CutTree,method_result,superbiclust.result){
+biclust.robust.fuse <- function(CutTree,superbiclust.result){
 	
 	robust.list <- list()
 	
@@ -341,39 +366,38 @@ biclust.robust.fuse <- function(CutTree,method_result,superbiclust.result){
 			
 		
 #	Parameters <- list()
-	#eval(parse(text=paste("Parameters <- ",method_result,"@Parameters",sep="")))
-	new.biclust.command <- paste0("new.biclust <- new(\"Biclust\", Number = ",dim(RowxNumber)[2],", RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=list())")
-#	assign("new.biclust",new.biclust,envir=.GlobalEnv)	
-	
+#	new.biclust.command <- paste0("new.biclust <- new(\"Biclust\", Number = ",dim(RowxNumber)[2],", RowxNumber = RowxNumber,NumberxCol = NumberxCol,Parameters=list())")
+	new.biclust <- new("Biclust",Number=dim(RowxNumber)[2],RowxNumber=RowxNumber,NumberxCol=NumberxCol,Parameters=list())
 		
-	# Making RowxNumber and NumberxCol in justDoIt - Very superfluous but necessary for using no global assigning for CRAN policies
-	.matrix2vectorasstring <- function(x){
-		dim.x <- dim(x)
-		x <- as.vector(x)
-		
-		command <- "matrix(c("
+#	# Making RowxNumber and NumberxCol in justDoIt - Very superfluous but necessary for using no global assigning for CRAN policies
+#	.matrix2vectorasstring <- function(x){
+#		dim.x <- dim(x)
+#		x <- as.vector(x)
+#		
+#		command <- "matrix(c("
+#	
+#		x.string <- sapply(x,function(y){return(paste0(y))})
+#		x.collapse <- paste0(x.string,collapse=",")
+#	
+#		command <- paste0(command,x.collapse,"),nrow=",dim.x[1],",ncol=",dim.x[2],")")
+#		return(command)
+#	}
+#	justDoIt(paste0("RowxNumber <- ",.matrix2vectorasstring(RowxNumber)))
+#	justDoIt(paste0("NumberxCol <- ",.matrix2vectorasstring(NumberxCol)))
+#	
+#	
+#	
+#	paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
+#	cat(paste.cat)
+#	paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
+#	cat(paste.cat,"\n")
+#		
+#		
+#	doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
+#	doItAndPrint(new.biclust.command)
+#	doItAndPrint(paste(method_result," <- new.biclust",sep=""))
 	
-		x.string <- sapply(x,function(y){return(paste0(y))})
-		x.collapse <- paste0(x.string,collapse=",")
-	
-		command <- paste0(command,x.collapse,"),nrow=",dim.x[1],",ncol=",dim.x[2],")")
-		return(command)
-	}
-	justDoIt(paste0("RowxNumber <- ",.matrix2vectorasstring(RowxNumber)))
-	justDoIt(paste0("NumberxCol <- ",.matrix2vectorasstring(NumberxCol)))
-	
-	
-	
-	paste.cat <- paste("\nThe Original Bicluster result is saved in: ",method_result,".Original",sep="")
-	cat(paste.cat)
-	paste.cat <- paste("\nThe new result is saved in ",method_result,sep="")
-	cat(paste.cat,"\n")
-		
-		
-	doItAndPrint(paste(method_result,".Original <- ",method_result,sep=""))
-	doItAndPrint(new.biclust.command)
-	doItAndPrint(paste(method_result," <- new.biclust",sep=""))
-	
+	return(new.biclust)
 	
 }
 
@@ -519,13 +543,13 @@ bicare.makereport <- function(dirName){
 }
 
 
-chooseresultsGUI <- function(methodname,toolname){
+chooseresultsGUI <- function(methodname,toolname,methodseed){
 	
 	initializeDialog(title = gettextRcmdr("Choose Results...")) 
 	
 	method_result <- gsub(" ","",methodname,fixed=TRUE)
 	method_result <- gsub("-","",method_result,fixed=TRUE)
-	AllResults <- .makeResultList()
+	AllResults <- .makeSuperbiclustResultList()
 		
 	# Remove the one which from which the superbiclust was used
 	AllResults <- AllResults[!(AllResults==method_result)]
@@ -567,7 +591,12 @@ chooseresultsGUI <- function(methodname,toolname){
 			
 			eval(parse(text=paste0("temp.env <- biclustering.objects$ENVIR$",toolname,method_result)))
 			
-			eval(parse(text=paste0("tclvalue(new.frames[[2]][[1]]$entry.vars[[1]]) <- \"",out.vector,"\"")),envir=temp.env)
+			if(methodseed){
+				eval(parse(text=paste0("tclvalue(new.frames[[2]][[3]]$entry.vars[[1]]) <- \"",out.vector,"\"")),envir=temp.env)
+				
+			}else{
+				eval(parse(text=paste0("tclvalue(new.frames[[2]][[1]]$entry.vars[[1]]) <- \"",out.vector,"\"")),envir=temp.env)
+			}
 		
 			onCancel()
 		}
@@ -613,6 +642,124 @@ shinylinkstandalone <- function(){
 
 biclustguiwebsitelink <- function(){
 	browseURL("https://ibiostat.be/online-resources/online-resources/biclustgui")
+	
+}
+
+
+repeatanalysis.GUI <- function(number.repeats,start.seed=NULL,object.name,method_result,methodsave,toolname){
+	
+	
+	if(methodsave){
+		if(is.null(start.seed)){
+			doItAndPrint(paste0("set.seed(",as.character(round(runif(1,1,999))),")"))		
+		}else{
+			doItAndPrint(paste0("set.seed(",start.seed,")"))
+		}
+		
+		biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+		analysis.code <- biclustering.objects$ANALYSIS[[method_result]]
+		
+		# Pre-Analysis Code
+		if(length(analysis.code)>1){
+			for(i in 1:(length(analysis.code)-1)){
+				doItAndPrint(analysis.code[i])
+			}
+		}
+		
+		# Analysis Code
+		analysis.code <- gsub(".* <- ", "", analysis.code[length(analysis.code)])
+		doItAndPrint(paste0(object.name," <- vector(\"list\",",number.repeats,")"))
+		
+		repeat.command <- paste0("for(i in 1:",number.repeats,"){
+	",object.name,"[[i]] <- ",analysis.code,"
+}")
+		doItAndPrint(repeat.command)
+		cat.final <- (paste0("\n\n",method_result," analysis was repeated for ",number.repeats," times.\nThe results were saved in a list object, ",object.name,".\n"))
+		.justDoIt2(paste0("cat('",cat.final,"')"))
+		
+		
+	}else{
+		# Drop warning
+		
+		response <- tkmessageBox(message = "This biclustering method uses an internal function to print the corresponding R-code. This was done because of a more complicated analysis procedure or a more difficult input type.
+So currently, as a result, repeating this method will fill up the R Script Window with repeated similar code.
+
+However at the end, we will be provide a template on how the original R code should look like.
+
+Continue?" 
+				, icon = "warning", type = "yesno")
+		
+		
+		if(tclvalue(response)=="yes"){
+			
+		if(is.null(start.seed)){
+			seed.command <- (paste0("set.seed(",as.character(round(runif(1,1,999))),")"))		
+		}else{
+			seed.command <- (paste0("set.seed(",start.seed,")"))
+		}
+		doItAndPrint(seed.command)
+	
+		biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
+		analysis.code <- biclustering.objects$ANALYSIS[[method_result]]
+	
+		# Pre-Analysis Code
+		if(length(analysis.code)>1){
+			for(i in 1:(length(analysis.code)-1)){
+				doItAndPrint(analysis.code[i])
+			}
+		}
+		analysis.code.full <- analysis.code
+		
+		# Analysis Code
+		analysis.code <- gsub(".* <- ", "", analysis.code[length(analysis.code)])
+		list.command <- (paste0(object.name," <- vector(\"list\",",number.repeats,")"))
+		doItAndPrint(list.command)
+		
+		repeat.command <- paste0(
+				"for(i in 1:",number.repeats,"){
+	",analysis.code,"
+	",object.name,"[[i]] <- ",method_result,"
+}"
+				)
+		
+		repeat.example <- paste0(
+				"for(i in 1:",number.repeats,"){
+	###########################
+	# PASTE HERE 1 LOOP OF    #
+	# THE REPEATED CODE ABOVE #
+	# IN THE R CONSOLE        #
+	###########################
+	",object.name,"[[i]] <- ",method_result,"
+}\n"
+				)
+	
+		doItAndPrint(repeat.command)	
+		
+		cat.final <- (paste0("\n\n",method_result," analysis was repeated for ",number.repeats," times.\nThe results were saved in a list object, ",object.name,".\n"))
+		.justDoIt2(paste0("cat('",cat.final,"')"))
+		
+		cat.final <- paste0("\n# ORIGINAL R-CODE (fill in):\n")
+		.justDoIt2(paste0("cat('",cat.final,"')"))
+		
+		.justDoIt2(paste0("cat('",seed.command,"\n')"))
+		if(length(analysis.code.full)>1){
+			for(i in 1:(length(analysis.code.full)-1)){
+				.justDoIt2(paste0("cat('",analysis.code.full[i],"')"))
+				
+			}
+		}
+		.justDoIt2(paste0("cat('",list.command,"\n')"))
+		.justDoIt2(paste0("cat('",repeat.example,"')"))
+		}
+		
+	}
+	
+	
+	# Put it in the results object
+	eval(parse(text=paste0("temp.env <- biclustering.objects$ENVIR$",toolname,method_result)))
+	eval(parse(text=paste0("tclvalue(new.frames[[2]][[3]]$entry.vars[[1]]) <- \"c('",object.name,"')\"")),envir=temp.env)
+	
+	.update.biclustering.object(object=object.name,where="dataconnect")
 	
 }
 

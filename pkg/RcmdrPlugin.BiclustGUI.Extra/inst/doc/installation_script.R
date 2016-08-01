@@ -20,6 +20,7 @@ install.packages("s4vd")
 
 
 install.packages("gplots") # Extra package
+install.packages("viridis")
 
 ## PACKAGES AVAILABLE ON BIOCONDUCTOR ##
 source("http://bioconductor.org/biocLite.R")

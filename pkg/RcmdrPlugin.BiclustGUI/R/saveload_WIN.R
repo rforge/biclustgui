@@ -13,7 +13,9 @@ saveload_WINDOW <- function(){
 	
 	initializeDialog(title = gettextRcmdr("Save & Load Biclustering Results"),use.tabs=TRUE,tabs=c("tab1","tab2")) 
 	
-	AllResults <- .makeResultList()
+#	AllResults <- .makeResultList()
+	AllResults <- .makeSuperbiclustResultList()
+	
 	#AllResults <- c("test1","test2")
 	
 	onOK <- function(){}
@@ -64,7 +66,14 @@ saveload_WINDOW <- function(){
 		if(paste0(filename,"INFO") %in% ls()){
 			# Get the INFO
 			eval(parse(text=paste0("temp.object <- ",filename,"INFO")))
-			temp.type <- temp.object$all
+			
+			# Make exception for list of results
+			if(temp.object$dataconnect[1,1]!="ListOfResults"){
+				temp.type <- temp.object$all
+			}else{
+				temp.type <- "ListOfResults"
+			}
+			
 			temp.data <- temp.object$dataconnect[,2]
 			GO <- TRUE
 		}	
@@ -81,26 +90,38 @@ saveload_WINDOW <- function(){
 			
 		}	
 			
+		# Change temp.type if list of results to the actualy filename (since this must be saved in the dataconnect)
+		if(temp.type=="ListOfResults"){
+			temp.type <- filename
+			ListOfResults <- TRUE
+		}else{ListOfResults <- FALSE}
 			
 		if(GO==TRUE){
 			# Put INFO into current biclustering.object
 			
 			# First check if there is already one of this method in the biclustering object, if so overwrite
-			if(temp.type %in% biclustering.objects$all){
+#			if(temp.type %in% biclustering.objects$all){
+			if(temp.type %in% as.character(biclustering.objects$dataconnect[,1])){
+					
 				# GIVE WARNING FOR OVERWRITING!!
 				
 				ReturnVal <- tkmessageBox(title="Loading Biclustering Results",message = paste0("This will overwrite the current ",temp.type," Result. Are you sure?"),icon = "warning", type = "yesno", default = "no")
 				
 				if(tclvalue(ReturnVal)=="yes"){
-									
-					which.typeall <- which(temp.type==biclustering.objects$all)
-					which.typebc <- which(temp.type==biclustering.objects$bcdiag)
-					which.typesuper <- which(temp.type==biclustering.objects$superbiclust)
+					
+					if(!ListOfResults){
+						which.typeall <- which(temp.type==biclustering.objects$all)
+						which.typebc <- which(temp.type==biclustering.objects$bcdiag)
+						which.typesuper <- which(temp.type==biclustering.objects$superbiclust)
+						
+						biclustering.objects$all[which.typeall] <- temp.type
+						biclustering.objects$bcdiag[which.typebc] <- temp.type
+						biclustering.objects$superbiclust[which.typesuper] <- temp.type
+					}
+										
 					which.data <- which(biclustering.objects$dataconnect[,1]==temp.type)
-				
-					biclustering.objects$all[which.typeall] <- temp.type
-					biclustering.objects$bcdiag[which.typebc] <- temp.type
-					biclustering.objects$superbiclust[which.typesuper] <- temp.type
+									
+					
 					biclustering.objects$dataconnect <- biclustering.objects$dataconnect[-which.data,]
 					biclustering.objects$dataconnect <- rbind(biclustering.objects$dataconnect,data.frame(result=temp.type,data=temp.data))
 					
@@ -116,7 +137,7 @@ saveload_WINDOW <- function(){
 					if(temp.correct==TRUE){
 						# NOW DO THE LOAD in global environmnent + overwrite
 						doItAndPrint(paste0("load('",fileNameLoc,"')"))
-						doItAndPrint(paste0(temp.type," <- ",filename))
+						if(!ListOfResults){doItAndPrint(paste0(temp.type," <- ",filename))}
 #						unlink(paste0(tempLoc,".rdb"))
 #						unlink(paste0(tempLoc,".rdx"))
 					}
@@ -138,9 +159,12 @@ saveload_WINDOW <- function(){
 			else{ # Case You don't need to overwrite
 				
 				# simply add it
-				biclustering.objects$all <- c(biclustering.objects$all,temp.type)
-				biclustering.objects$bcdiag <- c(biclustering.objects$bcdiag,temp.type)
-				biclustering.objects$superbiclust <- c(biclustering.objects$superbiclust,temp.type)
+				if(!ListOfResults){
+					biclustering.objects$all <- c(biclustering.objects$all,temp.type)
+					biclustering.objects$bcdiag <- c(biclustering.objects$bcdiag,temp.type)
+					biclustering.objects$superbiclust <- c(biclustering.objects$superbiclust,temp.type)
+				}
+				
 				biclustering.objects$dataconnect <- rbind(biclustering.objects$dataconnect,data.frame(result=temp.type,data=temp.data))
 	
 #				assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
@@ -153,7 +177,7 @@ saveload_WINDOW <- function(){
 				if(temp.correct==TRUE){
 					# NOW DO THE LOAD in global environmnent + overwrite
 					doItAndPrint(paste0("load('",fileNameLoc,"')"))
-					doItAndPrint(paste0(temp.type," <- ",filename))
+					if(!ListOfResults){doItAndPrint(paste0(temp.type," <- ",filename))}
 #					unlink(paste0(tempLoc,".rdb"))
 #					unlink(paste0(tempLoc,".rdx"))
 				}
@@ -210,7 +234,15 @@ saveload_WINDOW <- function(){
 			index.dataconnect <- which(biclustering.objects$dataconnect$result==SelResult)
 			temp.info <- list()
 			temp.info$dataconnect <- biclustering.objects$dataconnect[index.dataconnect,]
-			temp.info$all <- SelResult
+			
+#			temp.info$all <- SelResult
+			# Make exception for list of results (no All slot + change resultname to filename)
+			if(!.isListofBiclustGUIresults(SelResult)){
+				temp.info$all <- SelResult
+			}else{
+				dataconnect.temp <- data.frame(result="ListOfResults",data=temp.info$dataconnect[,2])
+				temp.info$dataconnect <- dataconnect.temp				
+			}
 			
 			save.command <- paste0("save(list=c('",filename,"','",filename,"INFO'),file='",filenameLoc,"')")
 			
@@ -281,7 +313,7 @@ saveload_WINDOW <- function(){
 		
 	resultBox2 <- tklistbox( loadoptions , height=5, exportselection="FALSE",
 			selectmode="single", background="white")
-	for (result in method_data[,1]) tkinsert(resultBox2, "end", result)
+	for (result in c(method_data[,1],"ListOfResults")) tkinsert(resultBox2, "end", result)
 	resultScroll2 <- ttkscrollbar(loadoptions,command=function(...) tkyview(resultBox2, ...))
 	tkconfigure(resultBox2, yscrollcommand=function(...) tkset(resultScroll2, ...))
 	tkgrid(resultBox2,resultScroll2,sticky="nw",padx="5") #,sticky="ns"

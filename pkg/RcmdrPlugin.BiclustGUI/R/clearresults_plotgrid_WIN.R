@@ -10,7 +10,7 @@ clearresults_WINDOW <- function(){
 	## USE TKMESSAGEBOX
 	ReturnVal <- tkmessageBox(title="Clear all Bicluster Results",message = "Are you sure?",icon = "warning", type = "yesno", default = "no")
 	if(tclvalue(ReturnVal)=="yes"){
-		rm(list=.makeResultList(),envir=.GlobalEnv)
+		rm(list=.makeSuperbiclustResultList(),envir=.GlobalEnv)
 		#rm(list="biclustering.objects",envir=.GlobalEnv)
 		rm(list="biclustering.objects",envir=.EnvBiclustGUI)
 		

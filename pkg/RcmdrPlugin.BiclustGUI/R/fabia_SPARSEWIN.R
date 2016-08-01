@@ -48,6 +48,7 @@ fabiaSPARSE_WIN <- function(){     # Change newmethod to your own method name
 
 	
 	methodshow <- FALSE
+	methodsave <- FALSE
 	
 	# Define any other arguments in the function, which should not be changed by the user.
 	# These arguments may also include a certain method for your function, since it is the idea to give each method a separate window.
@@ -646,7 +647,7 @@ fabiaSPARSE_WIN <- function(){     # Change newmethod to your own method name
 	## USE ALL THE ARGUMENTS ABOUT IN THE GENERAL CLUSTERTEMPLATE FUNCTION ##
 	#########################################################################
 	
-	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow)
+	cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,methodsave=methodsave,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot,methodshow=methodshow)
 	
 }
 

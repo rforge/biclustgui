@@ -3,9 +3,10 @@
 \alias{biclustGUI_help}
 \alias{biclust.quest.GUI}
 \alias{biclust.robust.fuse}
+\alias{biclust.robust.fuse.GUI}
 \alias{fabia.biplot}
 \alias{isa.extract}
-
+\alias{isa.GUI}
 \alias{isa.scoreplots}
 \alias{isa.summary}
 \alias{openGUIScripts}
@@ -38,6 +39,8 @@
 \alias{FindBiclusters}
 \alias{HeatmapBC.GUI}
 \alias{bcdiaghighlight_WINDOW}
+\alias{repeatanalysis.GUI}
+
 \alias{isadefault_WIN_TEMPORARY}
 
 \title{GUI Functions}

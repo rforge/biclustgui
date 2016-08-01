@@ -71,11 +71,13 @@ saveload_WINDOW()
 s4vd_WIN()
 search_WINDOW()
 ssvd_WIN()
-superbiclust_WINDOW(methodname)
+superbiclust_WINDOW(methodname,methodseed,methodsave)
 }
 
 \arguments{
 \item{methodname}{These windows are called from a specific biclustering method window. The argument is a string containing the name of the method it is called from.}
+\item{methodseed}{Logical Value of \code{methodseed} option for the method chosen in \code{methodname}. Superbiclust window needs this information to generate the window correctly (e.g. the repeat analysis box)}
+\item{methodsave}{Logical Value of \code{methodsave} option for the method chosen in \code{methodname}. Superbiclust window needs this information to apply the repeat analysis correctly}
 \item{thresZ}{Fabia bicluster samples threshold}
 \item{thresL}{Fabia bicluster loadings threshold}
 \item{fabia.thresZ}{See \code{thresZ}}

@@ -202,7 +202,7 @@
 }
 
 
-.update.biclustering.object <- function(object,where="all",ENVIR=environment()){
+.update.biclustering.object <- function(object,where="all",ENVIR=environment(),ANALYSIS=""){
 	
 	biclustering.objects <- .GetEnvBiclustGUI("biclustering.objects")
 	#if(!("biclustering.objects" %in% ls(envir=.GlobalEnv))){
@@ -214,9 +214,21 @@
 		biclustering.objects$superbiclust <- c()
 		biclustering.objects$dataconnect <- data.frame(result=character(),data=character(),stringsAsFactors=FALSE)
 		biclustering.objects$ENVIR <- list()
+		biclustering.objects$ANALYSIS <- list()
 		
 		#assign("biclustering.objects",biclustering.objects,envir=.GlobalEnv)
 		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+	}
+	
+	if(where=="dataconnect"){
+		biclustering.objects$dataconnect <- rbind(biclustering.objects$dataconnect,data.frame(result=object,data=ActiveDataSet()))
+		# Check for double entries of a result
+		temp.check <- biclustering.objects$dataconnect$result==object
+		if(sum(temp.check)>1){
+			biclustering.objects$dataconnect <- biclustering.objects$dataconnect[-which(temp.check==TRUE)[1],]
+		}
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+		
 	}
 	
 	if(where=="all"){
@@ -270,6 +282,20 @@
 		
 		
 	}
+	
+	if(where=="analysis"){
+		if(object %in% names(biclustering.objects$ANALYSIS)){
+			index.analysis <- which(object==names(biclustering.objects$ANALYSIS))
+		}
+		else{
+			index.analysis <- length(biclustering.objects$ANALYSIS)+1
+		}
+		
+		biclustering.objects$ANALYSIS[[index.analysis]] <- ANALYSIS
+		names(biclustering.objects$ANALYSIS)[index.analysis] <- object
+		.AssignEnvBiclustGUI("biclustering.objects",biclustering.objects)
+	}
+	
 }
 
 .initialize.new.frames <- function(){
@@ -599,25 +625,25 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 }
 
 
-.isISA <- function(x){
-	if(class(x)=="list"){
-		
-		if(length(names(x))==4){
-			if(all(names(x)==c("rows","columns","seeddata","rundata"))){
-				return(TRUE)
-			}
-			else{
-				return(FALSE)
-			}
-		}
-		else{
-			return(FALSE)
-		}
-	}
-	else{
-		return(FALSE)
-	}
-}
+#.isISA <- function(x){
+#	if(class(x)=="list"){
+#		
+#		if(length(names(x))==4){
+#			if(all(names(x)==c("rows","columns","seeddata","rundata"))){
+#				return(TRUE)
+#			}
+#			else{
+#				return(FALSE)
+#			}
+#		}
+#		else{
+#			return(FALSE)
+#		}
+#	}
+#	else{
+#		return(FALSE)
+#	}
+#}
 
 
 .makeResultList <- function(){
@@ -625,6 +651,39 @@ robust.fuse.support <- function(robust.list,RowxNumber,NumberxCol){
 	if(length(globalVars)==0){return(globalVars)}
 	
 	select <- sapply(globalVars,FUN=.isbiclustGUIresult)
+	return(globalVars[select])
+}
+
+.isListofBiclustGUIresults <- function(x,asis=FALSE){
+	
+	if(class(x)=="character" & !asis){
+		eval(parse(text=paste("x <- ",x,sep="")))
+	}
+	
+	if(class(x)=="list"){
+		return(all(unlist(lapply(x,FUN=.isbiclustGUIresult,asis=TRUE))))
+	}else{
+		return(FALSE)
+	}
+}
+
+.makeSuperbiclustResultList <- function(){ # Same as .makeResultList, but should also recognise list of results..
+	globalVars <- ls(envir=.GlobalEnv)
+	if(length(globalVars)==0){return(globalVars)}
+	
+	select <- rep(FALSE,length(globalVars))
+	
+	for(i in 1:length(globalVars)){
+		x <- globalVars[i]
+		eval(parse(text=paste0("x <- ",x)))
+		
+		if(.isbiclustGUIresult(x,asis=TRUE)){
+			select[i] <- TRUE
+		}else{
+			select[i] <- .isListofBiclustGUIresults(x,asis=TRUE)
+		}
+
+	}
 	return(globalVars[select])
 }
 

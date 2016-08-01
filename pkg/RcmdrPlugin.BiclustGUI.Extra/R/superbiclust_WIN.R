@@ -4,7 +4,7 @@
 ###############################################################################
 
 
-superbiclust_WINDOW <- function(methodname){  
+superbiclust_WINDOW <- function(methodname,methodseed,methodsave){  
 	
 	new.frames <- .initialize.new.frames()
 	grid.config <- .initialize.grid.config()
@@ -43,6 +43,66 @@ superbiclust_WINDOW <- function(methodname){
 	
 	# Idem as plotdiag tab.
 	
+	####			 ####
+	## REPEAT ANALYSIS ##
+	####			 ####
+	
+	######		  ENTRY FIELDS FRAME 				#####
+	#							    		 			#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "repeatentry1"  
+	argument.names <- c("Number of Repeats","Starting Seed (empty=random)") 
+	argument.types <- c("num","num")
+	arguments <- c("number.repeats","start.seed")
+	initial.values <- c("10","")
+	title <- ""
+	border <- FALSE
+	entry.width <- c("5","5")  
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+	
+	######		  ENTRY FIELDS FRAME 				#####
+	#							    		 			#
+	
+	type <- "entryfields"
+	
+	# Change variables accordingly:
+	frame.name <- "repeatentry2"  
+	argument.names <- c("Object Name") 
+	argument.types <- c("char")
+	arguments <- c("object.name")
+	initial.values <- c(paste0(method_result,"List"))
+	title <- ""
+	border <- FALSE
+	entry.width <- c("15")  
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+	
+	
+	####	    	MANUAL BUTTONS FRAME 			  ####
+	#                               					 #
+	
+	type <- "buttons"
+	
+	# Change variables accordingly:
+	frame.name <- "repeatanalysis"  
+	button.name <- "Run"  
+	button.function <- "repeatanalysis.GUI" 
+	button.data <- "" 
+	button.biclust <-  ""
+	button.otherarg <- paste0("method_result='",method_result,"',methodsave=",methodsave,",toolname='",toolname,"'")
+	save <- FALSE
+	show <- FALSE
+	arg.frames <- c("repeatentry1","repeatentry2") 
+	
+	# Do not change this line:
+	new.frames <- .add.frame(input=input,frame.name=frame.name,show=show,save=save,type=type,button.name=button.name,button.otherarg=button.otherarg,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
+	
 	
 	#### 			  ####
 	## EXTRA DATA INPUT ##
@@ -79,7 +139,7 @@ superbiclust_WINDOW <- function(methodname){
 	button.function <- "chooseresultsGUI" 
 	button.data <- "" 
 	button.biclust <-  ""
-	button.otherarg <- paste0("methodname='",methodname,"',toolname='",toolname,"'")
+	button.otherarg <- paste0("methodname='",methodname,"',toolname='",toolname,"',methodseed=",methodseed)
 	save <- FALSE
 	show <- FALSE
 	arg.frames <- c() 
@@ -351,12 +411,14 @@ superbiclust_WINDOW <- function(methodname){
 	# Change variables accordingly:
 	frame.name <- "savebutton"  
 	button.name <- "Save"  
-	button.function <- "biclust.robust.fuse" 
+	button.function <- "biclust.robust.fuse.GUI" 
 	button.data <- "" 
 	button.biclust <-  ""
-	button.otherarg <- paste("CutTree=CutTree,superbiclust.result=superbiclust.result",",method_result='",method_result,"'",sep="")
+#	button.otherarg <- paste("CutTree=CutTree,superbiclust.result=superbiclust.result",",method_result='",method_result,"'",sep="")
+	button.otherarg <- paste("method_result='",method_result,"'",sep="")
 	save <- FALSE
-	show <- TRUE
+#	show <- TRUE
+	show <- FALSE
 	arg.frames <- c() 
 
 
@@ -388,18 +450,33 @@ superbiclust_WINDOW <- function(methodname){
 	
 	### CONFIGURING GRID ###
 	
-	grid.config <- .grid.matrix(input=input,c("biclustcombine","chooseresults",NA,"fabiaoptions",NA,NA,"indexradio","typeradio","superbiclust","drawtree",NA,NA,"cutentry","cutree",NA,"showrobust","robustbutton",NA,"plottyperadio","whichrobust","superplot","savebutton","resetbutton",NA),byrow=TRUE,nrow=8,ncol=3,grid.config=grid.config)
+	if(methodseed){
+		grid.config <- .grid.matrix(input=input,c("repeatentry1","repeatentry2","repeatanalysis","biclustcombine","chooseresults",NA,"fabiaoptions",NA,NA,"indexradio","typeradio","superbiclust","drawtree",NA,NA,"cutentry","cutree",NA,"showrobust","robustbutton",NA,"plottyperadio","whichrobust","superplot","savebutton","resetbutton",NA),byrow=TRUE,nrow=9,ncol=3,grid.config=grid.config)
+		
+	}else{
+		grid.config <- .grid.matrix(input=input,c("biclustcombine","chooseresults",NA,"fabiaoptions",NA,NA,"indexradio","typeradio","superbiclust","drawtree",NA,NA,"cutentry","cutree",NA,"showrobust","robustbutton",NA,"plottyperadio","whichrobust","superplot","savebutton","resetbutton",NA),byrow=TRUE,nrow=8,ncol=3,grid.config=grid.config)
+	}	
 	
 	### COMBINING ROWS ###
 	
-	
+	if(methodseed){
+		grid.rows <- .combine.rows(input=input,rows=c(1),title=paste0("Repeat ",methodname," with LAST USED parameters, NOT last selected."),border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+		grid.rows <- .combine.rows(input=input,rows=c(2),title="Extra Data Input - Vector of Results Objects ( c('result1','result2') )",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+		grid.rows <- .combine.rows(input=input,rows=c(3),title="Fabia Thresholds (if required)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+		grid.rows <- .combine.rows(input=input,rows=c(4),title="Superbiclust Configuration",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+		grid.rows <- .combine.rows(input=input,rows=c(5,6),title="Dendogram",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+		grid.rows <- .combine.rows(input=input,rows=c(7,8),title="Robust Bicluster Gene Profiles",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+		grid.rows <- .combine.rows(input=input,rows=c(9),title="Save the Robust Biclusters (Biclust & BcDiag Only)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+		
+	}else{
 		grid.rows <- .combine.rows(input=input,rows=c(1),title="Extra Data Input - Vector of Results Objects ( c('result1','result2') )",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		grid.rows <- .combine.rows(input=input,rows=c(2),title="Fabia Thresholds (if required)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		grid.rows <- .combine.rows(input=input,rows=c(3),title="Superbiclust Configuration",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		grid.rows <- .combine.rows(input=input,rows=c(4,5),title="Dendogram",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		grid.rows <- .combine.rows(input=input,rows=c(6,7),title="Robust Bicluster Gene Profiles",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
 		grid.rows <- .combine.rows(input=input,rows=c(8),title="Save the Robust Biclusters (Biclust & BcDiag Only)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
-
+	}
+		
 	
 	
 	

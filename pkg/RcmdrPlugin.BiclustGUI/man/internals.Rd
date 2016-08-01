@@ -9,6 +9,8 @@
 \alias{.isISA}
 \alias{.make.correct.frame}
 \alias{.makeResultList}
+\alias{.makeSuperbiclustResultList}
+\alias{.isListofBiclustGUIresults}
 \alias{.makesearchdata}
 \alias{.order.button.frames}
 \alias{.output.sparse.txt}
@@ -27,16 +29,16 @@
 \alias{.isbiclustGUIresult}
 \alias{.tobiclust_transf}
 \alias{.isBiclustresult}
-
+\alias{.isa2biclust}
 \alias{.checkplotgridpref}
 \alias{greenred}
 \alias{redgreen}
 \alias{viridis}
 \alias{.GetEnvBiclustGUI}
 \alias{.AssignEnvBiclustGUI}
-
 \alias{indexedBic}
 \alias{BCDIAG_isa2biclust}
+
 
 \title{List of Internal Functions}
 

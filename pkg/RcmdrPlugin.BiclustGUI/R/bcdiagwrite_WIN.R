@@ -163,8 +163,9 @@ bcdiaghighlight_WINDOW <- function(methodname,dset,bnum,bres,mname="biclust",fab
 	method_result <- gsub("&","",method_result,fixed=TRUE)
 	
 
+#	index <- BcDiag:::indexedBic(dset=dset,bres=bres,mname=mname,bnum=bnum,fabia.thresZ=fabia.thresZ,fabia.thresL=fabia.thresL)
 	index <- indexedBic(dset=dset,bres=bres,mname=mname,bnum=bnum,fabia.thresZ=fabia.thresZ,fabia.thresL=fabia.thresL)
-	
+
 	index.rows <- index[[1]]
 	index.cols <- index[[2]]
 	

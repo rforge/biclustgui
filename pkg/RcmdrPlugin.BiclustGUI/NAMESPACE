@@ -2,8 +2,8 @@
   importFrom("grDevices", "colors", "dev.list","col2rgb","rgb")
   importFrom("graphics", "axis", "image", "layout", "legend", "lines",
              "par", "title")
-  importFrom("methods", "new")
-  importFrom("utils", "browseURL", "help", "vignette", "write.table")
+  importFrom("methods", "new","getClass","isVirtualClass")
+  importFrom("utils", "browseURL", "help", "vignette", "write.table","head","tail")
 
 
 
@@ -11,7 +11,7 @@
 ## SOME GENERAL IMPORTS + GUI IMPORTS ##
 
 import(stats, Rcmdr)
-importFrom(tcltk,ttknotebook,tkwidget,.Tk.subwin,.Tk.newwin,tkbutton,ttklabel,tkadd)
+importFrom(tcltk,ttknotebook,tkwidget,.Tk.subwin,.Tk.newwin,tkbutton,ttklabel,tkadd,tkwinfo,tkfont.measure,tkyview.moveto)
 importFrom(gplots,greenred,redgreen)
 importFrom(viridis,viridis)
 
@@ -60,5 +60,5 @@ import(fabia,superbiclust,BcDiag,BicARE,rqubic,s4vd)
 
 ## OWN FUNCTIONS EXPORT ##
 exportPattern("^[^\\.]")
-export(.add.frame,.order.button.frames,.find.frame,.eval.command,.combine.rows,.make.correct.frame,.update.biclustering.object,.initialize.new.frames,.initialize.grid.config,.initialize.grid.rows,.grid.matrix,.build.command.argument,.transform.vector2text,.build.button.function,.give.doublequote,.output.sparse.txt,.is.binary.matrix,.binary.activematrix.check,.rcmdr.warning,.fabia2biclust,.makesearchdata,.bicare2biclust,.putbefore,.makeResultList,.isISA,.correctdataforresult,.tobiclust,.isbiclustGUIresult,.tobiclust_transf,.isBiclustresult,.checkplotgridpref,.GetEnvBiclustGUI,.AssignEnvBiclustGUI)
+export(.add.frame,.order.button.frames,.find.frame,.eval.command,.combine.rows,.make.correct.frame,.update.biclustering.object,.initialize.new.frames,.initialize.grid.config,.initialize.grid.rows,.grid.matrix,.build.command.argument,.transform.vector2text,.build.button.function,.give.doublequote,.output.sparse.txt,.is.binary.matrix,.binary.activematrix.check,.rcmdr.warning,.fabia2biclust,.makesearchdata,.bicare2biclust,.putbefore,.makeResultList,.correctdataforresult,.tobiclust,.isbiclustGUIresult,.tobiclust_transf,.isBiclustresult,.checkplotgridpref,.GetEnvBiclustGUI,.AssignEnvBiclustGUI,.isListofBiclustGUIresults,.makeSuperbiclustResultList)
 export(greenred,redgreen,viridis)

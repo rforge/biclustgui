@@ -50,7 +50,7 @@ FindBiclusters <- function(results,cols=c(),rows=c(),data){
 		for(i.name in names(results)){
 			eval(parse(text=paste0("out$",i.name," <- list()")))
 		}
-		eval(parse(text=paste0()))
+#		eval(parse(text=paste0()))
 		
 		# Search for biclusters in results
 		for(i.result in 1:length(results)){

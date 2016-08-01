@@ -9,6 +9,8 @@
 \alias{.isISA}
 \alias{.make.correct.frame}
 \alias{.makeResultList}
+\alias{.makeSuperbiclustResultList}
+\alias{.isListofBiclustGUIresults}
 \alias{.makesearchdata}
 \alias{.order.button.frames}
 \alias{.output.sparse.txt}
