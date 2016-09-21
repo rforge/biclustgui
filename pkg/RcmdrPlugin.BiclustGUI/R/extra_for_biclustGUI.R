@@ -86,7 +86,7 @@ biclust.bimax.GUI <- function(x,method,minr,minc,number,maxc,backfit,n2,maxbiche
 	
 	if(maxbicheck==2){
 		
-		doItAndPrint(paste0("Bimax <- biclust:::maxbimaxbiclust(x=",dataname,",minr=",minr,",minc=",minc,",backfit=",backfit,",n2=",n2,",number=",number,")"))
+		doItAndPrint(paste0("Bimax <- biclust:::maxbimaxbiclust(logicalmatrix=",dataname,",minr=",minr,",minc=",minc,",backfit=",backfit,",n2=",n2,",number=",number,")"))
 		doItAndPrint("Bimax")
 	}
 	
@@ -96,7 +96,7 @@ biclust.bimax.GUI <- function(x,method,minr,minc,number,maxc,backfit,n2,maxbiche
 		doItAndPrint("Bimax")
 	}
 	if(maxbicheck==1){
-		doItAndPrint(paste("Bimax <- biclust(x=",dataname,",method=BCrepBimax(),minr=",minr,",minc=",minc,",number=",number,")"))
+		doItAndPrint(paste0("Bimax <- biclust(x=",dataname,",method=BCrepBimax(),minr=",minr,",minc=",minc,",maxc=",maxc,",number=",number,")"))
 		doItAndPrint("Bimax")
 	}
 	
