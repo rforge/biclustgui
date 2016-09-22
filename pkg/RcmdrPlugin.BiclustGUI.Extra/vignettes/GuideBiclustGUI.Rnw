@@ -27,7 +27,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 1.0.6}
+\title{The BiclustGUI R Package - 1.0.7}
 \author{De Troyer Ewoud}
 \date{}
 \begin{document}
@@ -454,12 +454,15 @@ biocLite("rqubic")
 biocLite("BicARE")
 \end{verbatim}
 \noindent Once all R packages are installed we can install the GUI using the following
-code. You can either install the development version from the R-Forge repository
+code. You can either install the development version from the R-Forge/GitHub repository
 or the release version from the CRAN repositiry.
 \begin{verbatim}
-## Biclust GUI - In Development Version ##
+## Biclust GUI - In Development Version (R-Forge) ##
 install.packages("RcmdrPlugin.BiclustGUI",
 repos="http://R-Forge.R-project.org")
+## Biclust GUI - In Development Version (GitHub) ##
+install.packages("devtools") 
+devtools::install_github("ewouddt/RcmdrPlugin.BiclustGUI")
 ## Biclust GUI - Release Version ##
 install.packages("RcmdrPlugin.BiclustGUI")
 \end{verbatim}
