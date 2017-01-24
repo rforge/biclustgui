@@ -40,6 +40,7 @@
 \alias{HeatmapBC.GUI}
 \alias{bcdiaghighlight_WINDOW}
 \alias{repeatanalysis.GUI}
+\alias{bibit3_BC_GUI}
 
 \alias{isadefault_WIN_TEMPORARY}
 

@@ -52,7 +52,7 @@ importMethodsFrom(iBBiG, "plot", "show","summary", "RowScorexNumber", "Clustersc
     #"info",
     "analyzeClust","JIdist")
 
-import(fabia,isa2,superbiclust,BcDiag,BicARE,rqubic,s4vd)
+import(fabia,isa2,superbiclust,BcDiag,BicARE,rqubic,s4vd,BiBitR)
 
 
 

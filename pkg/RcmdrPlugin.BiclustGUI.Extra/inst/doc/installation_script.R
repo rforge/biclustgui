@@ -20,7 +20,6 @@ install.packages("s4vd")
 
 
 install.packages("gplots") # Extra package
-install.packages("viridis")
 
 ## PACKAGES AVAILABLE ON BIOCONDUCTOR ##
 source("http://bioconductor.org/biocLite.R")
@@ -35,7 +34,7 @@ install.packages("RcmdrPlugin.BiclustGUI")
 
 ## Biclust GUI - In Development Version ##
 install.packages("RcmdrPlugin.BiclustGUI",
-repos="http://R-Forge.R-project.org")
+		repos="http://R-Forge.R-project.org")
 
 ## Biclust GUI (ISA2 VERSION) - In Development Version ##
 install.packages("RcmdrPlugin.BiclustGUI.Extra",

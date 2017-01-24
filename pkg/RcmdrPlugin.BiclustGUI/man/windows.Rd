@@ -34,6 +34,9 @@
 \alias{jaccard_WINDOW}
 \alias{ssvd_WIN}
 \alias{s4vd_WIN}
+\alias{MaxBC_WINDOW}
+\alias{bibit_WIN}
+\alias{bibit3_WIN}
 
 \title{Window Functions}
 
@@ -72,6 +75,9 @@ s4vd_WIN()
 search_WINDOW()
 ssvd_WIN()
 superbiclust_WINDOW(methodname,methodseed,methodsave)
+MaxBC_WINDOW()
+bibit_WIN()
+bibit3_WIN()
 }
 
 \arguments{

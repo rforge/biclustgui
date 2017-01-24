@@ -47,6 +47,15 @@ item	BICLUSTERINGmenu	cascade			"s4vd"					s4vdmenu			""			""
 item	s4vdmenu		command			"Sparse Singular Value Decomposition"	"ssvd_WIN"			"activeDataSetP()"	""
 item	s4vdmenu		command			"SSVD with Stability Selection (s4vd)"	"s4vd_WIN"			"activeDataSetP()"	""
 
+### BiBitR Package Menu
+menu  bibitmenu BICLUSTERINGmenu  ""          ""          ""      ""
+item  BICLUSTERINGmenu  cascade   "BiBitR"          bibitmenu     ""      ""
+
+item bibitmenu    command   "BiBit with Noise Allowance"            "bibit_WIN"     "activeDataSetP()"  ""
+item bibitmenu    command   "BiBit with Provided Pattern"           "bibit3_WIN"    "activeDataSetP()"  ""
+
+
+
 
 ### ISA Package Menu
 item	BICLUSTERINGmenu	command			"ISA"					"isadefault_WIN"		"activeDataSetP()"	""
@@ -87,7 +96,7 @@ item	BICLUSTERINGHELPmenu	cascade			"Extract/Find Biclusters..."		extractfindmen
 
 item	extractfindmenu		command			"Extract Biclusters"			"extractbicluster_WINDOW"	""			""
 item	extractfindmenu		command			"Find Biclusters"			"findbiclusters_WINDOW"		""			""
-
+item  extractfindmenu   command     "Maximal Biclusters"  "MaxBC_WINDOW"            ""      ""
 
 
 ## Help Menu	
