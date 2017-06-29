@@ -33,7 +33,8 @@ if(getRversion() >= "2.15.1"){
 					"reorderCheck","zeroBCVariable","zeroBCCheck","temp.correct1","methodshow","temp.object",
 					"biclustering.objects","biclustGUI_biclusteringsearchdata","radiotypeVariable",
 					"radiodiscoVariable","global.variable.list","radiotypeFrame","radiodiscoFrame",
-					"pushOutput","putRExcel"))
+					"pushOutput","putRExcel",
+					"radioType1Frame","radioType1Variable","radioType2Frame","radioType2Variable"))
 	
 }
 

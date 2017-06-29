@@ -141,6 +141,36 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   
   input <- "plotdiagTab"
   
+  
+  
+  ####	    	MANUAL BUTTONS FRAME 			  ####
+  #                               					 #
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "bibitworkflow"  
+  button.name <- "BiBit Workflow"  
+  button.function <- "bibitworkflow_WIN" 
+  button.data <- "" 
+  button.biclust <-  ""
+  button.width <- "16"
+  button.otherarg <- "methodname='BiBit'"
+  save <- FALSE
+  show <- FALSE
+  
+  arg.frames <- c() 
+  
+
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,show=show,type=type,button.width=button.width,button.name=button.name,button.otherarg=button.otherarg,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
+  
+  ###############################################################
+  
+  
+  
+  
+  
   ###							###
   ## Parallel Coordinates Plot ##
   ###							###
@@ -357,7 +387,7 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   button.name <- "MaxBC Top"  
   button.function <- "MaxBC" 
   button.data <- "" 
-  button.biclust <-  "bicresult" 
+  button.biclust <-  "result" 
   button.otherarg <- ",top=1"
   arg.frames <- c()
   save <- FALSE
@@ -490,7 +520,7 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   #########################
   
   
-  grid.config <- .grid.matrix(input=input,c("summarybuttonframe","fstatentryframe","fstatbuttonframe","bootstrapentryframe",NA,NA,"bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,"pplottypeframe","pplotentryframe","parallelbuttonframe","pplotcheckframe",NA,NA,"heatplotcheckframe","heatplotentryframe","heatbuttonframe","mplotcheckframe","mplotentryframe","memberbuttonframe"),byrow=TRUE,nrow=7,ncol=3,grid.config=grid.config)
+  grid.config <- .grid.matrix(input=input,c("summarybuttonframe","fstatentryframe","fstatbuttonframe","bootstrapentryframe",NA,NA,"bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,"pplottypeframe","pplotentryframe","parallelbuttonframe","pplotcheckframe",NA,NA,"heatplotcheckframe","heatplotentryframe","heatbuttonframe","mplotcheckframe","mplotentryframe","memberbuttonframe","bibitworkflow",NA,NA),byrow=TRUE,nrow=8,ncol=3,grid.config=grid.config)
   
   
   
@@ -502,6 +532,7 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   grid.rows <- .combine.rows(input=input,rows=c(4,5),title="Parallel Coordinate Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
   grid.rows <- .combine.rows(input=input,rows=c(6),title="Heatmap Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
   grid.rows <- .combine.rows(input=input,rows=c(7),title="Biclustmember Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+  grid.rows <- .combine.rows(input=input,rows=c(8),title="BiBit Workflow (Note: Only for zero noise BiBit)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
   
   
   
@@ -513,3 +544,594 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   
 }
 
+
+
+
+
+
+
+
+
+bibitworkflow_WIN <- function(methodname){  
+  
+  globalobjects <- ls(envir=.GlobalEnv)
+  
+  
+  if(!("BiBit" %in% globalobjects)){
+    stop("Apply BiBit First",call. = FALSE)
+  }
+  
+  if(get("BiBit",envir=.GlobalEnv)@Parameters$Call$noise!=0){stop("Apply BiBit without noise!",call. = FALSE)}  
+  
+  
+  new.frames <- .initialize.new.frames()
+  grid.config <- .initialize.grid.config()
+  grid.rows <- .initialize.grid.rows()
+  
+  
+  #####################################################
+  ## GENERAL INFORMATION ABOUT THE NEW TOOL		   ##
+  #####################################################
+  
+  toolname <- "BiBit Workflow"
+  
+  toolhelp <- "BiBitWorkflow"
+  
+  
+  # Do not change this line:
+  input <- "plotdiagTab"
+  
+  #######################
+  ## MAKING THE WINDOW ##
+  #######################
+  
+  ### ADDING FRAMES ####
+  
+  
+  #### STEP 1 ####
+  
+  
+  #### RADIO BUTTONS FRAME 	####
+  
+  type <- "radiobuttons"
+  
+  # Change variables accordingly:
+  frame.name <- "similaritytype"
+  argument.names <- c("Column (Recommended!)","Row & Column")  
+  arguments <- c("similarity_type")		
+  argument.types <- "char" 
+  argument.values <- c("col","both") 
+  initial.values <- "col"
+  title <- "Similarity Type"
+  border <- FALSE
+  
+  # DO NOT CHANGE THIS LINE:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,argument.values=argument.values
+                           ,initial.values=initial.values,title=title,border=border
+                           ,new.frames=new.frames,argument.types=argument.types)	
+  
+  
+  
+  
+  #### RADIO BUTTONS FRAME 	####
+  
+  type <- "radiobuttons"
+  
+  # Change variables accordingly:
+  frame.name <- "initialcuttingtype"
+  argument.names <- c("Number","Dissimilarity")  
+  arguments <- c("cut_type")		
+  argument.types <- "char" 
+  argument.values <- c("number","height") 
+  initial.values <- "number"
+  title <- "Initial Cutting Type"
+  border <- FALSE
+  
+  # DO NOT CHANGE THIS LINE:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,argument.values=argument.values
+                           ,initial.values=initial.values,title=title,border=border
+                           ,new.frames=new.frames,argument.types=argument.types)	
+  
+  
+  
+  #### ENTRY FIELDS FRAME ####
+  
+  type <- "entryfields"
+  
+  # Change variables accordingly:
+  frame.name <- "initialcuttingpm"  
+  argument.names <- c("Initial Cutting Parameter") 
+  argument.types <- c("num") 
+  arguments <- c("cut_pm") 
+  initial.values <- c(10)
+  title <- ""
+  border <- FALSE
+  entry.width <- c("4")
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,initial.values=initial.values
+                           ,title=title,border=border,entry.width=entry.width
+                           ,argument.types=argument.types  ,new.frames=new.frames)
+  
+  
+  #### ENTRY FIELDS FRAME ####
+  
+  type <- "entryfields"
+  
+  # Change variables accordingly:
+  frame.name <- "initialnoise"  
+  argument.names <- c("Initial Noise Level") 
+  argument.types <- c("num") 
+  arguments <- c("noise") 
+  initial.values <- c(0.1)
+  title <- "Growing Rows"
+  border <- FALSE
+  entry.width <- c("4")
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,initial.values=initial.values
+                           ,title=title,border=border,entry.width=entry.width
+                           ,argument.types=argument.types  ,new.frames=new.frames)
+  
+  
+
+  
+  #### MANUAL BUTTONS FRAME ####
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "workflow"  
+  button.name <- "BiBitWorkflow Result"  
+  button.function <- "BiBitWorkflow.GUI" 
+  button.data <- "matrix" 
+  button.biclust <-  "BCresult" 
+  button.width <- "20"
+  button.data.transf <- "matrix"
+  
+  arg.frames <- c("similaritytype","initialcuttingtype","initialcuttingpm","initialnoise")
+  
+  save <- FALSE 
+  show <- FALSE
+  button.otherarg <- ""
+  
+  # Do not change this line: 
+  new.frames <- .add.frame(input=input,frame.name=frame.name,
+                           type=type,button.name=button.name,
+                           button.function=button.function,button.data=button.data,
+                           button.biclust=button.biclust,button.otherarg=button.otherarg,
+                           button.width=button.width,button.data.transf=button.data.transf,
+                           arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+  
+  #### STEP 2 ####
+  
+  
+  
+  #### MANUAL BUTTONS FRAME ####
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "tree"  
+  button.name <- "Dendrogram"  
+  button.function <- "BiBitDendrogram.GUI" 
+  button.data <- "matrix" 
+  button.biclust <-  "BCresult" 
+  button.width <- "20"
+  button.data.transf <- "matrix"
+  
+  arg.frames <- c("dendrocuttingtype","dendrocuttingpm")
+  
+  save <- FALSE 
+  show <- FALSE
+  button.otherarg <-""
+  
+  # Do not change this line: 
+  new.frames <- .add.frame(input=input,frame.name=frame.name,
+                           type=type,button.name=button.name,
+                           button.function=button.function,button.data=button.data,
+                           button.biclust=button.biclust,button.otherarg=button.otherarg,
+                           button.width=button.width,button.data.transf=button.data.transf,
+                           arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+  
+  
+  
+  
+  #### RADIO BUTTONS FRAME 	####
+  
+  type <- "radiobuttons"
+  
+  # Change variables accordingly:
+  frame.name <- "dendrocuttingtype"
+  argument.names <- c("Number","Dissimilarity")  
+  arguments <- c("cut_type")		
+  argument.types <- "char" 
+  argument.values <- c("number","height") 
+  initial.values <- "number"
+  title <- "Dendrogram Cutting Type"
+  border <- FALSE
+  
+  # DO NOT CHANGE THIS LINE:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,argument.values=argument.values
+                           ,initial.values=initial.values,title=title,border=border
+                           ,new.frames=new.frames,argument.types=argument.types)	
+  
+  
+  
+  #### ENTRY FIELDS FRAME ####
+  
+  type <- "entryfields"
+  
+  # Change variables accordingly:
+  frame.name <- "dendrocuttingpm"  
+  argument.names <- c("Dendrogram Cutting Parameter") 
+  argument.types <- c("num") 
+  arguments <- c("cut_pm") 
+  initial.values <- c(10)
+  title <- ""
+  border <- FALSE
+  entry.width <- c("4")
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,initial.values=initial.values
+                           ,title=title,border=border,entry.width=entry.width
+                           ,argument.types=argument.types  ,new.frames=new.frames)
+  
+  
+  
+  
+  #### ENTRY FIELDS FRAME ####
+  
+  type <- "entryfields"
+  
+  # Change variables accordingly:
+  frame.name <- "maxClusterframe"  
+  argument.names <- c("Max Clusters","Growing Rows Noise") 
+  argument.types <- c("num","num") 
+  arguments <- c("maxCluster","noise") 
+  initial.values <- c(20,0.1)
+  title <- "Cluster Row Coverage Options"
+  border <- FALSE
+  entry.width <- c("4","4")
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,initial.values=initial.values
+                           ,title=title,border=border,entry.width=entry.width
+                           ,argument.types=argument.types  ,new.frames=new.frames)
+  
+  
+  
+  
+  
+  #### MANUAL BUTTONS FRAME ####
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "rowcov"  
+  button.name <- "Cluster Row Coverage"  
+  button.function <- "ClusterRowCoverage.GUI" 
+  button.data <- "matrix" 
+  button.biclust <-  "" 
+  button.width <- "20"
+  button.data.transf <- "matrix"
+  
+  arg.frames <- c("maxClusterframe")
+  
+  save <- FALSE 
+  show <- FALSE
+  button.otherarg <- ""
+  
+  # Do not change this line: 
+  new.frames <- .add.frame(input=input,frame.name=frame.name,
+                           type=type,button.name=button.name,
+                           button.function=button.function,button.data=button.data,
+                           button.biclust=button.biclust,button.otherarg=button.otherarg,
+                           button.width=button.width,button.data.transf=button.data.transf,
+                           arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+  
+  
+  
+  #### STEP 3 ####
+  
+  #### RADIO BUTTONS FRAME 	####
+  
+  type <- "radiobuttons"
+  
+  # Change variables accordingly:
+  frame.name <- "updatecuttingtype"
+  argument.names <- c("Number","Dissimilarity")  
+  arguments <- c("cut_type")		
+  argument.types <- "char" 
+  argument.values <- c("number","height") 
+  initial.values <- "number"
+  title <- "Cutting Type"
+  border <- FALSE
+  
+  # DO NOT CHANGE THIS LINE:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,argument.values=argument.values
+                           ,initial.values=initial.values,title=title,border=border
+                           ,new.frames=new.frames,argument.types=argument.types)	
+  
+  
+  
+  #### ENTRY FIELDS FRAME ####
+  
+  type <- "entryfields"
+  
+  # Change variables accordingly:
+  frame.name <- "updatecuttingpm"  
+  argument.names <- c("Cutting Parameter") 
+  argument.types <- c("num") 
+  arguments <- c("cut_pm") 
+  initial.values <- c(10)
+  title <- ""
+  border <- FALSE
+  entry.width <- c("4")
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,initial.values=initial.values
+                           ,title=title,border=border,entry.width=entry.width
+                           ,argument.types=argument.types  ,new.frames=new.frames)
+  
+  
+  #### ENTRY FIELDS FRAME ####
+  
+  type <- "entryfields"
+  
+  # Change variables accordingly:
+  frame.name <- "updatenoise"  
+  argument.names <- c("Noise Level") 
+  argument.types <- c("num") 
+  arguments <- c("noise") 
+  initial.values <- c(0.1)
+  title <- "Growing Rows"
+  border <- FALSE
+  entry.width <- c("4")
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,type=type
+                           ,frame.name=frame.name,argument.names=argument.names
+                           ,arguments=arguments,initial.values=initial.values
+                           ,title=title,border=border,entry.width=entry.width
+                           ,argument.types=argument.types  ,new.frames=new.frames)
+  
+  
+  
+  
+  
+  #### MANUAL BUTTONS FRAME ####
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "updatebutton"  
+  button.name <- "Update"  
+  button.function <- "Update.GUI" 
+  button.data <- "matrix" 
+  button.biclust <-  "" 
+  button.width <- "16"
+  button.data.transf <- "matrix"
+  
+  arg.frames <- c("updatecuttingtype","updatecuttingpm","updatenoise")
+  
+  save <- FALSE 
+  show <- FALSE
+  button.otherarg <- ""
+  
+  # Do not change this line: 
+  new.frames <- .add.frame(input=input,frame.name=frame.name,
+                           type=type,button.name=button.name,
+                           button.function=button.function,button.data=button.data,
+                           button.biclust=button.biclust,button.otherarg=button.otherarg,
+                           button.width=button.width,button.data.transf=button.data.transf,
+                           arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+  
+  
+  
+  #### STEP 4 ####
+  
+  
+  
+  #### MANUAL BUTTONS FRAME ####
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "summarybutton"  
+  button.name <- "Summary"  
+  button.function <- "summaryworkflow.GUI" 
+  button.data <- "matrix" 
+  button.biclust <-  "" 
+  button.width <- "14"
+  button.data.transf <- "matrix"
+  
+  arg.frames <- c()
+  
+  save <- FALSE 
+  show <- FALSE
+  button.otherarg <- ""
+  
+  # Do not change this line: 
+  new.frames <- .add.frame(input=input,frame.name=frame.name,
+                           type=type,button.name=button.name,
+                           button.function=button.function,button.data=button.data,
+                           button.biclust=button.biclust,button.otherarg=button.otherarg,
+                           button.width=button.width,button.data.transf=button.data.transf,
+                           arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+  
+  
+  #### MANUAL BUTTONS FRAME ####
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "savebutton"  
+  button.name <- "Save to BiBit"  
+  button.function <- "saveworkflow.GUI" 
+  button.data <- "matrix" 
+  button.biclust <-  "" 
+  button.width <- "20"
+  button.data.transf <- "matrix"
+  
+  arg.frames <- c()
+  
+  save <- FALSE 
+  show <- FALSE
+  button.otherarg <- ""
+  
+  # Do not change this line: 
+  new.frames <- .add.frame(input=input,frame.name=frame.name,
+                           type=type,button.name=button.name,
+                           button.function=button.function,button.data=button.data,
+                           button.biclust=button.biclust,button.otherarg=button.otherarg,
+                           button.width=button.width,button.data.transf=button.data.transf,
+                           arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+  
+  #### MANUAL BUTTONS FRAME ####
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "resetbutton"  
+  button.name <- "Reset"  
+  button.function <- "resetworkflow.GUI" 
+  button.data <- "matrix" 
+  button.biclust <-  "" 
+  button.width <- "20"
+  button.data.transf <- "matrix"
+  
+  arg.frames <- c()
+  
+  save <- FALSE 
+  show <- FALSE
+  button.otherarg <- ""
+  
+  # Do not change this line: 
+  new.frames <- .add.frame(input=input,frame.name=frame.name,
+                           type=type,button.name=button.name,
+                           button.function=button.function,button.data=button.data,
+                           button.biclust=button.biclust,button.otherarg=button.otherarg,
+                           button.width=button.width,button.data.transf=button.data.transf,
+                           arg.frames=arg.frames,save=save,show=show,new.frames=new.frames)
+  
+  
+  
+  
+  ### CONFIGURING GRID ###
+  grid.config <- .grid.matrix(input=input,c("similaritytype",NA,
+                                            "initialcuttingtype","initialnoise",
+                                            "initialcuttingpm",NA,
+                                            "workflow",NA,
+                                            "dendrocuttingtype",NA,
+                                            "dendrocuttingpm","tree",
+                                            "maxClusterframe","rowcov",
+                                            "updatecuttingtype","updatenoise",
+                                            "updatecuttingpm","updatebutton",
+                                            "summarybutton",NA,
+                                            "savebutton","resetbutton"
+                                            ),
+                              
+                              nrow=11,ncol=2,byrow=TRUE,grid.config=grid.config)
+  
+  
+  
+
+  ### COMBINING ROWS ###
+  grid.rows <- .combine.rows(input=input,rows=c(1,2,3,4),title="Step 1 - Initial BiBitWorkflow",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+  grid.rows <- .combine.rows(input=input,rows=c(5,6,7),title="Step 2 - Plots",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+  grid.rows <- .combine.rows(input=input,rows=c(8,9),title="Step 3 (Optional) - Update BiBitWorkflow Result with different cut/rowgrowth",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+  grid.rows <- .combine.rows(input=input,rows=c(10,11),title="Step 4 - Summary & Save to BiBit Result",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+  
+  
+  ############################################################
+  ## USE ALL THE ARGUMENTS IN THE GENERAL NEW TOOL FUNCTION ##
+  ############################################################
+  
+  newtool_template(toolname=toolname,methodname=methodname,toolhelp=toolhelp,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames)
+  
+  
+}
+
+
+
+
+BiBitWorkflow.GUI <- function(matrix,BCresult,similarity_type,cut_type,cut_pm,noise){
+  
+  if(tclvalue(get("bin.checkVariable",envir=.GetEnvBiclustGUI("biclustering.objects")$ENVIR$BiBit))=="1"){
+    matrixname <- "x"
+  }else{
+    matrixname <- ActiveDataSet()
+  }
+  
+  doItAndPrint(paste0("BiBitWorkflowResult <- BiBitWorkflow(matrix=",matrixname,",BCresult=BiBit,similarity_type='",similarity_type,"',cut_type='",cut_type,"',cut_pm=",cut_pm,",noise=",noise,",plots=c())"))
+  
+}
+
+
+BiBitDendrogram.GUI <- function(matrix,BCresult,cut_type,cut_pm){
+  if(tclvalue(get("bin.checkVariable",envir=.GetEnvBiclustGUI("biclustering.objects")$ENVIR$BiBit))=="1"){
+    matrixname <- "x"
+  }else{
+    matrixname <- ActiveDataSet()
+  }
+  
+  doItAndPrint(paste0("BiBitWorkflowResult <- BiBitWorkflow(matrix=",matrixname,",BCresult=BiBit,cut_type='",cut_type,"',cut_pm=",cut_pm,",noise=0,plots=3,simmatresult=BiBitWorkflowResult$info$BiclustSimInitial,treeresult=BiBitWorkflowResult$info$Tree,verbose=FALSE)"))
+  
+}
+
+
+ClusterRowCoverage.GUI <- function(matrix,maxCluster,noise){
+  if(tclvalue(get("bin.checkVariable",envir=.GetEnvBiclustGUI("biclustering.objects")$ENVIR$BiBit))=="1"){
+    matrixname <- "x"
+  }else{
+    matrixname <- ActiveDataSet()
+  }
+  
+  doItAndPrint(paste0("ClusterRowCoverage(result=BiBitWorkflowResult,matrix=",matrixname,",maxCluster=",maxCluster,",noise=",noise,",plots=2)"))
+  
+}
+
+
+Update.GUI <- function(matrix,cut_type,cut_pm,noise){
+  if(tclvalue(get("bin.checkVariable",envir=.GetEnvBiclustGUI("biclustering.objects")$ENVIR$BiBit))=="1"){
+    matrixname <- "x"
+  }else{
+    matrixname <- ActiveDataSet()
+  }
+  
+  doItAndPrint(paste0("BiBitWorkflowResult <- BiBitWorkflow(matrix=",matrixname,",BCresult=BiBit,cut_type='",cut_type,"',cut_pm=",cut_pm,",noise=",noise,",plots=c(),simmatresult=BiBitWorkflowResult$info$BiclustSimInitial,treeresult=BiBitWorkflowResult$info$Tree)"))
+}
+
+summaryworkflow.GUI <- function(matrix){
+  doItAndPrint(paste0("summary(BiBitWorkflowResult$Biclust)"))
+}
+
+
+saveworkflow.GUI <- function(matrix){
+  doItAndPrint(paste0("BiBit_Original <- BiBit"))
+  doItAndPrint(paste0("BiBit <- BiBitWorkflowResult$Biclust"))
+  
+}
+
+resetworkflow.GUI <- function(matrix){
+  doItAndPrint(paste0("BiBit <- BiBit_Original"))
+}

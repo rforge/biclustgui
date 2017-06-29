@@ -124,3 +124,6 @@ item BICLUSTERINGHELPmenu	command			"Draw Heatmaps"				"image_WINDOW"			""			""
 
 ## Jaccard Index Menu
 item BICLUSTERINGHELPmenu	command			"Jaccard Index..."			"jaccard_WINDOW"		""			""
+
+## Jaccard Heatmap
+item BICLUSTERINGHELPmenu	command			"Jaccard Index Heatmap"			"heatmapJI_WINDOW"		""			""

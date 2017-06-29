@@ -141,7 +141,7 @@ bibit3_WIN <- function(){     # Change newmethod to your own method name
   frame.name <-  "patterncheck"
   argument.names <- c("Sub Patterns?","Extend Columns?","Pattern Combinations?") 
   arguments <- c("subpattern","extend_columns","pattern_combinations") 
-  initial.values <- c(1,1,0) 
+  initial.values <- c(1,0,0) 
   title <- ""
   border <- FALSE
   

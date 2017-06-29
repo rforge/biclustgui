@@ -8,7 +8,7 @@
 The package is a \emph{Graphical User Interface} (GUI) in which several 
 \emph{biclustering} methods can be executed, followed by diagnostics and 
 plots of the results. Further, the GUI also has the possibility to connect the methods to more general diagnostic packages for biclustering.
-Biclustering methods from  \pkg{biclust}, \pkg{fabia}, \pkg{iBBiG}, \pkg{isa2}, \pkg{rqubic} and \pkg{BicARE} are implemented. Additionally, \pkg{superbiclust} and \pkg{BcDiag} are also implemented to be able to further investigate results.
+Biclustering methods from  \pkg{biclust}, \pkg{fabia}, \pkg{iBBiG}, \pkg{isa2}, \pkg{BiBitR}, \pkg{rqubic} and \pkg{BicARE} are implemented. Additionally, \pkg{superbiclust} and \pkg{BcDiag} are also implemented to be able to further investigate results.
 The GUI also provides a couple of extra utilities to export, save, search through and plot the results.
 
 \code{RcmdrPlugin.BiclustGUI} also provides a very specific framework for biclustering in which new methods, diagnostics and plots can be added. 

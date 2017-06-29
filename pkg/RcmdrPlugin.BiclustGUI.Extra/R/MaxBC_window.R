@@ -105,7 +105,7 @@ MaxBC_WINDOW <- function(){
       
       if(temp.correct1){
         
-        maxbc.command <- paste0("MaxBC(bicresult=",bicres1,",top=",tclvalue(top_vars),")")
+        maxbc.command <- paste0("MaxBC(result=",bicres1,",top=",tclvalue(top_vars),")")
         doItAndPrint(maxbc.command)
       }
     }

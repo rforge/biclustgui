@@ -37,6 +37,8 @@
 \alias{MaxBC_WINDOW}
 \alias{bibit_WIN}
 \alias{bibit3_WIN}
+\alias{bibitworkflow_WIN}
+\alias{heatmapJI_WINDOW}
 
 \title{Window Functions}
 
@@ -78,6 +80,8 @@ superbiclust_WINDOW(methodname,methodseed,methodsave)
 MaxBC_WINDOW()
 bibit_WIN()
 bibit3_WIN()
+bibitworkflow_WIN(methodname)
+heatmapJI_WINDOW()
 }
 
 \arguments{

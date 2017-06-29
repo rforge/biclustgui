@@ -19,7 +19,7 @@ openGUIVignette <- function(){ # ONLY works for windows, can use openPDF from "B
 #	dir <- file.path(system.file("doc",package="RcmdrPlugin.BiclustGUI"),"vignette.pdf")
 #	shell.exec(dir) #browseURL would also work, since it uses shell.exec when browseURL has no browser as input
 #	
-	print(vignette("GuideBiclustGUI"))
+	print(vignette("GuideBiclustGUI",package="RcmdrPlugin.BiclustGUI"))
 }
 
 #placeholder <- function(){}

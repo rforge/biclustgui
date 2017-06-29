@@ -8,7 +8,7 @@ The BiclustGUI for R Commander
 Installing the GUI
 ------------------
 
-To install the **CRAN Release Version**, please use the following commands:
+To install the **CRAN Release Version** (1.1.0), please use the following commands:
 
 ``` r
 setRepositories(ind=c(1:5))

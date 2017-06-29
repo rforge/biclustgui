@@ -77,7 +77,7 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 %\usepackage{Sweave}
 
-\title{The BiclustGUI R Package - 1.1.0}
+\title{The BiclustGUI R Package - 1.1.1}
 \author{De Troyer Ewoud}
 \date{}
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
@@ -680,6 +680,15 @@ be selected in the results box.
 \caption{{\it Compute Jaccard Index Window }\label{jaccardindexwindow}}
 \end{figure}
 
+\subsubsection{Jaccard Index Heatmap}
+Using the Jaccard Index Heatmap window (Figure \ref{jaccardheatmapwindow}), it is possible to plot the heatmap of the Jaccard Index between the Biclusters of a single result, or to plot the heatmap between the biclusters of two results.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{figures/jaccardheatmap.png}
+\caption{{\it Jaccard Index Heatmap Window }\label{jaccardheatmapwindow}}
+\end{figure}
+
 \subsubsection{Clear Results}
 The {\it Clear Results} button in the {\it Help \& Utilities} menu will
 automatically clear this session of all biclustering results. This might be
@@ -768,7 +777,7 @@ printed afterwards or not.)
 
 \subsubsection{Find Maximal Biclusters}
 
-The following window in Figure \ref{maxbc} allows the user to quickly to scan through a single biclustering result (selected in the list box), and retrieve which biclusters have the largest row, column and size (= row size $\cdot$ column size). 
+The following window (which can be found in the "Extract/Find Biclusters..." submenu) in Figure \ref{maxbc} allows the user to quickly to scan through a single biclustering result (selected in the list box), and retrieve which biclusters have the largest row, column and size (= row size $\cdot$ column size). 
 
 \begin{figure}[H]
 \centering
@@ -1958,10 +1967,52 @@ column size of the bicluster. More specifically \texttt{zeros\_allowed = ceiling
 \centering
 \includegraphics[scale=0.5]{figures/bibit_plotdiagtab.png}
 \caption{{\it BiBit Window - Plots \& Diagnostics Tab}\label{bibit_plotdiagtab}}
-\end{figure}
+\end{figure} 
 
 \noindent The {\it Plots \& Diagnostics Tab for BiBit} in Figure
-\ref{bibit_plotdiagtab} is almost exactly the same as the window in Section \ref{sec:biclustplots} for the \texttt{biclust} package. The only difference being that the {\it Summary} button has been replaced by a {\it MaxBC Top} button which will tell you which Biclusters have the highest row, column and size (= row*column) dimension.
+\ref{bibit_plotdiagtab} is almost exactly the same as the window in Section \ref{sec:biclustplots} for the \texttt{biclust} package. For example, because BiBit tends to return many biclusters, the {\it Summary} button has been replaced by a {\it MaxBC Top} button which will tell you which Biclusters have the highest row, column and size (= row*column) dimension. Additionally, there is an extra button to access the {\it BiBit Workflow} tool (see below).
+\\ \\
+
+\noindent {\bf BiBit Workflow}\\
+Looking for Noisy Biclusters in large data using BiBit often results in many (overlapping) biclusters. In order decrease the number of biclusters and find larger meaningful patterns which make up noisy biclusters, the following workflow (BiBitWorkflow) can be applied. Note that this workflow is primarily used for data where there are many more rows (e.g. patients) than columns (e.g. symptoms). For example the workflow would discover larger meaningful symptom patterns which, conditioned on the allowed noise/zeros, subsets of the patients share. A basic version of this workflow can be applied using the {\it BiBit Workflow Tool Window} (Figure \ref{bibit_workflowtool}), accessed through the {\it BiBit Workflow} button in the Plots \& Diagnostics window.
+\\ \\
+{\it Step 0}\\
+Even though the goal is to find Noisy Biclusters, this workflow starts from a BiBit result with no noise. Please make sure you applied BiBit without noise in the {\it Clustering Tab}, otherwise you won't be able to open the BiBit Workflow window in the first place.
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{figures/bibitworkflow.png}
+\caption{{\it BiBit Workflow Tool Window}\label{bibit_workflowtool}}
+\end{figure}
+
+\noindent{\it Step 1}\\
+The following steps are carried out:
+\begin{enumerate}
+\item The biclusters are extracted from the BiBit result (no noise).
+\item The bicluster similarity is computed using the Jaccard Index. You can either choose only column similarity or similarity in both dimensions ({\it Similarity Type}). The former is recommended since we are interested in interesting column patterns based on local substructures of the data. In this stage the rows are not yet of importance, we will later grow these on the patterns of interest.
+\item Hierarchical clustering using the average link is applied on the bicluster similarities. The resulting tree is then cut using a number of clusters or a dissimilarity height ({\it Initial Cutting Type}, {\it Initial Cutting Parameter}). Based on this cut, the biclusters are merged and the new column memberships are extracted. We will call these our new {\it Merged Patterns}.
+\item We will grow (noisy) rows on the Merged Patterns to obtain the new final biclusters. The noise can again be an integer or a percentage as explained above ({\it Initial Noise Level}).
+\item Duplicate and non-maximal biclusters are deleted.
+\end{enumerate}
+After setting the parameters, using the {\it BiBitWorkflow Result} button will apply this workflow.
+\\ \\
+{\it Step 2}\\
+The {\it Dendrogram} button can be used to plot a dendrogram of the tree created in {\it Step 1}. The {\it Dendrogram Cutting Type} and {\it Parameter} can be adjusted to color the leaves of the tree.\\
+The {\it Cluster Row Coverage} button plots the number of clusters (of the hierarchical tree) versus the number/percentage of row coverage and number of final biclusters. The graph of number of chosen tree clusters (up to {\it Max Clusters}) versus the final row coverage can help you to make a decision on how many clusters to choose in the hierarchical tree. The more clusters you choose, the smaller (albeit more similar) the patterns are and the more rows will fit your patterns (i.e. more row coverage). (The {\it Growing Rows Noise} parameter will be the used noise level to grow rows after cutting the tree.)
+\\ \\
+{\bf Note:} Using the Gap Statistic in order to find the optimal number of clusters has not been implemented in the GUI. In order to use the Gap Statistic, we refer to the \texttt{BiBitR} package itself.
+\\ \\
+{\it Step 3 (Optional)}\\
+An optional step in which the \texttt{BiBitWorkflowResult} can be updated with new {\it Cutting} and {\it Noise} parameters (e.g. based on the plots of {\it Step 2}). After pressing the {\it Update} button, the old \texttt{BiBitWorkflowResult} will be overwritten with these new results.
+\\ \\
+{\it Step 4}\\
+Using the {\it Summary} button shows the final biclusters discovered by the current workflow result.\\
+In order to use the BiBit workflow result in other visuals or diagnostics (e.g. {\it Plots \& Diagnostics Tab}, {\it Heatmaps},...), use the {\it Save to BiBit} button in order to overwrite the current \texttt{BiBit} result with the BiBit Workflow result. The old \text{BiBit} result will be saved in the \texttt{BiBit\_Original} object.\\
+To revert to the old BiBit result, use the {\it Reset} button. 
+
+
+% gap statistic
+% more information in the BiBItR package
 
 \subsubsection{Using BiBit to find provided patterns}
 
@@ -1969,7 +2020,7 @@ column size of the bicluster. More specifically \texttt{zeros\_allowed = ceiling
 binary data.
 However due to the nature of the algorithm, namely starting an exhaustive search from each row-pair, 
 it is also possible to look for specific patterns of interest therefore
-decreasing the solution space and compation time.\\
+decreasing the solution space and computation time.\\
 This more "directed" or "pattern-driven" version of the BiBit algorithm is
 implemented in the following {\it Bibit Patterns Window} in Figure
 \ref{bibit3_clusttab}.  It allows the user to only look for
@@ -2734,7 +2785,7 @@ current value of the slider will always appear on top of it.
 \centering
 \includegraphics[scale=0.5]{figures/slider.png}
 \caption{{\it Value Slider: Code + Example}
-\label{radiobuttons}}
+\label{valuesliders}}
 \end{figure}
 
 \noindent {\it Value Sliders Variables:}

@@ -41,6 +41,13 @@
 \alias{bcdiaghighlight_WINDOW}
 \alias{repeatanalysis.GUI}
 \alias{bibit3_BC_GUI}
+\alias{BiBitWorkflow.GUI}
+\alias{BiBitDendrogram.GUI}
+\alias{ClusterRowCoverage.GUI}
+\alias{Update.GUI}
+\alias{summaryworkflow.GUI}
+\alias{saveworkflow.GUI}
+\alias{resetworkflow.GUI}
 
 \alias{isadefault_WIN_TEMPORARY}
 
