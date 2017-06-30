@@ -48,6 +48,7 @@
 \alias{summaryworkflow.GUI}
 \alias{saveworkflow.GUI}
 \alias{resetworkflow.GUI}
+\alias{ColNoiseBC.GUI}
 
 \alias{isadefault_WIN_TEMPORARY}
 

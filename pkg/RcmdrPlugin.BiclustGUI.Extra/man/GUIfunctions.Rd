@@ -48,6 +48,7 @@
 \alias{summaryworkflow.GUI}
 \alias{saveworkflow.GUI}
 \alias{resetworkflow.GUI}
+\alias{ColNoiseBC.GUI}
 
 \title{GUI Functions}
 

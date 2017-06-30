@@ -142,6 +142,50 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   input <- "plotdiagTab"
   
   
+  ######		  ENTRY FIELDS FRAME 				#####
+
+  type <- "entryfields"
+  
+  # Change variables accordingly:
+  frame.name <- "colnoiseentryframe"  
+  argument.names <- c("Bicluster Number") 
+  argument.types <- c("num")
+  arguments <- c("BC")
+  initial.values <- c(1)
+  title <- ""
+  border <- FALSE
+  entry.width <- c("4")  
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,type=type,frame.name=frame.name,argument.names=argument.names,arguments=arguments,initial.values=initial.values,title=title,border=border,entry.width=entry.width,argument.types=argument.types  ,new.frames=new.frames)
+  
+  
+  ####	    	MANUAL BUTTONS FRAME 			  ####
+  #                               					 #
+  
+  type <- "buttons"
+  
+  # Change variables accordingly:
+  frame.name <- "colnoisebutton"  
+  button.name <- "Draw Plot"  
+  button.function <- "ColNoiseBC.GUI" 
+  button.data <- "" 
+  button.biclust <-  "result"
+  button.otherarg <- ""
+  save <- FALSE
+  show <- FALSE
+  arg.frames <- c("colnoiseentryframe") 
+  
+  
+  # Do not change this line:
+  new.frames <- .add.frame(input=input,frame.name=frame.name,save=save,show=show,type=type,button.name=button.name,button.otherarg=button.otherarg,button.function=button.function,button.data=button.data,button.biclust=button.biclust,arg.frames=arg.frames,new.frames=new.frames)
+  
+  ###############################################################
+  
+  
+  
+  
+  
   
   ####	    	MANUAL BUTTONS FRAME 			  ####
   #                               					 #
@@ -520,7 +564,16 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   #########################
   
   
-  grid.config <- .grid.matrix(input=input,c("summarybuttonframe","fstatentryframe","fstatbuttonframe","bootstrapentryframe",NA,NA,"bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,"pplottypeframe","pplotentryframe","parallelbuttonframe","pplotcheckframe",NA,NA,"heatplotcheckframe","heatplotentryframe","heatbuttonframe","mplotcheckframe","mplotentryframe","memberbuttonframe","bibitworkflow",NA,NA),byrow=TRUE,nrow=8,ncol=3,grid.config=grid.config)
+  grid.config <- .grid.matrix(input=input,c("summarybuttonframe","fstatentryframe","fstatbuttonframe",
+                                            "bootstrapentryframe",NA,NA,
+                                            "bootstrapreplacementframe","bootstrapbuttonframe","bootstrapvisualbuttonframe" ,
+                                            "pplottypeframe","pplotentryframe","parallelbuttonframe",
+                                            "pplotcheckframe",NA,NA,
+                                            "heatplotcheckframe","heatplotentryframe","heatbuttonframe",
+                                            "mplotcheckframe","mplotentryframe","memberbuttonframe",
+                                            "colnoiseentryframe","colnoisebutton",NA,
+                                            "bibitworkflow",NA,NA),
+                              byrow=TRUE,nrow=9,ncol=3,grid.config=grid.config)
   
   
   
@@ -532,7 +585,8 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   grid.rows <- .combine.rows(input=input,rows=c(4,5),title="Parallel Coordinate Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
   grid.rows <- .combine.rows(input=input,rows=c(6),title="Heatmap Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
   grid.rows <- .combine.rows(input=input,rows=c(7),title="Biclustmember Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
-  grid.rows <- .combine.rows(input=input,rows=c(8),title="BiBit Workflow (Note: Only for zero noise BiBit)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+  grid.rows <- .combine.rows(input=input,rows=c(8),title="Column Noise Plot",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
+  grid.rows <- .combine.rows(input=input,rows=c(9),title="BiBit Workflow (Note: Only for zero noise BiBit)",border=TRUE,grid.rows=grid.rows,grid.config=grid.config)
   
   
   
@@ -543,6 +597,19 @@ bibit_WIN <- function(){     # Change newmethod to your own method name
   cluster_template(methodname=methodname,methodfunction=methodfunction,methodhelp=methodhelp,data.arg=data.arg,other.arg=other.arg,methodseed=methodseed,grid.config=grid.config,grid.rows=grid.rows,new.frames=new.frames,superbiclust.comp=superbiclust.comp,bcdiag.comp=bcdiag.comp,data.discr=data.discr,data.bin=data.bin,extrabiclustplot=extrabiclustplot)
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1094,7 +1161,7 @@ BiBitDendrogram.GUI <- function(matrix,BCresult,cut_type,cut_pm){
     matrixname <- ActiveDataSet()
   }
   
-  doItAndPrint(paste0("BiBitWorkflowResult <- BiBitWorkflow(matrix=",matrixname,",BCresult=BiBit,cut_type='",cut_type,"',cut_pm=",cut_pm,",noise=0,plots=3,simmatresult=BiBitWorkflowResult$info$BiclustSimInitial,treeresult=BiBitWorkflowResult$info$Tree,verbose=FALSE)"))
+  doItAndPrint(paste0("dendro_temp <- BiBitWorkflow(matrix=",matrixname,",BCresult=BiBit,cut_type='",cut_type,"',cut_pm=",cut_pm,",noise=0,plots=3,simmatresult=BiBitWorkflowResult$info$BiclustSimInitial,treeresult=BiBitWorkflowResult$info$Tree,verbose=FALSE,plot.type='other')"))
   
 }
 
@@ -1106,7 +1173,7 @@ ClusterRowCoverage.GUI <- function(matrix,maxCluster,noise){
     matrixname <- ActiveDataSet()
   }
   
-  doItAndPrint(paste0("ClusterRowCoverage(result=BiBitWorkflowResult,matrix=",matrixname,",maxCluster=",maxCluster,",noise=",noise,",plots=2)"))
+  doItAndPrint(paste0("ClusterRowCoverage(result=BiBitWorkflowResult,matrix=",matrixname,",maxCluster=",maxCluster,",noise=",noise,",plots=2,plot.type='other')"))
   
 }
 
@@ -1135,3 +1202,15 @@ saveworkflow.GUI <- function(matrix){
 resetworkflow.GUI <- function(matrix){
   doItAndPrint(paste0("BiBit <- BiBit_Original"))
 }
+
+
+ColNoiseBC.GUI <- function(result,BC){
+  if(tclvalue(get("bin.checkVariable",envir=.GetEnvBiclustGUI("biclustering.objects")$ENVIR$BiBit))=="1"){
+    matrixname <- "x"
+  }else{
+    matrixname <- ActiveDataSet()
+  }
+  doItAndPrint(paste0("ColNoiseBC(result=BiBit,matrix=",matrixname,",BC=",BC,",plot.type='other')"))
+}
+
+
