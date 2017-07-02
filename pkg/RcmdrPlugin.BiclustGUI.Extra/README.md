@@ -15,7 +15,7 @@ setRepositories(ind=c(1:5))
 install.packages("RcmdrPlugin.BiclustGUI")
 ```
 
-To install the **Development Version** from either the *R-Forge* or *GitHub* repository use
+To install the **Development Version** from either the *R-Forge* or *GitHub* repository use:
 
 ``` r
 setRepositories(ind=c(1:5))
