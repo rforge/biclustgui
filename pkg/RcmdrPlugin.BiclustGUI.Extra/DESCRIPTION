@@ -21,7 +21,7 @@ Description: A plug-in for R Commander ('Rcmdr'). The package is a Graphical
     and 'Rcmdr' and are easy to fill in.
 License: GPL-3 + file LICENSE
 Depends: biclust, fabia, isa2, iBBiG,superbiclust(>= 1.1),BcDiag(>=
-        1.0.10), rqubic, BicARE, s4vd, BiBitR(>= 0.3.1)
+        1.0.10), rqubic, BicARE, s4vd, BiBitR(>= 0.3.0)
 Imports: Rcmdr, tcltk, gplots, grDevices, graphics, methods, utils, viridis
 VignetteBuilder: knitr
 Suggests: knitr

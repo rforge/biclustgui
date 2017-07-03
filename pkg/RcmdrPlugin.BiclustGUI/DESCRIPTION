@@ -27,7 +27,7 @@ Depends:
     rqubic,
     BicARE,
     s4vd,
-    BiBitR(>= 0.3.1)
+    BiBitR(>= 0.3.0)
 Imports:
     Rcmdr,
     tcltk,
